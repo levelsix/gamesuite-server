@@ -41,3 +41,6 @@ runOnTomcat.sh
 
 
 **/.settings/
+**/.project
+**/.classpath
+

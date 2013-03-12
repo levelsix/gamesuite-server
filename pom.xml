@@ -66,15 +66,9 @@
 		<wicket.mode>development</wicket.mode>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring.security.version>3.1.1.RELEASE</spring.security.version>
-		<!--
-		<amqp.host>robot.lvl6.com</amqp.host>
-		<amqp.user>lvl6server</amqp.user>
-		<amqp.pass>devserver</amqp.pass>
-		<amqp.vhost>devgamesuite</amqp.vhost>
-		<amqp.exchange>gamemessages</amqp.exchange>
-		<amqp.chat.exchange>chatmessages</amqp.chat.exchange>
-		<amqp.client.messages.routing.key>messagesFromPlayers</amqp.client.messages.routing.key>
-		-->
+		<!-- <amqp.host>robot.lvl6.com</amqp.host> <amqp.user>lvl6server</amqp.user> 
+			<amqp.pass>devserver</amqp.pass> <amqp.vhost>devgamesuite</amqp.vhost> <amqp.exchange>gamemessages</amqp.exchange> 
+			<amqp.chat.exchange>chatmessages</amqp.chat.exchange> <amqp.client.messages.routing.key>messagesFromPlayers</amqp.client.messages.routing.key> -->
 	</properties>
 
 	<profiles>
@@ -90,6 +84,11 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>common-data-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
@@ -271,8 +270,8 @@
 
 	<modules>
 
-	<module>common</module>
-	<module>panda</module>
-	<module>pictures</module>
+		<module>common</module>
+		<module>panda</module>
+		<module>pictures</module>
 	</modules>
 </project>

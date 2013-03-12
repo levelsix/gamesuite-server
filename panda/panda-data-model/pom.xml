@@ -2,14 +2,18 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.lvl6</groupId>
-    <artifactId>gamesuite-server</artifactId>
+    <artifactId>panda</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>panda</artifactId>
-  <packaging>pom</packaging>
-  <name>Panda Run</name>
-  <description>Panda Run</description>
-  <modules>
-  	<module>panda-data-model</module>
-  </modules>
+  <artifactId>panda-data-model</artifactId>
+  <name>Panda Run Data Model</name>
+  <description>The data model for Panda Run</description>
+  
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.lvl6</groupId>
+  		<artifactId>common-data-model</artifactId>
+  	</dependency>
+  </dependencies>
 </project>
