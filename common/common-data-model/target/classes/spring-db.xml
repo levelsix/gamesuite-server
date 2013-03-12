@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/data/jpa
+    	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    	http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.lvl6.galaxywars.po" />
+
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl">
+			<value><![CDATA[jdbc:mysql://gamesuite.cv5kxrel3z7x.us-east-1.rds.amazonaws.com/gamesuite?useLegacyDatetimeCode=false]]></value>
+		</property>
+		<property name="username" value="lvl6admin" />
+		<property name="password" value="robashen123" />
+		<property name="idleConnectionTestPeriodInMinutes" value="1" />
+		<property name="idleMaxAgeInMinutes" value="5" />
+		<property name="maxConnectionsPerPartition" value="20" />
+		<property name="minConnectionsPerPartition" value="1" />
+		<property name="partitionCount" value="3" />
+		<property name="acquireIncrement" value="2" />
+		<property name="statementsCacheSize" value="500" />
+		<property name="releaseHelperThreads" value="3" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+	<jpa:repositories base-package="com.lvl6.galaxywars.dao" />
+
+</beans>
