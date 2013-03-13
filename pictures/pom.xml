@@ -9,4 +9,10 @@
   <packaging>pom</packaging>
   <name>Pictures with Friends</name>
   <description>Pictures with Friends</description>
+  <modules>
+  	<module>pictures-data-model</module>
+  	<module>pictures-proto-buff</module>
+  	<module>pictures-controllers</module>
+  	<module>pictures-webapp</module>
+  </modules>
 </project>

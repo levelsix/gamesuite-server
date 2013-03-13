@@ -11,5 +11,7 @@
   <description>Shared functionality for Game Suite</description>
   <modules>
   	<module>common-data-model</module>
+  	<module>commons-amqp</module>
+  	<module>common-proto-buff</module>
   </modules>
 </project>

@@ -3,12 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lvl6</groupId>
-		<artifactId>panda</artifactId>
+		<artifactId>pictures</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>panda-data-model</artifactId>
-	<name>Panda Run Data Model</name>
-	<description>The data model for Panda Run</description>
+	<artifactId>pictures-data-model</artifactId>
+	<name>Pictures Data Model</name>
+	<description>Data Model for Pictures with Friends</description>
+
 
 	<build>
 		<plugins>
@@ -44,7 +45,6 @@
 			</testResource>
 		</testResources>
 	</build>
-
 
 
 	<dependencies>

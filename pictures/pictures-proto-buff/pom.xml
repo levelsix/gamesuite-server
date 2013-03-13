@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lvl6</groupId>
-		<artifactId>panda</artifactId>
+		<artifactId>pictures</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>panda-data-model</artifactId>
-	<name>Panda Run Data Model</name>
-	<description>The data model for Panda Run</description>
+	<artifactId>pictures-proto-buff</artifactId>
+	<name>Pictures Protocol Buffers</name>
+	<description>Protocol Buffers for Pictures with Friends</description>
 
 	<build>
 		<plugins>
@@ -46,11 +46,11 @@
 	</build>
 
 
-
 	<dependencies>
 		<dependency>
-			<groupId>com.lvl6</groupId>
-			<artifactId>common-data-model</artifactId>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>

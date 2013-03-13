@@ -3,12 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lvl6</groupId>
-		<artifactId>panda</artifactId>
+		<artifactId>common</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>panda-data-model</artifactId>
-	<name>Panda Run Data Model</name>
-	<description>The data model for Panda Run</description>
+	<artifactId>common-proto-buff</artifactId>
+	<name>Common Protocol Buffers</name>
+	<description>Proto Buff common classes for GameSuite</description>
+
+
 
 	<build>
 		<plugins>
@@ -46,11 +48,11 @@
 	</build>
 
 
-
 	<dependencies>
 		<dependency>
-			<groupId>com.lvl6</groupId>
-			<artifactId>common-data-model</artifactId>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>

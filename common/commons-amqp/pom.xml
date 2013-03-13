@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lvl6</groupId>
-		<artifactId>panda</artifactId>
+		<artifactId>common</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>panda-data-model</artifactId>
-	<name>Panda Run Data Model</name>
-	<description>The data model for Panda Run</description>
+	<artifactId>commons-amqp</artifactId>
+	<name>Commons AMQP</name>
+	<description>The AMQP library for GameSuite</description>
 
 	<build>
 		<plugins>
@@ -45,12 +45,12 @@
 		</testResources>
 	</build>
 
-
-
 	<dependencies>
 		<dependency>
-			<groupId>com.lvl6</groupId>
-			<artifactId>common-data-model</artifactId>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-amqp</artifactId>
 		</dependency>
 	</dependencies>
+
+
 </project>
