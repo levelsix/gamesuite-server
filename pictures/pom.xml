@@ -1,18 +1,35 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.lvl6</groupId>
-    <artifactId>gamesuite-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>pictures</artifactId>
-  <packaging>pom</packaging>
-  <name>Pictures with Friends</name>
-  <description>Pictures with Friends</description>
-  <modules>
-  	<module>pictures-data-model</module>
-  	<module>pictures-proto-buff</module>
-  	<module>pictures-controllers</module>
-  	<module>pictures-webapp</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.lvl6</groupId>
+		<artifactId>gamesuite-server</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>pictures</artifactId>
+	<packaging>pom</packaging>
+	<name>Pictures with Friends</name>
+	<description>Pictures with Friends</description>
+
+	<properties>
+		<jdbc.url><![CDATA[jdbc:mysql://robot.lvl6.com/pictures?useLegacyDatetimeCode=false]]></jdbc.url>
+		<jdbc.username>lvl6admin</jdbc.username>
+		<jdbc.password>robashen123</jdbc.password>
+		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+		<jdbc.idleConnectionTestPeriodInMinutes>1</jdbc.idleConnectionTestPeriodInMinutes>
+		<jdbc.idleMaxAgeInMinutes>5</jdbc.idleMaxAgeInMinutes>
+		<jdbc.maxConnectionsPerPartition>20</jdbc.maxConnectionsPerPartition>
+		<jdbc.minConnectionsPerPartition>1</jdbc.minConnectionsPerPartition>
+		<jdbc.partitionCount>3</jdbc.partitionCount>
+		<jdbc.acquireIncrement>2</jdbc.acquireIncrement>
+		<jdbc.statementsCacheSize>500</jdbc.statementsCacheSize>
+		<jdbc.releaseHelperThreads>3</jdbc.releaseHelperThreads>
+
+	</properties>
+	<modules>
+		<module>pictures-data-model</module>
+		<module>pictures-proto-buff</module>
+		<module>pictures-controllers</module>
+		<module>pictures-webapp</module>
+	</modules>
 </project>

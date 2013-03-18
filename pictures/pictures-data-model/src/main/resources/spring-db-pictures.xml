@@ -14,9 +14,9 @@
 		">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.lvl6.gamesuite.common.po" />
+	<context:component-scan base-package="com.lvl6.pictures.po" />
 
-	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+<!-- 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="${jdbc.driverClassName}" />
 		<property name="jdbcUrl">
@@ -32,19 +32,19 @@
 		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
 		<property name="statementsCacheSize" value="${jdbc.statementsCacheSize}" />
 		<property name="releaseHelperThreads" value="${jdbc.releaseHelperThreads}" />
-	</bean>
-
-	<bean id="commonsTransactionManager"
+	</bean> -->
+<!-- 
+	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="commonsEntityManagerFactory"
+	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+ -->
 
-
-	<jpa:repositories base-package="com.lvl6.gamesuite.common.dao" entity-manager-factory-ref="commonsEntityManagerFactory" transaction-manager-ref="commonsTransactionManager" />
+	<jpa:repositories base-package="com.lvl6.pictures.dao" entity-manager-factory-ref="commonsEntityManagerFactory" transaction-manager-ref="commonsTransactionManager"/>
 
 </beans>
