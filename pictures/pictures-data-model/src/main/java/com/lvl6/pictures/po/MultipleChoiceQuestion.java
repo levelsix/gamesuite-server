@@ -16,7 +16,7 @@ public class MultipleChoiceQuestion extends QuestionBase {
 	@NotNull
 	protected String question;
 	
-	@OneToMany
+	@OneToMany	
 	@Size(min=2, max=6)
 	protected Set<MultipleChoiceAnswer> answers;
 

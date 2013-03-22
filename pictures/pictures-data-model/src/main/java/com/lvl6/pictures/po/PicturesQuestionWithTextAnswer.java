@@ -2,6 +2,7 @@ package com.lvl6.pictures.po;
 
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,6 +16,7 @@ public class PicturesQuestionWithTextAnswer extends QuestionBase {
 	
 	
 	@ElementCollection
+	@CollectionTable(name="pictures_question_with_text_answer_images")
 	@Size(min=1, max=4)
 	protected Set<String> images; 
 	
