@@ -4,24 +4,21 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.GenericGenerator;
-
 
 @Entity
-@Table( name = "users" )
+@Table( name = "user" )
 public class User extends BasePersistentObject {
 
 	
 	@NotNull
+	@Size(min = 3)
+	@Column(unique=true)
 	protected String name = "";
 	
 	@NotNull

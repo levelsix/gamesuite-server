@@ -14,7 +14,7 @@ public class BasePersistentObject {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
-	@Column(name = "uuid", unique = true)
+	@Column(name = "id", unique = true)
 	private String id;
 
 	@Version

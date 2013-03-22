@@ -49,7 +49,7 @@
 		</repository>
 	</repositories>
 	<properties>
-		<jdbc.url><![CDATA[jdbc:mysql://gamesuite.cv5kxrel3z7x.us-east-1.rds.amazonaws.com/gamesuite?useLegacyDatetimeCode=false]]></jdbc.url>
+		<jdbc.url><![CDATA[jdbc:mysql://robot.lvl6.com/pictures?useLegacyDatetimeCode=false]]></jdbc.url>
 		<jdbc.username>lvl6admin</jdbc.username>
 		<jdbc.password>robashen123</jdbc.password>
 		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
@@ -88,6 +88,11 @@
 				<groupId>com.lvl6</groupId>
 				<artifactId>common-data-model</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.0.9</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>

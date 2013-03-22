@@ -27,8 +27,6 @@
 					<includes>
 						<include>**/test/*.java</include>
 					</includes>
-					<!-- <systemproperties> <property> <name>log4j.configuration</name> 
-						<value>log4j.xml</value> </property> </systemproperties> -->
 				</configuration>
 			</plugin>
 		</plugins>
@@ -49,6 +47,10 @@
 
 
 	<dependencies>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
