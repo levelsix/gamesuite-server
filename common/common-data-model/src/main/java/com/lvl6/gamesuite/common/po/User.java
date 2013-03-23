@@ -30,6 +30,19 @@ public class User extends BasePersistentObject {
 	@Column(name = "last_login")
 	@NotNull
 	protected Date lastLogin;
+	
+	
+	protected String facebookId;
+
+
+	public String getFacebookId() {
+		return facebookId;
+	}
+
+
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
+	}
 
 
 	public String getName() {
