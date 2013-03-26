@@ -21,6 +21,13 @@ public class User extends BasePersistentObject {
 	@Column(unique=true)
 	protected String name = "";
 	
+	
+	@NotNull
+	protected String password;
+	
+	
+	
+	
 	@NotNull
 	@Size(min = 10)
 	protected String udid = "";
@@ -72,6 +79,16 @@ public class User extends BasePersistentObject {
 
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	

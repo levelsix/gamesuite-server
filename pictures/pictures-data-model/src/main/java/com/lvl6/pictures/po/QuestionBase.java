@@ -3,7 +3,10 @@ package com.lvl6.pictures.po;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
@@ -12,6 +15,8 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 public class QuestionBase extends BasePersistentObject {
 	
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_date")
 	@NotNull
 	protected Date createdDate = new Date();
 	
