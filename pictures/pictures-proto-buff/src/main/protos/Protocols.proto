@@ -1,0 +1,12 @@
+package proto;
+
+option java_package = "com.lvl6.pictures.proto";
+option java_outer_classname = "ProtocolsProto";
+
+enum EventProtocolRequest {
+
+}
+
+enum EventProtocolResponse {
+
+}
