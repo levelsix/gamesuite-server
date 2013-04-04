@@ -31,7 +31,8 @@ public class User extends BasePersistentObject {
 	
 	@NotNull
 	@Size(min = 3)
-	@Index(name = "user_emai_index")
+	@Column(unique=true)
+	@Index(name = "user_email_index")
 	protected String email = "";
 	
 	
@@ -39,6 +40,14 @@ public class User extends BasePersistentObject {
 	@NotNull
 	@Index(name = "user_last_login_index")
 	protected Date lastLogin;
+
+	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	@Index(name = "user_signup_date_index")
+	protected Date signupDate;
+	
 	
 	
 	protected String facebookId;
