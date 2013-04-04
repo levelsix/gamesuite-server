@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Index;
+
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 
@@ -21,6 +23,7 @@ public class MultipleChoiceAnswer extends BasePersistentObject {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@Index(name="multiple_choice_answer_type_index")
 	protected AnswerType answerType;
 	
 	

@@ -9,6 +9,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Index;
+
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 @MappedSuperclass
@@ -18,6 +20,7 @@ public class QuestionBase extends BasePersistentObject {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
 	@NotNull
+	@Index(name="question)created_date_index")
 	protected Date createdDate = new Date();
 	
 	protected String createdBy;

@@ -3,12 +3,15 @@ package com.lvl6.pictures.po;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
@@ -18,25 +21,25 @@ public class RoundHistory extends BasePersistentObject {
 
 	
 	@NotNull
-	@Column(name = "round_number")
+	@Index(name = "round_number_index")
 	protected int roundNumber;
 	
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "round_started")
 	@NotNull
+	@Index(name = "round_started_index")
 	protected Date roundStarted;
 	
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "round_ended")
 	@NotNull
+	@Index(name = "round_ended_index")
 	protected Date roundEnded;
 	
 	
-	@OneToMany	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
 	protected Set<QuestionAnswered> questionsAnswered;
 
 

@@ -8,6 +8,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Index;
+
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 
@@ -16,24 +18,29 @@ public class QuestionAnswered extends BasePersistentObject {
 
 	@NotNull
 	@Column(name = "round_number")
+	@Index(name="question_answered_round_number_index")
 	protected int roundNumber;
 
 	
 	@NotNull
+	@Index(name="question_answered_question_number_index")
 	protected int questionNumber;
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "answered_date")
 	@NotNull
+	@Index(name="question_answered_answer_date_index")
 	protected Date answeredDate;
 	
 	
 	@NotNull
+	@Index(name="question_answered_answered_by_index")
 	protected String answeredByUser;
 	
 	
 	@NotNull
+	@Index(name="question_answered_question_id_index")
 	protected String questionId;
 	
 	

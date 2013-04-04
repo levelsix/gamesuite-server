@@ -2,7 +2,9 @@ package com.lvl6.pictures.po;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -16,7 +18,7 @@ public class MultipleChoiceQuestion extends QuestionBase {
 	@NotNull
 	protected String question;
 	
-	@OneToMany	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
 	@Size(min=2, max=6)
 	protected Set<MultipleChoiceAnswer> answers;
 
