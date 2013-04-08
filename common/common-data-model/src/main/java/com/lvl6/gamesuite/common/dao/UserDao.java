@@ -6,8 +6,10 @@ import com.lvl6.gamesuite.common.po.User;
 
 public interface UserDao extends JpaRepository<User, String> {
 
-	public User findByUdid(String udid);
-	
 	public User findByName(String userName);
+	
+	public User findByNameOrEmail(String name, String email);
+	
+	public User findByFacebookId(String facebookId);
 	
 }

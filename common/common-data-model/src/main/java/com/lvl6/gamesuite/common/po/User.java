@@ -39,14 +39,14 @@ public class User extends BasePersistentObject {
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "user_last_login_index")
-	protected Date lastLogin;
+	protected Date lastLogin = new Date();
 
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "user_signup_date_index")
-	protected Date signupDate;
+	protected Date signupDate = new Date();
 	
 	
 	
@@ -100,6 +100,16 @@ public class User extends BasePersistentObject {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public Date getSignupDate() {
+		return signupDate;
+	}
+
+
+	public void setSignupDate(Date signupDate) {
+		this.signupDate = signupDate;
 	}
 
 	
