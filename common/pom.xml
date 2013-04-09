@@ -13,5 +13,6 @@
   	<module>common-data-model</module>
   	<module>commons-amqp</module>
   	<module>common-proto-buff</module>
+  	<module>common-services</module>
   </modules>
 </project>

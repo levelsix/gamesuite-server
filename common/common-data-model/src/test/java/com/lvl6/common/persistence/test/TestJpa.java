@@ -33,9 +33,9 @@ public class TestJpa {
 		log.info("Testing JPA setup");
 		User testuser = new User();
 		testuser.setName("Test User");
-		testuser.setUdid("TestUser1");
+		//testuser.setUdid("TestUser1");
 		testuser.setLastLogin(new Date());
-		User fromDb = getUserDao().findByUdid(testuser.getUdid());
+		User fromDb = getUserDao().findByName(testuser.getName());
 		if(fromDb != null) {
 			fromDb.setLastLogin(new Date());
 			getUserDao().save(fromDb);
