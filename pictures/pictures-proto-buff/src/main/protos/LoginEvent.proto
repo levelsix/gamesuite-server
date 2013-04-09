@@ -1,0 +1,45 @@
+import "TriviaGameOverview.proto";
+import "TriviaQuestionFormat.proto";
+import "User.proto";
+
+package proto;
+
+option java_package = "com.lvl6.pictures.event";
+option java_outer_classname = "LoginEventProto";
+
+message LoginRequestEvent {
+	//Login method one
+	//these two allow an account to be on multiple devices
+	optional string udid = 1;
+	optional string loginToken = 2; //bypass sign in: like an http cookie
+	
+	//Login method two
+	//user did not have loginToken
+	optional string facebookId = 3;
+	
+	//Login method three
+	optional string name = 4;
+	optional string password = 5; 
+	
+	//find out client's friends that play this game
+	repeated string facebookFriendIds = 6;
+}
+
+message LoginResponseEvent {
+	optional CompleteUserProto sender = 1;
+	repeated GameResultsProto completedGames = 2;
+	repeated OngoingGameProto myTurn = 3;
+	repeated OngoingGameProto notMyTurn = 4;
+	repeated QuestionProto newQuestions = 5;
+	
+	optional LoginResponseStatus status = 6;
+	
+	enum LoginResponseStatus {
+		SUCCESS_LOGIN_TOKEN = 0;
+		SUCCESS_FACEBOOK_ID = 1;
+		SUCCESS_NAME_PASSWORD = 2;
+		INVALID_LOGIN_TOKEN = 3;
+		INVALID_FACEBOOK_ID = 4;
+		INVALID_NAME_PASSWORD = 5;
+	}
+}

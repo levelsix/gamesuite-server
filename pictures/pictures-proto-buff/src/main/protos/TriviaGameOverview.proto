@@ -1,0 +1,33 @@
+import "TriviaQuestionFormat.proto";
+
+package proto;
+
+option java_package = "com.lvl6.pictures.protostructures";
+option java_outer_classname = "TriviaGameOverviewProto";
+
+message GameResultsProto {
+	optional PlayerGameResultsProto firstPlayer = 1;
+	optional PlayerGameResultsProto secondPlayer = 2;
+}
+
+message PlayerGameResultsProto {
+	//pertinent player information here
+	
+	repeated RoundResultsProto previousRoundsStats = 1;
+}
+
+message RoundResultsProto {
+	optional int32 numQuestionsSeen = 1;
+	optional int32 numQuestionsAnsweredCorrectly = 2;
+	optional int32 score = 3;
+	//other round information here
+}
+
+
+message OngoingGameProto {
+	optional GameResultsProto gameSoFar = 1;
+	
+	//if this is set, this implies user receiving it
+	//is 'secondPlayer' in GameResultsProto 'gameSoFar'
+	repeated QuestionProto myNewRoundQuestions = 2;
+}

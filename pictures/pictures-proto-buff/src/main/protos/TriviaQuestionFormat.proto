@@ -1,0 +1,28 @@
+package proto;
+
+option java_package = "com.lvl6.pictures.proto";
+option java_outer_classname = "TriviaQuestionFormatProto";
+
+message QuestionProto {
+	//mutually exlucisive, if one is set the other is not set
+	optional MultipleChoiceQuestionProto multipleChoice = 1;
+	optional PictureQuestionProto pictures = 2;
+}
+
+message MultipleChoiceQuestionProto {
+	optional string question = 1;
+	optional string answerId = 2;
+	repeated MultipleChoiceAnswerProto answers = 3;
+}
+
+message MultipleChoiceAnswerProto {
+	optional bool isImage = 1;
+	optional string id = 2;
+	optional string sentence = 3;
+}
+
+message PictureQuestionProto {
+	repeated string imageNames = 1;
+	repeated string lettersForAnswer = 2;
+	repeated string uselessLetters = 3;
+}
