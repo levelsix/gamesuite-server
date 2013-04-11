@@ -13,8 +13,8 @@ public final class LoginResponseEventProto {
     
     // optional .proto.CompleteUserProto sender = 1;
     boolean hasSender();
-    com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto getSender();
-    com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProtoOrBuilder getSenderOrBuilder();
+    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getSender();
+    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getSenderOrBuilder();
     
     // repeated .proto.GameResultsProto completedGames = 2;
     java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> 
@@ -172,14 +172,14 @@ public final class LoginResponseEventProto {
     private int bitField0_;
     // optional .proto.CompleteUserProto sender = 1;
     public static final int SENDER_FIELD_NUMBER = 1;
-    private com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto sender_;
+    private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto sender_;
     public boolean hasSender() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto getSender() {
+    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getSender() {
       return sender_;
     }
-    public com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProtoOrBuilder getSenderOrBuilder() {
+    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getSenderOrBuilder() {
       return sender_;
     }
     
@@ -278,7 +278,7 @@ public final class LoginResponseEventProto {
     }
     
     private void initFields() {
-      sender_ = com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.getDefaultInstance();
+      sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       completedGames_ = java.util.Collections.emptyList();
       myTurn_ = java.util.Collections.emptyList();
       notMyTurn_ = java.util.Collections.emptyList();
@@ -478,7 +478,7 @@ public final class LoginResponseEventProto {
       public Builder clear() {
         super.clear();
         if (senderBuilder_ == null) {
-          sender_ = com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.getDefaultInstance();
+          sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
         } else {
           senderBuilder_.clear();
         }
@@ -753,7 +753,7 @@ public final class LoginResponseEventProto {
               break;
             }
             case 10: {
-              com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.newBuilder();
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder();
               if (hasSender()) {
                 subBuilder.mergeFrom(getSender());
               }
@@ -803,20 +803,20 @@ public final class LoginResponseEventProto {
       private int bitField0_;
       
       // optional .proto.CompleteUserProto sender = 1;
-      private com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto sender_ = com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.getDefaultInstance();
+      private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProtoOrBuilder> senderBuilder_;
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> senderBuilder_;
       public boolean hasSender() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto getSender() {
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getSender() {
         if (senderBuilder_ == null) {
           return sender_;
         } else {
           return senderBuilder_.getMessage();
         }
       }
-      public Builder setSender(com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto value) {
+      public Builder setSender(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
         if (senderBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -830,7 +830,7 @@ public final class LoginResponseEventProto {
         return this;
       }
       public Builder setSender(
-          com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.Builder builderForValue) {
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder builderForValue) {
         if (senderBuilder_ == null) {
           sender_ = builderForValue.build();
           onChanged();
@@ -840,12 +840,12 @@ public final class LoginResponseEventProto {
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeSender(com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto value) {
+      public Builder mergeSender(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
         if (senderBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              sender_ != com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.getDefaultInstance()) {
+              sender_ != com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance()) {
             sender_ =
-              com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
           } else {
             sender_ = value;
           }
@@ -858,7 +858,7 @@ public final class LoginResponseEventProto {
       }
       public Builder clearSender() {
         if (senderBuilder_ == null) {
-          sender_ = com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.getDefaultInstance();
+          sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
           onChanged();
         } else {
           senderBuilder_.clear();
@@ -866,12 +866,12 @@ public final class LoginResponseEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.Builder getSenderBuilder() {
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder getSenderBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
         return getSenderFieldBuilder().getBuilder();
       }
-      public com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProtoOrBuilder getSenderOrBuilder() {
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getSenderOrBuilder() {
         if (senderBuilder_ != null) {
           return senderBuilder_.getMessageOrBuilder();
         } else {
@@ -879,11 +879,11 @@ public final class LoginResponseEventProto {
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProtoOrBuilder> 
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> 
           getSenderFieldBuilder() {
         if (senderBuilder_ == null) {
           senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.CompleteUserProto.CompleteUserProtoOrBuilder>(
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder>(
                   sender_,
                   getParentForChildren(),
                   isClean());
@@ -1724,7 +1724,7 @@ public final class LoginResponseEventProto {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.getDescriptor(),
           com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.getDescriptor(),
-          com.lvl6.pictures.noneventprotos.CompleteUserProto.getDescriptor(),
+          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
         }, assigner);
   }
   
