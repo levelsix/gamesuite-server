@@ -1,0 +1,39 @@
+import "User.proto";
+
+package proto;
+
+option java_package = "com.lvl6.pictures.event";
+option java_outer_classname = "CreateAccountEventProto";
+
+// ideally: sent only once when the user opens the app for the FIRST time or 
+// everytime a user creates a new account; LoginRequestEvent should be sent next
+message CreateAccountRequestProto {
+	//If this is provided, password is not(?) necessary
+	optional string facebookId = 1;
+	
+	//For when user does not want to login through facebook
+	optional string name = 2; 		//should be populated regardless of facebook login 
+	optional string email = 3;    	//should be populated regardless of facebook login
+	optional string password = 4;
+	
+	//goal:one account on one device at all times, no two devices should be using 
+	//one account at the same time
+	optional string udid = 5;
+	optional string deviceToken = 6;	//for push notifications
+}
+
+message CreateAccountResponseProto {
+	//need some identifier to link response to the person who sent request?
+	optional string loginToken = 1; 	//bypass sign in, like an http cookie
+	optional string failMessage = 2; 	//in case account creation fails
+	optional CompleteUserProto user = 3;
+	
+	optional CreateAccountStatus status = 4;
+	
+	enum CreateAccountStatus {
+		SUCCESS_ACCOUNT_CREATED = 0;
+		FAIL_DUPLICATE_FACEBOOK_ID = 1;
+		FAIL_DUPLICATE_EMAIL_ADDRESS = 2;
+		FAIL_OTHER = 3;
+	}
+}
