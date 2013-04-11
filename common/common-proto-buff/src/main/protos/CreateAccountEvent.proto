@@ -1,8 +1,6 @@
-import "User.proto";
-
 package proto;
 
-option java_package = "com.lvl6.pictures.event";
+option java_package = "com.lvl6.gamesuite.common.eventprotos";
 option java_outer_classname = "CreateAccountEventProto";
 
 // ideally: sent only once when the user opens the app for the FIRST time or 
@@ -24,9 +22,10 @@ message CreateAccountRequestProto {
 
 message CreateAccountResponseProto {
 	//need some identifier to link response to the person who sent request?
-	optional string loginToken = 1; 	//bypass sign in, like an http cookie
-	optional string failMessage = 2; 	//in case account creation fails
-	optional CompleteUserProto user = 3;
+	optional BasicUserProto recipient = 1; 
+	
+	optional string loginToken = 2; 	//bypass sign in, like an http cookie
+	optional string failMessage = 3; 	//in case account creation fails
 	
 	optional CreateAccountStatus status = 4;
 	

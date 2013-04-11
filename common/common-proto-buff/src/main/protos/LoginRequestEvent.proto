@@ -1,0 +1,22 @@
+package proto;
+
+option java_package = "com.lvl6.gamesuite.common.eventprotos";
+option java_outer_classname = "LoginRequestEventProto";
+
+message LoginRequestEvent {
+	//Login method one
+	//these two allow an account to be on multiple devices
+	optional string udid = 1;
+	optional string loginToken = 2; //bypass sign in: like an http cookie
+	
+	//Login method two
+	//user did not have loginToken
+	optional string facebookId = 3;
+	
+	//Login method three
+	optional string name = 4;
+	optional string password = 5; 
+	
+	//find out client's friends that play this game
+	repeated string facebookFriendIds = 6;
+}

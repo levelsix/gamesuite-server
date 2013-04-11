@@ -2,7 +2,7 @@ import "TriviaQuestionFormat.proto";
 
 package proto;
 
-option java_package = "com.lvl6.pictures.protostructures";
+option java_package = "com.lvl6.pictures.noneventprotos";
 option java_outer_classname = "TriviaGameOverviewProto";
 
 message GameResultsProto {

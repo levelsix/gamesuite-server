@@ -1,0 +1,11 @@
+package proto;
+
+option java_package = "com.lvl6.gamesuite.common.noneventprotos";
+option java_outer_classname = "BasicUserProto";
+
+//must be included in every request and response events
+//links the response to the person who sent the corresponding request
+message BasicUserProto {
+	optional string userId = 1;
+	optional string udid = 2;
+}
