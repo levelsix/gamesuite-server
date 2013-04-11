@@ -1,49 +1,17 @@
 package com.lvl6.gamesuite.common.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
+
+import com.lvl6.gamesuite.common.events.GameEvent;
+import com.lvl6.gamesuite.common.events.RequestEvent;
 
 
-@Component
-@DependsOn("gameServer")
+
 public abstract class EventController {
 
-  protected TransactionTemplate transactionTemplate;
 
-  protected PlatformTransactionManager transactionManager;
-
-  public TransactionTemplate getTransactionTemplate() {
-    return transactionTemplate;
-  }
-
-  public PlatformTransactionManager getTransactionManager() {
-    return transactionManager;
-  }
-
-  @Autowired
-  public void setTransactionManager(
-      PlatformTransactionManager transactionManager) {
-    log.debug("Autowiring transactionManager into EventController");
-    transactionTemplate = new TransactionTemplate(transactionManager);
-    this.transactionManager = transactionManager;
-  }
-
-  @Autowired
-  protected GameServer server;
-
-  public GameServer getServer() {
-    return server;
-  }
-
-  public void setServer(GameServer server) {
-    this.server = server;
-  }
 
   private static Logger log = LoggerFactory.getLogger(new Object() {}.getClass().getEnclosingClass());
 
@@ -75,12 +43,12 @@ public abstract class EventController {
 
   protected void processEvent(GameEvent event) throws Exception {
     final RequestEvent reqEvent = (RequestEvent) event;
-    MiscMethods
+/*    MiscMethods
         .setMDCProperties(
             null,
             reqEvent.getPlayerId(),
             MiscMethods.getIPOfPlayer(server,
-                reqEvent.getPlayerId(), null));
+                reqEvent.getPlayerId(), null));*/
     log.info("Received event: {}", event.getClass().getSimpleName());
 
     final long startTime = System.nanoTime();
@@ -94,17 +62,16 @@ public abstract class EventController {
       throw e;
     } finally {
       endTime = System.nanoTime();
-      DBConnection.get().getConnection().close();
     }
     double numSeconds = (endTime - startTime) / 1000000;
 
     log.info("Finished processing event: {}, took ~{}ms", event.getClass().getSimpleName(), numSeconds);
-
+/*
     if (numSeconds / 1000 > Globals.NUM_SECONDS_FOR_CONTROLLER_PROCESS_EVENT_LONGTIME_LOG_WARNING) {
       log.warn("Event {} took over {} seconds", event.getClass().getSimpleName(),  Globals.NUM_SECONDS_FOR_CONTROLLER_PROCESS_EVENT_LONGTIME_LOG_WARNING);
     }
 
-    MiscMethods.purgeMDCProperties();
+    MiscMethods.purgeMDCProperties();*/
   }
 
   protected Exception doInTransaction(final RequestEvent reqEvent) {
@@ -128,7 +95,7 @@ public abstract class EventController {
    */
   public abstract EventProtocolRequest getEventType();
 
-  @Async
+
   protected abstract void processRequestEvent(RequestEvent event)
       throws Exception;
 
