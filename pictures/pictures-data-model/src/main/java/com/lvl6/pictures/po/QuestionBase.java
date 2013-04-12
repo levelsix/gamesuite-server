@@ -20,7 +20,7 @@ public class QuestionBase extends BasePersistentObject {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
 	@NotNull
-	@Index(name="question)created_date_index")
+	@Index(name="question_created_date_index")
 	protected Date createdDate = new Date();
 	
 	protected String createdBy;
