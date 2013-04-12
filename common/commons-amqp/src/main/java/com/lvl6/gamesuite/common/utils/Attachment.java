@@ -24,7 +24,7 @@ public class Attachment {
   private Logger log = LoggerFactory.getLogger(Attachment.class);
   
   /** event type for this message */
-  public EventProtocolRequest eventType;
+  public int eventType;
   
   /** size in bytes of the payload (GameEvent) */
   public int payloadSize;
@@ -86,7 +86,7 @@ public class Attachment {
     if (readBuff.remaining() >= HEADER_SIZE) {
 
       // read the header info
-      eventType = EventProtocolRequest.valueOf(readBuff.getInt());
+      eventType = readBuff.getInt();
       tag = readBuff.getInt();
       payloadSize = readBuff.getInt();
       log.debug("Read event type: "+eventType+" and size: "+payloadSize);

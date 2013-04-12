@@ -25,7 +25,6 @@ public class User extends BasePersistentObject {
 	protected String name = "";
 	
 	
-	@NotNull
 	protected String password;
 
 	

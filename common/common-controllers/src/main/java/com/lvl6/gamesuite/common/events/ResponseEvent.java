@@ -12,10 +12,10 @@ import java.nio.ByteBuffer;
 public abstract class ResponseEvent extends GameEvent{
   
   /** event type */
-  protected EventProtocolResponse eventType;
+  protected int eventType;
 	protected int tag;
      
-  public EventProtocolResponse getEventType() {
+  public int getEventType() {
     return eventType;
   }
     

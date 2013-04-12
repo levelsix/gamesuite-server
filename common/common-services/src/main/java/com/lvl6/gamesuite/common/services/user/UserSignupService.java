@@ -50,7 +50,10 @@ public class UserSignupService {
 	}
 	
 	protected User checkForExistingUser(String userName, String email, String facebookId) {
-		User existing = userDao.findByNameOrEmail(userName, email);
+		User existing = userDao.findByName(userName);
+		if(existing == null) {
+			existing = userDao.findByEmail(email);
+		}
 		if(existing == null && facebookId != "" && facebookId != null) {
 			existing = userDao.findByFacebookId(facebookId);
 			return existing;

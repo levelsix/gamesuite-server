@@ -93,7 +93,7 @@ public abstract class EventController {
   /**
    * subclasses must implement to provide their Event type
    */
-  public abstract EventProtocolRequest getEventType();
+  public abstract int getEventType();
 
 
   protected abstract void processRequestEvent(RequestEvent event)
