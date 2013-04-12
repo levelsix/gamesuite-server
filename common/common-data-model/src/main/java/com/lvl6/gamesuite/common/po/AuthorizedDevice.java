@@ -2,12 +2,18 @@ package com.lvl6.gamesuite.common.po;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Index;
 
+
+
+@Entity
+@Table( name = "authorized_devices" )
 public class AuthorizedDevice extends BasePersistentObject {
 
 	@NotNull
