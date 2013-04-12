@@ -8,7 +8,7 @@
 			<!-- Scan for annotated classes and Hibernate mapping XML files -->
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />		
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
 		</properties>
