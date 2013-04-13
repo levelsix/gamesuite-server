@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
+import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
 import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
@@ -23,6 +24,10 @@ public class UserSignupServiceImpl implements UserSignupService {
 	protected PasswordUtil passwordUtil;
 	
 
+	public boolean isValidRequest(Builder aBuilder) {
+	  return false;
+	}
+	
 	@Override
 	public User signup(String userName, String email, String password, String facebookId) {
 		User user = checkForExistingUser(userName, email, facebookId);
