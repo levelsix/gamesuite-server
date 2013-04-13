@@ -42,4 +42,12 @@
 			</testResource>
 		</testResources>
 	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.lvl6</groupId>
+			<artifactId>pictures-data-model</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>

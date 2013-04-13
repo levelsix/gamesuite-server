@@ -110,6 +110,41 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>common-controllers</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>pictures-data-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>pictures-proto-buff</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>pictures-services</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>pictures-controllers</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lvl6</groupId>
+				<artifactId>pictures-amqp</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
 				<version>1.0.9</version>
