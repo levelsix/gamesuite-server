@@ -23,7 +23,7 @@ public class UserSignupServiceImpl implements UserSignupService {
 	protected PasswordUtil passwordUtil;
 	
 
-	
+
 	@Override
 	public User signup(String userName, String email, String password, String facebookId) {
 		User user = checkForExistingUser(userName, email, facebookId);

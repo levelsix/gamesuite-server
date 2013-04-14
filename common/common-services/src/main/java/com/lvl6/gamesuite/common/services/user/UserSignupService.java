@@ -5,7 +5,6 @@ import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
 public interface UserSignupService {
-  
 
 	public abstract User signup(String userName, String email, String password, String facebookId);
 

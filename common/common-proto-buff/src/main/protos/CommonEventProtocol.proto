@@ -1,0 +1,16 @@
+package proto;
+
+option java_package = "com.lvl6.gamesuite.common.noneventprotos";
+option java_outer_classname = "CommonEventProtocolProto";
+
+enum CommonEventProtocolRequest {
+	//at time of writing (2013-04-11), range of values
+	//goes from [1-999] inclusive
+	C_CREATE_ACCOUNT_EVENT = 1;
+}
+
+enum CommonEventProtocolResponse {
+	//at time of writing (2013-04-11), range of values
+	//goes from [1-999] inclusive
+	S_CREATE_ACCOUNT_EVENT = 1;
+}
