@@ -1,6 +1,6 @@
 package com.lvl6.gamesuite.common.controller;
 
-import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.InternetAddress;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +24,8 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   @Autowired
   protected UserSignupService service;
   
-  @Autowired
-  protected InternetAddress iAddress;
+//  @Autowired
+//  protected InternetAddress iAddress;
 
   @Override
   public RequestEvent createRequestEvent() {
@@ -63,7 +63,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
       		+ ", name:" + name + ", email:" + email + ", udid:" + udid);
       return false;
     }
-    if (!(request.hasEmail()) || email.isEmpty() || !validEmail(email)) {
+    if (!(request.hasEmail()) || email.isEmpty()) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_EMAIL);
       log.error("unexpected error: no name provided. facebookId:" + facebookId
           + ", name:" + name + ", email:" + email + ", udid:" + udid);
