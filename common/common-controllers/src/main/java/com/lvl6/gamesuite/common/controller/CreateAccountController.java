@@ -2,6 +2,8 @@ package com.lvl6.gamesuite.common.controller;
 
 //import javax.mail.internet.InternetAddress;
 
+import javax.mail.internet.InternetAddress;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   protected UserSignupService service;
   
 //  @Autowired
-//  protected InternetAddress iAddress;
+  protected InternetAddress iAddress;
 
   @Override
   public RequestEvent createRequestEvent() {
