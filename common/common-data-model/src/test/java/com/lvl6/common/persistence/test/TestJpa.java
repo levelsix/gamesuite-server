@@ -36,12 +36,16 @@ public class TestJpa {
 		//testuser.setUdid("TestUser1");
 		testuser.setLastLogin(new Date());
 		User fromDb = getUserDao().findByName(testuser.getName());
+		log.info("before: testuser=" + testuser);
+		log.info("before: fromDb=" + fromDb);
 		if(fromDb != null) {
 			fromDb.setLastLogin(new Date());
-			getUserDao().save(fromDb);
+			fromDb = getUserDao().save(fromDb);
 		}else {
-			getUserDao().save(testuser);
+			testuser = getUserDao().save(testuser);
 		}
+		log.info("after: testuser=" + testuser);
+    log.info("after: fromDb=" + fromDb);
 	}
 
 
