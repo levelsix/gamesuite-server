@@ -45,7 +45,7 @@ public class TestJpa {
 			testuser = getUserDao().save(testuser);
 		}
 		log.info("after: testuser=" + testuser);
-    log.info("after: fromDb=" + fromDb);
+		log.info("after: fromDb=" + fromDb);
 	}
 
 
