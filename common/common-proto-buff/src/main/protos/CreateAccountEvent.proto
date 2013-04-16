@@ -23,12 +23,12 @@ message CreateAccountViaEmailRequestProto {
 	optional string password = 3;
 	
 	optional string udid = 4;
-	optional string deviceToken = 5;
+	optional string deviceId = 5;
 }
 
 message CreateAccountViaNoCredentialsRequestProto {
 	optional string udid = 1;
-	optional string deviceToken = 2;
+	optional string deviceId = 2;
 }
 
 message CreateAccountResponseProto {
@@ -47,6 +47,7 @@ message CreateAccountResponseProto {
 		FAIL_MISSING_FACEBOOK_ID = 4;
 		FAIL_INVALID_NAME = 5;
 		FAIL_INVALID_UDID = 6;
-		FAIL_OTHER = 7;
+		FAIL_INVALID_PASSWORD = 7;
+		FAIL_OTHER = 8;
 	}
 }

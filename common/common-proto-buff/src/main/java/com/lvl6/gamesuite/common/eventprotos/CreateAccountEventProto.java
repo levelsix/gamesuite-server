@@ -778,9 +778,9 @@ public final class CreateAccountEventProto {
     boolean hasUdid();
     String getUdid();
     
-    // optional string deviceToken = 5;
-    boolean hasDeviceToken();
-    String getDeviceToken();
+    // optional string deviceId = 5;
+    boolean hasDeviceId();
+    String getDeviceId();
   }
   public static final class CreateAccountViaEmailRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -939,14 +939,14 @@ public final class CreateAccountEventProto {
       }
     }
     
-    // optional string deviceToken = 5;
-    public static final int DEVICETOKEN_FIELD_NUMBER = 5;
-    private java.lang.Object deviceToken_;
-    public boolean hasDeviceToken() {
+    // optional string deviceId = 5;
+    public static final int DEVICEID_FIELD_NUMBER = 5;
+    private java.lang.Object deviceId_;
+    public boolean hasDeviceId() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    public String getDeviceToken() {
-      java.lang.Object ref = deviceToken_;
+    public String getDeviceId() {
+      java.lang.Object ref = deviceId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -954,17 +954,17 @@ public final class CreateAccountEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          deviceToken_ = s;
+          deviceId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getDeviceTokenBytes() {
-      java.lang.Object ref = deviceToken_;
+    private com.google.protobuf.ByteString getDeviceIdBytes() {
+      java.lang.Object ref = deviceId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        deviceToken_ = b;
+        deviceId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -976,7 +976,7 @@ public final class CreateAccountEventProto {
       email_ = "";
       password_ = "";
       udid_ = "";
-      deviceToken_ = "";
+      deviceId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1003,7 +1003,7 @@ public final class CreateAccountEventProto {
         output.writeBytes(4, getUdidBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getDeviceTokenBytes());
+        output.writeBytes(5, getDeviceIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1032,7 +1032,7 @@ public final class CreateAccountEventProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getDeviceTokenBytes());
+          .computeBytesSize(5, getDeviceIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1166,7 +1166,7 @@ public final class CreateAccountEventProto {
         bitField0_ = (bitField0_ & ~0x00000004);
         udid_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        deviceToken_ = "";
+        deviceId_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
@@ -1225,7 +1225,7 @@ public final class CreateAccountEventProto {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.deviceToken_ = deviceToken_;
+        result.deviceId_ = deviceId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1254,8 +1254,8 @@ public final class CreateAccountEventProto {
         if (other.hasUdid()) {
           setUdid(other.getUdid());
         }
-        if (other.hasDeviceToken()) {
-          setDeviceToken(other.getDeviceToken());
+        if (other.hasDeviceId()) {
+          setDeviceId(other.getDeviceId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1310,7 +1310,7 @@ public final class CreateAccountEventProto {
             }
             case 42: {
               bitField0_ |= 0x00000010;
-              deviceToken_ = input.readBytes();
+              deviceId_ = input.readBytes();
               break;
             }
           }
@@ -1463,39 +1463,39 @@ public final class CreateAccountEventProto {
         onChanged();
       }
       
-      // optional string deviceToken = 5;
-      private java.lang.Object deviceToken_ = "";
-      public boolean hasDeviceToken() {
+      // optional string deviceId = 5;
+      private java.lang.Object deviceId_ = "";
+      public boolean hasDeviceId() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      public String getDeviceToken() {
-        java.lang.Object ref = deviceToken_;
+      public String getDeviceId() {
+        java.lang.Object ref = deviceId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          deviceToken_ = s;
+          deviceId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setDeviceToken(String value) {
+      public Builder setDeviceId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000010;
-        deviceToken_ = value;
+        deviceId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearDeviceToken() {
+      public Builder clearDeviceId() {
         bitField0_ = (bitField0_ & ~0x00000010);
-        deviceToken_ = getDefaultInstance().getDeviceToken();
+        deviceId_ = getDefaultInstance().getDeviceId();
         onChanged();
         return this;
       }
-      void setDeviceToken(com.google.protobuf.ByteString value) {
+      void setDeviceId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000010;
-        deviceToken_ = value;
+        deviceId_ = value;
         onChanged();
       }
       
@@ -1517,9 +1517,9 @@ public final class CreateAccountEventProto {
     boolean hasUdid();
     String getUdid();
     
-    // optional string deviceToken = 2;
-    boolean hasDeviceToken();
-    String getDeviceToken();
+    // optional string deviceId = 2;
+    boolean hasDeviceId();
+    String getDeviceId();
   }
   public static final class CreateAccountViaNoCredentialsRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -1582,14 +1582,14 @@ public final class CreateAccountEventProto {
       }
     }
     
-    // optional string deviceToken = 2;
-    public static final int DEVICETOKEN_FIELD_NUMBER = 2;
-    private java.lang.Object deviceToken_;
-    public boolean hasDeviceToken() {
+    // optional string deviceId = 2;
+    public static final int DEVICEID_FIELD_NUMBER = 2;
+    private java.lang.Object deviceId_;
+    public boolean hasDeviceId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getDeviceToken() {
-      java.lang.Object ref = deviceToken_;
+    public String getDeviceId() {
+      java.lang.Object ref = deviceId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -1597,17 +1597,17 @@ public final class CreateAccountEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          deviceToken_ = s;
+          deviceId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getDeviceTokenBytes() {
-      java.lang.Object ref = deviceToken_;
+    private com.google.protobuf.ByteString getDeviceIdBytes() {
+      java.lang.Object ref = deviceId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        deviceToken_ = b;
+        deviceId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1616,7 +1616,7 @@ public final class CreateAccountEventProto {
     
     private void initFields() {
       udid_ = "";
-      deviceToken_ = "";
+      deviceId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1634,7 +1634,7 @@ public final class CreateAccountEventProto {
         output.writeBytes(1, getUdidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getDeviceTokenBytes());
+        output.writeBytes(2, getDeviceIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1651,7 +1651,7 @@ public final class CreateAccountEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getDeviceTokenBytes());
+          .computeBytesSize(2, getDeviceIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1779,7 +1779,7 @@ public final class CreateAccountEventProto {
         super.clear();
         udid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        deviceToken_ = "";
+        deviceId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -1826,7 +1826,7 @@ public final class CreateAccountEventProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.deviceToken_ = deviceToken_;
+        result.deviceId_ = deviceId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1846,8 +1846,8 @@ public final class CreateAccountEventProto {
         if (other.hasUdid()) {
           setUdid(other.getUdid());
         }
-        if (other.hasDeviceToken()) {
-          setDeviceToken(other.getDeviceToken());
+        if (other.hasDeviceId()) {
+          setDeviceId(other.getDeviceId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1887,7 +1887,7 @@ public final class CreateAccountEventProto {
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              deviceToken_ = input.readBytes();
+              deviceId_ = input.readBytes();
               break;
             }
           }
@@ -1932,39 +1932,39 @@ public final class CreateAccountEventProto {
         onChanged();
       }
       
-      // optional string deviceToken = 2;
-      private java.lang.Object deviceToken_ = "";
-      public boolean hasDeviceToken() {
+      // optional string deviceId = 2;
+      private java.lang.Object deviceId_ = "";
+      public boolean hasDeviceId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public String getDeviceToken() {
-        java.lang.Object ref = deviceToken_;
+      public String getDeviceId() {
+        java.lang.Object ref = deviceId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          deviceToken_ = s;
+          deviceId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setDeviceToken(String value) {
+      public Builder setDeviceId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000002;
-        deviceToken_ = value;
+        deviceId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearDeviceToken() {
+      public Builder clearDeviceId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        deviceToken_ = getDefaultInstance().getDeviceToken();
+        deviceId_ = getDefaultInstance().getDeviceId();
         onChanged();
         return this;
       }
-      void setDeviceToken(com.google.protobuf.ByteString value) {
+      void setDeviceId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000002;
-        deviceToken_ = value;
+        deviceId_ = value;
         onChanged();
       }
       
@@ -2035,7 +2035,8 @@ public final class CreateAccountEventProto {
       FAIL_MISSING_FACEBOOK_ID(3, 4),
       FAIL_INVALID_NAME(4, 5),
       FAIL_INVALID_UDID(5, 6),
-      FAIL_OTHER(6, 7),
+      FAIL_INVALID_PASSWORD(6, 7),
+      FAIL_OTHER(7, 8),
       ;
       
       public static final int SUCCESS_ACCOUNT_CREATED_VALUE = 1;
@@ -2044,7 +2045,8 @@ public final class CreateAccountEventProto {
       public static final int FAIL_MISSING_FACEBOOK_ID_VALUE = 4;
       public static final int FAIL_INVALID_NAME_VALUE = 5;
       public static final int FAIL_INVALID_UDID_VALUE = 6;
-      public static final int FAIL_OTHER_VALUE = 7;
+      public static final int FAIL_INVALID_PASSWORD_VALUE = 7;
+      public static final int FAIL_OTHER_VALUE = 8;
       
       
       public final int getNumber() { return value; }
@@ -2057,7 +2059,8 @@ public final class CreateAccountEventProto {
           case 4: return FAIL_MISSING_FACEBOOK_ID;
           case 5: return FAIL_INVALID_NAME;
           case 6: return FAIL_INVALID_UDID;
-          case 7: return FAIL_OTHER;
+          case 7: return FAIL_INVALID_PASSWORD;
+          case 8: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -2088,7 +2091,7 @@ public final class CreateAccountEventProto {
       }
       
       private static final CreateAccountStatus[] VALUES = {
-        SUCCESS_ACCOUNT_CREATED, FAIL_DUPLICATE_FACEBOOK_ID, FAIL_DUPLICATE_UDID, FAIL_MISSING_FACEBOOK_ID, FAIL_INVALID_NAME, FAIL_INVALID_UDID, FAIL_OTHER, 
+        SUCCESS_ACCOUNT_CREATED, FAIL_DUPLICATE_FACEBOOK_ID, FAIL_DUPLICATE_UDID, FAIL_MISSING_FACEBOOK_ID, FAIL_INVALID_NAME, FAIL_INVALID_UDID, FAIL_INVALID_PASSWORD, FAIL_OTHER, 
       };
       
       public static CreateAccountStatus valueOf(
@@ -2737,23 +2740,24 @@ public final class CreateAccountEventProto {
       "User.proto\"w\n$CreateAccountViaFacebookRe" +
       "questProto\022\022\n\nfacebookId\030\001 \001(\t\022\014\n\004name\030\002" +
       " \001(\t\022\r\n\005email\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\020\n\010dev" +
-      "iceId\030\005 \001(\t\"u\n!CreateAccountViaEmailRequ" +
+      "iceId\030\005 \001(\t\"r\n!CreateAccountViaEmailRequ" +
       "estProto\022\014\n\004name\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n" +
-      "\010password\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\023\n\013deviceT" +
-      "oken\030\005 \001(\t\"N\n)CreateAccountViaNoCredenti" +
-      "alsRequestProto\022\014\n\004udid\030\001 \001(\t\022\023\n\013deviceT" +
-      "oken\030\002 \001(\t\"\210\003\n\032CreateAccountResponseProt",
-      "o\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUserPr" +
-      "oto\022\022\n\nloginToken\030\002 \001(\t\022\033\n\023tokenExpirati" +
-      "onDate\030\003 \001(\003\022E\n\006status\030\004 \001(\01625.proto.Cre" +
-      "ateAccountResponseProto.CreateAccountSta" +
-      "tus\"\307\001\n\023CreateAccountStatus\022\033\n\027SUCCESS_A" +
-      "CCOUNT_CREATED\020\001\022\036\n\032FAIL_DUPLICATE_FACEB" +
-      "OOK_ID\020\002\022\027\n\023FAIL_DUPLICATE_UDID\020\003\022\034\n\030FAI" +
-      "L_MISSING_FACEBOOK_ID\020\004\022\025\n\021FAIL_INVALID_" +
-      "NAME\020\005\022\025\n\021FAIL_INVALID_UDID\020\006\022\016\n\nFAIL_OT" +
-      "HER\020\007B@\n%com.lvl6.gamesuite.common.event",
-      "protosB\027CreateAccountEventProto"
+      "\010password\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\020\n\010deviceI" +
+      "d\030\005 \001(\t\"K\n)CreateAccountViaNoCredentials" +
+      "RequestProto\022\014\n\004udid\030\001 \001(\t\022\020\n\010deviceId\030\002" +
+      " \001(\t\"\243\003\n\032CreateAccountResponseProto\022(\n\tr",
+      "ecipient\030\001 \001(\0132\025.proto.BasicUserProto\022\022\n" +
+      "\nloginToken\030\002 \001(\t\022\033\n\023tokenExpirationDate" +
+      "\030\003 \001(\003\022E\n\006status\030\004 \001(\01625.proto.CreateAcc" +
+      "ountResponseProto.CreateAccountStatus\"\342\001" +
+      "\n\023CreateAccountStatus\022\033\n\027SUCCESS_ACCOUNT" +
+      "_CREATED\020\001\022\036\n\032FAIL_DUPLICATE_FACEBOOK_ID" +
+      "\020\002\022\027\n\023FAIL_DUPLICATE_UDID\020\003\022\034\n\030FAIL_MISS" +
+      "ING_FACEBOOK_ID\020\004\022\025\n\021FAIL_INVALID_NAME\020\005" +
+      "\022\025\n\021FAIL_INVALID_UDID\020\006\022\031\n\025FAIL_INVALID_" +
+      "PASSWORD\020\007\022\016\n\nFAIL_OTHER\020\010B@\n%com.lvl6.g",
+      "amesuite.common.eventprotosB\027CreateAccou" +
+      "ntEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2773,7 +2777,7 @@ public final class CreateAccountEventProto {
           internal_static_proto_CreateAccountViaEmailRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CreateAccountViaEmailRequestProto_descriptor,
-              new java.lang.String[] { "Name", "Email", "Password", "Udid", "DeviceToken", },
+              new java.lang.String[] { "Name", "Email", "Password", "Udid", "DeviceId", },
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.class,
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.Builder.class);
           internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor =
@@ -2781,7 +2785,7 @@ public final class CreateAccountEventProto {
           internal_static_proto_CreateAccountViaNoCredentialsRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor,
-              new java.lang.String[] { "Udid", "DeviceToken", },
+              new java.lang.String[] { "Udid", "DeviceId", },
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.class,
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.Builder.class);
           internal_static_proto_CreateAccountResponseProto_descriptor =
