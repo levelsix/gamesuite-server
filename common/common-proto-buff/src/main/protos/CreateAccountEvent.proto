@@ -5,9 +5,10 @@ package proto;
 option java_package = "com.lvl6.gamesuite.common.eventprotos";
 option java_outer_classname = "CreateAccountEventProto";
 
-// ideally: sent only once when the user opens the app for the FIRST time or 
-// everytime a user creates a new account; LoginRequestEvent should be sent next
-message CreateAccountRequestProto {
+
+// sent only if a user wants to creates an account he can log into from another device; 
+// LoginRequestEvent should be sent next
+message CreateMobileAccountRequestProto {
 	//If this is provided, password is not necessary
 	optional string facebookId = 1;
 	
@@ -17,23 +18,44 @@ message CreateAccountRequestProto {
 	// 'firstName initialOfLastName' 
 	optional string name = 2; 		 
 	
-	//should be populated regardless of facebook login
 	//client should check this is valid email format, server will too
 	optional string email = 3;
 	
-	//user needs to enter a password if not logging in through facebook
-	optional string password = 4;
-	
 	//goal:one account on one device at all times, no two devices should be using 
 	//one account at the same time, and this is the purpose for udid
-	optional string udid = 5;
-	optional string deviceToken = 6;	//for push notifications
+	optional string udid = 4;
+	optional string deviceToken = 5;	//for push notifications
+}
+
+message CreateAccountViaFacebookRequestProto {
+	optional string facebookId = 1;
+	optional string name = 2; //required, should be 'firstName initialOfLastName'
+	optional string email = 3; //not really required
+	
+	optional string udid = 4; //record what device user created account with
+	optional string deviceToken = 5; //for push notifications
+}
+
+message CreateAccountViaEmailRequestProto {
+	//all three required
+	optional string name = 1;
+	//client should check this is valid email format, server will too
+	optional string email = 2;  
+	optional string password = 3;
+	
+	optional string udid = 4;
+	optional string deviceToken = 5;
+}
+
+message CreateAccountViaNoCredentialsRequestProto {
+	optional string udid = 1;
+	optional string deviceToken = 2;
 }
 
 message CreateAccountResponseProto {
 	optional BasicUserProto recipient = 1; 
 	
-	//bypass sign in (with facebook, username/password), like an http cookie
+	//bypass sign in like an http cookie
 	optional string loginToken = 2; 	
 	optional int64 tokenExpirationDate = 3;
 	
@@ -45,10 +67,10 @@ message CreateAccountResponseProto {
 	enum CreateAccountStatus {
 		SUCCESS_ACCOUNT_CREATED = 1;
 		FAIL_DUPLICATE_FACEBOOK_ID = 2;
-		FAIL_DUPLICATE_EMAIL_ADDRESS = 3;
-		FAIL_INVALID_NAME = 4;
-		FAIL_INVALID_EMAIL = 5;
-		
-		FAIL_OTHER = 6;
+		FAIL_DUPLICATE_UDID = 3;
+		FAIL_MISSING_FACEBOOK_ID = 4;
+		FAIL_INVALID_NAME = 5;
+		FAIL_INVALID_UDID = 6;
+		FAIL_OTHER = 7;
 	}
 }

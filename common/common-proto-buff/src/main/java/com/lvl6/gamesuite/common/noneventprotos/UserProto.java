@@ -15,7 +15,11 @@ public final class UserProto {
     boolean hasUserId();
     String getUserId();
     
-    // optional string udid = 2;
+    // optional string name = 2;
+    boolean hasName();
+    String getName();
+    
+    // optional string udid = 3;
     boolean hasUdid();
     String getUdid();
   }
@@ -80,11 +84,43 @@ public final class UserProto {
       }
     }
     
-    // optional string udid = 2;
-    public static final int UDID_FIELD_NUMBER = 2;
+    // optional string name = 2;
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string udid = 3;
+    public static final int UDID_FIELD_NUMBER = 3;
     private java.lang.Object udid_;
     public boolean hasUdid() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public String getUdid() {
       java.lang.Object ref = udid_;
@@ -114,6 +150,7 @@ public final class UserProto {
     
     private void initFields() {
       userId_ = "";
+      name_ = "";
       udid_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -132,7 +169,10 @@ public final class UserProto {
         output.writeBytes(1, getUserIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getUdidBytes());
+        output.writeBytes(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getUdidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -149,7 +189,11 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getUdidBytes());
+          .computeBytesSize(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getUdidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -277,8 +321,10 @@ public final class UserProto {
         super.clear();
         userId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        udid_ = "";
+        name_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        udid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -324,6 +370,10 @@ public final class UserProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
         result.udid_ = udid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -343,6 +393,9 @@ public final class UserProto {
         if (other == com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto.getDefaultInstance()) return this;
         if (other.hasUserId()) {
           setUserId(other.getUserId());
+        }
+        if (other.hasName()) {
+          setName(other.getName());
         }
         if (other.hasUdid()) {
           setUdid(other.getUdid());
@@ -385,6 +438,11 @@ public final class UserProto {
             }
             case 18: {
               bitField0_ |= 0x00000002;
+              name_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
               udid_ = input.readBytes();
               break;
             }
@@ -430,10 +488,46 @@ public final class UserProto {
         onChanged();
       }
       
-      // optional string udid = 2;
+      // optional string name = 2;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+      }
+      
+      // optional string udid = 3;
       private java.lang.Object udid_ = "";
       public boolean hasUdid() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public String getUdid() {
         java.lang.Object ref = udid_;
@@ -449,19 +543,19 @@ public final class UserProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         udid_ = value;
         onChanged();
         return this;
       }
       public Builder clearUdid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         udid_ = getDefaultInstance().getUdid();
         onChanged();
         return this;
       }
       void setUdid(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         udid_ = value;
         onChanged();
       }
@@ -491,10 +585,10 @@ public final class UserProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017BasicUser.proto\022\005proto\".\n\016BasicUserPro" +
-      "to\022\016\n\006userId\030\001 \001(\t\022\014\n\004udid\030\002 \001(\tB5\n(com." +
-      "lvl6.gamesuite.common.noneventprotosB\tUs" +
-      "erProto"
+      "\n\017BasicUser.proto\022\005proto\"<\n\016BasicUserPro" +
+      "to\022\016\n\006userId\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004udid" +
+      "\030\003 \001(\tB5\n(com.lvl6.gamesuite.common.none" +
+      "ventprotosB\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -506,7 +600,7 @@ public final class UserProto {
           internal_static_proto_BasicUserProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BasicUserProto_descriptor,
-              new java.lang.String[] { "UserId", "Udid", },
+              new java.lang.String[] { "UserId", "Name", "Udid", },
               com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto.class,
               com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto.Builder.class);
           return null;

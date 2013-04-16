@@ -8,7 +8,7 @@ public final class CreateAccountEventProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface CreateAccountRequestProtoOrBuilder
+  public interface CreateMobileAccountRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
     // optional string facebookId = 1;
@@ -23,44 +23,40 @@ public final class CreateAccountEventProto {
     boolean hasEmail();
     String getEmail();
     
-    // optional string password = 4;
-    boolean hasPassword();
-    String getPassword();
-    
-    // optional string udid = 5;
+    // optional string udid = 4;
     boolean hasUdid();
     String getUdid();
     
-    // optional string deviceToken = 6;
+    // optional string deviceToken = 5;
     boolean hasDeviceToken();
     String getDeviceToken();
   }
-  public static final class CreateAccountRequestProto extends
+  public static final class CreateMobileAccountRequestProto extends
       com.google.protobuf.GeneratedMessage
-      implements CreateAccountRequestProtoOrBuilder {
-    // Use CreateAccountRequestProto.newBuilder() to construct.
-    private CreateAccountRequestProto(Builder builder) {
+      implements CreateMobileAccountRequestProtoOrBuilder {
+    // Use CreateMobileAccountRequestProto.newBuilder() to construct.
+    private CreateMobileAccountRequestProto(Builder builder) {
       super(builder);
     }
-    private CreateAccountRequestProto(boolean noInit) {}
+    private CreateMobileAccountRequestProto(boolean noInit) {}
     
-    private static final CreateAccountRequestProto defaultInstance;
-    public static CreateAccountRequestProto getDefaultInstance() {
+    private static final CreateMobileAccountRequestProto defaultInstance;
+    public static CreateMobileAccountRequestProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public CreateAccountRequestProto getDefaultInstanceForType() {
+    public CreateMobileAccountRequestProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountRequestProto_descriptor;
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateMobileAccountRequestProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountRequestProto_fieldAccessorTable;
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateMobileAccountRequestProto_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -160,43 +156,11 @@ public final class CreateAccountEventProto {
       }
     }
     
-    // optional string password = 4;
-    public static final int PASSWORD_FIELD_NUMBER = 4;
-    private java.lang.Object password_;
-    public boolean hasPassword() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    public String getPassword() {
-      java.lang.Object ref = password_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          password_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getPasswordBytes() {
-      java.lang.Object ref = password_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // optional string udid = 5;
-    public static final int UDID_FIELD_NUMBER = 5;
+    // optional string udid = 4;
+    public static final int UDID_FIELD_NUMBER = 4;
     private java.lang.Object udid_;
     public boolean hasUdid() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public String getUdid() {
       java.lang.Object ref = udid_;
@@ -224,11 +188,11 @@ public final class CreateAccountEventProto {
       }
     }
     
-    // optional string deviceToken = 6;
-    public static final int DEVICETOKEN_FIELD_NUMBER = 6;
+    // optional string deviceToken = 5;
+    public static final int DEVICETOKEN_FIELD_NUMBER = 5;
     private java.lang.Object deviceToken_;
     public boolean hasDeviceToken() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public String getDeviceToken() {
       java.lang.Object ref = deviceToken_;
@@ -260,7 +224,6 @@ public final class CreateAccountEventProto {
       facebookId_ = "";
       name_ = "";
       email_ = "";
-      password_ = "";
       udid_ = "";
       deviceToken_ = "";
     }
@@ -286,13 +249,10 @@ public final class CreateAccountEventProto {
         output.writeBytes(3, getEmailBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getPasswordBytes());
+        output.writeBytes(4, getUdidBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getUdidBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getDeviceTokenBytes());
+        output.writeBytes(5, getDeviceTokenBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -317,15 +277,11 @@ public final class CreateAccountEventProto {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getPasswordBytes());
+          .computeBytesSize(4, getUdidBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getUdidBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getDeviceTokenBytes());
+          .computeBytesSize(5, getDeviceTokenBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -339,41 +295,41 @@ public final class CreateAccountEventProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(byte[] data)
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(java.io.InputStream input)
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -382,7 +338,7 @@ public final class CreateAccountEventProto {
         return null;
       }
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseDelimitedFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -393,12 +349,12 @@ public final class CreateAccountEventProto {
         return null;
       }
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto parseFrom(
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -408,7 +364,7 @@ public final class CreateAccountEventProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto prototype) {
+    public static Builder newBuilder(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -421,18 +377,18 @@ public final class CreateAccountEventProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProtoOrBuilder {
+       implements com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountRequestProto_descriptor;
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateMobileAccountRequestProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountRequestProto_fieldAccessorTable;
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateMobileAccountRequestProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto.newBuilder()
+      // Construct using com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -457,12 +413,10 @@ public final class CreateAccountEventProto {
         bitField0_ = (bitField0_ & ~0x00000002);
         email_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        password_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
         udid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         deviceToken_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -472,24 +426,24 @@ public final class CreateAccountEventProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto.getDescriptor();
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto.getDescriptor();
       }
       
-      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto getDefaultInstanceForType() {
-        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto.getDefaultInstance();
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto getDefaultInstanceForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto.getDefaultInstance();
       }
       
-      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto build() {
-        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto result = buildPartial();
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto build() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto buildParsed()
+      private com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto result = buildPartial();
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -497,8 +451,8 @@ public final class CreateAccountEventProto {
         return result;
       }
       
-      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto buildPartial() {
-        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto result = new com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto(this);
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto buildPartial() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto result = new com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -516,13 +470,9 @@ public final class CreateAccountEventProto {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.password_ = password_;
+        result.udid_ = udid_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
-        }
-        result.udid_ = udid_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
         }
         result.deviceToken_ = deviceToken_;
         result.bitField0_ = to_bitField0_;
@@ -531,16 +481,16 @@ public final class CreateAccountEventProto {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto) {
-          return mergeFrom((com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto)other);
+        if (other instanceof com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto) {
+          return mergeFrom((com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto other) {
-        if (other == com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto other) {
+        if (other == com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto.getDefaultInstance()) return this;
         if (other.hasFacebookId()) {
           setFacebookId(other.getFacebookId());
         }
@@ -549,9 +499,6 @@ public final class CreateAccountEventProto {
         }
         if (other.hasEmail()) {
           setEmail(other.getEmail());
-        }
-        if (other.hasPassword()) {
-          setPassword(other.getPassword());
         }
         if (other.hasUdid()) {
           setUdid(other.getUdid());
@@ -607,16 +554,11 @@ public final class CreateAccountEventProto {
             }
             case 34: {
               bitField0_ |= 0x00000008;
-              password_ = input.readBytes();
+              udid_ = input.readBytes();
               break;
             }
             case 42: {
               bitField0_ |= 0x00000010;
-              udid_ = input.readBytes();
-              break;
-            }
-            case 50: {
-              bitField0_ |= 0x00000020;
               deviceToken_ = input.readBytes();
               break;
             }
@@ -734,46 +676,10 @@ public final class CreateAccountEventProto {
         onChanged();
       }
       
-      // optional string password = 4;
-      private java.lang.Object password_ = "";
-      public boolean hasPassword() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      public String getPassword() {
-        java.lang.Object ref = password_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          password_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      public Builder setPassword(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        password_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearPassword() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        password_ = getDefaultInstance().getPassword();
-        onChanged();
-        return this;
-      }
-      void setPassword(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000008;
-        password_ = value;
-        onChanged();
-      }
-      
-      // optional string udid = 5;
+      // optional string udid = 4;
       private java.lang.Object udid_ = "";
       public boolean hasUdid() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public String getUdid() {
         java.lang.Object ref = udid_;
@@ -789,27 +695,27 @@ public final class CreateAccountEventProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000008;
         udid_ = value;
         onChanged();
         return this;
       }
       public Builder clearUdid() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         udid_ = getDefaultInstance().getUdid();
         onChanged();
         return this;
       }
       void setUdid(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         udid_ = value;
         onChanged();
       }
       
-      // optional string deviceToken = 6;
+      // optional string deviceToken = 5;
       private java.lang.Object deviceToken_ = "";
       public boolean hasDeviceToken() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public String getDeviceToken() {
         java.lang.Object ref = deviceToken_;
@@ -825,32 +731,2003 @@ public final class CreateAccountEventProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000010;
         deviceToken_ = value;
         onChanged();
         return this;
       }
       public Builder clearDeviceToken() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         deviceToken_ = getDefaultInstance().getDeviceToken();
         onChanged();
         return this;
       }
       void setDeviceToken(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         deviceToken_ = value;
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.CreateAccountRequestProto)
+      // @@protoc_insertion_point(builder_scope:proto.CreateMobileAccountRequestProto)
     }
     
     static {
-      defaultInstance = new CreateAccountRequestProto(true);
+      defaultInstance = new CreateMobileAccountRequestProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.CreateAccountRequestProto)
+    // @@protoc_insertion_point(class_scope:proto.CreateMobileAccountRequestProto)
+  }
+  
+  public interface CreateAccountViaFacebookRequestProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string facebookId = 1;
+    boolean hasFacebookId();
+    String getFacebookId();
+    
+    // optional string name = 2;
+    boolean hasName();
+    String getName();
+    
+    // optional string email = 3;
+    boolean hasEmail();
+    String getEmail();
+    
+    // optional string udid = 4;
+    boolean hasUdid();
+    String getUdid();
+    
+    // optional string deviceToken = 5;
+    boolean hasDeviceToken();
+    String getDeviceToken();
+  }
+  public static final class CreateAccountViaFacebookRequestProto extends
+      com.google.protobuf.GeneratedMessage
+      implements CreateAccountViaFacebookRequestProtoOrBuilder {
+    // Use CreateAccountViaFacebookRequestProto.newBuilder() to construct.
+    private CreateAccountViaFacebookRequestProto(Builder builder) {
+      super(builder);
+    }
+    private CreateAccountViaFacebookRequestProto(boolean noInit) {}
+    
+    private static final CreateAccountViaFacebookRequestProto defaultInstance;
+    public static CreateAccountViaFacebookRequestProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public CreateAccountViaFacebookRequestProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaFacebookRequestProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaFacebookRequestProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional string facebookId = 1;
+    public static final int FACEBOOKID_FIELD_NUMBER = 1;
+    private java.lang.Object facebookId_;
+    public boolean hasFacebookId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getFacebookId() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          facebookId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getFacebookIdBytes() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        facebookId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string name = 2;
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string email = 3;
+    public static final int EMAIL_FIELD_NUMBER = 3;
+    private java.lang.Object email_;
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          email_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string udid = 4;
+    public static final int UDID_FIELD_NUMBER = 4;
+    private java.lang.Object udid_;
+    public boolean hasUdid() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getUdid() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          udid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUdidBytes() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        udid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string deviceToken = 5;
+    public static final int DEVICETOKEN_FIELD_NUMBER = 5;
+    private java.lang.Object deviceToken_;
+    public boolean hasDeviceToken() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getDeviceToken() {
+      java.lang.Object ref = deviceToken_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          deviceToken_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDeviceTokenBytes() {
+      java.lang.Object ref = deviceToken_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        deviceToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      facebookId_ = "";
+      name_ = "";
+      email_ = "";
+      udid_ = "";
+      deviceToken_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getDeviceTokenBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getDeviceTokenBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaFacebookRequestProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaFacebookRequestProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        facebookId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        email_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        udid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        deviceToken_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto.getDescriptor();
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto getDefaultInstanceForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto build() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto buildPartial() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto result = new com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.facebookId_ = facebookId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.email_ = email_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.udid_ = udid_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.deviceToken_ = deviceToken_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto) {
+          return mergeFrom((com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto other) {
+        if (other == com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto.getDefaultInstance()) return this;
+        if (other.hasFacebookId()) {
+          setFacebookId(other.getFacebookId());
+        }
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        if (other.hasEmail()) {
+          setEmail(other.getEmail());
+        }
+        if (other.hasUdid()) {
+          setUdid(other.getUdid());
+        }
+        if (other.hasDeviceToken()) {
+          setDeviceToken(other.getDeviceToken());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              facebookId_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              name_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              email_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              udid_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              deviceToken_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string facebookId = 1;
+      private java.lang.Object facebookId_ = "";
+      public boolean hasFacebookId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getFacebookId() {
+        java.lang.Object ref = facebookId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          facebookId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setFacebookId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        facebookId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFacebookId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        facebookId_ = getDefaultInstance().getFacebookId();
+        onChanged();
+        return this;
+      }
+      void setFacebookId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        facebookId_ = value;
+        onChanged();
+      }
+      
+      // optional string name = 2;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+      }
+      
+      // optional string email = 3;
+      private java.lang.Object email_ = "";
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmail(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmail() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      void setEmail(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        email_ = value;
+        onChanged();
+      }
+      
+      // optional string udid = 4;
+      private java.lang.Object udid_ = "";
+      public boolean hasUdid() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getUdid() {
+        java.lang.Object ref = udid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          udid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUdid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        udid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUdid() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        udid_ = getDefaultInstance().getUdid();
+        onChanged();
+        return this;
+      }
+      void setUdid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        udid_ = value;
+        onChanged();
+      }
+      
+      // optional string deviceToken = 5;
+      private java.lang.Object deviceToken_ = "";
+      public boolean hasDeviceToken() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getDeviceToken() {
+        java.lang.Object ref = deviceToken_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          deviceToken_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDeviceToken(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        deviceToken_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDeviceToken() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        deviceToken_ = getDefaultInstance().getDeviceToken();
+        onChanged();
+        return this;
+      }
+      void setDeviceToken(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        deviceToken_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.CreateAccountViaFacebookRequestProto)
+    }
+    
+    static {
+      defaultInstance = new CreateAccountViaFacebookRequestProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.CreateAccountViaFacebookRequestProto)
+  }
+  
+  public interface CreateAccountViaEmailRequestProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string name = 1;
+    boolean hasName();
+    String getName();
+    
+    // optional string email = 2;
+    boolean hasEmail();
+    String getEmail();
+    
+    // optional string password = 3;
+    boolean hasPassword();
+    String getPassword();
+    
+    // optional string udid = 4;
+    boolean hasUdid();
+    String getUdid();
+    
+    // optional string deviceToken = 5;
+    boolean hasDeviceToken();
+    String getDeviceToken();
+  }
+  public static final class CreateAccountViaEmailRequestProto extends
+      com.google.protobuf.GeneratedMessage
+      implements CreateAccountViaEmailRequestProtoOrBuilder {
+    // Use CreateAccountViaEmailRequestProto.newBuilder() to construct.
+    private CreateAccountViaEmailRequestProto(Builder builder) {
+      super(builder);
+    }
+    private CreateAccountViaEmailRequestProto(boolean noInit) {}
+    
+    private static final CreateAccountViaEmailRequestProto defaultInstance;
+    public static CreateAccountViaEmailRequestProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public CreateAccountViaEmailRequestProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaEmailRequestProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaEmailRequestProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional string name = 1;
+    public static final int NAME_FIELD_NUMBER = 1;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string email = 2;
+    public static final int EMAIL_FIELD_NUMBER = 2;
+    private java.lang.Object email_;
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          email_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string password = 3;
+    public static final int PASSWORD_FIELD_NUMBER = 3;
+    private java.lang.Object password_;
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string udid = 4;
+    public static final int UDID_FIELD_NUMBER = 4;
+    private java.lang.Object udid_;
+    public boolean hasUdid() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getUdid() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          udid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUdidBytes() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        udid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string deviceToken = 5;
+    public static final int DEVICETOKEN_FIELD_NUMBER = 5;
+    private java.lang.Object deviceToken_;
+    public boolean hasDeviceToken() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getDeviceToken() {
+      java.lang.Object ref = deviceToken_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          deviceToken_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDeviceTokenBytes() {
+      java.lang.Object ref = deviceToken_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        deviceToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      name_ = "";
+      email_ = "";
+      password_ = "";
+      udid_ = "";
+      deviceToken_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getDeviceTokenBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getDeviceTokenBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaEmailRequestProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaEmailRequestProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        email_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        password_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        udid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        deviceToken_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.getDescriptor();
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto getDefaultInstanceForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto build() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto buildPartial() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto result = new com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.email_ = email_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.password_ = password_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.udid_ = udid_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.deviceToken_ = deviceToken_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto) {
+          return mergeFrom((com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto other) {
+        if (other == com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.getDefaultInstance()) return this;
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        if (other.hasEmail()) {
+          setEmail(other.getEmail());
+        }
+        if (other.hasPassword()) {
+          setPassword(other.getPassword());
+        }
+        if (other.hasUdid()) {
+          setUdid(other.getUdid());
+        }
+        if (other.hasDeviceToken()) {
+          setDeviceToken(other.getDeviceToken());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              name_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              email_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              password_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              udid_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              deviceToken_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string name = 1;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+      }
+      
+      // optional string email = 2;
+      private java.lang.Object email_ = "";
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmail(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmail() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      void setEmail(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        email_ = value;
+        onChanged();
+      }
+      
+      // optional string password = 3;
+      private java.lang.Object password_ = "";
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPassword(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      void setPassword(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        password_ = value;
+        onChanged();
+      }
+      
+      // optional string udid = 4;
+      private java.lang.Object udid_ = "";
+      public boolean hasUdid() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getUdid() {
+        java.lang.Object ref = udid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          udid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUdid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        udid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUdid() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        udid_ = getDefaultInstance().getUdid();
+        onChanged();
+        return this;
+      }
+      void setUdid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        udid_ = value;
+        onChanged();
+      }
+      
+      // optional string deviceToken = 5;
+      private java.lang.Object deviceToken_ = "";
+      public boolean hasDeviceToken() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getDeviceToken() {
+        java.lang.Object ref = deviceToken_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          deviceToken_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDeviceToken(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        deviceToken_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDeviceToken() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        deviceToken_ = getDefaultInstance().getDeviceToken();
+        onChanged();
+        return this;
+      }
+      void setDeviceToken(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        deviceToken_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.CreateAccountViaEmailRequestProto)
+    }
+    
+    static {
+      defaultInstance = new CreateAccountViaEmailRequestProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.CreateAccountViaEmailRequestProto)
+  }
+  
+  public interface CreateAccountViaNoCredentialsRequestProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string udid = 1;
+    boolean hasUdid();
+    String getUdid();
+    
+    // optional string deviceToken = 2;
+    boolean hasDeviceToken();
+    String getDeviceToken();
+  }
+  public static final class CreateAccountViaNoCredentialsRequestProto extends
+      com.google.protobuf.GeneratedMessage
+      implements CreateAccountViaNoCredentialsRequestProtoOrBuilder {
+    // Use CreateAccountViaNoCredentialsRequestProto.newBuilder() to construct.
+    private CreateAccountViaNoCredentialsRequestProto(Builder builder) {
+      super(builder);
+    }
+    private CreateAccountViaNoCredentialsRequestProto(boolean noInit) {}
+    
+    private static final CreateAccountViaNoCredentialsRequestProto defaultInstance;
+    public static CreateAccountViaNoCredentialsRequestProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public CreateAccountViaNoCredentialsRequestProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaNoCredentialsRequestProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional string udid = 1;
+    public static final int UDID_FIELD_NUMBER = 1;
+    private java.lang.Object udid_;
+    public boolean hasUdid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getUdid() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          udid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUdidBytes() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        udid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string deviceToken = 2;
+    public static final int DEVICETOKEN_FIELD_NUMBER = 2;
+    private java.lang.Object deviceToken_;
+    public boolean hasDeviceToken() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getDeviceToken() {
+      java.lang.Object ref = deviceToken_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          deviceToken_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDeviceTokenBytes() {
+      java.lang.Object ref = deviceToken_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        deviceToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      udid_ = "";
+      deviceToken_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getDeviceTokenBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getDeviceTokenBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.internal_static_proto_CreateAccountViaNoCredentialsRequestProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        udid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        deviceToken_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.getDescriptor();
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto getDefaultInstanceForType() {
+        return com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto build() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto buildPartial() {
+        com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto result = new com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.udid_ = udid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.deviceToken_ = deviceToken_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto) {
+          return mergeFrom((com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto other) {
+        if (other == com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.getDefaultInstance()) return this;
+        if (other.hasUdid()) {
+          setUdid(other.getUdid());
+        }
+        if (other.hasDeviceToken()) {
+          setDeviceToken(other.getDeviceToken());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              udid_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              deviceToken_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string udid = 1;
+      private java.lang.Object udid_ = "";
+      public boolean hasUdid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getUdid() {
+        java.lang.Object ref = udid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          udid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUdid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        udid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUdid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        udid_ = getDefaultInstance().getUdid();
+        onChanged();
+        return this;
+      }
+      void setUdid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        udid_ = value;
+        onChanged();
+      }
+      
+      // optional string deviceToken = 2;
+      private java.lang.Object deviceToken_ = "";
+      public boolean hasDeviceToken() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getDeviceToken() {
+        java.lang.Object ref = deviceToken_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          deviceToken_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDeviceToken(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        deviceToken_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDeviceToken() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        deviceToken_ = getDefaultInstance().getDeviceToken();
+        onChanged();
+        return this;
+      }
+      void setDeviceToken(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        deviceToken_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.CreateAccountViaNoCredentialsRequestProto)
+    }
+    
+    static {
+      defaultInstance = new CreateAccountViaNoCredentialsRequestProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.CreateAccountViaNoCredentialsRequestProto)
   }
   
   public interface CreateAccountResponseProtoOrBuilder
@@ -909,18 +2786,20 @@ public final class CreateAccountEventProto {
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS_ACCOUNT_CREATED(0, 1),
       FAIL_DUPLICATE_FACEBOOK_ID(1, 2),
-      FAIL_DUPLICATE_EMAIL_ADDRESS(2, 3),
-      FAIL_INVALID_NAME(3, 4),
-      FAIL_INVALID_EMAIL(4, 5),
-      FAIL_OTHER(5, 6),
+      FAIL_DUPLICATE_UDID(2, 3),
+      FAIL_MISSING_FACEBOOK_ID(3, 4),
+      FAIL_INVALID_NAME(4, 5),
+      FAIL_INVALID_UDID(5, 6),
+      FAIL_OTHER(6, 7),
       ;
       
       public static final int SUCCESS_ACCOUNT_CREATED_VALUE = 1;
       public static final int FAIL_DUPLICATE_FACEBOOK_ID_VALUE = 2;
-      public static final int FAIL_DUPLICATE_EMAIL_ADDRESS_VALUE = 3;
-      public static final int FAIL_INVALID_NAME_VALUE = 4;
-      public static final int FAIL_INVALID_EMAIL_VALUE = 5;
-      public static final int FAIL_OTHER_VALUE = 6;
+      public static final int FAIL_DUPLICATE_UDID_VALUE = 3;
+      public static final int FAIL_MISSING_FACEBOOK_ID_VALUE = 4;
+      public static final int FAIL_INVALID_NAME_VALUE = 5;
+      public static final int FAIL_INVALID_UDID_VALUE = 6;
+      public static final int FAIL_OTHER_VALUE = 7;
       
       
       public final int getNumber() { return value; }
@@ -929,10 +2808,11 @@ public final class CreateAccountEventProto {
         switch (value) {
           case 1: return SUCCESS_ACCOUNT_CREATED;
           case 2: return FAIL_DUPLICATE_FACEBOOK_ID;
-          case 3: return FAIL_DUPLICATE_EMAIL_ADDRESS;
-          case 4: return FAIL_INVALID_NAME;
-          case 5: return FAIL_INVALID_EMAIL;
-          case 6: return FAIL_OTHER;
+          case 3: return FAIL_DUPLICATE_UDID;
+          case 4: return FAIL_MISSING_FACEBOOK_ID;
+          case 5: return FAIL_INVALID_NAME;
+          case 6: return FAIL_INVALID_UDID;
+          case 7: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -963,7 +2843,7 @@ public final class CreateAccountEventProto {
       }
       
       private static final CreateAccountStatus[] VALUES = {
-        SUCCESS_ACCOUNT_CREATED, FAIL_DUPLICATE_FACEBOOK_ID, FAIL_DUPLICATE_EMAIL_ADDRESS, FAIL_INVALID_NAME, FAIL_INVALID_EMAIL, FAIL_OTHER, 
+        SUCCESS_ACCOUNT_CREATED, FAIL_DUPLICATE_FACEBOOK_ID, FAIL_DUPLICATE_UDID, FAIL_MISSING_FACEBOOK_ID, FAIL_INVALID_NAME, FAIL_INVALID_UDID, FAIL_OTHER, 
       };
       
       public static CreateAccountStatus valueOf(
@@ -1670,10 +3550,25 @@ public final class CreateAccountEventProto {
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_CreateAccountRequestProto_descriptor;
+    internal_static_proto_CreateMobileAccountRequestProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_CreateAccountRequestProto_fieldAccessorTable;
+      internal_static_proto_CreateMobileAccountRequestProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_CreateAccountViaFacebookRequestProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_CreateAccountViaFacebookRequestProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_CreateAccountViaEmailRequestProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_CreateAccountViaEmailRequestProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_CreateAccountViaNoCredentialsRequestProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_CreateAccountResponseProto_descriptor;
   private static
@@ -1689,38 +3584,70 @@ public final class CreateAccountEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\030CreateAccountEvent.proto\022\005proto\032\017Basic" +
-      "User.proto\"\201\001\n\031CreateAccountRequestProto" +
-      "\022\022\n\nfacebookId\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\r\n\005em" +
-      "ail\030\003 \001(\t\022\020\n\010password\030\004 \001(\t\022\014\n\004udid\030\005 \001(" +
-      "\t\022\023\n\013deviceToken\030\006 \001(\t\"\211\003\n\032CreateAccount" +
-      "ResponseProto\022(\n\trecipient\030\001 \001(\0132\025.proto" +
-      ".BasicUserProto\022\022\n\nloginToken\030\002 \001(\t\022\033\n\023t" +
-      "okenExpirationDate\030\003 \001(\003\022\023\n\013failMessage\030" +
-      "\004 \001(\t\022E\n\006status\030\005 \001(\01625.proto.CreateAcco" +
-      "untResponseProto.CreateAccountStatus\"\263\001\n",
-      "\023CreateAccountStatus\022\033\n\027SUCCESS_ACCOUNT_" +
-      "CREATED\020\001\022\036\n\032FAIL_DUPLICATE_FACEBOOK_ID\020" +
-      "\002\022 \n\034FAIL_DUPLICATE_EMAIL_ADDRESS\020\003\022\025\n\021F" +
-      "AIL_INVALID_NAME\020\004\022\026\n\022FAIL_INVALID_EMAIL" +
-      "\020\005\022\016\n\nFAIL_OTHER\020\006B@\n%com.lvl6.gamesuite" +
-      ".common.eventprotosB\027CreateAccountEventP" +
-      "roto"
+      "User.proto\"u\n\037CreateMobileAccountRequest" +
+      "Proto\022\022\n\nfacebookId\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022" +
+      "\r\n\005email\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\023\n\013deviceTo" +
+      "ken\030\005 \001(\t\"z\n$CreateAccountViaFacebookReq" +
+      "uestProto\022\022\n\nfacebookId\030\001 \001(\t\022\014\n\004name\030\002 " +
+      "\001(\t\022\r\n\005email\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\023\n\013devi" +
+      "ceToken\030\005 \001(\t\"u\n!CreateAccountViaEmailRe" +
+      "questProto\022\014\n\004name\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022" +
+      "\020\n\010password\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\023\n\013devic",
+      "eToken\030\005 \001(\t\"N\n)CreateAccountViaNoCreden" +
+      "tialsRequestProto\022\014\n\004udid\030\001 \001(\t\022\023\n\013devic" +
+      "eToken\030\002 \001(\t\"\235\003\n\032CreateAccountResponsePr" +
+      "oto\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUser" +
+      "Proto\022\022\n\nloginToken\030\002 \001(\t\022\033\n\023tokenExpira" +
+      "tionDate\030\003 \001(\003\022\023\n\013failMessage\030\004 \001(\t\022E\n\006s" +
+      "tatus\030\005 \001(\01625.proto.CreateAccountRespons" +
+      "eProto.CreateAccountStatus\"\307\001\n\023CreateAcc" +
+      "ountStatus\022\033\n\027SUCCESS_ACCOUNT_CREATED\020\001\022" +
+      "\036\n\032FAIL_DUPLICATE_FACEBOOK_ID\020\002\022\027\n\023FAIL_",
+      "DUPLICATE_UDID\020\003\022\034\n\030FAIL_MISSING_FACEBOO" +
+      "K_ID\020\004\022\025\n\021FAIL_INVALID_NAME\020\005\022\025\n\021FAIL_IN" +
+      "VALID_UDID\020\006\022\016\n\nFAIL_OTHER\020\007B@\n%com.lvl6" +
+      ".gamesuite.common.eventprotosB\027CreateAcc" +
+      "ountEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_proto_CreateAccountRequestProto_descriptor =
+          internal_static_proto_CreateMobileAccountRequestProto_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_proto_CreateAccountRequestProto_fieldAccessorTable = new
+          internal_static_proto_CreateMobileAccountRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_CreateAccountRequestProto_descriptor,
-              new java.lang.String[] { "FacebookId", "Name", "Email", "Password", "Udid", "DeviceToken", },
-              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto.class,
-              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountRequestProto.Builder.class);
-          internal_static_proto_CreateAccountResponseProto_descriptor =
+              internal_static_proto_CreateMobileAccountRequestProto_descriptor,
+              new java.lang.String[] { "FacebookId", "Name", "Email", "Udid", "DeviceToken", },
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto.class,
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateMobileAccountRequestProto.Builder.class);
+          internal_static_proto_CreateAccountViaFacebookRequestProto_descriptor =
             getDescriptor().getMessageTypes().get(1);
+          internal_static_proto_CreateAccountViaFacebookRequestProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_CreateAccountViaFacebookRequestProto_descriptor,
+              new java.lang.String[] { "FacebookId", "Name", "Email", "Udid", "DeviceToken", },
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto.class,
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto.Builder.class);
+          internal_static_proto_CreateAccountViaEmailRequestProto_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_proto_CreateAccountViaEmailRequestProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_CreateAccountViaEmailRequestProto_descriptor,
+              new java.lang.String[] { "Name", "Email", "Password", "Udid", "DeviceToken", },
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.class,
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.Builder.class);
+          internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_proto_CreateAccountViaNoCredentialsRequestProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor,
+              new java.lang.String[] { "Udid", "DeviceToken", },
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.class,
+              com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.Builder.class);
+          internal_static_proto_CreateAccountResponseProto_descriptor =
+            getDescriptor().getMessageTypes().get(4);
           internal_static_proto_CreateAccountResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CreateAccountResponseProto_descriptor,

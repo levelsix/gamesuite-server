@@ -7,5 +7,6 @@ option java_outer_classname = "UserProto";
 //links the response to the person who sent the corresponding request
 message BasicUserProto {
 	optional string userId = 1;
-	optional string udid = 2;
+	optional string name = 2;
+	optional string udid = 3;
 }

@@ -6,11 +6,15 @@ option java_outer_classname = "CommonEventProtocolProto";
 enum CommonEventProtocolRequest {
 	//at time of writing (2013-04-11), range of values
 	//goes from [1-999] inclusive
-	C_CREATE_ACCOUNT_EVENT = 1;
+	C_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT = 1;
+	C_CREATE_ACCOUNT_VIA_EMAIL_EVENT = 2;
+	C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS = 3;
 }
 
 enum CommonEventProtocolResponse {
 	//at time of writing (2013-04-11), range of values
 	//goes from [1-999] inclusive
 	S_CREATE_ACCOUNT_EVENT = 1;
+	//start next event with number 4 to match request above
+	
 }
