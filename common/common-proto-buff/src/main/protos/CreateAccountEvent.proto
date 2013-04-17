@@ -6,34 +6,13 @@ option java_package = "com.lvl6.gamesuite.common.eventprotos";
 option java_outer_classname = "CreateAccountEventProto";
 
 
-// sent only if a user wants to creates an account he can log into from another device; 
-// LoginRequestEvent should be sent next
-message CreateMobileAccountRequestProto {
-	//If this is provided, password is not necessary
-	optional string facebookId = 1;
-	
-	//For when user does not want to login through facebook
-	//should be populated regardless of facebook login
-	//if user does log in through facebook, then value should be:
-	// 'firstName initialOfLastName' 
-	optional string name = 2; 		 
-	
-	//client should check this is valid email format, server will too
-	optional string email = 3;
-	
-	//goal:one account on one device at all times, no two devices should be using 
-	//one account at the same time, and this is the purpose for udid
-	optional string udid = 4;
-	optional string deviceToken = 5;	//for push notifications
-}
-
 message CreateAccountViaFacebookRequestProto {
 	optional string facebookId = 1;
 	optional string name = 2; //required, should be 'firstName initialOfLastName'
 	optional string email = 3; //not really required
 	
 	optional string udid = 4; //record what device user created account with
-	optional string deviceToken = 5; //for push notifications
+	optional string deviceId = 5; //for push notifications
 }
 
 message CreateAccountViaEmailRequestProto {
@@ -44,12 +23,12 @@ message CreateAccountViaEmailRequestProto {
 	optional string password = 3;
 	
 	optional string udid = 4;
-	optional string deviceToken = 5;
+	optional string deviceId = 5;
 }
 
 message CreateAccountViaNoCredentialsRequestProto {
 	optional string udid = 1;
-	optional string deviceToken = 2;
+	optional string deviceId = 2;
 }
 
 message CreateAccountResponseProto {
@@ -59,10 +38,7 @@ message CreateAccountResponseProto {
 	optional string loginToken = 2; 	
 	optional int64 tokenExpirationDate = 3;
 	
-	//in case account creation fails
-	optional string failMessage = 4; 	
-	
-	optional CreateAccountStatus status = 5;
+	optional CreateAccountStatus status = 4;
 	
 	enum CreateAccountStatus {
 		SUCCESS_ACCOUNT_CREATED = 1;
@@ -71,6 +47,7 @@ message CreateAccountResponseProto {
 		FAIL_MISSING_FACEBOOK_ID = 4;
 		FAIL_INVALID_NAME = 5;
 		FAIL_INVALID_UDID = 6;
-		FAIL_OTHER = 7;
+		FAIL_INVALID_PASSWORD = 7;
+		FAIL_OTHER = 8;
 	}
 }
