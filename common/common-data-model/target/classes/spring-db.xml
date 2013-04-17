@@ -16,8 +16,7 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.lvl6" />
 
-	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
-		destroy-method="close">
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl">
 			<value><![CDATA[jdbc:mysql://robot.lvl6.com/pictures?useLegacyDatetimeCode=false]]></value>
