@@ -2037,6 +2037,9 @@ public final class CreateAccountEventProto {
       FAIL_INVALID_UDID(5, 6),
       FAIL_INVALID_PASSWORD(6, 7),
       FAIL_OTHER(7, 8),
+      FAIL_DUPLICATE_EMAIL(8, 9),
+      FAIL_INVALID_EMAIL(9, 10),
+      FAIL_DUPLICATE_NAME(10, 11),
       ;
       
       public static final int SUCCESS_ACCOUNT_CREATED_VALUE = 1;
@@ -2047,6 +2050,9 @@ public final class CreateAccountEventProto {
       public static final int FAIL_INVALID_UDID_VALUE = 6;
       public static final int FAIL_INVALID_PASSWORD_VALUE = 7;
       public static final int FAIL_OTHER_VALUE = 8;
+      public static final int FAIL_DUPLICATE_EMAIL_VALUE = 9;
+      public static final int FAIL_INVALID_EMAIL_VALUE = 10;
+      public static final int FAIL_DUPLICATE_NAME_VALUE = 11;
       
       
       public final int getNumber() { return value; }
@@ -2061,6 +2067,9 @@ public final class CreateAccountEventProto {
           case 6: return FAIL_INVALID_UDID;
           case 7: return FAIL_INVALID_PASSWORD;
           case 8: return FAIL_OTHER;
+          case 9: return FAIL_DUPLICATE_EMAIL;
+          case 10: return FAIL_INVALID_EMAIL;
+          case 11: return FAIL_DUPLICATE_NAME;
           default: return null;
         }
       }
@@ -2091,7 +2100,7 @@ public final class CreateAccountEventProto {
       }
       
       private static final CreateAccountStatus[] VALUES = {
-        SUCCESS_ACCOUNT_CREATED, FAIL_DUPLICATE_FACEBOOK_ID, FAIL_DUPLICATE_UDID, FAIL_MISSING_FACEBOOK_ID, FAIL_INVALID_NAME, FAIL_INVALID_UDID, FAIL_INVALID_PASSWORD, FAIL_OTHER, 
+        SUCCESS_ACCOUNT_CREATED, FAIL_DUPLICATE_FACEBOOK_ID, FAIL_DUPLICATE_UDID, FAIL_MISSING_FACEBOOK_ID, FAIL_INVALID_NAME, FAIL_INVALID_UDID, FAIL_INVALID_PASSWORD, FAIL_OTHER, FAIL_DUPLICATE_EMAIL, FAIL_INVALID_EMAIL, FAIL_DUPLICATE_NAME, 
       };
       
       public static CreateAccountStatus valueOf(
@@ -2745,19 +2754,21 @@ public final class CreateAccountEventProto {
       "\010password\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\020\n\010deviceI" +
       "d\030\005 \001(\t\"K\n)CreateAccountViaNoCredentials" +
       "RequestProto\022\014\n\004udid\030\001 \001(\t\022\020\n\010deviceId\030\002" +
-      " \001(\t\"\243\003\n\032CreateAccountResponseProto\022(\n\tr",
+      " \001(\t\"\356\003\n\032CreateAccountResponseProto\022(\n\tr",
       "ecipient\030\001 \001(\0132\025.proto.BasicUserProto\022\022\n" +
       "\nloginToken\030\002 \001(\t\022\033\n\023tokenExpirationDate" +
       "\030\003 \001(\003\022E\n\006status\030\004 \001(\01625.proto.CreateAcc" +
-      "ountResponseProto.CreateAccountStatus\"\342\001" +
+      "ountResponseProto.CreateAccountStatus\"\255\002" +
       "\n\023CreateAccountStatus\022\033\n\027SUCCESS_ACCOUNT" +
       "_CREATED\020\001\022\036\n\032FAIL_DUPLICATE_FACEBOOK_ID" +
       "\020\002\022\027\n\023FAIL_DUPLICATE_UDID\020\003\022\034\n\030FAIL_MISS" +
       "ING_FACEBOOK_ID\020\004\022\025\n\021FAIL_INVALID_NAME\020\005" +
       "\022\025\n\021FAIL_INVALID_UDID\020\006\022\031\n\025FAIL_INVALID_" +
-      "PASSWORD\020\007\022\016\n\nFAIL_OTHER\020\010B@\n%com.lvl6.g",
-      "amesuite.common.eventprotosB\027CreateAccou" +
-      "ntEventProto"
+      "PASSWORD\020\007\022\016\n\nFAIL_OTHER\020\010\022\030\n\024FAIL_DUPLI",
+      "CATE_EMAIL\020\t\022\026\n\022FAIL_INVALID_EMAIL\020\n\022\027\n\023" +
+      "FAIL_DUPLICATE_NAME\020\013B@\n%com.lvl6.gamesu" +
+      "ite.common.eventprotosB\027CreateAccountEve" +
+      "ntProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

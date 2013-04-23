@@ -1,6 +1,7 @@
 package com.lvl6.gamesuite.common.po;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,6 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
 
@@ -28,7 +30,7 @@ public class AuthorizedDevice extends BasePersistentObject {
 	
 	@NotNull
 	@Index(name = "authorized_device_token_index")
-	protected String token;
+	protected String token = UUID.randomUUID().toString();
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -40,14 +42,15 @@ public class AuthorizedDevice extends BasePersistentObject {
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "authorized_device_token_created_index")
-	protected Date created;
+	protected Date created = new Date();
 	
+	
+//	@NotNull
+	protected String deviceId; //for Apple Push Notifications
 
-	@NotNull
-	protected String deviceType;
 
 
-	public String getUserId() {
+  public String getUserId() {
 		return userId;
 	}
 
@@ -96,16 +99,28 @@ public class AuthorizedDevice extends BasePersistentObject {
 		this.created = created;
 	}
 
-
-	public String getDeviceType() {
-		return deviceType;
-	}
-
-
-	public void setDeviceType(String deviceType) {
-		this.deviceType = deviceType;
+//  no need to personally track the device type
+//	public String getDeviceType() {
+//		return deviceType;
+//	}
+//
+//
+//	public void setDeviceType(String deviceType) {
+//		this.deviceType = deviceType;
+//	}
+	
+	public String getDeviceId() {
+	  return deviceId;
 	}
 	
 	
+	public void setDeviceId(String deviceId) {
+	  this.deviceId = deviceId;
+	}
+	
+	@Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 	
 }

@@ -1,0 +1,219 @@
+package com.lvl6.gamesuite.common.controller;
+
+import java.util.List;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
+
+import com.lvl6.gamesuite.common.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto;
+import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
+import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.CreateAccountStatus;
+import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto;
+import com.lvl6.gamesuite.common.events.RequestEvent;
+import com.lvl6.gamesuite.common.events.request.CreateAccountViaEmailRequestEvent;
+import com.lvl6.gamesuite.common.events.response.CreateAccountResponseEvent;
+import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonEventProtocolRequest;
+import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto;
+import com.lvl6.gamesuite.common.po.AuthorizedDevice;
+import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
+import com.lvl6.gamesuite.common.services.user.UserSignupService;
+
+@Component @DependsOn("gameServer") public class CreateAccountViaEmailController extends EventController {
+  
+  private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+
+  @Autowired
+  protected UserSignupService userSignupService;
+  
+  @Autowired
+  protected AuthorizedDeviceService authorizedDeviceService;
+  
+  @Autowired
+  protected CreateNoneventProtoUtils noneventProtoUtils;
+
+  @Autowired
+  protected InternetAddress internetAddress;
+
+  @Override
+  public RequestEvent createRequestEvent() {
+    return new CreateAccountViaEmailRequestEvent();
+  }
+
+  @Override
+  public int getEventType() {
+    return CommonEventProtocolRequest.C_CREATE_ACCOUNT_VIA_EMAIL_EVENT_VALUE;
+  }
+
+  @Override
+  protected void processRequestEvent(RequestEvent event) throws Exception {
+    CreateAccountViaEmailRequestProto reqProto = 
+        ((CreateAccountViaEmailRequestEvent) event).getcreateAccountViaEmailRequestProto();
+    String name = reqProto.getName();
+    String email = reqProto.getEmail();
+    String password = reqProto.getPassword();
+    String udid = reqProto.getUdid();
+    String deviceId = reqProto.getDeviceId();
+
+    //response to send back to client
+    CreateAccountResponseProto.Builder responseBuilder = CreateAccountResponseProto.newBuilder();
+    responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+    
+    boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto,
+        name, email, password, udid);
+    boolean validRequest = false;
+    boolean success = false;
+    
+    
+    if (validRequestArgs) {
+      validRequest = isValidRequest(responseBuilder, name, email, udid, deviceId);
+    }
+    
+    if(validRequest) {
+      success = writeChangesToDb(responseBuilder, name, email, password, udid, deviceId);
+    }
+    
+    if(success) {
+      responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
+    }
+    
+    CreateAccountResponseProto resProto = responseBuilder.build();
+    //autowire or use new()...
+    CreateAccountResponseEvent resEvent =  new CreateAccountResponseEvent(udid);
+    resEvent.setTag(event.getTag());
+    resEvent.setUserCreateResponseProto(resProto);
+    
+    log.info("Writing event: " + resEvent);
+    getEventWriter().processPreDBResponseEvent(resEvent, udid);
+  }
+
+  private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaEmailRequestProto request,
+      String name, String email, String password, String udid) {
+    if (!(request.hasName()) || name.isEmpty()) {
+      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
+      log.error("unexpected error: no name provided. password:" + password
+      		+ ", name:" + name + ", email:" + email + ", udid:" + udid);
+      return false;
+    }
+    if (!(request.hasEmail()) || email.isEmpty() || !isValidEmailAddressFormat(email)) {
+      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_EMAIL);
+      log.error("user error: email given is invalid. email=" + email);
+      return false;
+    }
+    if (!(request.hasPassword()) || password.isEmpty()) {
+      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_PASSWORD);
+      log.error("unexpected error: no password provided. password:" + password
+          + ", name:" + name + ", email:" + email + ", udid:" + udid);    
+      return false;
+    }
+    
+    return true;
+  }
+  
+  private boolean isValidRequest(Builder responseBuilder, String name, String email,
+      String udid, String deviceId) {
+    String facebookIdNull = null;
+    String udidNull = null;
+    List<User> existing = userSignupService.checkForExistingUser(facebookIdNull, name, email, udidNull);
+    
+    if (null != existing && !existing.isEmpty()) {
+      for (User u: existing) {
+        if (name.equalsIgnoreCase(u.getName())) { //ignore case for now
+          responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_NAME);
+          log.error("user error: Either name in use by another or user already has " +
+              "account with us. user=" + existing);
+        } else if (email.equals(u.getEmail())) {
+          responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_EMAIL);
+          log.error("user error: Either email in use by another or user already has " +
+              "account with us. user=" + existing);
+        } else {
+          //maybe just ignore instead and not treat this as a fail...
+          log.error("unexpected error: user returned does not have same name, nor email. user=" + u +
+              " args=[name=" + name + ", email=" + email +
+              ", udid=" + udid + ", deviceId=" + deviceId);
+          responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+        }
+        
+      }
+      return false;
+    }
+    
+    return true;
+  }
+  
+  private boolean writeChangesToDb(Builder responseBuilder, String name,
+      String email, String password, String udid, String deviceId) {
+    boolean success = false;
+    
+    String facebookId = null;
+    String userId = null;
+    User newUser = null;
+    AuthorizedDevice  ad = null;
+    try {
+      //create the new user
+      newUser = userSignupService.signup(name, email, password, facebookId);
+      //need to record the device for the user
+
+      userId = newUser.getId();
+      ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId);
+      //in case no token/cookie can be generated for this user
+      if (null != ad) {
+        responseBuilder.setLoginToken(ad.getToken());
+        responseBuilder.setTokenExpirationDate(ad.getExpires().getTime());
+      }
+     
+      BasicUserProto bp = noneventProtoUtils.createBasicUserProto(userId, name, udid);
+      responseBuilder.setRecipient(bp);
+      
+      success = true;
+    } catch (Exception e) {
+      log.error("failed to create user or device. user=" + newUser + ", authorizedDevice="+ ad, e);
+    }
+    return success;
+  }
+  
+  public boolean isValidEmailAddressFormat(String email) {
+    boolean result = true;
+    try {
+       InternetAddress emailAddr = new InternetAddress(email);
+       emailAddr.validate();
+    } catch (AddressException ex) {
+       result = false;
+    }
+    return result;
+ }
+  
+  
+  public UserSignupService getService() {
+    return userSignupService;
+  }
+  
+  public void setService(UserSignupService service) {
+    this.userSignupService = service;
+  }
+  
+  public CreateNoneventProtoUtils getNoneventProtoUtils() {
+    return noneventProtoUtils;
+  }
+
+  public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
+    this.noneventProtoUtils = noneventProtoUtils;
+  }
+
+  public InternetAddress getInternetAddress() {
+    return internetAddress;
+  }
+
+  public void setInternetAddress(InternetAddress internetAddress) {
+    this.internetAddress = internetAddress;
+  }
+
+  
+}

@@ -3,7 +3,9 @@ package com.lvl6.gamesuite.common.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.lvl6.gamesuite.amqp.services.EventWriter;
 import com.lvl6.gamesuite.common.events.GameEvent;
 import com.lvl6.gamesuite.common.events.RequestEvent;
 
@@ -11,7 +13,17 @@ import com.lvl6.gamesuite.common.events.RequestEvent;
 
 public abstract class EventController {
 
+  @Autowired
+  private EventWriter eventWriter;
 
+
+  public EventWriter getEventWriter() {
+    return eventWriter;
+  }
+
+  public void setEventWriter(EventWriter eventWriter) {
+    this.eventWriter = eventWriter;
+  }
 
   private static Logger log = LoggerFactory.getLogger(new Object() {}.getClass().getEnclosingClass());
 

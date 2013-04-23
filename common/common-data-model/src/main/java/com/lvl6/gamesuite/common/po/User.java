@@ -21,7 +21,6 @@ public class User extends BasePersistentObject {
 	
 	@NotNull
 	@Size(min = 3, max=30)
-	@Column(unique=true)
 	@Index(name = "user_name_index")
 	protected String name = "";
 	
