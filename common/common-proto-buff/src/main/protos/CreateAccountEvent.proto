@@ -8,7 +8,7 @@ option java_outer_classname = "CreateAccountEventProto";
 
 message CreateAccountViaFacebookRequestProto {
 	optional string facebookId = 1;
-	optional string name = 2; //required, "firstname lastname"
+	optional string nameFriendsSee = 2; //required
 	optional string email = 3; //not really required
 	
 	optional string udid = 4; //record what device user created account with
@@ -17,7 +17,7 @@ message CreateAccountViaFacebookRequestProto {
 
 message CreateAccountViaEmailRequestProto {
 	//all three required
-	optional string name = 1;
+	optional string name = 1; //this will be the name strangers see
 	//client should check this is valid email format, server will too
 	optional string email = 2;  
 	optional string password = 3;
@@ -29,16 +29,16 @@ message CreateAccountViaEmailRequestProto {
 message CreateAccountViaNoCredentialsRequestProto {
 	optional string udid = 1;
 	optional string deviceId = 2;
+	optional string name = 3; //this will be the name strangers see
 }
 
 message CreateAccountResponseProto {
 	optional BasicUserProto recipient = 1; 
 	
-	//bypass sign in like an http cookie
-	optional string loginToken = 2; 	
-	optional int64 tokenExpirationDate = 3;
+	optional CreateAccountStatus status = 2;
 	
-	optional CreateAccountStatus status = 4;
+	//this is for the future if we decide to suggest unique names to the user
+	repeated string otherNames = 3;
 	
 	enum CreateAccountStatus {
 		SUCCESS_ACCOUNT_CREATED = 1;

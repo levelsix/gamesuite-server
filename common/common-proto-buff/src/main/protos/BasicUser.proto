@@ -3,10 +3,21 @@ package proto;
 option java_package = "com.lvl6.gamesuite.common.noneventprotos";
 option java_outer_classname = "UserProto";
 
-//must be included in every request and response events
+//should be included in every request and response event
 //links the response to the person who sent the corresponding request
 message BasicUserProto {
 	optional string userId = 1;
-	optional string name = 2;
-	optional string udid = 3;
+	optional string nameStrangersSee = 2;
+	optional string nameFriendsSee = 3;
+	optional string email = 4;
+	
+	optional BasicAuthorizedDevice basicAuthorizedDevice = 5;
+}
+
+//this holds the login token and its expiration date (like an http cookie)
+message BasicAuthorizedDevice {
+	optional string userId = 1;
+	optional string loginToken = 2;
+	optional int64 expirationDate = 3;
+	optional string udid = 4;
 }
