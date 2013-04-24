@@ -110,9 +110,9 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   
   private boolean isValidRequest(Builder responseBuilder, String facebookId, String email,
       String nameFriendsSee, String udid, String deviceId) {
-    String nameFriendsSeeNull = null;
+    String nameStrangersSeeNull = null;
     String udidNull = null;
-    List<User> existing = userSignupService.checkForExistingUser(facebookId, nameFriendsSeeNull, email, udidNull);
+    List<User> existing = userSignupService.checkForExistingUser(facebookId, nameStrangersSeeNull, email, udidNull);
     if (null != existing && !existing.isEmpty()) {
       for (User u : existing) {
         if (facebookId.equals(u.getFacebookId())) {

@@ -8,7 +8,7 @@ import com.lvl6.gamesuite.common.po.User;
 
 public interface UserDao extends JpaRepository<User, String> {
 
-	public List<User> findByName(String userName);
+	public List<User> findByNameStrangersSee(String nameStrangersSee);
 	
 	public List<User> findByEmail(String email);
 	
@@ -16,6 +16,6 @@ public interface UserDao extends JpaRepository<User, String> {
 	
 	public List<User> findByFacebookIdOrEmail(String facebookId, String email);
 	
-	public List<User> findByEmailOrNameAndPasswordIsNotNull(String email, String name);
+	public List<User> findByEmailOrNameStrangersSeeAndPasswordIsNotNull(String email, String nameStrangersSee);
 	
 }

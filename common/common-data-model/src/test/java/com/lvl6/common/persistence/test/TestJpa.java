@@ -47,7 +47,7 @@ public class TestJpa {
 		testuser.setNameFriendsSee("hi");
 		//testuser.setUdid("TestUser1");
 		testuser.setLastLogin(new Date());
-		List<User> existing = getUserDao().findByName(testuser.getNameStrangersSee());
+		List<User> existing = getUserDao().findByNameStrangersSee(testuser.getNameStrangersSee());
 		assertTrue("searched for name strangers see: " + 
 		    testuser.getNameStrangersSee(), existing.isEmpty());
 		User fromDb = (null == existing) ? null : existing.get(0);
@@ -100,9 +100,9 @@ public class TestJpa {
     String josef = "josef";
     String josefGmail = "Joe@gmail.com";
     
-    List<User> existing = getUserDao().findByEmailOrNameAndPasswordIsNotNull(josephGmail, joseph);
+    List<User> existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josephGmail, joseph);
     assertNotNull("searched for email=" + josephGmail + ", name=" + joseph, existing);
-    existing = getUserDao().findByEmailOrNameAndPasswordIsNotNull(josefGmail, josef);
+    existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josefGmail, josef);
     assertNotNull("searched for email=" + josefGmail + ", name=" + josef, existing);
     
   }

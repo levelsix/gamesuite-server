@@ -71,27 +71,30 @@ public class UserSignupServiceImpl implements UserSignupService {
 		String str =""+signupDate.getTime();
 		return str.getBytes();
 	}
-	
+
 	@Override
-	public List<User> checkForExistingUser(String facebookId, String name, String email, String udid) {
+	public List<User> checkForExistingUser(String facebookId, String nameStrangersSee, String email, String udid) {
 	  List<User> existing = null;
 	  if (null != facebookId && null != email) {
 	    existing = userDao.findByFacebookIdOrEmail(facebookId, email);
-	    
+
 	  } else if (null != facebookId) {
 	    existing = userDao.findByFacebookId(facebookId);
-	    
-	  } else if (null != name && null != email) {
-		  //only for users who create an account via (name, email, password), email must be unique and 
-		  //the name must be unique among other fellow users who created an account via (name, email, password)  
-		  existing = userDao.findByEmailOrNameAndPasswordIsNotNull(email, name);
-		  
-		} else if (null != email) {
-		  existing = userDao.findByEmail(email);
-		}
-		//TODO: FIND BY UDID, 
-		//if more than one, get the most recent person
-		return existing;
+
+	  } else if (null != nameStrangersSee && null != email) {
+	    //only for users who create an account via (nameStrangersSee, email, password), email must be unique and 
+	    //the nameStrangersSee must be unique among other fellow users who created an account via (nameStrangersSee, email, password)  
+	    existing = userDao.findByEmailOrNameStrangersSeeAndPasswordIsNotNull(email, nameStrangersSee);
+
+	  } else if (null!= nameStrangersSee) {
+	    existing = userDao.findByNameStrangersSee(nameStrangersSee);
+
+	  } else if (null != email) {
+	    existing = userDao.findByEmail(email);
+	  }
+	  //TODO: FIND BY UDID, 
+	  //if more than one, get the most recent person
+	  return existing;
 	}
 
   
