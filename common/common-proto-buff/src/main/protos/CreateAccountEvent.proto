@@ -17,7 +17,7 @@ message CreateAccountViaFacebookRequestProto {
 
 message CreateAccountViaEmailRequestProto {
 	//all three required
-	optional string name = 1; //this will be the name strangers see
+	optional string nameStrangersSee = 1;
 	//client should check this is valid email format, server will too
 	optional string email = 2;  
 	optional string password = 3;
@@ -29,7 +29,7 @@ message CreateAccountViaEmailRequestProto {
 message CreateAccountViaNoCredentialsRequestProto {
 	optional string udid = 1;
 	optional string deviceId = 2;
-	optional string name = 3; //this will be the name strangers see
+	optional string nameStrangersSee = 3; 
 }
 
 message CreateAccountResponseProto {
@@ -38,6 +38,7 @@ message CreateAccountResponseProto {
 	optional CreateAccountStatus status = 2;
 	
 	//this is for the future if we decide to suggest unique names to the user
+	//if the user provides a name already being used.
 	repeated string otherNames = 3;
 	
 	enum CreateAccountStatus {

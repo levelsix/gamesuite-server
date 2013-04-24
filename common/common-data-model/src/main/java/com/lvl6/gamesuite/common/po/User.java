@@ -19,16 +19,21 @@ import org.hibernate.annotations.Index;
 public class User extends BasePersistentObject {
 
 	
-	@NotNull
+  @NotNull
 	@Size(min = 3, max=30)
-	@Index(name = "user_name_index")
-	protected String name = "";
-	
-	
-	protected String password;
+	@Column(unique=true)
+	@Index(name = "user_name_strangers_see_index")
+	protected String nameStrangersSee = "";
 
+
+  @Size(min = 3, max=30)
+  @Index(name = "user_name_friends_see_index")//not sure if this index is needed
+  protected String nameFriendsSee = "";
+
+  
+  protected String password;
+  
 	
-	@NotNull
 	@Size(min = 3)
 	@Column(unique=true)
 	@Index(name = "user_email_index")
@@ -41,12 +46,10 @@ public class User extends BasePersistentObject {
 	protected Date lastLogin = new Date();
 
 	
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "user_signup_date_index")
 	protected Date signupDate = new Date();
-	
 	
 	
 	protected String facebookId;
@@ -60,18 +63,28 @@ public class User extends BasePersistentObject {
 	public void setFacebookId(String facebookId) {
 		this.facebookId = facebookId;
 	}
+  
+	
+  public String getNameStrangersSee() {
+    return nameStrangersSee;
+  }
 
 
-	public String getName() {
-		return name;
-	}
+  public void setNameStrangersSee(String nameStrangersSee) {
+    this.nameStrangersSee = nameStrangersSee;
+  }
+
+  
+  public String getNameFriendsSee() {
+    return nameFriendsSee;
+  }
 
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
+  public void setNameFriendsSee(String nameFriendsSee) {
+    this.nameFriendsSee = nameFriendsSee;
+  }
+  
+  
 	public Date getLastLogin() {
 		return lastLogin;
 	}

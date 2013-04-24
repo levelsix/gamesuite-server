@@ -43,11 +43,13 @@ public class TestJpa {
 	public void testSetup() {
 		log.info("Testing JPA setup");
 		User testuser = new User();
-		testuser.setName("Test User");
+		testuser.setNameStrangersSee("Test User");
+		testuser.setNameFriendsSee("hi");
 		//testuser.setUdid("TestUser1");
 		testuser.setLastLogin(new Date());
-		List<User> existing = getUserDao().findByName(testuser.getName());
-		assertTrue("searched for user name " + testuser.getName(), existing.isEmpty());
+		List<User> existing = getUserDao().findByName(testuser.getNameStrangersSee());
+		assertTrue("searched for name strangers see: " + 
+		    testuser.getNameStrangersSee(), existing.isEmpty());
 		User fromDb = (null == existing) ? null : existing.get(0);
 		if(fromDb != null) {
 			fromDb.setLastLogin(new Date());
@@ -79,12 +81,12 @@ public class TestJpa {
   @Test
   public void testDuplicateNameOrEmail() {
     User joeGmail = new User();
-    joeGmail.setName("joe");
+    joeGmail.setNameStrangersSee("joe");
     joeGmail.setEmail("joe@gmail.com");
     joeGmail.setPassword("123");
     
     User joeFacebook = new User();
-    joeFacebook.setName("joe");
+    joeFacebook.setNameStrangersSee("joe");
     joeFacebook.setFacebookId("facebookId");
     
     List<User> joeList = new ArrayList<User>();

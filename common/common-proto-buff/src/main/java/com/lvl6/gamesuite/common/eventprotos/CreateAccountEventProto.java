@@ -762,9 +762,9 @@ public final class CreateAccountEventProto {
   public interface CreateAccountViaEmailRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string name = 1;
-    boolean hasName();
-    String getName();
+    // optional string nameStrangersSee = 1;
+    boolean hasNameStrangersSee();
+    String getNameStrangersSee();
     
     // optional string email = 2;
     boolean hasEmail();
@@ -811,14 +811,14 @@ public final class CreateAccountEventProto {
     }
     
     private int bitField0_;
-    // optional string name = 1;
-    public static final int NAME_FIELD_NUMBER = 1;
-    private java.lang.Object name_;
-    public boolean hasName() {
+    // optional string nameStrangersSee = 1;
+    public static final int NAMESTRANGERSSEE_FIELD_NUMBER = 1;
+    private java.lang.Object nameStrangersSee_;
+    public boolean hasNameStrangersSee() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getName() {
-      java.lang.Object ref = name_;
+    public String getNameStrangersSee() {
+      java.lang.Object ref = nameStrangersSee_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -826,17 +826,17 @@ public final class CreateAccountEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          name_ = s;
+          nameStrangersSee_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getNameBytes() {
-      java.lang.Object ref = name_;
+    private com.google.protobuf.ByteString getNameStrangersSeeBytes() {
+      java.lang.Object ref = nameStrangersSee_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        name_ = b;
+        nameStrangersSee_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -972,7 +972,7 @@ public final class CreateAccountEventProto {
     }
     
     private void initFields() {
-      name_ = "";
+      nameStrangersSee_ = "";
       email_ = "";
       password_ = "";
       udid_ = "";
@@ -991,7 +991,7 @@ public final class CreateAccountEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getNameBytes());
+        output.writeBytes(1, getNameStrangersSeeBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getEmailBytes());
@@ -1016,7 +1016,7 @@ public final class CreateAccountEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getNameBytes());
+          .computeBytesSize(1, getNameStrangersSeeBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1158,7 +1158,7 @@ public final class CreateAccountEventProto {
       
       public Builder clear() {
         super.clear();
-        name_ = "";
+        nameStrangersSee_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         email_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1209,7 +1209,7 @@ public final class CreateAccountEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.name_ = name_;
+        result.nameStrangersSee_ = nameStrangersSee_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -1242,8 +1242,8 @@ public final class CreateAccountEventProto {
       
       public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto other) {
         if (other == com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.getDefaultInstance()) return this;
-        if (other.hasName()) {
-          setName(other.getName());
+        if (other.hasNameStrangersSee()) {
+          setNameStrangersSee(other.getNameStrangersSee());
         }
         if (other.hasEmail()) {
           setEmail(other.getEmail());
@@ -1290,7 +1290,7 @@ public final class CreateAccountEventProto {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              name_ = input.readBytes();
+              nameStrangersSee_ = input.readBytes();
               break;
             }
             case 18: {
@@ -1319,39 +1319,39 @@ public final class CreateAccountEventProto {
       
       private int bitField0_;
       
-      // optional string name = 1;
-      private java.lang.Object name_ = "";
-      public boolean hasName() {
+      // optional string nameStrangersSee = 1;
+      private java.lang.Object nameStrangersSee_ = "";
+      public boolean hasNameStrangersSee() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getName() {
-        java.lang.Object ref = name_;
+      public String getNameStrangersSee() {
+        java.lang.Object ref = nameStrangersSee_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          name_ = s;
+          nameStrangersSee_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setName(String value) {
+      public Builder setNameStrangersSee(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        name_ = value;
+        nameStrangersSee_ = value;
         onChanged();
         return this;
       }
-      public Builder clearName() {
+      public Builder clearNameStrangersSee() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        name_ = getDefaultInstance().getName();
+        nameStrangersSee_ = getDefaultInstance().getNameStrangersSee();
         onChanged();
         return this;
       }
-      void setName(com.google.protobuf.ByteString value) {
+      void setNameStrangersSee(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        name_ = value;
+        nameStrangersSee_ = value;
         onChanged();
       }
       
@@ -1521,9 +1521,9 @@ public final class CreateAccountEventProto {
     boolean hasDeviceId();
     String getDeviceId();
     
-    // optional string name = 3;
-    boolean hasName();
-    String getName();
+    // optional string nameStrangersSee = 3;
+    boolean hasNameStrangersSee();
+    String getNameStrangersSee();
   }
   public static final class CreateAccountViaNoCredentialsRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -1618,14 +1618,14 @@ public final class CreateAccountEventProto {
       }
     }
     
-    // optional string name = 3;
-    public static final int NAME_FIELD_NUMBER = 3;
-    private java.lang.Object name_;
-    public boolean hasName() {
+    // optional string nameStrangersSee = 3;
+    public static final int NAMESTRANGERSSEE_FIELD_NUMBER = 3;
+    private java.lang.Object nameStrangersSee_;
+    public boolean hasNameStrangersSee() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getName() {
-      java.lang.Object ref = name_;
+    public String getNameStrangersSee() {
+      java.lang.Object ref = nameStrangersSee_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -1633,17 +1633,17 @@ public final class CreateAccountEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          name_ = s;
+          nameStrangersSee_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getNameBytes() {
-      java.lang.Object ref = name_;
+    private com.google.protobuf.ByteString getNameStrangersSeeBytes() {
+      java.lang.Object ref = nameStrangersSee_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        name_ = b;
+        nameStrangersSee_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1653,7 +1653,7 @@ public final class CreateAccountEventProto {
     private void initFields() {
       udid_ = "";
       deviceId_ = "";
-      name_ = "";
+      nameStrangersSee_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1674,7 +1674,7 @@ public final class CreateAccountEventProto {
         output.writeBytes(2, getDeviceIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getNameBytes());
+        output.writeBytes(3, getNameStrangersSeeBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1695,7 +1695,7 @@ public final class CreateAccountEventProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getNameBytes());
+          .computeBytesSize(3, getNameStrangersSeeBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1825,7 +1825,7 @@ public final class CreateAccountEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         deviceId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        name_ = "";
+        nameStrangersSee_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -1876,7 +1876,7 @@ public final class CreateAccountEventProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.name_ = name_;
+        result.nameStrangersSee_ = nameStrangersSee_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1899,8 +1899,8 @@ public final class CreateAccountEventProto {
         if (other.hasDeviceId()) {
           setDeviceId(other.getDeviceId());
         }
-        if (other.hasName()) {
-          setName(other.getName());
+        if (other.hasNameStrangersSee()) {
+          setNameStrangersSee(other.getNameStrangersSee());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1945,7 +1945,7 @@ public final class CreateAccountEventProto {
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              name_ = input.readBytes();
+              nameStrangersSee_ = input.readBytes();
               break;
             }
           }
@@ -2026,39 +2026,39 @@ public final class CreateAccountEventProto {
         onChanged();
       }
       
-      // optional string name = 3;
-      private java.lang.Object name_ = "";
-      public boolean hasName() {
+      // optional string nameStrangersSee = 3;
+      private java.lang.Object nameStrangersSee_ = "";
+      public boolean hasNameStrangersSee() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getName() {
-        java.lang.Object ref = name_;
+      public String getNameStrangersSee() {
+        java.lang.Object ref = nameStrangersSee_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          name_ = s;
+          nameStrangersSee_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setName(String value) {
+      public Builder setNameStrangersSee(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        name_ = value;
+        nameStrangersSee_ = value;
         onChanged();
         return this;
       }
-      public Builder clearName() {
+      public Builder clearNameStrangersSee() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        name_ = getDefaultInstance().getName();
+        nameStrangersSee_ = getDefaultInstance().getNameStrangersSee();
         onChanged();
         return this;
       }
-      void setName(com.google.protobuf.ByteString value) {
+      void setNameStrangersSee(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000004;
-        name_ = value;
+        nameStrangersSee_ = value;
         onChanged();
       }
       
@@ -2803,26 +2803,26 @@ public final class CreateAccountEventProto {
       "User.proto\"\201\001\n$CreateAccountViaFacebookR" +
       "equestProto\022\022\n\nfacebookId\030\001 \001(\t\022\026\n\016nameF" +
       "riendsSee\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\022\014\n\004udid\030\004" +
-      " \001(\t\022\020\n\010deviceId\030\005 \001(\t\"r\n!CreateAccountV" +
-      "iaEmailRequestProto\022\014\n\004name\030\001 \001(\t\022\r\n\005ema" +
-      "il\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t" +
-      "\022\020\n\010deviceId\030\005 \001(\t\"Y\n)CreateAccountViaNo" +
-      "CredentialsRequestProto\022\014\n\004udid\030\001 \001(\t\022\020\n" +
-      "\010deviceId\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\"\321\003\n\032Create",
-      "AccountResponseProto\022(\n\trecipient\030\001 \001(\0132" +
-      "\025.proto.BasicUserProto\022E\n\006status\030\002 \001(\01625" +
-      ".proto.CreateAccountResponseProto.Create" +
-      "AccountStatus\022\022\n\notherNames\030\003 \003(\t\"\255\002\n\023Cr" +
-      "eateAccountStatus\022\033\n\027SUCCESS_ACCOUNT_CRE" +
-      "ATED\020\001\022\036\n\032FAIL_DUPLICATE_FACEBOOK_ID\020\002\022\027" +
-      "\n\023FAIL_DUPLICATE_UDID\020\003\022\034\n\030FAIL_MISSING_" +
-      "FACEBOOK_ID\020\004\022\025\n\021FAIL_INVALID_NAME\020\005\022\025\n\021" +
-      "FAIL_INVALID_UDID\020\006\022\031\n\025FAIL_INVALID_PASS" +
-      "WORD\020\007\022\016\n\nFAIL_OTHER\020\010\022\030\n\024FAIL_DUPLICATE",
-      "_EMAIL\020\t\022\026\n\022FAIL_INVALID_EMAIL\020\n\022\027\n\023FAIL" +
-      "_DUPLICATE_NAME\020\013B@\n%com.lvl6.gamesuite." +
-      "common.eventprotosB\027CreateAccountEventPr" +
-      "oto"
+      " \001(\t\022\020\n\010deviceId\030\005 \001(\t\"~\n!CreateAccountV" +
+      "iaEmailRequestProto\022\030\n\020nameStrangersSee\030" +
+      "\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\022\014" +
+      "\n\004udid\030\004 \001(\t\022\020\n\010deviceId\030\005 \001(\t\"e\n)Create" +
+      "AccountViaNoCredentialsRequestProto\022\014\n\004u" +
+      "did\030\001 \001(\t\022\020\n\010deviceId\030\002 \001(\t\022\030\n\020nameStran",
+      "gersSee\030\003 \001(\t\"\321\003\n\032CreateAccountResponseP" +
+      "roto\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUse" +
+      "rProto\022E\n\006status\030\002 \001(\01625.proto.CreateAcc" +
+      "ountResponseProto.CreateAccountStatus\022\022\n" +
+      "\notherNames\030\003 \003(\t\"\255\002\n\023CreateAccountStatu" +
+      "s\022\033\n\027SUCCESS_ACCOUNT_CREATED\020\001\022\036\n\032FAIL_D" +
+      "UPLICATE_FACEBOOK_ID\020\002\022\027\n\023FAIL_DUPLICATE" +
+      "_UDID\020\003\022\034\n\030FAIL_MISSING_FACEBOOK_ID\020\004\022\025\n" +
+      "\021FAIL_INVALID_NAME\020\005\022\025\n\021FAIL_INVALID_UDI" +
+      "D\020\006\022\031\n\025FAIL_INVALID_PASSWORD\020\007\022\016\n\nFAIL_O",
+      "THER\020\010\022\030\n\024FAIL_DUPLICATE_EMAIL\020\t\022\026\n\022FAIL" +
+      "_INVALID_EMAIL\020\n\022\027\n\023FAIL_DUPLICATE_NAME\020" +
+      "\013B@\n%com.lvl6.gamesuite.common.eventprot" +
+      "osB\027CreateAccountEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2842,7 +2842,7 @@ public final class CreateAccountEventProto {
           internal_static_proto_CreateAccountViaEmailRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CreateAccountViaEmailRequestProto_descriptor,
-              new java.lang.String[] { "Name", "Email", "Password", "Udid", "DeviceId", },
+              new java.lang.String[] { "NameStrangersSee", "Email", "Password", "Udid", "DeviceId", },
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.class,
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto.Builder.class);
           internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor =
@@ -2850,7 +2850,7 @@ public final class CreateAccountEventProto {
           internal_static_proto_CreateAccountViaNoCredentialsRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CreateAccountViaNoCredentialsRequestProto_descriptor,
-              new java.lang.String[] { "Udid", "DeviceId", "Name", },
+              new java.lang.String[] { "Udid", "DeviceId", "NameStrangersSee", },
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.class,
               com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto.Builder.class);
           internal_static_proto_CreateAccountResponseProto_descriptor =

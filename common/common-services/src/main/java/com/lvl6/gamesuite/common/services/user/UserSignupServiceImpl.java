@@ -1,9 +1,9 @@
 package com.lvl6.gamesuite.common.services.user;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.gamesuite.common.properties.PoConstants;
 import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
 public class UserSignupServiceImpl implements UserSignupService {
@@ -25,11 +26,15 @@ public class UserSignupServiceImpl implements UserSignupService {
 	@Autowired
 	protected PasswordUtil passwordUtil;
 	
+  @Autowired
+  protected Random rand;
+	
 
 
-	@Override
+  @Override
 	@Transactional
-	public User signup(String userName, String email, String password, String facebookId) {
+	public User signup(String nameStrangersSee, String nameFriendsSee,
+	    String email, String password, String facebookId) {
 	  //decided to make this more fine-grained, (i.e. less things done) so this function 
 	  //is only called to actually sign up a user, checking should be done by caller
 		/*User user = checkForExistingUser(userName, email, facebookId);
@@ -44,7 +49,10 @@ public class UserSignupServiceImpl implements UserSignupService {
 			}
 		}else { }*/
 	  User newUser = new User();
-	  newUser.setName(userName);
+	  newUser.setNameStrangersSee(nameStrangersSee);
+	  if (null != nameFriendsSee) {
+	    newUser.setNameFriendsSee(nameFriendsSee);
+	  }
 	  if (null != email) {
 	    newUser.setEmail(email);
 	  }
@@ -86,6 +94,34 @@ public class UserSignupServiceImpl implements UserSignupService {
 		return existing;
 	}
 
+  
+  public String generateRandomName(String name) {
+    String facebookIdNull = null;
+    String emailNull = null;
+    String udidNull = null;
+    if (null == name || name.isEmpty()) {
+      name = PoConstants.USER__DEFAULT_NAME_STRANGERS_SEE;
+    }
+    int limit = PoConstants.USER__DEFAULT_ATTEMPTS_TO_GENERATE_RANDOM_NAME;
+    for (int i = 0; i < limit; i++) {
+      long randNum = rand.nextLong();
+      String nameAndNum = name + randNum;
+      List<User> existing = checkForExistingUser(facebookIdNull, nameAndNum, emailNull, udidNull);
+
+      if (null == existing || existing.isEmpty()) {
+        return nameAndNum;
+      } 
+    }
+    return null;
+  }
+
+  public Random getRand() {
+    return rand;
+  }
+
+  public void setRand(Random rand) {
+    this.rand = rand;
+  }
 	
 	@Override
 	public UserDao getUserDao() {

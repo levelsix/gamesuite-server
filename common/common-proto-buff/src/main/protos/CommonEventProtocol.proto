@@ -8,7 +8,7 @@ enum CommonEventProtocolRequest {
 	//goes from [1-999] inclusive
 	C_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT = 1;
 	C_CREATE_ACCOUNT_VIA_EMAIL_EVENT = 2;
-	C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS = 3;
+	C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT = 3;
 }
 
 enum CommonEventProtocolResponse {

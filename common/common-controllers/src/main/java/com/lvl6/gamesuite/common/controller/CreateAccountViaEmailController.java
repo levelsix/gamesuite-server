@@ -56,7 +56,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   protected void processRequestEvent(RequestEvent event) throws Exception {
     CreateAccountViaEmailRequestProto reqProto = 
         ((CreateAccountViaEmailRequestEvent) event).getcreateAccountViaEmailRequestProto();
-    String name = reqProto.getName();
+    String nameStrangersSee = reqProto.getNameStrangersSee();
     String email = reqProto.getEmail();
     String password = reqProto.getPassword();
     String udid = reqProto.getUdid();
@@ -67,17 +67,17 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
     
     boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto,
-        name, email, password, udid);
+        nameStrangersSee, email, password, udid);
     boolean validRequest = false;
     boolean success = false;
     
     
     if (validRequestArgs) {
-      validRequest = isValidRequest(responseBuilder, name, email, udid, deviceId);
+      validRequest = isValidRequest(responseBuilder, nameStrangersSee, email, udid, deviceId);
     }
     
     if(validRequest) {
-      success = writeChangesToDb(responseBuilder, name, email, password, udid, deviceId);
+      success = writeChangesToDb(responseBuilder, nameStrangersSee, email, password, udid, deviceId);
     }
     
     if(success) {
@@ -95,11 +95,11 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   }
 
   private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaEmailRequestProto request,
-      String name, String email, String password, String udid) {
-    if (!(request.hasName()) || name.isEmpty()) {
+      String nameStrangersSee, String email, String password, String udid) {
+    if (!(request.hasNameStrangersSee()) || nameStrangersSee.isEmpty()) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
       log.error("unexpected error: no name provided. password:" + password
-      		+ ", name:" + name + ", email:" + email + ", udid:" + udid);
+      		+ ", nameStrangersSee:" + nameStrangersSee + ", email:" + email + ", udid:" + udid);
       return false;
     }
     if (!(request.hasEmail()) || email.isEmpty() || !isValidEmailAddressFormat(email)) {
@@ -110,22 +110,22 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     if (!(request.hasPassword()) || password.isEmpty()) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_PASSWORD);
       log.error("unexpected error: no password provided. password:" + password
-          + ", name:" + name + ", email:" + email + ", udid:" + udid);    
+          + ", nameStrangersSee:" + nameStrangersSee + ", email:" + email + ", udid:" + udid);    
       return false;
     }
     
     return true;
   }
   
-  private boolean isValidRequest(Builder responseBuilder, String name, String email,
+  private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee, String email,
       String udid, String deviceId) {
     String facebookIdNull = null;
     String udidNull = null;
-    List<User> existing = userSignupService.checkForExistingUser(facebookIdNull, name, email, udidNull);
+    List<User> existing = userSignupService.checkForExistingUser(facebookIdNull, nameStrangersSee, email, udidNull);
     
     if (null != existing && !existing.isEmpty()) {
       for (User u: existing) {
-        if (name.equalsIgnoreCase(u.getName())) { //ignore case for now
+        if (nameStrangersSee.equalsIgnoreCase(u.getNameStrangersSee())) { //ignore case for now
           responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_NAME);
           log.error("user error: Either name in use by another or user already has " +
               "account with us. user=" + existing);
@@ -136,7 +136,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
         } else {
           //maybe just ignore instead and not treat this as a fail...
           log.error("unexpected error: user returned does not have same name, nor email. user=" + u +
-              " args=[name=" + name + ", email=" + email +
+              " args=[nameStrangersSee=" + nameStrangersSee + ", email=" + email +
               ", udid=" + udid + ", deviceId=" + deviceId);
           responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
         }
@@ -148,28 +148,24 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     return true;
   }
   
-  private boolean writeChangesToDb(Builder responseBuilder, String name,
+  private boolean writeChangesToDb(Builder responseBuilder, String nameStrangersSee,
       String email, String password, String udid, String deviceId) {
     boolean success = false;
     
+    String nameFriendsSeeNull = null;
     String facebookId = null;
     String userId = null;
     User newUser = null;
     AuthorizedDevice  ad = null;
     try {
       //create the new user
-      newUser = userSignupService.signup(name, email, password, facebookId);
+      newUser = userSignupService.signup(nameStrangersSee, nameFriendsSeeNull, email, password, facebookId);
       //need to record the device for the user
 
       userId = newUser.getId();
       ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId);
-      //in case no token/cookie can be generated for this user
-      if (null != ad) {
-        responseBuilder.setLoginToken(ad.getToken());
-        responseBuilder.setTokenExpirationDate(ad.getExpires().getTime());
-      }
      
-      BasicUserProto bp = noneventProtoUtils.createBasicUserProto(userId, name, udid);
+      BasicUserProto bp = noneventProtoUtils.createBasicUserProto(newUser, ad);
       responseBuilder.setRecipient(bp);
       
       success = true;

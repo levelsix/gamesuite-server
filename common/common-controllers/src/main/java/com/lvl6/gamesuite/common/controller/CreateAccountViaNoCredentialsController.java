@@ -1,8 +1,5 @@
 package com.lvl6.gamesuite.common.controller;
 
-import java.util.List;
-import java.util.Random;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +10,18 @@ import com.lvl6.gamesuite.common.controller.utils.CreateNoneventProtoUtils;
 import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto;
 import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
 import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.CreateAccountStatus;
-import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto;
+import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto;
 import com.lvl6.gamesuite.common.events.RequestEvent;
-import com.lvl6.gamesuite.common.events.request.CreateAccountViaFacebookRequestEvent;
+import com.lvl6.gamesuite.common.events.request.CreateAccountViaNoCredentialsRequestEvent;
 import com.lvl6.gamesuite.common.events.response.CreateAccountResponseEvent;
 import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonEventProtocolRequest;
 import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
-import com.lvl6.gamesuite.common.properties.PoConstants;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 
-@Component @DependsOn("gameServer") public class CreateAccountViaFacebookController extends EventController {
+@Component @DependsOn("gameServer") public class CreateAccountViaNoCredentialsController extends EventController {
   
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
@@ -41,21 +37,19 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
 
   @Override
   public RequestEvent createRequestEvent() {
-    return new CreateAccountViaFacebookRequestEvent();
+    return new CreateAccountViaNoCredentialsRequestEvent();
   }
 
   @Override
   public int getEventType() {
-    return CommonEventProtocolRequest.C_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT_VALUE;
+    return CommonEventProtocolRequest.C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT_VALUE;
   }
 
   @Override
   protected void processRequestEvent(RequestEvent event) throws Exception {
-    CreateAccountViaFacebookRequestProto reqProto = 
-        ((CreateAccountViaFacebookRequestEvent) event).getcreateAccountViaFacebookRequestProto();
-    String facebookId = reqProto.getFacebookId();
-    String nameFriendsSee = reqProto.getNameFriendsSee();
-    String email = reqProto.getEmail();
+    CreateAccountViaNoCredentialsRequestProto reqProto = 
+        ((CreateAccountViaNoCredentialsRequestEvent) event).getcreateAccountViaNoCredentialsRequestProto();
+    String nameStrangersSee = reqProto.getNameStrangersSee();
     String udid = reqProto.getUdid();
     String deviceId = reqProto.getDeviceId();
 
@@ -63,18 +57,17 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     CreateAccountResponseProto.Builder responseBuilder = CreateAccountResponseProto.newBuilder();
     responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
     
-    boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto,
-        facebookId, nameFriendsSee, email, udid);
+    boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto, nameStrangersSee, udid);
     boolean validRequest = false;
     boolean success = false;
     
     
     if (validRequestArgs) {
-      validRequest = isValidRequest(responseBuilder, facebookId, email, nameFriendsSee, udid, deviceId);
+      validRequest = isValidRequest(responseBuilder, nameStrangersSee, udid, deviceId);
     }
     
     if(validRequest) {
-      success = writeChangesToDb(responseBuilder, facebookId, nameFriendsSee, email, udid, deviceId);
+      success = writeChangesToDb(responseBuilder, nameStrangersSee, udid, deviceId);
     }
     
     if(success) {
@@ -91,67 +84,67 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     getEventWriter().processPreDBResponseEvent(resEvent, udid);
   }
 
-  private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaFacebookRequestProto request,
-      String facebookId, String nameFriendsSee, String email, String udid) {
-    
-    if (!(request.hasFacebookId()) || facebookId.isEmpty()) {
-      responseBuilder.setStatus(CreateAccountStatus.FAIL_MISSING_FACEBOOK_ID);
-      log.error("unexpected error: no facebookId provided. facebookId:" + facebookId
-          + ", nameFriendsSee:" + nameFriendsSee + ", email:" + email + ", udid:" + udid);    }
-    if (!(request.hasNameFriendsSee()) || nameFriendsSee.isEmpty()) {
+  private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaNoCredentialsRequestProto request,
+      String nameStrangersSee, String udid) {
+    /*if (!(request.hasName()) || nameStrangersSee.isEmpty()) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
-      log.error("unexpected error: no nameFriendsSee provided. facebookId:" + facebookId
-      		+ ", nameFriendsSee:" + nameFriendsSee + ", email:" + email + ", udid:" + udid);
+      log.error("unexpected error: no nameStrangersSee provided. password:" + password
+      		+ ", nameStrangersSee:" + nameStrangersSee + ", email:" + email + ", udid:" + udid);
+      return false;
+    }*/
+    if (!authorizedDeviceService.isValidUdid(udid)) {
+      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_UDID);
+      log.error("unexpected error: invalid udid provided. udid=" + udid);
       return false;
     }
     
     return true;
   }
   
-  private boolean isValidRequest(Builder responseBuilder, String facebookId, String email,
-      String nameFriendsSee, String udid, String deviceId) {
-    String nameFriendsSeeNull = null;
+  private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee,
+      String udid, String deviceId) {
+    /*
+    String facebookIdNull = null;
+    String emailNull = null;
     String udidNull = null;
-    List<User> existing = userSignupService.checkForExistingUser(facebookId, nameFriendsSeeNull, email, udidNull);
+    List<User> existing = userSignupService.checkForExistingUser(facebookIdNull, nameStrangersSee, emailNull, udidNull);
+    
     if (null != existing && !existing.isEmpty()) {
-      for (User u : existing) {
-        if (facebookId.equals(u.getFacebookId())) {
-          responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_FACEBOOK_ID);
-          log.error("user error: user already has account with us via facebook. user=" + u);
-
-        } else if (null != email && email.equals(u.getEmail())) {
-          responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_EMAIL);
-          log.error("user error: user trying to reuse taken email. user=" + u);
-          
+      for (User u: existing) {
+        if (nameStrangersSee.equalsIgnoreCase(u.getNameStrangersSee())) { //ignore case for now
+          responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_NAME);
+          log.error("user error: Either name in use nameStrangersSee or user already has " +
+              "account with us. user=" + existing);
         } else {
           //maybe just ignore instead and not treat this as a fail...
-          log.error("unexpected error: user returned does not have same facebookId, nor email. user="
-              + u + " args=[facebookId=" + facebookId + ", nameFriendsSee=" + nameFriendsSee + ", email=" + email +
-              ", udid=" + udid + ", deviceId=" + deviceId);
+          log.error("unexpected error: user returned does not have same nameStrangersSee, nor email. user=" + u +
+              " args=[nameStrangersSee=" + nameStrangersSee + ", udid=" + udid + ", deviceId=" + deviceId);
           responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
         }
-          
       }
       return false;
     }
-    
+    */
     return true;
   }
   
-  private boolean writeChangesToDb(Builder responseBuilder, String facebookId,
-      String nameFriendsSee, String email, String udid, String deviceId) {
+  private boolean writeChangesToDb(Builder responseBuilder, String nameStrangersSee,
+      String udid, String deviceId) {
     boolean success = false;
     
-    String nameStrangersSeeNull = userSignupService.generateRandomName(nameFriendsSee);
-    String password = null;
+    String nameFriendsSeeNull = null;
+    String emailNull = null;
+    String passwordNull = null;
+    String facebookId = null;
     String userId = null;
     User newUser = null;
     AuthorizedDevice  ad = null;
     try {
       //create the new user
-      newUser = userSignupService.signup(nameStrangersSeeNull, nameFriendsSee, email, password, facebookId);
+      newUser = userSignupService.signup(nameStrangersSee, nameFriendsSeeNull, emailNull, passwordNull, facebookId);
+      //maybe some error checking here...
+      
       //need to record the device for the user
-
       userId = newUser.getId();
       ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId);
      
@@ -164,7 +157,6 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     }
     return success;
   }
-  
   
   public UserSignupService getService() {
     return userSignupService;
@@ -181,5 +173,5 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
     this.noneventProtoUtils = noneventProtoUtils;
   }
-  
+
 }
