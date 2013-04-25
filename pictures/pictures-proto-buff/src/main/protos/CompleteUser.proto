@@ -1,3 +1,5 @@
+import "BasicUser.proto";
+
 package proto;
 
 option java_package = "com.lvl6.pictures.noneventprotos";
@@ -5,10 +7,13 @@ option java_outer_classname = "UserProto";
 
 message CompleteUserProto {
 	optional string userId = 1;
-	optional int64 lastLogin = 2;
-	optional string name = 3;
-	optional string udid = 4;
-	optional string facebookId = 5;
+	optional string facebookId = 2;
+	optional string nameStrangersSee = 3;
+	optional string	nameFriendsSee = 4;
+	optional string email = 5;
+	optional int64 lastLogin = 6;
+	optional int32 signupDate = 7;
+	optional BasicAuthorizedDevice basicAuthorizedDevice = 8;
 	
-	//need items user bought
+	//power up information, tokens/rubies/in game currency
 }

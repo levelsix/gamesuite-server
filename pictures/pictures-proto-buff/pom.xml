@@ -48,6 +48,10 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.lvl6</groupId>
+			<artifactId>common-proto-buff</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>
 		</dependency>
