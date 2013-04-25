@@ -1,7 +1,6 @@
 package com.lvl6.gamesuite.common.controller;
 
 import java.util.List;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,6 @@ import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonE
 import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
-import com.lvl6.gamesuite.common.properties.PoConstants;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 

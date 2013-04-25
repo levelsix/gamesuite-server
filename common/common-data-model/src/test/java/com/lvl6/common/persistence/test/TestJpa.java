@@ -1,7 +1,6 @@
 package com.lvl6.common.persistence.test;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,6 +21,7 @@ import com.lvl6.gamesuite.common.dao.AuthorizedDeviceDao;
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.gamesuite.common.properties.PoConstants;
 
 
 
@@ -70,6 +71,9 @@ public class TestJpa {
     ad.setUserId(userId);
     ad.setUdid(udid);
     ad.setDeviceId(deviceId);
+    DateTime expiry = new DateTime();
+    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
+    ad.setExpires(expiry.toDate());
     getAuthorizedDeviceDao().save(ad);
     
     assertNotNull("AuthorizedDevice was just set, though...", ad);
