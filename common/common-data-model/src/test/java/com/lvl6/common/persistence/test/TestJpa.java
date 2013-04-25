@@ -51,7 +51,10 @@ public class TestJpa {
 		List<User> existing = getUserDao().findByNameStrangersSee(testuser.getNameStrangersSee());
 		assertTrue("searched for name strangers see: " + 
 		    testuser.getNameStrangersSee(), existing.isEmpty());
-		User fromDb = (null == existing) ? null : existing.get(0);
+		User fromDb = null;
+		if(null != existing && !existing.isEmpty()) {
+		  fromDb = existing.get(0);
+		}
 		if(fromDb != null) {
 			fromDb.setLastLogin(new Date());
 			fromDb = getUserDao().save(fromDb);
