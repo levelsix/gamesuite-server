@@ -18,8 +18,8 @@ public class CreateAccountViaEmailRequestEvent extends PreDatabaseRequestEvent {
     try {
       createAccountViaEmailRequestProto = CreateAccountViaEmailRequestProto.parseFrom(ByteString.copyFrom(buff));
       
-      //Player id is -1 since it won't be initialized yet.
-      playerId = -1;
+      //Player id is "" since it won't be initialized yet.
+      playerId = "";
       
       udid = createAccountViaEmailRequestProto.getUdid();
     } catch (InvalidProtocolBufferException e) {

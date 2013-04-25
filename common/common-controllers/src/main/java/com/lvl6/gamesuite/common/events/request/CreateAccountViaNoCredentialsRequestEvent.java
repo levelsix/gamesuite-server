@@ -18,8 +18,8 @@ public class CreateAccountViaNoCredentialsRequestEvent extends PreDatabaseReques
     try {
       createAccountViaNoCredentialsRequestProto = CreateAccountViaNoCredentialsRequestProto.parseFrom(ByteString.copyFrom(buff));
       
-      //Player id is -1 since it won't be initialized yet.
-      playerId = -1;
+      //Player id is "" since it won't be initialized yet.
+      playerId = "";
       
       udid = createAccountViaNoCredentialsRequestProto.getUdid();
     } catch (InvalidProtocolBufferException e) {
