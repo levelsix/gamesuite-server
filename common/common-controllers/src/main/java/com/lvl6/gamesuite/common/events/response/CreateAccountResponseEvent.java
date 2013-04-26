@@ -13,7 +13,7 @@ public class CreateAccountResponseEvent extends PreDatabaseResponseEvent{
   
   public CreateAccountResponseEvent(String udid) {
     super(udid);
-    eventType = CommonEventProtocolResponse.S_CREATE_ACCOUNT_EVENT.getNumber();
+    eventType = CommonEventProtocolResponse.S_CREATE_ACCOUNT_EVENT_VALUE;
   }
   
   /** 
