@@ -23,7 +23,7 @@ public class LoginRequestEvent extends RequestEvent {
     }
   }
 
-  public LoginRequestProto getcreateAccountViaEmailRequestProto() {
+  public LoginRequestProto getLoginRequestProto() {
     return loginRequestProto;
   }
 }

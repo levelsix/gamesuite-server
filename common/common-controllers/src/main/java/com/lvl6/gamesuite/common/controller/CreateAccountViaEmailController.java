@@ -55,7 +55,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   @Override
   protected void processRequestEvent(RequestEvent event) throws Exception {
     CreateAccountViaEmailRequestProto reqProto = 
-        ((CreateAccountViaEmailRequestEvent) event).getcreateAccountViaEmailRequestProto();
+        ((CreateAccountViaEmailRequestEvent) event).getCreateAccountViaEmailRequestProto();
     String nameStrangersSee = reqProto.getNameStrangersSee();
     String email = reqProto.getEmail();
     String password = reqProto.getPassword();

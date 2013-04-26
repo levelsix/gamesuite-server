@@ -27,7 +27,7 @@ public class CreateAccountViaEmailRequestEvent extends PreDatabaseRequestEvent {
     }
   }
 
-  public CreateAccountViaEmailRequestProto getcreateAccountViaEmailRequestProto() {
+  public CreateAccountViaEmailRequestProto getCreateAccountViaEmailRequestProto() {
     return createAccountViaEmailRequestProto;
   }
 }

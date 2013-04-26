@@ -18,7 +18,7 @@ message LoginRequestProto {
 	enum LoginType {
 		LOGIN_TOKEN = 1;
 		FACEBOOK = 2;
-		EMAIL = 3;
+		NAME_EMAIL_PASSWORD = 3;
 		//case where user didn't use facebook nor email
 		//in this case, name and udid should be set
 		NO_CREDENTIALS = 4; 
@@ -42,12 +42,12 @@ message LoginResponseProto {
 	enum LoginResponseStatus {
 		SUCCESS_LOGIN_TOKEN = 1;
 		SUCCESS_FACEBOOK_ID = 2;
-		SUCCESS_NAME_PASSWORD = 3;
-		SUCCESS_NAME_UDID = 4;
+		SUCCESS_NAME_EMAIL_PASSWORD = 3;
+		SUCCESS_NO_CREDENTIALS = 4;
 		INVALID_LOGIN_TOKEN = 5;
 		INVALID_FACEBOOK_ID = 6;
-		INVALID_NAME_PASSWORD = 7;
-		INVALID_NAME_UDID = 8;
+		INVALID_NAME_EMAIL_PASSWORD = 7;
+		INVALID_NO_CREDENTIALS = 8;
 		FAIL_OTHER = 9;
 	}
 }
