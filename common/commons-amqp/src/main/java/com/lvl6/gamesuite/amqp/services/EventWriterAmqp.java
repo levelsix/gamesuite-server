@@ -78,7 +78,7 @@ public class EventWriterAmqp extends EventWriter {
 		}
 		// Otherwise this is just a normal message, send response to sender.
 		else {*/
-			int playerId = ((NormalResponseEvent) event).getPlayerId();
+			String playerId = ((NormalResponseEvent) event).getPlayerId();
 			String routingKey = getRoutingKeyForSingleUser(playerId);
 			log.debug("writing normal event with type=" + event.getEventType() + " to player with routingKey "
 					+ routingKey + " event=" + event.getClass().getSimpleName());
@@ -88,7 +88,7 @@ public class EventWriterAmqp extends EventWriter {
 
 	
 	
-	public String getRoutingKeyForSingleUser(int playerId) {
+	public String getRoutingKeyForSingleUser(String playerId) {
 		return "client_userid_" + playerId;
 	}
 

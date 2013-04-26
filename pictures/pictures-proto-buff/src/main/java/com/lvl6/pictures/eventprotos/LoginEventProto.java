@@ -8,239 +8,142 @@ public final class LoginEventProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface LoginRequestEventOrBuilder
+  public interface LoginRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string udid = 1;
-    boolean hasUdid();
-    String getUdid();
+    // optional .proto.BasicUserProto sender = 1;
+    boolean hasSender();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getSender();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional string loginToken = 2;
-    boolean hasLoginToken();
-    String getLoginToken();
-    
-    // optional int64 tokenExpirationDate = 3;
-    boolean hasTokenExpirationDate();
-    long getTokenExpirationDate();
-    
-    // optional string facebookId = 4;
-    boolean hasFacebookId();
-    String getFacebookId();
-    
-    // optional string name = 5;
-    boolean hasName();
-    String getName();
-    
-    // optional string password = 6;
-    boolean hasPassword();
-    String getPassword();
-    
-    // repeated string facebookFriendIds = 7;
+    // repeated string facebookFriendIds = 2;
     java.util.List<String> getFacebookFriendIdsList();
     int getFacebookFriendIdsCount();
     String getFacebookFriendIds(int index);
+    
+    // optional .proto.LoginRequestProto.LoginType loginType = 3;
+    boolean hasLoginType();
+    com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType getLoginType();
   }
-  public static final class LoginRequestEvent extends
+  public static final class LoginRequestProto extends
       com.google.protobuf.GeneratedMessage
-      implements LoginRequestEventOrBuilder {
-    // Use LoginRequestEvent.newBuilder() to construct.
-    private LoginRequestEvent(Builder builder) {
+      implements LoginRequestProtoOrBuilder {
+    // Use LoginRequestProto.newBuilder() to construct.
+    private LoginRequestProto(Builder builder) {
       super(builder);
     }
-    private LoginRequestEvent(boolean noInit) {}
+    private LoginRequestProto(boolean noInit) {}
     
-    private static final LoginRequestEvent defaultInstance;
-    public static LoginRequestEvent getDefaultInstance() {
+    private static final LoginRequestProto defaultInstance;
+    public static LoginRequestProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public LoginRequestEvent getDefaultInstanceForType() {
+    public LoginRequestProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestEvent_descriptor;
+      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestEvent_fieldAccessorTable;
+      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestProto_fieldAccessorTable;
+    }
+    
+    public enum LoginType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      LOGIN_TOKEN(0, 1),
+      FACEBOOK(1, 2),
+      EMAIL(2, 3),
+      NO_CREDENTIALS(3, 4),
+      ;
+      
+      public static final int LOGIN_TOKEN_VALUE = 1;
+      public static final int FACEBOOK_VALUE = 2;
+      public static final int EMAIL_VALUE = 3;
+      public static final int NO_CREDENTIALS_VALUE = 4;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static LoginType valueOf(int value) {
+        switch (value) {
+          case 1: return LOGIN_TOKEN;
+          case 2: return FACEBOOK;
+          case 3: return EMAIL;
+          case 4: return NO_CREDENTIALS;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<LoginType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<LoginType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<LoginType>() {
+              public LoginType findValueByNumber(int number) {
+                return LoginType.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final LoginType[] VALUES = {
+        LOGIN_TOKEN, FACEBOOK, EMAIL, NO_CREDENTIALS, 
+      };
+      
+      public static LoginType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private LoginType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.LoginRequestProto.LoginType)
     }
     
     private int bitField0_;
-    // optional string udid = 1;
-    public static final int UDID_FIELD_NUMBER = 1;
-    private java.lang.Object udid_;
-    public boolean hasUdid() {
+    // optional .proto.BasicUserProto sender = 1;
+    public static final int SENDER_FIELD_NUMBER = 1;
+    private com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto sender_;
+    public boolean hasSender() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getUdid() {
-      java.lang.Object ref = udid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          udid_ = s;
-        }
-        return s;
-      }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getSender() {
+      return sender_;
     }
-    private com.google.protobuf.ByteString getUdidBytes() {
-      java.lang.Object ref = udid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        udid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getSenderOrBuilder() {
+      return sender_;
     }
     
-    // optional string loginToken = 2;
-    public static final int LOGINTOKEN_FIELD_NUMBER = 2;
-    private java.lang.Object loginToken_;
-    public boolean hasLoginToken() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public String getLoginToken() {
-      java.lang.Object ref = loginToken_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          loginToken_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getLoginTokenBytes() {
-      java.lang.Object ref = loginToken_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        loginToken_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // optional int64 tokenExpirationDate = 3;
-    public static final int TOKENEXPIRATIONDATE_FIELD_NUMBER = 3;
-    private long tokenExpirationDate_;
-    public boolean hasTokenExpirationDate() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public long getTokenExpirationDate() {
-      return tokenExpirationDate_;
-    }
-    
-    // optional string facebookId = 4;
-    public static final int FACEBOOKID_FIELD_NUMBER = 4;
-    private java.lang.Object facebookId_;
-    public boolean hasFacebookId() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    public String getFacebookId() {
-      java.lang.Object ref = facebookId_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          facebookId_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getFacebookIdBytes() {
-      java.lang.Object ref = facebookId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        facebookId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // optional string name = 5;
-    public static final int NAME_FIELD_NUMBER = 5;
-    private java.lang.Object name_;
-    public boolean hasName() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    public String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          name_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // optional string password = 6;
-    public static final int PASSWORD_FIELD_NUMBER = 6;
-    private java.lang.Object password_;
-    public boolean hasPassword() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    public String getPassword() {
-      java.lang.Object ref = password_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          password_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getPasswordBytes() {
-      java.lang.Object ref = password_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // repeated string facebookFriendIds = 7;
-    public static final int FACEBOOKFRIENDIDS_FIELD_NUMBER = 7;
+    // repeated string facebookFriendIds = 2;
+    public static final int FACEBOOKFRIENDIDS_FIELD_NUMBER = 2;
     private com.google.protobuf.LazyStringList facebookFriendIds_;
     public java.util.List<String>
         getFacebookFriendIdsList() {
@@ -253,14 +156,20 @@ public final class LoginEventProto {
       return facebookFriendIds_.get(index);
     }
     
+    // optional .proto.LoginRequestProto.LoginType loginType = 3;
+    public static final int LOGINTYPE_FIELD_NUMBER = 3;
+    private com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType loginType_;
+    public boolean hasLoginType() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType getLoginType() {
+      return loginType_;
+    }
+    
     private void initFields() {
-      udid_ = "";
-      loginToken_ = "";
-      tokenExpirationDate_ = 0L;
-      facebookId_ = "";
-      name_ = "";
-      password_ = "";
+      sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       facebookFriendIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -275,25 +184,13 @@ public final class LoginEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getUdidBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getLoginTokenBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(3, tokenExpirationDate_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getFacebookIdBytes());
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getNameBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getPasswordBytes());
+        output.writeMessage(1, sender_);
       }
       for (int i = 0; i < facebookFriendIds_.size(); i++) {
-        output.writeBytes(7, facebookFriendIds_.getByteString(i));
+        output.writeBytes(2, facebookFriendIds_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(3, loginType_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -306,27 +203,7 @@ public final class LoginEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getUdidBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getLoginTokenBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, tokenExpirationDate_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getFacebookIdBytes());
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getNameBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getPasswordBytes());
+          .computeMessageSize(1, sender_);
       }
       {
         int dataSize = 0;
@@ -336,6 +213,10 @@ public final class LoginEventProto {
         }
         size += dataSize;
         size += 1 * getFacebookFriendIdsList().size();
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, loginType_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -349,41 +230,41 @@ public final class LoginEventProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(byte[] data)
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(java.io.InputStream input)
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -392,7 +273,7 @@ public final class LoginEventProto {
         return null;
       }
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseDelimitedFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -403,12 +284,12 @@ public final class LoginEventProto {
         return null;
       }
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -418,7 +299,7 @@ public final class LoginEventProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent prototype) {
+    public static Builder newBuilder(com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -431,18 +312,18 @@ public final class LoginEventProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEventOrBuilder {
+       implements com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestEvent_descriptor;
+        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestEvent_fieldAccessorTable;
+        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginRequestProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent.newBuilder()
+      // Construct using com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -453,6 +334,7 @@ public final class LoginEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSenderFieldBuilder();
         }
       }
       private static Builder create() {
@@ -461,20 +343,16 @@ public final class LoginEventProto {
       
       public Builder clear() {
         super.clear();
-        udid_ = "";
+        if (senderBuilder_ == null) {
+          sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
+        } else {
+          senderBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        loginToken_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        tokenExpirationDate_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        facebookId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
-        name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
-        password_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
         facebookFriendIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000002);
+        loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -484,24 +362,24 @@ public final class LoginEventProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent.getDescriptor();
+        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.getDescriptor();
       }
       
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent getDefaultInstanceForType() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent.getDefaultInstance();
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.getDefaultInstance();
       }
       
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent build() {
-        com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent result = buildPartial();
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto build() {
+        com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent buildParsed()
+      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent result = buildPartial();
+        com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -509,83 +387,59 @@ public final class LoginEventProto {
         return result;
       }
       
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent buildPartial() {
-        com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent result = new com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent(this);
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto buildPartial() {
+        com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto result = new com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.udid_ = udid_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
+        if (senderBuilder_ == null) {
+          result.sender_ = sender_;
+        } else {
+          result.sender_ = senderBuilder_.build();
         }
-        result.loginToken_ = loginToken_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.tokenExpirationDate_ = tokenExpirationDate_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.facebookId_ = facebookId_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.password_ = password_;
-        if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
           facebookFriendIds_ = new com.google.protobuf.UnmodifiableLazyStringList(
               facebookFriendIds_);
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.facebookFriendIds_ = facebookFriendIds_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.loginType_ = loginType_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent) {
-          return mergeFrom((com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent)other);
+        if (other instanceof com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto) {
+          return mergeFrom((com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent other) {
-        if (other == com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent.getDefaultInstance()) return this;
-        if (other.hasUdid()) {
-          setUdid(other.getUdid());
-        }
-        if (other.hasLoginToken()) {
-          setLoginToken(other.getLoginToken());
-        }
-        if (other.hasTokenExpirationDate()) {
-          setTokenExpirationDate(other.getTokenExpirationDate());
-        }
-        if (other.hasFacebookId()) {
-          setFacebookId(other.getFacebookId());
-        }
-        if (other.hasName()) {
-          setName(other.getName());
-        }
-        if (other.hasPassword()) {
-          setPassword(other.getPassword());
+      public Builder mergeFrom(com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto other) {
+        if (other == com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.getDefaultInstance()) return this;
+        if (other.hasSender()) {
+          mergeSender(other.getSender());
         }
         if (!other.facebookFriendIds_.isEmpty()) {
           if (facebookFriendIds_.isEmpty()) {
             facebookFriendIds_ = other.facebookFriendIds_;
-            bitField0_ = (bitField0_ & ~0x00000040);
+            bitField0_ = (bitField0_ & ~0x00000002);
           } else {
             ensureFacebookFriendIdsIsMutable();
             facebookFriendIds_.addAll(other.facebookFriendIds_);
           }
           onChanged();
+        }
+        if (other.hasLoginType()) {
+          setLoginType(other.getLoginType());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -619,38 +473,28 @@ public final class LoginEventProto {
               break;
             }
             case 10: {
-              bitField0_ |= 0x00000001;
-              udid_ = input.readBytes();
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.newBuilder();
+              if (hasSender()) {
+                subBuilder.mergeFrom(getSender());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setSender(subBuilder.buildPartial());
               break;
             }
             case 18: {
-              bitField0_ |= 0x00000002;
-              loginToken_ = input.readBytes();
+              ensureFacebookFriendIdsIsMutable();
+              facebookFriendIds_.add(input.readBytes());
               break;
             }
             case 24: {
-              bitField0_ |= 0x00000004;
-              tokenExpirationDate_ = input.readInt64();
-              break;
-            }
-            case 34: {
-              bitField0_ |= 0x00000008;
-              facebookId_ = input.readBytes();
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              name_ = input.readBytes();
-              break;
-            }
-            case 50: {
-              bitField0_ |= 0x00000020;
-              password_ = input.readBytes();
-              break;
-            }
-            case 58: {
-              ensureFacebookFriendIdsIsMutable();
-              facebookFriendIds_.add(input.readBytes());
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType value = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                bitField0_ |= 0x00000004;
+                loginType_ = value;
+              }
               break;
             }
           }
@@ -659,213 +503,102 @@ public final class LoginEventProto {
       
       private int bitField0_;
       
-      // optional string udid = 1;
-      private java.lang.Object udid_ = "";
-      public boolean hasUdid() {
+      // optional .proto.BasicUserProto sender = 1;
+      private com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> senderBuilder_;
+      public boolean hasSender() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getUdid() {
-        java.lang.Object ref = udid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          udid_ = s;
-          return s;
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getSender() {
+        if (senderBuilder_ == null) {
+          return sender_;
         } else {
-          return (String) ref;
+          return senderBuilder_.getMessage();
         }
       }
-      public Builder setUdid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        udid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearUdid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        udid_ = getDefaultInstance().getUdid();
-        onChanged();
-        return this;
-      }
-      void setUdid(com.google.protobuf.ByteString value) {
+      public Builder setSender(com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto value) {
+        if (senderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sender_ = value;
+          onChanged();
+        } else {
+          senderBuilder_.setMessage(value);
+        }
         bitField0_ |= 0x00000001;
-        udid_ = value;
-        onChanged();
+        return this;
       }
-      
-      // optional string loginToken = 2;
-      private java.lang.Object loginToken_ = "";
-      public boolean hasLoginToken() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public String getLoginToken() {
-        java.lang.Object ref = loginToken_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          loginToken_ = s;
-          return s;
+      public Builder setSender(
+          com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder builderForValue) {
+        if (senderBuilder_ == null) {
+          sender_ = builderForValue.build();
+          onChanged();
         } else {
-          return (String) ref;
+          senderBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeSender(com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto value) {
+        if (senderBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              sender_ != com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance()) {
+            sender_ =
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+          } else {
+            sender_ = value;
+          }
+          onChanged();
+        } else {
+          senderBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearSender() {
+        if (senderBuilder_ == null) {
+          sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          senderBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder getSenderBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getSenderFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getSenderOrBuilder() {
+        if (senderBuilder_ != null) {
+          return senderBuilder_.getMessageOrBuilder();
+        } else {
+          return sender_;
         }
       }
-      public Builder setLoginToken(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        loginToken_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearLoginToken() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        loginToken_ = getDefaultInstance().getLoginToken();
-        onChanged();
-        return this;
-      }
-      void setLoginToken(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
-        loginToken_ = value;
-        onChanged();
-      }
-      
-      // optional int64 tokenExpirationDate = 3;
-      private long tokenExpirationDate_ ;
-      public boolean hasTokenExpirationDate() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public long getTokenExpirationDate() {
-        return tokenExpirationDate_;
-      }
-      public Builder setTokenExpirationDate(long value) {
-        bitField0_ |= 0x00000004;
-        tokenExpirationDate_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearTokenExpirationDate() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        tokenExpirationDate_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional string facebookId = 4;
-      private java.lang.Object facebookId_ = "";
-      public boolean hasFacebookId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      public String getFacebookId() {
-        java.lang.Object ref = facebookId_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          facebookId_ = s;
-          return s;
-        } else {
-          return (String) ref;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> 
+          getSenderFieldBuilder() {
+        if (senderBuilder_ == null) {
+          senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder>(
+                  sender_,
+                  getParentForChildren(),
+                  isClean());
+          sender_ = null;
         }
-      }
-      public Builder setFacebookId(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        facebookId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearFacebookId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        facebookId_ = getDefaultInstance().getFacebookId();
-        onChanged();
-        return this;
-      }
-      void setFacebookId(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000008;
-        facebookId_ = value;
-        onChanged();
+        return senderBuilder_;
       }
       
-      // optional string name = 5;
-      private java.lang.Object name_ = "";
-      public boolean hasName() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      public String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      public Builder setName(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      void setName(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000010;
-        name_ = value;
-        onChanged();
-      }
-      
-      // optional string password = 6;
-      private java.lang.Object password_ = "";
-      public boolean hasPassword() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      public String getPassword() {
-        java.lang.Object ref = password_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          password_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      public Builder setPassword(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        password_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearPassword() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        password_ = getDefaultInstance().getPassword();
-        onChanged();
-        return this;
-      }
-      void setPassword(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000020;
-        password_ = value;
-        onChanged();
-      }
-      
-      // repeated string facebookFriendIds = 7;
+      // repeated string facebookFriendIds = 2;
       private com.google.protobuf.LazyStringList facebookFriendIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureFacebookFriendIdsIsMutable() {
-        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
           facebookFriendIds_ = new com.google.protobuf.LazyStringArrayList(facebookFriendIds_);
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000002;
          }
       }
       public java.util.List<String>
@@ -906,7 +639,7 @@ public final class LoginEventProto {
       }
       public Builder clearFacebookFriendIds() {
         facebookFriendIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -916,53 +649,77 @@ public final class LoginEventProto {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.LoginRequestEvent)
+      // optional .proto.LoginRequestProto.LoginType loginType = 3;
+      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
+      public boolean hasLoginType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType getLoginType() {
+        return loginType_;
+      }
+      public Builder setLoginType(com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        loginType_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLoginType() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.LoginRequestProto)
     }
     
     static {
-      defaultInstance = new LoginRequestEvent(true);
+      defaultInstance = new LoginRequestProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.LoginRequestEvent)
+    // @@protoc_insertion_point(class_scope:proto.LoginRequestProto)
   }
   
-  public interface LoginResponseEventOrBuilder
+  public interface LoginResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional .proto.CompleteUserProto sender = 1;
-    boolean hasSender();
-    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getSender();
-    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getSenderOrBuilder();
+    // optional .proto.CompleteUserProto recipient = 1;
+    boolean hasRecipient();
+    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getRecipient();
+    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getRecipientOrBuilder();
     
     // repeated .proto.GameResultsProto completedGames = 2;
-    java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> 
+    java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto> 
         getCompletedGamesList();
-    com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto getCompletedGames(int index);
+    com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto getCompletedGames(int index);
     int getCompletedGamesCount();
-    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder> 
         getCompletedGamesOrBuilderList();
-    com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder getCompletedGamesOrBuilder(
+    com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder getCompletedGamesOrBuilder(
         int index);
     
     // repeated .proto.OngoingGameProto myTurn = 3;
-    java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> 
+    java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> 
         getMyTurnList();
-    com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto getMyTurn(int index);
+    com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto getMyTurn(int index);
     int getMyTurnCount();
-    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
         getMyTurnOrBuilderList();
-    com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder getMyTurnOrBuilder(
+    com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder getMyTurnOrBuilder(
         int index);
     
     // repeated .proto.OngoingGameProto notMyTurn = 4;
-    java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> 
+    java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> 
         getNotMyTurnList();
-    com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto getNotMyTurn(int index);
+    com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto getNotMyTurn(int index);
     int getNotMyTurnCount();
-    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
         getNotMyTurnOrBuilderList();
-    com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder getNotMyTurnOrBuilder(
+    com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder getNotMyTurnOrBuilder(
         int index);
     
     // repeated .proto.QuestionProto newQuestions = 5;
@@ -975,36 +732,36 @@ public final class LoginEventProto {
     com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getNewQuestionsOrBuilder(
         int index);
     
-    // optional .proto.LoginResponseEvent.LoginResponseStatus status = 6;
+    // optional .proto.LoginResponseProto.LoginResponseStatus status = 6;
     boolean hasStatus();
-    com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus getStatus();
+    com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus getStatus();
   }
-  public static final class LoginResponseEvent extends
+  public static final class LoginResponseProto extends
       com.google.protobuf.GeneratedMessage
-      implements LoginResponseEventOrBuilder {
-    // Use LoginResponseEvent.newBuilder() to construct.
-    private LoginResponseEvent(Builder builder) {
+      implements LoginResponseProtoOrBuilder {
+    // Use LoginResponseProto.newBuilder() to construct.
+    private LoginResponseProto(Builder builder) {
       super(builder);
     }
-    private LoginResponseEvent(boolean noInit) {}
+    private LoginResponseProto(boolean noInit) {}
     
-    private static final LoginResponseEvent defaultInstance;
-    public static LoginResponseEvent getDefaultInstance() {
+    private static final LoginResponseProto defaultInstance;
+    public static LoginResponseProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public LoginResponseEvent getDefaultInstanceForType() {
+    public LoginResponseProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseEvent_descriptor;
+      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseEvent_fieldAccessorTable;
+      return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_fieldAccessorTable;
     }
     
     public enum LoginResponseStatus
@@ -1012,17 +769,23 @@ public final class LoginEventProto {
       SUCCESS_LOGIN_TOKEN(0, 1),
       SUCCESS_FACEBOOK_ID(1, 2),
       SUCCESS_NAME_PASSWORD(2, 3),
-      INVALID_LOGIN_TOKEN(3, 4),
-      INVALID_FACEBOOK_ID(4, 5),
-      INVALID_NAME_PASSWORD(5, 6),
+      SUCCESS_NAME_UDID(3, 4),
+      INVALID_LOGIN_TOKEN(4, 5),
+      INVALID_FACEBOOK_ID(5, 6),
+      INVALID_NAME_PASSWORD(6, 7),
+      INVALID_NAME_UDID(7, 8),
+      FAIL_OTHER(8, 9),
       ;
       
       public static final int SUCCESS_LOGIN_TOKEN_VALUE = 1;
       public static final int SUCCESS_FACEBOOK_ID_VALUE = 2;
       public static final int SUCCESS_NAME_PASSWORD_VALUE = 3;
-      public static final int INVALID_LOGIN_TOKEN_VALUE = 4;
-      public static final int INVALID_FACEBOOK_ID_VALUE = 5;
-      public static final int INVALID_NAME_PASSWORD_VALUE = 6;
+      public static final int SUCCESS_NAME_UDID_VALUE = 4;
+      public static final int INVALID_LOGIN_TOKEN_VALUE = 5;
+      public static final int INVALID_FACEBOOK_ID_VALUE = 6;
+      public static final int INVALID_NAME_PASSWORD_VALUE = 7;
+      public static final int INVALID_NAME_UDID_VALUE = 8;
+      public static final int FAIL_OTHER_VALUE = 9;
       
       
       public final int getNumber() { return value; }
@@ -1032,9 +795,12 @@ public final class LoginEventProto {
           case 1: return SUCCESS_LOGIN_TOKEN;
           case 2: return SUCCESS_FACEBOOK_ID;
           case 3: return SUCCESS_NAME_PASSWORD;
-          case 4: return INVALID_LOGIN_TOKEN;
-          case 5: return INVALID_FACEBOOK_ID;
-          case 6: return INVALID_NAME_PASSWORD;
+          case 4: return SUCCESS_NAME_UDID;
+          case 5: return INVALID_LOGIN_TOKEN;
+          case 6: return INVALID_FACEBOOK_ID;
+          case 7: return INVALID_NAME_PASSWORD;
+          case 8: return INVALID_NAME_UDID;
+          case 9: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -1061,11 +827,11 @@ public final class LoginEventProto {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.getDescriptor().getEnumTypes().get(0);
+        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.getDescriptor().getEnumTypes().get(0);
       }
       
       private static final LoginResponseStatus[] VALUES = {
-        SUCCESS_LOGIN_TOKEN, SUCCESS_FACEBOOK_ID, SUCCESS_NAME_PASSWORD, INVALID_LOGIN_TOKEN, INVALID_FACEBOOK_ID, INVALID_NAME_PASSWORD, 
+        SUCCESS_LOGIN_TOKEN, SUCCESS_FACEBOOK_ID, SUCCESS_NAME_PASSWORD, SUCCESS_NAME_UDID, INVALID_LOGIN_TOKEN, INVALID_FACEBOOK_ID, INVALID_NAME_PASSWORD, INVALID_NAME_UDID, FAIL_OTHER, 
       };
       
       public static LoginResponseStatus valueOf(
@@ -1085,82 +851,82 @@ public final class LoginEventProto {
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:proto.LoginResponseEvent.LoginResponseStatus)
+      // @@protoc_insertion_point(enum_scope:proto.LoginResponseProto.LoginResponseStatus)
     }
     
     private int bitField0_;
-    // optional .proto.CompleteUserProto sender = 1;
-    public static final int SENDER_FIELD_NUMBER = 1;
-    private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto sender_;
-    public boolean hasSender() {
+    // optional .proto.CompleteUserProto recipient = 1;
+    public static final int RECIPIENT_FIELD_NUMBER = 1;
+    private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto recipient_;
+    public boolean hasRecipient() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getSender() {
-      return sender_;
+    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getRecipient() {
+      return recipient_;
     }
-    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getSenderOrBuilder() {
-      return sender_;
+    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getRecipientOrBuilder() {
+      return recipient_;
     }
     
     // repeated .proto.GameResultsProto completedGames = 2;
     public static final int COMPLETEDGAMES_FIELD_NUMBER = 2;
-    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> completedGames_;
-    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> getCompletedGamesList() {
+    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto> completedGames_;
+    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto> getCompletedGamesList() {
       return completedGames_;
     }
-    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder> 
         getCompletedGamesOrBuilderList() {
       return completedGames_;
     }
     public int getCompletedGamesCount() {
       return completedGames_.size();
     }
-    public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto getCompletedGames(int index) {
+    public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto getCompletedGames(int index) {
       return completedGames_.get(index);
     }
-    public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder getCompletedGamesOrBuilder(
+    public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder getCompletedGamesOrBuilder(
         int index) {
       return completedGames_.get(index);
     }
     
     // repeated .proto.OngoingGameProto myTurn = 3;
     public static final int MYTURN_FIELD_NUMBER = 3;
-    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> myTurn_;
-    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> getMyTurnList() {
+    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> myTurn_;
+    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> getMyTurnList() {
       return myTurn_;
     }
-    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
         getMyTurnOrBuilderList() {
       return myTurn_;
     }
     public int getMyTurnCount() {
       return myTurn_.size();
     }
-    public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto getMyTurn(int index) {
+    public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto getMyTurn(int index) {
       return myTurn_.get(index);
     }
-    public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder getMyTurnOrBuilder(
+    public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder getMyTurnOrBuilder(
         int index) {
       return myTurn_.get(index);
     }
     
     // repeated .proto.OngoingGameProto notMyTurn = 4;
     public static final int NOTMYTURN_FIELD_NUMBER = 4;
-    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> notMyTurn_;
-    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> getNotMyTurnList() {
+    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> notMyTurn_;
+    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> getNotMyTurnList() {
       return notMyTurn_;
     }
-    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
         getNotMyTurnOrBuilderList() {
       return notMyTurn_;
     }
     public int getNotMyTurnCount() {
       return notMyTurn_.size();
     }
-    public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto getNotMyTurn(int index) {
+    public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto getNotMyTurn(int index) {
       return notMyTurn_.get(index);
     }
-    public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder getNotMyTurnOrBuilder(
+    public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder getNotMyTurnOrBuilder(
         int index) {
       return notMyTurn_.get(index);
     }
@@ -1186,23 +952,23 @@ public final class LoginEventProto {
       return newQuestions_.get(index);
     }
     
-    // optional .proto.LoginResponseEvent.LoginResponseStatus status = 6;
+    // optional .proto.LoginResponseProto.LoginResponseStatus status = 6;
     public static final int STATUS_FIELD_NUMBER = 6;
-    private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus status_;
+    private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus status_;
     public boolean hasStatus() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus getStatus() {
+    public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus getStatus() {
       return status_;
     }
     
     private void initFields() {
-      sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+      recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       completedGames_ = java.util.Collections.emptyList();
       myTurn_ = java.util.Collections.emptyList();
       notMyTurn_ = java.util.Collections.emptyList();
       newQuestions_ = java.util.Collections.emptyList();
-      status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
+      status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1217,7 +983,7 @@ public final class LoginEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, sender_);
+        output.writeMessage(1, recipient_);
       }
       for (int i = 0; i < completedGames_.size(); i++) {
         output.writeMessage(2, completedGames_.get(i));
@@ -1245,7 +1011,7 @@ public final class LoginEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, sender_);
+          .computeMessageSize(1, recipient_);
       }
       for (int i = 0; i < completedGames_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -1279,41 +1045,41 @@ public final class LoginEventProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(byte[] data)
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(java.io.InputStream input)
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1322,7 +1088,7 @@ public final class LoginEventProto {
         return null;
       }
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseDelimitedFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1333,12 +1099,12 @@ public final class LoginEventProto {
         return null;
       }
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent parseFrom(
+    public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1348,7 +1114,7 @@ public final class LoginEventProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent prototype) {
+    public static Builder newBuilder(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1361,18 +1127,18 @@ public final class LoginEventProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEventOrBuilder {
+       implements com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseEvent_descriptor;
+        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseEvent_fieldAccessorTable;
+        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.newBuilder()
+      // Construct using com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1383,7 +1149,7 @@ public final class LoginEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getSenderFieldBuilder();
+          getRecipientFieldBuilder();
           getCompletedGamesFieldBuilder();
           getMyTurnFieldBuilder();
           getNotMyTurnFieldBuilder();
@@ -1396,10 +1162,10 @@ public final class LoginEventProto {
       
       public Builder clear() {
         super.clear();
-        if (senderBuilder_ == null) {
-          sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+        if (recipientBuilder_ == null) {
+          recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
         } else {
-          senderBuilder_.clear();
+          recipientBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (completedGamesBuilder_ == null) {
@@ -1426,7 +1192,7 @@ public final class LoginEventProto {
         } else {
           newQuestionsBuilder_.clear();
         }
-        status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
+        status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
@@ -1437,24 +1203,24 @@ public final class LoginEventProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.getDescriptor();
+        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.getDescriptor();
       }
       
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent getDefaultInstanceForType() {
-        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.getDefaultInstance();
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.getDefaultInstance();
       }
       
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent build() {
-        com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent result = buildPartial();
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto build() {
+        com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent buildParsed()
+      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent result = buildPartial();
+        com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -1462,17 +1228,17 @@ public final class LoginEventProto {
         return result;
       }
       
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent buildPartial() {
-        com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent result = new com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent(this);
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto buildPartial() {
+        com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto result = new com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        if (senderBuilder_ == null) {
-          result.sender_ = sender_;
+        if (recipientBuilder_ == null) {
+          result.recipient_ = recipient_;
         } else {
-          result.sender_ = senderBuilder_.build();
+          result.recipient_ = recipientBuilder_.build();
         }
         if (completedGamesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
@@ -1520,18 +1286,18 @@ public final class LoginEventProto {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent) {
-          return mergeFrom((com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent)other);
+        if (other instanceof com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto) {
+          return mergeFrom((com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent other) {
-        if (other == com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.getDefaultInstance()) return this;
-        if (other.hasSender()) {
-          mergeSender(other.getSender());
+      public Builder mergeFrom(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto other) {
+        if (other == com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.getDefaultInstance()) return this;
+        if (other.hasRecipient()) {
+          mergeRecipient(other.getRecipient());
         }
         if (completedGamesBuilder_ == null) {
           if (!other.completedGames_.isEmpty()) {
@@ -1673,27 +1439,27 @@ public final class LoginEventProto {
             }
             case 10: {
               com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder();
-              if (hasSender()) {
-                subBuilder.mergeFrom(getSender());
+              if (hasRecipient()) {
+                subBuilder.mergeFrom(getRecipient());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setSender(subBuilder.buildPartial());
+              setRecipient(subBuilder.buildPartial());
               break;
             }
             case 18: {
-              com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.newBuilder();
+              com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addCompletedGames(subBuilder.buildPartial());
               break;
             }
             case 26: {
-              com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.newBuilder();
+              com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addMyTurn(subBuilder.buildPartial());
               break;
             }
             case 34: {
-              com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.newBuilder();
+              com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addNotMyTurn(subBuilder.buildPartial());
               break;
@@ -1706,7 +1472,7 @@ public final class LoginEventProto {
             }
             case 48: {
               int rawValue = input.readEnum();
-              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus value = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus.valueOf(rawValue);
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus value = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(6, rawValue);
               } else {
@@ -1721,110 +1487,110 @@ public final class LoginEventProto {
       
       private int bitField0_;
       
-      // optional .proto.CompleteUserProto sender = 1;
-      private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+      // optional .proto.CompleteUserProto recipient = 1;
+      private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> senderBuilder_;
-      public boolean hasSender() {
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> recipientBuilder_;
+      public boolean hasRecipient() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getSender() {
-        if (senderBuilder_ == null) {
-          return sender_;
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getRecipient() {
+        if (recipientBuilder_ == null) {
+          return recipient_;
         } else {
-          return senderBuilder_.getMessage();
+          return recipientBuilder_.getMessage();
         }
       }
-      public Builder setSender(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
-        if (senderBuilder_ == null) {
+      public Builder setRecipient(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
+        if (recipientBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          sender_ = value;
+          recipient_ = value;
           onChanged();
         } else {
-          senderBuilder_.setMessage(value);
+          recipientBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder setSender(
+      public Builder setRecipient(
           com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder builderForValue) {
-        if (senderBuilder_ == null) {
-          sender_ = builderForValue.build();
+        if (recipientBuilder_ == null) {
+          recipient_ = builderForValue.build();
           onChanged();
         } else {
-          senderBuilder_.setMessage(builderForValue.build());
+          recipientBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeSender(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
-        if (senderBuilder_ == null) {
+      public Builder mergeRecipient(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
+        if (recipientBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              sender_ != com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance()) {
-            sender_ =
-              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+              recipient_ != com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance()) {
+            recipient_ =
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder(recipient_).mergeFrom(value).buildPartial();
           } else {
-            sender_ = value;
+            recipient_ = value;
           }
           onChanged();
         } else {
-          senderBuilder_.mergeFrom(value);
+          recipientBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder clearSender() {
-        if (senderBuilder_ == null) {
-          sender_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+      public Builder clearRecipient() {
+        if (recipientBuilder_ == null) {
+          recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
           onChanged();
         } else {
-          senderBuilder_.clear();
+          recipientBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder getSenderBuilder() {
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder getRecipientBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return getSenderFieldBuilder().getBuilder();
+        return getRecipientFieldBuilder().getBuilder();
       }
-      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getSenderOrBuilder() {
-        if (senderBuilder_ != null) {
-          return senderBuilder_.getMessageOrBuilder();
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getRecipientOrBuilder() {
+        if (recipientBuilder_ != null) {
+          return recipientBuilder_.getMessageOrBuilder();
         } else {
-          return sender_;
+          return recipient_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> 
-          getSenderFieldBuilder() {
-        if (senderBuilder_ == null) {
-          senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getRecipientFieldBuilder() {
+        if (recipientBuilder_ == null) {
+          recipientBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder>(
-                  sender_,
+                  recipient_,
                   getParentForChildren(),
                   isClean());
-          sender_ = null;
+          recipient_ = null;
         }
-        return senderBuilder_;
+        return recipientBuilder_;
       }
       
       // repeated .proto.GameResultsProto completedGames = 2;
-      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> completedGames_ =
+      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto> completedGames_ =
         java.util.Collections.emptyList();
       private void ensureCompletedGamesIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          completedGames_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto>(completedGames_);
+          completedGames_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto>(completedGames_);
           bitField0_ |= 0x00000002;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder> completedGamesBuilder_;
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder> completedGamesBuilder_;
       
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> getCompletedGamesList() {
+      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto> getCompletedGamesList() {
         if (completedGamesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(completedGames_);
         } else {
@@ -1838,7 +1604,7 @@ public final class LoginEventProto {
           return completedGamesBuilder_.getCount();
         }
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto getCompletedGames(int index) {
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto getCompletedGames(int index) {
         if (completedGamesBuilder_ == null) {
           return completedGames_.get(index);
         } else {
@@ -1846,7 +1612,7 @@ public final class LoginEventProto {
         }
       }
       public Builder setCompletedGames(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto value) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto value) {
         if (completedGamesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1860,7 +1626,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder setCompletedGames(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder builderForValue) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder builderForValue) {
         if (completedGamesBuilder_ == null) {
           ensureCompletedGamesIsMutable();
           completedGames_.set(index, builderForValue.build());
@@ -1870,7 +1636,7 @@ public final class LoginEventProto {
         }
         return this;
       }
-      public Builder addCompletedGames(com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto value) {
+      public Builder addCompletedGames(com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto value) {
         if (completedGamesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1884,7 +1650,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addCompletedGames(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto value) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto value) {
         if (completedGamesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1898,7 +1664,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addCompletedGames(
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder builderForValue) {
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder builderForValue) {
         if (completedGamesBuilder_ == null) {
           ensureCompletedGamesIsMutable();
           completedGames_.add(builderForValue.build());
@@ -1909,7 +1675,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addCompletedGames(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder builderForValue) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder builderForValue) {
         if (completedGamesBuilder_ == null) {
           ensureCompletedGamesIsMutable();
           completedGames_.add(index, builderForValue.build());
@@ -1920,7 +1686,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addAllCompletedGames(
-          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto> values) {
+          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto> values) {
         if (completedGamesBuilder_ == null) {
           ensureCompletedGamesIsMutable();
           super.addAll(values, completedGames_);
@@ -1950,18 +1716,18 @@ public final class LoginEventProto {
         }
         return this;
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder getCompletedGamesBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder getCompletedGamesBuilder(
           int index) {
         return getCompletedGamesFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder getCompletedGamesOrBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder getCompletedGamesOrBuilder(
           int index) {
         if (completedGamesBuilder_ == null) {
           return completedGames_.get(index);  } else {
           return completedGamesBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder> 
            getCompletedGamesOrBuilderList() {
         if (completedGamesBuilder_ != null) {
           return completedGamesBuilder_.getMessageOrBuilderList();
@@ -1969,25 +1735,25 @@ public final class LoginEventProto {
           return java.util.Collections.unmodifiableList(completedGames_);
         }
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder addCompletedGamesBuilder() {
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder addCompletedGamesBuilder() {
         return getCompletedGamesFieldBuilder().addBuilder(
-            com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.getDefaultInstance());
+            com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.getDefaultInstance());
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder addCompletedGamesBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder addCompletedGamesBuilder(
           int index) {
         return getCompletedGamesFieldBuilder().addBuilder(
-            index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.getDefaultInstance());
+            index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder> 
+      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder> 
            getCompletedGamesBuilderList() {
         return getCompletedGamesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder> 
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder> 
           getCompletedGamesFieldBuilder() {
         if (completedGamesBuilder_ == null) {
           completedGamesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.GameResultsProtoOrBuilder>(
+              com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder>(
                   completedGames_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
@@ -1998,19 +1764,19 @@ public final class LoginEventProto {
       }
       
       // repeated .proto.OngoingGameProto myTurn = 3;
-      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> myTurn_ =
+      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> myTurn_ =
         java.util.Collections.emptyList();
       private void ensureMyTurnIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          myTurn_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto>(myTurn_);
+          myTurn_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto>(myTurn_);
           bitField0_ |= 0x00000004;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> myTurnBuilder_;
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> myTurnBuilder_;
       
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> getMyTurnList() {
+      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> getMyTurnList() {
         if (myTurnBuilder_ == null) {
           return java.util.Collections.unmodifiableList(myTurn_);
         } else {
@@ -2024,7 +1790,7 @@ public final class LoginEventProto {
           return myTurnBuilder_.getCount();
         }
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto getMyTurn(int index) {
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto getMyTurn(int index) {
         if (myTurnBuilder_ == null) {
           return myTurn_.get(index);
         } else {
@@ -2032,7 +1798,7 @@ public final class LoginEventProto {
         }
       }
       public Builder setMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto value) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto value) {
         if (myTurnBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2046,7 +1812,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder setMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder builderForValue) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder builderForValue) {
         if (myTurnBuilder_ == null) {
           ensureMyTurnIsMutable();
           myTurn_.set(index, builderForValue.build());
@@ -2056,7 +1822,7 @@ public final class LoginEventProto {
         }
         return this;
       }
-      public Builder addMyTurn(com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto value) {
+      public Builder addMyTurn(com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto value) {
         if (myTurnBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2070,7 +1836,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto value) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto value) {
         if (myTurnBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2084,7 +1850,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addMyTurn(
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder builderForValue) {
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder builderForValue) {
         if (myTurnBuilder_ == null) {
           ensureMyTurnIsMutable();
           myTurn_.add(builderForValue.build());
@@ -2095,7 +1861,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder builderForValue) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder builderForValue) {
         if (myTurnBuilder_ == null) {
           ensureMyTurnIsMutable();
           myTurn_.add(index, builderForValue.build());
@@ -2106,7 +1872,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addAllMyTurn(
-          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> values) {
+          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> values) {
         if (myTurnBuilder_ == null) {
           ensureMyTurnIsMutable();
           super.addAll(values, myTurn_);
@@ -2136,18 +1902,18 @@ public final class LoginEventProto {
         }
         return this;
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder getMyTurnBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder getMyTurnBuilder(
           int index) {
         return getMyTurnFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder getMyTurnOrBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder getMyTurnOrBuilder(
           int index) {
         if (myTurnBuilder_ == null) {
           return myTurn_.get(index);  } else {
           return myTurnBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
            getMyTurnOrBuilderList() {
         if (myTurnBuilder_ != null) {
           return myTurnBuilder_.getMessageOrBuilderList();
@@ -2155,25 +1921,25 @@ public final class LoginEventProto {
           return java.util.Collections.unmodifiableList(myTurn_);
         }
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder addMyTurnBuilder() {
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder addMyTurnBuilder() {
         return getMyTurnFieldBuilder().addBuilder(
-            com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.getDefaultInstance());
+            com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.getDefaultInstance());
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder addMyTurnBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder addMyTurnBuilder(
           int index) {
         return getMyTurnFieldBuilder().addBuilder(
-            index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.getDefaultInstance());
+            index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder> 
+      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder> 
            getMyTurnBuilderList() {
         return getMyTurnFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
           getMyTurnFieldBuilder() {
         if (myTurnBuilder_ == null) {
           myTurnBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder>(
+              com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder>(
                   myTurn_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
@@ -2184,19 +1950,19 @@ public final class LoginEventProto {
       }
       
       // repeated .proto.OngoingGameProto notMyTurn = 4;
-      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> notMyTurn_ =
+      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> notMyTurn_ =
         java.util.Collections.emptyList();
       private void ensureNotMyTurnIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          notMyTurn_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto>(notMyTurn_);
+          notMyTurn_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto>(notMyTurn_);
           bitField0_ |= 0x00000008;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> notMyTurnBuilder_;
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> notMyTurnBuilder_;
       
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> getNotMyTurnList() {
+      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> getNotMyTurnList() {
         if (notMyTurnBuilder_ == null) {
           return java.util.Collections.unmodifiableList(notMyTurn_);
         } else {
@@ -2210,7 +1976,7 @@ public final class LoginEventProto {
           return notMyTurnBuilder_.getCount();
         }
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto getNotMyTurn(int index) {
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto getNotMyTurn(int index) {
         if (notMyTurnBuilder_ == null) {
           return notMyTurn_.get(index);
         } else {
@@ -2218,7 +1984,7 @@ public final class LoginEventProto {
         }
       }
       public Builder setNotMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto value) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto value) {
         if (notMyTurnBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2232,7 +1998,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder setNotMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder builderForValue) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder builderForValue) {
         if (notMyTurnBuilder_ == null) {
           ensureNotMyTurnIsMutable();
           notMyTurn_.set(index, builderForValue.build());
@@ -2242,7 +2008,7 @@ public final class LoginEventProto {
         }
         return this;
       }
-      public Builder addNotMyTurn(com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto value) {
+      public Builder addNotMyTurn(com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto value) {
         if (notMyTurnBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2256,7 +2022,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addNotMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto value) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto value) {
         if (notMyTurnBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2270,7 +2036,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addNotMyTurn(
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder builderForValue) {
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder builderForValue) {
         if (notMyTurnBuilder_ == null) {
           ensureNotMyTurnIsMutable();
           notMyTurn_.add(builderForValue.build());
@@ -2281,7 +2047,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addNotMyTurn(
-          int index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder builderForValue) {
+          int index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder builderForValue) {
         if (notMyTurnBuilder_ == null) {
           ensureNotMyTurnIsMutable();
           notMyTurn_.add(index, builderForValue.build());
@@ -2292,7 +2058,7 @@ public final class LoginEventProto {
         return this;
       }
       public Builder addAllNotMyTurn(
-          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto> values) {
+          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto> values) {
         if (notMyTurnBuilder_ == null) {
           ensureNotMyTurnIsMutable();
           super.addAll(values, notMyTurn_);
@@ -2322,18 +2088,18 @@ public final class LoginEventProto {
         }
         return this;
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder getNotMyTurnBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder getNotMyTurnBuilder(
           int index) {
         return getNotMyTurnFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder getNotMyTurnOrBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder getNotMyTurnOrBuilder(
           int index) {
         if (notMyTurnBuilder_ == null) {
           return notMyTurn_.get(index);  } else {
           return notMyTurnBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
            getNotMyTurnOrBuilderList() {
         if (notMyTurnBuilder_ != null) {
           return notMyTurnBuilder_.getMessageOrBuilderList();
@@ -2341,25 +2107,25 @@ public final class LoginEventProto {
           return java.util.Collections.unmodifiableList(notMyTurn_);
         }
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder addNotMyTurnBuilder() {
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder addNotMyTurnBuilder() {
         return getNotMyTurnFieldBuilder().addBuilder(
-            com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.getDefaultInstance());
+            com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.getDefaultInstance());
       }
-      public com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder addNotMyTurnBuilder(
+      public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder addNotMyTurnBuilder(
           int index) {
         return getNotMyTurnFieldBuilder().addBuilder(
-            index, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.getDefaultInstance());
+            index, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder> 
+      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder> 
            getNotMyTurnBuilderList() {
         return getNotMyTurnFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder> 
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder> 
           getNotMyTurnFieldBuilder() {
         if (notMyTurnBuilder_ == null) {
           notMyTurnBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.OngoingGameProtoOrBuilder>(
+              com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProtoOrBuilder>(
                   notMyTurn_,
                   ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
@@ -2555,15 +2321,15 @@ public final class LoginEventProto {
         return newQuestionsBuilder_;
       }
       
-      // optional .proto.LoginResponseEvent.LoginResponseStatus status = 6;
-      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
+      // optional .proto.LoginResponseProto.LoginResponseStatus status = 6;
+      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
       public boolean hasStatus() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus getStatus() {
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus getStatus() {
         return status_;
       }
-      public Builder setStatus(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus value) {
+      public Builder setStatus(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2574,32 +2340,32 @@ public final class LoginEventProto {
       }
       public Builder clearStatus() {
         bitField0_ = (bitField0_ & ~0x00000020);
-        status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
+        status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
         onChanged();
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.LoginResponseEvent)
+      // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto)
     }
     
     static {
-      defaultInstance = new LoginResponseEvent(true);
+      defaultInstance = new LoginResponseProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.LoginResponseEvent)
+    // @@protoc_insertion_point(class_scope:proto.LoginResponseProto)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_LoginRequestEvent_descriptor;
+    internal_static_proto_LoginRequestProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_LoginRequestEvent_fieldAccessorTable;
+      internal_static_proto_LoginRequestProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_LoginResponseEvent_descriptor;
+    internal_static_proto_LoginResponseProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_LoginResponseEvent_fieldAccessorTable;
+      internal_static_proto_LoginResponseProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2609,55 +2375,58 @@ public final class LoginEventProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020LoginEvent.proto\022\005proto\032\030TriviaGameOve" +
-      "rview.proto\032\032TriviaQuestionFormat.proto\032" +
-      "\022CompleteUser.proto\"\241\001\n\021LoginRequestEven" +
-      "t\022\014\n\004udid\030\001 \001(\t\022\022\n\nloginToken\030\002 \001(\t\022\033\n\023t" +
-      "okenExpirationDate\030\003 \001(\003\022\022\n\nfacebookId\030\004" +
-      " \001(\t\022\014\n\004name\030\005 \001(\t\022\020\n\010password\030\006 \001(\t\022\031\n\021" +
-      "facebookFriendIds\030\007 \003(\t\"\341\003\n\022LoginRespons" +
-      "eEvent\022(\n\006sender\030\001 \001(\0132\030.proto.CompleteU" +
-      "serProto\022/\n\016completedGames\030\002 \003(\0132\027.proto" +
-      ".GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.prot",
-      "o.OngoingGameProto\022*\n\tnotMyTurn\030\004 \003(\0132\027." +
-      "proto.OngoingGameProto\022*\n\014newQuestions\030\005" +
-      " \003(\0132\024.proto.QuestionProto\022=\n\006status\030\006 \001" +
-      "(\0162-.proto.LoginResponseEvent.LoginRespo" +
-      "nseStatus\"\257\001\n\023LoginResponseStatus\022\027\n\023SUC" +
-      "CESS_LOGIN_TOKEN\020\001\022\027\n\023SUCCESS_FACEBOOK_I" +
-      "D\020\002\022\031\n\025SUCCESS_NAME_PASSWORD\020\003\022\027\n\023INVALI" +
-      "D_LOGIN_TOKEN\020\004\022\027\n\023INVALID_FACEBOOK_ID\020\005" +
-      "\022\031\n\025INVALID_NAME_PASSWORD\020\006B0\n\035com.lvl6." +
-      "pictures.eventprotosB\017LoginEventProto"
+      "\n\020LoginEvent.proto\022\005proto\032\026TriviaGameFor" +
+      "mat.proto\032\032TriviaQuestionFormat.proto\032\022C" +
+      "ompleteUser.proto\"\327\001\n\021LoginRequestProto\022" +
+      "%\n\006sender\030\001 \001(\0132\025.proto.BasicUserProto\022\031" +
+      "\n\021facebookFriendIds\030\002 \003(\t\0225\n\tloginType\030\003" +
+      " \001(\0162\".proto.LoginRequestProto.LoginType" +
+      "\"I\n\tLoginType\022\017\n\013LOGIN_TOKEN\020\001\022\014\n\010FACEBO" +
+      "OK\020\002\022\t\n\005EMAIL\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\242\004\n\022" +
+      "LoginResponseProto\022+\n\trecipient\030\001 \001(\0132\030." +
+      "proto.CompleteUserProto\022/\n\016completedGame",
+      "s\030\002 \003(\0132\027.proto.GameResultsProto\022\'\n\006myTu" +
+      "rn\030\003 \003(\0132\027.proto.OngoingGameProto\022*\n\tnot" +
+      "MyTurn\030\004 \003(\0132\027.proto.OngoingGameProto\022*\n" +
+      "\014newQuestions\030\005 \003(\0132\024.proto.QuestionProt" +
+      "o\022=\n\006status\030\006 \001(\0162-.proto.LoginResponseP" +
+      "roto.LoginResponseStatus\"\355\001\n\023LoginRespon" +
+      "seStatus\022\027\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023SUC" +
+      "CESS_FACEBOOK_ID\020\002\022\031\n\025SUCCESS_NAME_PASSW" +
+      "ORD\020\003\022\025\n\021SUCCESS_NAME_UDID\020\004\022\027\n\023INVALID_" +
+      "LOGIN_TOKEN\020\005\022\027\n\023INVALID_FACEBOOK_ID\020\006\022\031",
+      "\n\025INVALID_NAME_PASSWORD\020\007\022\025\n\021INVALID_NAM" +
+      "E_UDID\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com.lvl6.pic" +
+      "tures.eventprotosB\017LoginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_proto_LoginRequestEvent_descriptor =
+          internal_static_proto_LoginRequestProto_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_proto_LoginRequestEvent_fieldAccessorTable = new
+          internal_static_proto_LoginRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_LoginRequestEvent_descriptor,
-              new java.lang.String[] { "Udid", "LoginToken", "TokenExpirationDate", "FacebookId", "Name", "Password", "FacebookFriendIds", },
-              com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent.class,
-              com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestEvent.Builder.class);
-          internal_static_proto_LoginResponseEvent_descriptor =
+              internal_static_proto_LoginRequestProto_descriptor,
+              new java.lang.String[] { "Sender", "FacebookFriendIds", "LoginType", },
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.class,
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.Builder.class);
+          internal_static_proto_LoginResponseProto_descriptor =
             getDescriptor().getMessageTypes().get(1);
-          internal_static_proto_LoginResponseEvent_fieldAccessorTable = new
+          internal_static_proto_LoginResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_LoginResponseEvent_descriptor,
-              new java.lang.String[] { "Sender", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", },
-              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.class,
-              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseEvent.Builder.class);
+              internal_static_proto_LoginResponseProto_descriptor,
+              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", },
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.class,
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder.class);
           return null;
         }
       };
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.lvl6.pictures.noneventprotos.TriviaGameOverviewProto.getDescriptor(),
+          com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.getDescriptor(),
           com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.getDescriptor(),
           com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
         }, assigner);

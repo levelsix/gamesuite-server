@@ -48,11 +48,23 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lvl6</groupId>
-			<artifactId>common-services</artifactId>
+			<artifactId>pictures-data-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lvl6</groupId>
+			<artifactId>pictures-proto-buff</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.lvl6</groupId>
 			<artifactId>pictures-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lvl6</groupId>
+			<artifactId>common-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lvl6</groupId>
+			<artifactId>common-amqp</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>

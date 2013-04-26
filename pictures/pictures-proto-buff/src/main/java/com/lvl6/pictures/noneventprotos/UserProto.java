@@ -8,6 +8,1614 @@ public final class UserProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  public interface BasicUserProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string userId = 1;
+    boolean hasUserId();
+    String getUserId();
+    
+    // optional string nameStrangersSee = 2;
+    boolean hasNameStrangersSee();
+    String getNameStrangersSee();
+    
+    // optional string nameFriendsSee = 3;
+    boolean hasNameFriendsSee();
+    String getNameFriendsSee();
+    
+    // optional string email = 4;
+    boolean hasEmail();
+    String getEmail();
+    
+    // optional string password = 5;
+    boolean hasPassword();
+    String getPassword();
+    
+    // optional string facebookId = 6;
+    boolean hasFacebookId();
+    String getFacebookId();
+    
+    // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+    boolean hasBadp();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder();
+  }
+  public static final class BasicUserProto extends
+      com.google.protobuf.GeneratedMessage
+      implements BasicUserProtoOrBuilder {
+    // Use BasicUserProto.newBuilder() to construct.
+    private BasicUserProto(Builder builder) {
+      super(builder);
+    }
+    private BasicUserProto(boolean noInit) {}
+    
+    private static final BasicUserProto defaultInstance;
+    public static BasicUserProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public BasicUserProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicUserProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicUserProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional string userId = 1;
+    public static final int USERID_FIELD_NUMBER = 1;
+    private java.lang.Object userId_;
+    public boolean hasUserId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getUserId() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserIdBytes() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string nameStrangersSee = 2;
+    public static final int NAMESTRANGERSSEE_FIELD_NUMBER = 2;
+    private java.lang.Object nameStrangersSee_;
+    public boolean hasNameStrangersSee() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getNameStrangersSee() {
+      java.lang.Object ref = nameStrangersSee_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          nameStrangersSee_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameStrangersSeeBytes() {
+      java.lang.Object ref = nameStrangersSee_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        nameStrangersSee_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string nameFriendsSee = 3;
+    public static final int NAMEFRIENDSSEE_FIELD_NUMBER = 3;
+    private java.lang.Object nameFriendsSee_;
+    public boolean hasNameFriendsSee() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getNameFriendsSee() {
+      java.lang.Object ref = nameFriendsSee_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          nameFriendsSee_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameFriendsSeeBytes() {
+      java.lang.Object ref = nameFriendsSee_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        nameFriendsSee_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string email = 4;
+    public static final int EMAIL_FIELD_NUMBER = 4;
+    private java.lang.Object email_;
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          email_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string password = 5;
+    public static final int PASSWORD_FIELD_NUMBER = 5;
+    private java.lang.Object password_;
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string facebookId = 6;
+    public static final int FACEBOOKID_FIELD_NUMBER = 6;
+    private java.lang.Object facebookId_;
+    public boolean hasFacebookId() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getFacebookId() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          facebookId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getFacebookIdBytes() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        facebookId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+    public static final int BADP_FIELD_NUMBER = 7;
+    private com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto badp_;
+    public boolean hasBadp() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp() {
+      return badp_;
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder() {
+      return badp_;
+    }
+    
+    private void initFields() {
+      userId_ = "";
+      nameStrangersSee_ = "";
+      nameFriendsSee_ = "";
+      email_ = "";
+      password_ = "";
+      facebookId_ = "";
+      badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getUserIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getNameStrangersSeeBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getNameFriendsSeeBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, badp_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getUserIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getNameStrangersSeeBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getNameFriendsSeeBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, badp_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicUserProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicUserProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getBadpFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        userId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        nameStrangersSee_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        nameFriendsSee_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        email_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        password_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        facebookId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (badpBuilder_ == null) {
+          badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+        } else {
+          badpBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDescriptor();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto build() {
+        com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto buildPartial() {
+        com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto result = new com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.userId_ = userId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.nameStrangersSee_ = nameStrangersSee_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.nameFriendsSee_ = nameFriendsSee_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.email_ = email_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.password_ = password_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.facebookId_ = facebookId_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (badpBuilder_ == null) {
+          result.badp_ = badp_;
+        } else {
+          result.badp_ = badpBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto) {
+          return mergeFrom((com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto other) {
+        if (other == com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance()) return this;
+        if (other.hasUserId()) {
+          setUserId(other.getUserId());
+        }
+        if (other.hasNameStrangersSee()) {
+          setNameStrangersSee(other.getNameStrangersSee());
+        }
+        if (other.hasNameFriendsSee()) {
+          setNameFriendsSee(other.getNameFriendsSee());
+        }
+        if (other.hasEmail()) {
+          setEmail(other.getEmail());
+        }
+        if (other.hasPassword()) {
+          setPassword(other.getPassword());
+        }
+        if (other.hasFacebookId()) {
+          setFacebookId(other.getFacebookId());
+        }
+        if (other.hasBadp()) {
+          mergeBadp(other.getBadp());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              userId_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              nameStrangersSee_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              nameFriendsSee_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              email_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              password_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              facebookId_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder();
+              if (hasBadp()) {
+                subBuilder.mergeFrom(getBadp());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setBadp(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string userId = 1;
+      private java.lang.Object userId_ = "";
+      public boolean hasUserId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getUserId() {
+        java.lang.Object ref = userId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUserId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUserId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        userId_ = getDefaultInstance().getUserId();
+        onChanged();
+        return this;
+      }
+      void setUserId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userId_ = value;
+        onChanged();
+      }
+      
+      // optional string nameStrangersSee = 2;
+      private java.lang.Object nameStrangersSee_ = "";
+      public boolean hasNameStrangersSee() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getNameStrangersSee() {
+        java.lang.Object ref = nameStrangersSee_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          nameStrangersSee_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setNameStrangersSee(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        nameStrangersSee_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNameStrangersSee() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        nameStrangersSee_ = getDefaultInstance().getNameStrangersSee();
+        onChanged();
+        return this;
+      }
+      void setNameStrangersSee(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        nameStrangersSee_ = value;
+        onChanged();
+      }
+      
+      // optional string nameFriendsSee = 3;
+      private java.lang.Object nameFriendsSee_ = "";
+      public boolean hasNameFriendsSee() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getNameFriendsSee() {
+        java.lang.Object ref = nameFriendsSee_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          nameFriendsSee_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setNameFriendsSee(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        nameFriendsSee_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNameFriendsSee() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        nameFriendsSee_ = getDefaultInstance().getNameFriendsSee();
+        onChanged();
+        return this;
+      }
+      void setNameFriendsSee(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        nameFriendsSee_ = value;
+        onChanged();
+      }
+      
+      // optional string email = 4;
+      private java.lang.Object email_ = "";
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmail(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmail() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      void setEmail(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        email_ = value;
+        onChanged();
+      }
+      
+      // optional string password = 5;
+      private java.lang.Object password_ = "";
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPassword(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      void setPassword(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        password_ = value;
+        onChanged();
+      }
+      
+      // optional string facebookId = 6;
+      private java.lang.Object facebookId_ = "";
+      public boolean hasFacebookId() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getFacebookId() {
+        java.lang.Object ref = facebookId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          facebookId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setFacebookId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        facebookId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFacebookId() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        facebookId_ = getDefaultInstance().getFacebookId();
+        onChanged();
+        return this;
+      }
+      void setFacebookId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        facebookId_ = value;
+        onChanged();
+      }
+      
+      // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+      private com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder> badpBuilder_;
+      public boolean hasBadp() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp() {
+        if (badpBuilder_ == null) {
+          return badp_;
+        } else {
+          return badpBuilder_.getMessage();
+        }
+      }
+      public Builder setBadp(com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto value) {
+        if (badpBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          badp_ = value;
+          onChanged();
+        } else {
+          badpBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      public Builder setBadp(
+          com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder builderForValue) {
+        if (badpBuilder_ == null) {
+          badp_ = builderForValue.build();
+          onChanged();
+        } else {
+          badpBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      public Builder mergeBadp(com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto value) {
+        if (badpBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              badp_ != com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance()) {
+            badp_ =
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder(badp_).mergeFrom(value).buildPartial();
+          } else {
+            badp_ = value;
+          }
+          onChanged();
+        } else {
+          badpBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      public Builder clearBadp() {
+        if (badpBuilder_ == null) {
+          badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+          onChanged();
+        } else {
+          badpBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder getBadpBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getBadpFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder() {
+        if (badpBuilder_ != null) {
+          return badpBuilder_.getMessageOrBuilder();
+        } else {
+          return badp_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder> 
+          getBadpFieldBuilder() {
+        if (badpBuilder_ == null) {
+          badpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder>(
+                  badp_,
+                  getParentForChildren(),
+                  isClean());
+          badp_ = null;
+        }
+        return badpBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.BasicUserProto)
+    }
+    
+    static {
+      defaultInstance = new BasicUserProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.BasicUserProto)
+  }
+  
+  public interface BasicAuthorizedDeviceProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string userId = 1;
+    boolean hasUserId();
+    String getUserId();
+    
+    // optional string loginToken = 2;
+    boolean hasLoginToken();
+    String getLoginToken();
+    
+    // optional int64 expirationDate = 3;
+    boolean hasExpirationDate();
+    long getExpirationDate();
+    
+    // optional string udid = 4;
+    boolean hasUdid();
+    String getUdid();
+  }
+  public static final class BasicAuthorizedDeviceProto extends
+      com.google.protobuf.GeneratedMessage
+      implements BasicAuthorizedDeviceProtoOrBuilder {
+    // Use BasicAuthorizedDeviceProto.newBuilder() to construct.
+    private BasicAuthorizedDeviceProto(Builder builder) {
+      super(builder);
+    }
+    private BasicAuthorizedDeviceProto(boolean noInit) {}
+    
+    private static final BasicAuthorizedDeviceProto defaultInstance;
+    public static BasicAuthorizedDeviceProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public BasicAuthorizedDeviceProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional string userId = 1;
+    public static final int USERID_FIELD_NUMBER = 1;
+    private java.lang.Object userId_;
+    public boolean hasUserId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getUserId() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserIdBytes() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string loginToken = 2;
+    public static final int LOGINTOKEN_FIELD_NUMBER = 2;
+    private java.lang.Object loginToken_;
+    public boolean hasLoginToken() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getLoginToken() {
+      java.lang.Object ref = loginToken_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          loginToken_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getLoginTokenBytes() {
+      java.lang.Object ref = loginToken_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        loginToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional int64 expirationDate = 3;
+    public static final int EXPIRATIONDATE_FIELD_NUMBER = 3;
+    private long expirationDate_;
+    public boolean hasExpirationDate() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public long getExpirationDate() {
+      return expirationDate_;
+    }
+    
+    // optional string udid = 4;
+    public static final int UDID_FIELD_NUMBER = 4;
+    private java.lang.Object udid_;
+    public boolean hasUdid() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getUdid() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          udid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUdidBytes() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        udid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      userId_ = "";
+      loginToken_ = "";
+      expirationDate_ = 0L;
+      udid_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getUserIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getLoginTokenBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt64(3, expirationDate_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getUdidBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getUserIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getLoginTokenBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, expirationDate_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getUdidBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        userId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        loginToken_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        expirationDate_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        udid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDescriptor();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto build() {
+        com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto buildPartial() {
+        com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto result = new com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.userId_ = userId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.loginToken_ = loginToken_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.expirationDate_ = expirationDate_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.udid_ = udid_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto) {
+          return mergeFrom((com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto other) {
+        if (other == com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance()) return this;
+        if (other.hasUserId()) {
+          setUserId(other.getUserId());
+        }
+        if (other.hasLoginToken()) {
+          setLoginToken(other.getLoginToken());
+        }
+        if (other.hasExpirationDate()) {
+          setExpirationDate(other.getExpirationDate());
+        }
+        if (other.hasUdid()) {
+          setUdid(other.getUdid());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              userId_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              loginToken_ = input.readBytes();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              expirationDate_ = input.readInt64();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              udid_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string userId = 1;
+      private java.lang.Object userId_ = "";
+      public boolean hasUserId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getUserId() {
+        java.lang.Object ref = userId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUserId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUserId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        userId_ = getDefaultInstance().getUserId();
+        onChanged();
+        return this;
+      }
+      void setUserId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userId_ = value;
+        onChanged();
+      }
+      
+      // optional string loginToken = 2;
+      private java.lang.Object loginToken_ = "";
+      public boolean hasLoginToken() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getLoginToken() {
+        java.lang.Object ref = loginToken_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          loginToken_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setLoginToken(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        loginToken_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLoginToken() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        loginToken_ = getDefaultInstance().getLoginToken();
+        onChanged();
+        return this;
+      }
+      void setLoginToken(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        loginToken_ = value;
+        onChanged();
+      }
+      
+      // optional int64 expirationDate = 3;
+      private long expirationDate_ ;
+      public boolean hasExpirationDate() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public long getExpirationDate() {
+        return expirationDate_;
+      }
+      public Builder setExpirationDate(long value) {
+        bitField0_ |= 0x00000004;
+        expirationDate_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearExpirationDate() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        expirationDate_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional string udid = 4;
+      private java.lang.Object udid_ = "";
+      public boolean hasUdid() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getUdid() {
+        java.lang.Object ref = udid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          udid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUdid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        udid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUdid() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        udid_ = getDefaultInstance().getUdid();
+        onChanged();
+        return this;
+      }
+      void setUdid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        udid_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.BasicAuthorizedDeviceProto)
+    }
+    
+    static {
+      defaultInstance = new BasicAuthorizedDeviceProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.BasicAuthorizedDeviceProto)
+  }
+  
   public interface CompleteUserProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -15,21 +1623,38 @@ public final class UserProto {
     boolean hasUserId();
     String getUserId();
     
-    // optional int64 lastLogin = 2;
+    // optional string nameStrangersSee = 2;
+    boolean hasNameStrangersSee();
+    String getNameStrangersSee();
+    
+    // optional string nameFriendsSee = 3;
+    boolean hasNameFriendsSee();
+    String getNameFriendsSee();
+    
+    // optional string email = 4;
+    boolean hasEmail();
+    String getEmail();
+    
+    // optional string password = 5;
+    boolean hasPassword();
+    String getPassword();
+    
+    // optional string facebookId = 6;
+    boolean hasFacebookId();
+    String getFacebookId();
+    
+    // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+    boolean hasBadp();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder();
+    
+    // optional int64 lastLogin = 8;
     boolean hasLastLogin();
     long getLastLogin();
     
-    // optional string name = 3;
-    boolean hasName();
-    String getName();
-    
-    // optional string udid = 4;
-    boolean hasUdid();
-    String getUdid();
-    
-    // optional string facebookId = 5;
-    boolean hasFacebookId();
-    String getFacebookId();
+    // optional int32 signupDate = 9;
+    boolean hasSignupDate();
+    int getSignupDate();
   }
   public static final class CompleteUserProto extends
       com.google.protobuf.GeneratedMessage
@@ -92,24 +1717,46 @@ public final class UserProto {
       }
     }
     
-    // optional int64 lastLogin = 2;
-    public static final int LASTLOGIN_FIELD_NUMBER = 2;
-    private long lastLogin_;
-    public boolean hasLastLogin() {
+    // optional string nameStrangersSee = 2;
+    public static final int NAMESTRANGERSSEE_FIELD_NUMBER = 2;
+    private java.lang.Object nameStrangersSee_;
+    public boolean hasNameStrangersSee() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public long getLastLogin() {
-      return lastLogin_;
+    public String getNameStrangersSee() {
+      java.lang.Object ref = nameStrangersSee_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          nameStrangersSee_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameStrangersSeeBytes() {
+      java.lang.Object ref = nameStrangersSee_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        nameStrangersSee_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional string name = 3;
-    public static final int NAME_FIELD_NUMBER = 3;
-    private java.lang.Object name_;
-    public boolean hasName() {
+    // optional string nameFriendsSee = 3;
+    public static final int NAMEFRIENDSSEE_FIELD_NUMBER = 3;
+    private java.lang.Object nameFriendsSee_;
+    public boolean hasNameFriendsSee() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getName() {
-      java.lang.Object ref = name_;
+    public String getNameFriendsSee() {
+      java.lang.Object ref = nameFriendsSee_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -117,31 +1764,31 @@ public final class UserProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          name_ = s;
+          nameFriendsSee_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getNameBytes() {
-      java.lang.Object ref = name_;
+    private com.google.protobuf.ByteString getNameFriendsSeeBytes() {
+      java.lang.Object ref = nameFriendsSee_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        name_ = b;
+        nameFriendsSee_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     
-    // optional string udid = 4;
-    public static final int UDID_FIELD_NUMBER = 4;
-    private java.lang.Object udid_;
-    public boolean hasUdid() {
+    // optional string email = 4;
+    public static final int EMAIL_FIELD_NUMBER = 4;
+    private java.lang.Object email_;
+    public boolean hasEmail() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public String getUdid() {
-      java.lang.Object ref = udid_;
+    public String getEmail() {
+      java.lang.Object ref = email_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -149,28 +1796,60 @@ public final class UserProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          udid_ = s;
+          email_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getUdidBytes() {
-      java.lang.Object ref = udid_;
+    private com.google.protobuf.ByteString getEmailBytes() {
+      java.lang.Object ref = email_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        udid_ = b;
+        email_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     
-    // optional string facebookId = 5;
-    public static final int FACEBOOKID_FIELD_NUMBER = 5;
+    // optional string password = 5;
+    public static final int PASSWORD_FIELD_NUMBER = 5;
+    private java.lang.Object password_;
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string facebookId = 6;
+    public static final int FACEBOOKID_FIELD_NUMBER = 6;
     private java.lang.Object facebookId_;
     public boolean hasFacebookId() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public String getFacebookId() {
       java.lang.Object ref = facebookId_;
@@ -198,12 +1877,49 @@ public final class UserProto {
       }
     }
     
+    // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+    public static final int BADP_FIELD_NUMBER = 7;
+    private com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto badp_;
+    public boolean hasBadp() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp() {
+      return badp_;
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder() {
+      return badp_;
+    }
+    
+    // optional int64 lastLogin = 8;
+    public static final int LASTLOGIN_FIELD_NUMBER = 8;
+    private long lastLogin_;
+    public boolean hasLastLogin() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public long getLastLogin() {
+      return lastLogin_;
+    }
+    
+    // optional int32 signupDate = 9;
+    public static final int SIGNUPDATE_FIELD_NUMBER = 9;
+    private int signupDate_;
+    public boolean hasSignupDate() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public int getSignupDate() {
+      return signupDate_;
+    }
+    
     private void initFields() {
       userId_ = "";
-      lastLogin_ = 0L;
-      name_ = "";
-      udid_ = "";
+      nameStrangersSee_ = "";
+      nameFriendsSee_ = "";
+      email_ = "";
+      password_ = "";
       facebookId_ = "";
+      badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+      lastLogin_ = 0L;
+      signupDate_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -221,16 +1937,28 @@ public final class UserProto {
         output.writeBytes(1, getUserIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, lastLogin_);
+        output.writeBytes(2, getNameStrangersSeeBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getNameBytes());
+        output.writeBytes(3, getNameFriendsSeeBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getUdidBytes());
+        output.writeBytes(4, getEmailBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getFacebookIdBytes());
+        output.writeBytes(5, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, badp_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeInt64(8, lastLogin_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeInt32(9, signupDate_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -247,19 +1975,35 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, lastLogin_);
+          .computeBytesSize(2, getNameStrangersSeeBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getNameBytes());
+          .computeBytesSize(3, getNameFriendsSeeBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getUdidBytes());
+          .computeBytesSize(4, getEmailBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getFacebookIdBytes());
+          .computeBytesSize(5, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, badp_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, lastLogin_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, signupDate_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -377,6 +2121,7 @@ public final class UserProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getBadpFieldBuilder();
         }
       }
       private static Builder create() {
@@ -387,14 +2132,26 @@ public final class UserProto {
         super.clear();
         userId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        lastLogin_ = 0L;
+        nameStrangersSee_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        name_ = "";
+        nameFriendsSee_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        udid_ = "";
+        email_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        facebookId_ = "";
+        password_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        facebookId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (badpBuilder_ == null) {
+          badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+        } else {
+          badpBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        lastLogin_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        signupDate_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -440,19 +2197,39 @@ public final class UserProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.lastLogin_ = lastLogin_;
+        result.nameStrangersSee_ = nameStrangersSee_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.name_ = name_;
+        result.nameFriendsSee_ = nameFriendsSee_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.udid_ = udid_;
+        result.email_ = email_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
+        result.password_ = password_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
         result.facebookId_ = facebookId_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (badpBuilder_ == null) {
+          result.badp_ = badp_;
+        } else {
+          result.badp_ = badpBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.lastLogin_ = lastLogin_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.signupDate_ = signupDate_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -472,17 +2249,29 @@ public final class UserProto {
         if (other.hasUserId()) {
           setUserId(other.getUserId());
         }
-        if (other.hasLastLogin()) {
-          setLastLogin(other.getLastLogin());
+        if (other.hasNameStrangersSee()) {
+          setNameStrangersSee(other.getNameStrangersSee());
         }
-        if (other.hasName()) {
-          setName(other.getName());
+        if (other.hasNameFriendsSee()) {
+          setNameFriendsSee(other.getNameFriendsSee());
         }
-        if (other.hasUdid()) {
-          setUdid(other.getUdid());
+        if (other.hasEmail()) {
+          setEmail(other.getEmail());
+        }
+        if (other.hasPassword()) {
+          setPassword(other.getPassword());
         }
         if (other.hasFacebookId()) {
           setFacebookId(other.getFacebookId());
+        }
+        if (other.hasBadp()) {
+          mergeBadp(other.getBadp());
+        }
+        if (other.hasLastLogin()) {
+          setLastLogin(other.getLastLogin());
+        }
+        if (other.hasSignupDate()) {
+          setSignupDate(other.getSignupDate());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -520,24 +2309,48 @@ public final class UserProto {
               userId_ = input.readBytes();
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              lastLogin_ = input.readInt64();
+              nameStrangersSee_ = input.readBytes();
               break;
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              name_ = input.readBytes();
+              nameFriendsSee_ = input.readBytes();
               break;
             }
             case 34: {
               bitField0_ |= 0x00000008;
-              udid_ = input.readBytes();
+              email_ = input.readBytes();
               break;
             }
             case 42: {
               bitField0_ |= 0x00000010;
+              password_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
               facebookId_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder();
+              if (hasBadp()) {
+                subBuilder.mergeFrom(getBadp());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setBadp(subBuilder.buildPartial());
+              break;
+            }
+            case 64: {
+              bitField0_ |= 0x00000080;
+              lastLogin_ = input.readInt64();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              signupDate_ = input.readInt32();
               break;
             }
           }
@@ -582,103 +2395,154 @@ public final class UserProto {
         onChanged();
       }
       
-      // optional int64 lastLogin = 2;
-      private long lastLogin_ ;
-      public boolean hasLastLogin() {
+      // optional string nameStrangersSee = 2;
+      private java.lang.Object nameStrangersSee_ = "";
+      public boolean hasNameStrangersSee() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public long getLastLogin() {
-        return lastLogin_;
-      }
-      public Builder setLastLogin(long value) {
-        bitField0_ |= 0x00000002;
-        lastLogin_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearLastLogin() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        lastLogin_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional string name = 3;
-      private java.lang.Object name_ = "";
-      public boolean hasName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public String getName() {
-        java.lang.Object ref = name_;
+      public String getNameStrangersSee() {
+        java.lang.Object ref = nameStrangersSee_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          name_ = s;
+          nameStrangersSee_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setName(String value) {
+      public Builder setNameStrangersSee(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        nameStrangersSee_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNameStrangersSee() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        nameStrangersSee_ = getDefaultInstance().getNameStrangersSee();
+        onChanged();
+        return this;
+      }
+      void setNameStrangersSee(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        nameStrangersSee_ = value;
+        onChanged();
+      }
+      
+      // optional string nameFriendsSee = 3;
+      private java.lang.Object nameFriendsSee_ = "";
+      public boolean hasNameFriendsSee() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getNameFriendsSee() {
+        java.lang.Object ref = nameFriendsSee_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          nameFriendsSee_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setNameFriendsSee(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        name_ = value;
+        nameFriendsSee_ = value;
         onChanged();
         return this;
       }
-      public Builder clearName() {
+      public Builder clearNameFriendsSee() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        name_ = getDefaultInstance().getName();
+        nameFriendsSee_ = getDefaultInstance().getNameFriendsSee();
         onChanged();
         return this;
       }
-      void setName(com.google.protobuf.ByteString value) {
+      void setNameFriendsSee(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000004;
-        name_ = value;
+        nameFriendsSee_ = value;
         onChanged();
       }
       
-      // optional string udid = 4;
-      private java.lang.Object udid_ = "";
-      public boolean hasUdid() {
+      // optional string email = 4;
+      private java.lang.Object email_ = "";
+      public boolean hasEmail() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public String getUdid() {
-        java.lang.Object ref = udid_;
+      public String getEmail() {
+        java.lang.Object ref = email_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          udid_ = s;
+          email_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setUdid(String value) {
+      public Builder setEmail(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000008;
-        udid_ = value;
+        email_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUdid() {
+      public Builder clearEmail() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        udid_ = getDefaultInstance().getUdid();
+        email_ = getDefaultInstance().getEmail();
         onChanged();
         return this;
       }
-      void setUdid(com.google.protobuf.ByteString value) {
+      void setEmail(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000008;
-        udid_ = value;
+        email_ = value;
         onChanged();
       }
       
-      // optional string facebookId = 5;
+      // optional string password = 5;
+      private java.lang.Object password_ = "";
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPassword(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      void setPassword(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        password_ = value;
+        onChanged();
+      }
+      
+      // optional string facebookId = 6;
       private java.lang.Object facebookId_ = "";
       public boolean hasFacebookId() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public String getFacebookId() {
         java.lang.Object ref = facebookId_;
@@ -694,21 +2558,153 @@ public final class UserProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000020;
         facebookId_ = value;
         onChanged();
         return this;
       }
       public Builder clearFacebookId() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         facebookId_ = getDefaultInstance().getFacebookId();
         onChanged();
         return this;
       }
       void setFacebookId(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         facebookId_ = value;
         onChanged();
+      }
+      
+      // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+      private com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder> badpBuilder_;
+      public boolean hasBadp() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp() {
+        if (badpBuilder_ == null) {
+          return badp_;
+        } else {
+          return badpBuilder_.getMessage();
+        }
+      }
+      public Builder setBadp(com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto value) {
+        if (badpBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          badp_ = value;
+          onChanged();
+        } else {
+          badpBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      public Builder setBadp(
+          com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder builderForValue) {
+        if (badpBuilder_ == null) {
+          badp_ = builderForValue.build();
+          onChanged();
+        } else {
+          badpBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      public Builder mergeBadp(com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto value) {
+        if (badpBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              badp_ != com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance()) {
+            badp_ =
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder(badp_).mergeFrom(value).buildPartial();
+          } else {
+            badp_ = value;
+          }
+          onChanged();
+        } else {
+          badpBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      public Builder clearBadp() {
+        if (badpBuilder_ == null) {
+          badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+          onChanged();
+        } else {
+          badpBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder getBadpBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getBadpFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder() {
+        if (badpBuilder_ != null) {
+          return badpBuilder_.getMessageOrBuilder();
+        } else {
+          return badp_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder> 
+          getBadpFieldBuilder() {
+        if (badpBuilder_ == null) {
+          badpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder>(
+                  badp_,
+                  getParentForChildren(),
+                  isClean());
+          badp_ = null;
+        }
+        return badpBuilder_;
+      }
+      
+      // optional int64 lastLogin = 8;
+      private long lastLogin_ ;
+      public boolean hasLastLogin() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public long getLastLogin() {
+        return lastLogin_;
+      }
+      public Builder setLastLogin(long value) {
+        bitField0_ |= 0x00000080;
+        lastLogin_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLastLogin() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        lastLogin_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 signupDate = 9;
+      private int signupDate_ ;
+      public boolean hasSignupDate() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public int getSignupDate() {
+        return signupDate_;
+      }
+      public Builder setSignupDate(int value) {
+        bitField0_ |= 0x00000100;
+        signupDate_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearSignupDate() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        signupDate_ = 0;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.CompleteUserProto)
@@ -723,6 +2719,16 @@ public final class UserProto {
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_BasicUserProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_BasicUserProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_BasicAuthorizedDeviceProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_CompleteUserProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -736,23 +2742,49 @@ public final class UserProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022CompleteUser.proto\022\005proto\"f\n\021CompleteU" +
-      "serProto\022\016\n\006userId\030\001 \001(\t\022\021\n\tlastLogin\030\002 " +
-      "\001(\003\022\014\n\004name\030\003 \001(\t\022\014\n\004udid\030\004 \001(\t\022\022\n\nfaceb" +
-      "ookId\030\005 \001(\tB-\n com.lvl6.pictures.noneven" +
-      "tprotosB\tUserProto"
+      "\n\022CompleteUser.proto\022\005proto\"\270\001\n\016BasicUse" +
+      "rProto\022\016\n\006userId\030\001 \001(\t\022\030\n\020nameStrangersS" +
+      "ee\030\002 \001(\t\022\026\n\016nameFriendsSee\030\003 \001(\t\022\r\n\005emai" +
+      "l\030\004 \001(\t\022\020\n\010password\030\005 \001(\t\022\022\n\nfacebookId\030" +
+      "\006 \001(\t\022/\n\004badp\030\007 \001(\0132!.proto.BasicAuthori" +
+      "zedDeviceProto\"f\n\032BasicAuthorizedDeviceP" +
+      "roto\022\016\n\006userId\030\001 \001(\t\022\022\n\nloginToken\030\002 \001(\t" +
+      "\022\026\n\016expirationDate\030\003 \001(\003\022\014\n\004udid\030\004 \001(\t\"\342" +
+      "\001\n\021CompleteUserProto\022\016\n\006userId\030\001 \001(\t\022\030\n\020" +
+      "nameStrangersSee\030\002 \001(\t\022\026\n\016nameFriendsSee",
+      "\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\020\n\010password\030\005 \001(\t\022" +
+      "\022\n\nfacebookId\030\006 \001(\t\022/\n\004badp\030\007 \001(\0132!.prot" +
+      "o.BasicAuthorizedDeviceProto\022\021\n\tlastLogi" +
+      "n\030\010 \001(\003\022\022\n\nsignupDate\030\t \001(\005B-\n com.lvl6." +
+      "pictures.noneventprotosB\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_proto_CompleteUserProto_descriptor =
+          internal_static_proto_BasicUserProto_descriptor =
             getDescriptor().getMessageTypes().get(0);
+          internal_static_proto_BasicUserProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_BasicUserProto_descriptor,
+              new java.lang.String[] { "UserId", "NameStrangersSee", "NameFriendsSee", "Email", "Password", "FacebookId", "Badp", },
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.class,
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder.class);
+          internal_static_proto_BasicAuthorizedDeviceProto_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_BasicAuthorizedDeviceProto_descriptor,
+              new java.lang.String[] { "UserId", "LoginToken", "ExpirationDate", "Udid", },
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.class,
+              com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder.class);
+          internal_static_proto_CompleteUserProto_descriptor =
+            getDescriptor().getMessageTypes().get(2);
           internal_static_proto_CompleteUserProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CompleteUserProto_descriptor,
-              new java.lang.String[] { "UserId", "LastLogin", "Name", "Udid", "FacebookId", },
+              new java.lang.String[] { "UserId", "NameStrangersSee", "NameFriendsSee", "Email", "Password", "FacebookId", "Badp", "LastLogin", "SignupDate", },
               com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.class,
               com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder.class);
           return null;
