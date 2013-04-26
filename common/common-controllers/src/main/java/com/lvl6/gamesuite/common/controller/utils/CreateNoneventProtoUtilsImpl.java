@@ -2,8 +2,8 @@ package com.lvl6.gamesuite.common.controller.utils;
 
 import java.util.Date;
 
-import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice;
-import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder;
+import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
+import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder;
 import com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
@@ -16,36 +16,51 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     String nameStrangersSee = aUser.getNameStrangersSee();
     String nameFriendsSee = aUser.getNameFriendsSee();
     String email = aUser.getEmail();
-
+    String facebookId = aUser.getFacebookId();
+    
     bpb.setUserId(userId);
-    if (null != nameStrangersSee) {
+    if (null != nameStrangersSee && !nameStrangersSee.isEmpty()) {
       bpb.setNameStrangersSee(nameStrangersSee);
     }
-    if (null != nameFriendsSee) {
+    if (null != nameFriendsSee && !nameFriendsSee.isEmpty()) {
       bpb.setNameFriendsSee(nameFriendsSee);
     }
-    if (null != email) {
+    if (null != email && !email.isEmpty()) {
       bpb.setEmail(email);
+    }
+    if (null != facebookId && !facebookId.isEmpty()) {
+      bpb.setFacebookId(facebookId);
     }
     
     if (null != ad) {
-      Builder bad = BasicAuthorizedDevice.newBuilder();
+      BasicAuthorizedDeviceProto badp = createBasicAuthorizedDeviceProto(ad); 
+      if (null != badp) {
+        bpb.setBadp(badp);
+      }
+    }
+    
+    return bpb.build();
+  }
+  
+  public BasicAuthorizedDeviceProto createBasicAuthorizedDeviceProto(AuthorizedDevice ad) {
+    if (null != ad) {
+      Builder bad = BasicAuthorizedDeviceProto.newBuilder();
       String udid = ad.getUdid();
       String loginToken = ad.getToken();
       Date expirationDate = ad.getExpires();
       bad.setUdid(udid);
-      if (null != loginToken) {
+      if (null != loginToken && !loginToken.isEmpty()) {
         bad.setLoginToken(loginToken);
       }
       if (null != expirationDate) {
         bad.setExpirationDate(expirationDate.getTime());
       }
-      if (null != udid) {
+      if (null != udid && !udid.isEmpty()) {
         bad.setUdid(udid);
       }
-
-      bpb.setBasicAuthorizedDevice(bad.build());
+      return bad.build();
+    } else {
+      return null;
     }
-    return bpb.build();
   }
 }

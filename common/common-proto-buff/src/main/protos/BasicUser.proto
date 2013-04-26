@@ -10,14 +10,17 @@ message BasicUserProto {
 	optional string nameStrangersSee = 2;
 	optional string nameFriendsSee = 3;
 	optional string email = 4;
+	optional string password = 5; //only set in *RequestEvents and only if needed
+	optional string facebookId = 6;
 	
-	optional BasicAuthorizedDevice basicAuthorizedDevice = 5;
+	optional BasicAuthorizedDeviceProto badp = 7;
 }
 
 //this holds the login token and its expiration date (like an http cookie)
-message BasicAuthorizedDevice {
+message BasicAuthorizedDeviceProto {
 	optional string userId = 1;
 	optional string loginToken = 2;
 	optional int64 expirationDate = 3;
 	optional string udid = 4;
 }
+

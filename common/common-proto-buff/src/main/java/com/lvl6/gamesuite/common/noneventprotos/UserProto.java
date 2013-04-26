@@ -27,10 +27,18 @@ public final class UserProto {
     boolean hasEmail();
     String getEmail();
     
-    // optional .proto.BasicAuthorizedDevice basicAuthorizedDevice = 5;
-    boolean hasBasicAuthorizedDevice();
-    com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice getBasicAuthorizedDevice();
-    com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder getBasicAuthorizedDeviceOrBuilder();
+    // optional string password = 5;
+    boolean hasPassword();
+    String getPassword();
+    
+    // optional string facebookId = 6;
+    boolean hasFacebookId();
+    String getFacebookId();
+    
+    // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+    boolean hasBadp();
+    com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp();
+    com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder();
   }
   public static final class BasicUserProto extends
       com.google.protobuf.GeneratedMessage
@@ -189,17 +197,81 @@ public final class UserProto {
       }
     }
     
-    // optional .proto.BasicAuthorizedDevice basicAuthorizedDevice = 5;
-    public static final int BASICAUTHORIZEDDEVICE_FIELD_NUMBER = 5;
-    private com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice basicAuthorizedDevice_;
-    public boolean hasBasicAuthorizedDevice() {
+    // optional string password = 5;
+    public static final int PASSWORD_FIELD_NUMBER = 5;
+    private java.lang.Object password_;
+    public boolean hasPassword() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice getBasicAuthorizedDevice() {
-      return basicAuthorizedDevice_;
+    public String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          password_ = s;
+        }
+        return s;
+      }
     }
-    public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder getBasicAuthorizedDeviceOrBuilder() {
-      return basicAuthorizedDevice_;
+    private com.google.protobuf.ByteString getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string facebookId = 6;
+    public static final int FACEBOOKID_FIELD_NUMBER = 6;
+    private java.lang.Object facebookId_;
+    public boolean hasFacebookId() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getFacebookId() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          facebookId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getFacebookIdBytes() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        facebookId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+    public static final int BADP_FIELD_NUMBER = 7;
+    private com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto badp_;
+    public boolean hasBadp() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp() {
+      return badp_;
+    }
+    public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder() {
+      return badp_;
     }
     
     private void initFields() {
@@ -207,7 +279,9 @@ public final class UserProto {
       nameStrangersSee_ = "";
       nameFriendsSee_ = "";
       email_ = "";
-      basicAuthorizedDevice_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance();
+      password_ = "";
+      facebookId_ = "";
+      badp_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -234,7 +308,13 @@ public final class UserProto {
         output.writeBytes(4, getEmailBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, basicAuthorizedDevice_);
+        output.writeBytes(5, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, badp_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -263,7 +343,15 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, basicAuthorizedDevice_);
+          .computeBytesSize(5, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getFacebookIdBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, badp_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -381,7 +469,7 @@ public final class UserProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getBasicAuthorizedDeviceFieldBuilder();
+          getBadpFieldBuilder();
         }
       }
       private static Builder create() {
@@ -398,12 +486,16 @@ public final class UserProto {
         bitField0_ = (bitField0_ & ~0x00000004);
         email_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          basicAuthorizedDevice_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance();
-        } else {
-          basicAuthorizedDeviceBuilder_.clear();
-        }
+        password_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        facebookId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (badpBuilder_ == null) {
+          badp_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+        } else {
+          badpBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       
@@ -461,10 +553,18 @@ public final class UserProto {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          result.basicAuthorizedDevice_ = basicAuthorizedDevice_;
+        result.password_ = password_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.facebookId_ = facebookId_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (badpBuilder_ == null) {
+          result.badp_ = badp_;
         } else {
-          result.basicAuthorizedDevice_ = basicAuthorizedDeviceBuilder_.build();
+          result.badp_ = badpBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -494,8 +594,14 @@ public final class UserProto {
         if (other.hasEmail()) {
           setEmail(other.getEmail());
         }
-        if (other.hasBasicAuthorizedDevice()) {
-          mergeBasicAuthorizedDevice(other.getBasicAuthorizedDevice());
+        if (other.hasPassword()) {
+          setPassword(other.getPassword());
+        }
+        if (other.hasFacebookId()) {
+          setFacebookId(other.getFacebookId());
+        }
+        if (other.hasBadp()) {
+          mergeBadp(other.getBadp());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -549,12 +655,22 @@ public final class UserProto {
               break;
             }
             case 42: {
-              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder subBuilder = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.newBuilder();
-              if (hasBasicAuthorizedDevice()) {
-                subBuilder.mergeFrom(getBasicAuthorizedDevice());
+              bitField0_ |= 0x00000010;
+              password_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              facebookId_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder subBuilder = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder();
+              if (hasBadp()) {
+                subBuilder.mergeFrom(getBadp());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setBasicAuthorizedDevice(subBuilder.buildPartial());
+              setBadp(subBuilder.buildPartial());
               break;
             }
           }
@@ -707,94 +823,166 @@ public final class UserProto {
         onChanged();
       }
       
-      // optional .proto.BasicAuthorizedDevice basicAuthorizedDevice = 5;
-      private com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice basicAuthorizedDevice_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder> basicAuthorizedDeviceBuilder_;
-      public boolean hasBasicAuthorizedDevice() {
+      // optional string password = 5;
+      private java.lang.Object password_ = "";
+      public boolean hasPassword() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice getBasicAuthorizedDevice() {
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          return basicAuthorizedDevice_;
+      public String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          password_ = s;
+          return s;
         } else {
-          return basicAuthorizedDeviceBuilder_.getMessage();
+          return (String) ref;
         }
       }
-      public Builder setBasicAuthorizedDevice(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice value) {
-        if (basicAuthorizedDeviceBuilder_ == null) {
+      public Builder setPassword(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      void setPassword(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        password_ = value;
+        onChanged();
+      }
+      
+      // optional string facebookId = 6;
+      private java.lang.Object facebookId_ = "";
+      public boolean hasFacebookId() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getFacebookId() {
+        java.lang.Object ref = facebookId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          facebookId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setFacebookId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        facebookId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFacebookId() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        facebookId_ = getDefaultInstance().getFacebookId();
+        onChanged();
+        return this;
+      }
+      void setFacebookId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        facebookId_ = value;
+        onChanged();
+      }
+      
+      // optional .proto.BasicAuthorizedDeviceProto badp = 7;
+      private com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto badp_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder> badpBuilder_;
+      public boolean hasBadp() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto getBadp() {
+        if (badpBuilder_ == null) {
+          return badp_;
+        } else {
+          return badpBuilder_.getMessage();
+        }
+      }
+      public Builder setBadp(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto value) {
+        if (badpBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          basicAuthorizedDevice_ = value;
+          badp_ = value;
           onChanged();
         } else {
-          basicAuthorizedDeviceBuilder_.setMessage(value);
+          badpBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         return this;
       }
-      public Builder setBasicAuthorizedDevice(
-          com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder builderForValue) {
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          basicAuthorizedDevice_ = builderForValue.build();
+      public Builder setBadp(
+          com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder builderForValue) {
+        if (badpBuilder_ == null) {
+          badp_ = builderForValue.build();
           onChanged();
         } else {
-          basicAuthorizedDeviceBuilder_.setMessage(builderForValue.build());
+          badpBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         return this;
       }
-      public Builder mergeBasicAuthorizedDevice(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice value) {
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              basicAuthorizedDevice_ != com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance()) {
-            basicAuthorizedDevice_ =
-              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.newBuilder(basicAuthorizedDevice_).mergeFrom(value).buildPartial();
+      public Builder mergeBadp(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto value) {
+        if (badpBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              badp_ != com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance()) {
+            badp_ =
+              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder(badp_).mergeFrom(value).buildPartial();
           } else {
-            basicAuthorizedDevice_ = value;
+            badp_ = value;
           }
           onChanged();
         } else {
-          basicAuthorizedDeviceBuilder_.mergeFrom(value);
+          badpBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         return this;
       }
-      public Builder clearBasicAuthorizedDevice() {
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          basicAuthorizedDevice_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance();
+      public Builder clearBadp() {
+        if (badpBuilder_ == null) {
+          badp_ = com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
           onChanged();
         } else {
-          basicAuthorizedDeviceBuilder_.clear();
+          badpBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
-      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder getBasicAuthorizedDeviceBuilder() {
-        bitField0_ |= 0x00000010;
+      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder getBadpBuilder() {
+        bitField0_ |= 0x00000040;
         onChanged();
-        return getBasicAuthorizedDeviceFieldBuilder().getBuilder();
+        return getBadpFieldBuilder().getBuilder();
       }
-      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder getBasicAuthorizedDeviceOrBuilder() {
-        if (basicAuthorizedDeviceBuilder_ != null) {
-          return basicAuthorizedDeviceBuilder_.getMessageOrBuilder();
+      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder getBadpOrBuilder() {
+        if (badpBuilder_ != null) {
+          return badpBuilder_.getMessageOrBuilder();
         } else {
-          return basicAuthorizedDevice_;
+          return badp_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder> 
-          getBasicAuthorizedDeviceFieldBuilder() {
-        if (basicAuthorizedDeviceBuilder_ == null) {
-          basicAuthorizedDeviceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder>(
-                  basicAuthorizedDevice_,
+          com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder> 
+          getBadpFieldBuilder() {
+        if (badpBuilder_ == null) {
+          badpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder, com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder>(
+                  badp_,
                   getParentForChildren(),
                   isClean());
-          basicAuthorizedDevice_ = null;
+          badp_ = null;
         }
-        return basicAuthorizedDeviceBuilder_;
+        return badpBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.BasicUserProto)
@@ -808,7 +996,7 @@ public final class UserProto {
     // @@protoc_insertion_point(class_scope:proto.BasicUserProto)
   }
   
-  public interface BasicAuthorizedDeviceOrBuilder
+  public interface BasicAuthorizedDeviceProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
     // optional string userId = 1;
@@ -827,32 +1015,32 @@ public final class UserProto {
     boolean hasUdid();
     String getUdid();
   }
-  public static final class BasicAuthorizedDevice extends
+  public static final class BasicAuthorizedDeviceProto extends
       com.google.protobuf.GeneratedMessage
-      implements BasicAuthorizedDeviceOrBuilder {
-    // Use BasicAuthorizedDevice.newBuilder() to construct.
-    private BasicAuthorizedDevice(Builder builder) {
+      implements BasicAuthorizedDeviceProtoOrBuilder {
+    // Use BasicAuthorizedDeviceProto.newBuilder() to construct.
+    private BasicAuthorizedDeviceProto(Builder builder) {
       super(builder);
     }
-    private BasicAuthorizedDevice(boolean noInit) {}
+    private BasicAuthorizedDeviceProto(boolean noInit) {}
     
-    private static final BasicAuthorizedDevice defaultInstance;
-    public static BasicAuthorizedDevice getDefaultInstance() {
+    private static final BasicAuthorizedDeviceProto defaultInstance;
+    public static BasicAuthorizedDeviceProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public BasicAuthorizedDevice getDefaultInstanceForType() {
+    public BasicAuthorizedDeviceProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDevice_descriptor;
+      return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDevice_fieldAccessorTable;
+      return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -1029,41 +1217,41 @@ public final class UserProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(byte[] data)
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(java.io.InputStream input)
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1072,7 +1260,7 @@ public final class UserProto {
         return null;
       }
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseDelimitedFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1083,12 +1271,12 @@ public final class UserProto {
         return null;
       }
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice parseFrom(
+    public static com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1098,7 +1286,7 @@ public final class UserProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice prototype) {
+    public static Builder newBuilder(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1111,18 +1299,18 @@ public final class UserProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceOrBuilder {
+       implements com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDevice_descriptor;
+        return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDevice_fieldAccessorTable;
+        return com.lvl6.gamesuite.common.noneventprotos.UserProto.internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.newBuilder()
+      // Construct using com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1158,24 +1346,24 @@ public final class UserProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDescriptor();
+        return com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDescriptor();
       }
       
-      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice getDefaultInstanceForType() {
-        return com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance();
+      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto getDefaultInstanceForType() {
+        return com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
       }
       
-      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice build() {
-        com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice result = buildPartial();
+      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto build() {
+        com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice buildParsed()
+      private com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice result = buildPartial();
+        com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -1183,8 +1371,8 @@ public final class UserProto {
         return result;
       }
       
-      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice buildPartial() {
-        com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice result = new com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice(this);
+      public com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto buildPartial() {
+        com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto result = new com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1209,16 +1397,16 @@ public final class UserProto {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice) {
-          return mergeFrom((com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice)other);
+        if (other instanceof com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto) {
+          return mergeFrom((com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice other) {
-        if (other == com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto other) {
+        if (other == com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance()) return this;
         if (other.hasUserId()) {
           setUserId(other.getUserId());
         }
@@ -1417,15 +1605,15 @@ public final class UserProto {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.BasicAuthorizedDevice)
+      // @@protoc_insertion_point(builder_scope:proto.BasicAuthorizedDeviceProto)
     }
     
     static {
-      defaultInstance = new BasicAuthorizedDevice(true);
+      defaultInstance = new BasicAuthorizedDeviceProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.BasicAuthorizedDevice)
+    // @@protoc_insertion_point(class_scope:proto.BasicAuthorizedDeviceProto)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
@@ -1434,10 +1622,10 @@ public final class UserProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_BasicUserProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_BasicAuthorizedDevice_descriptor;
+    internal_static_proto_BasicAuthorizedDeviceProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_BasicAuthorizedDevice_fieldAccessorTable;
+      internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1447,15 +1635,16 @@ public final class UserProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017BasicUser.proto\022\005proto\"\236\001\n\016BasicUserPr" +
+      "\n\017BasicUser.proto\022\005proto\"\270\001\n\016BasicUserPr" +
       "oto\022\016\n\006userId\030\001 \001(\t\022\030\n\020nameStrangersSee\030" +
       "\002 \001(\t\022\026\n\016nameFriendsSee\030\003 \001(\t\022\r\n\005email\030\004" +
-      " \001(\t\022;\n\025basicAuthorizedDevice\030\005 \001(\0132\034.pr" +
-      "oto.BasicAuthorizedDevice\"a\n\025BasicAuthor" +
-      "izedDevice\022\016\n\006userId\030\001 \001(\t\022\022\n\nloginToken" +
-      "\030\002 \001(\t\022\026\n\016expirationDate\030\003 \001(\003\022\014\n\004udid\030\004" +
-      " \001(\tB5\n(com.lvl6.gamesuite.common.noneve" +
-      "ntprotosB\tUserProto"
+      " \001(\t\022\020\n\010password\030\005 \001(\t\022\022\n\nfacebookId\030\006 \001" +
+      "(\t\022/\n\004badp\030\007 \001(\0132!.proto.BasicAuthorized" +
+      "DeviceProto\"f\n\032BasicAuthorizedDeviceProt" +
+      "o\022\016\n\006userId\030\001 \001(\t\022\022\n\nloginToken\030\002 \001(\t\022\026\n" +
+      "\016expirationDate\030\003 \001(\003\022\014\n\004udid\030\004 \001(\tB5\n(c" +
+      "om.lvl6.gamesuite.common.noneventprotosB" +
+      "\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1467,17 +1656,17 @@ public final class UserProto {
           internal_static_proto_BasicUserProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BasicUserProto_descriptor,
-              new java.lang.String[] { "UserId", "NameStrangersSee", "NameFriendsSee", "Email", "BasicAuthorizedDevice", },
+              new java.lang.String[] { "UserId", "NameStrangersSee", "NameFriendsSee", "Email", "Password", "FacebookId", "Badp", },
               com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto.class,
               com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicUserProto.Builder.class);
-          internal_static_proto_BasicAuthorizedDevice_descriptor =
+          internal_static_proto_BasicAuthorizedDeviceProto_descriptor =
             getDescriptor().getMessageTypes().get(1);
-          internal_static_proto_BasicAuthorizedDevice_fieldAccessorTable = new
+          internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_BasicAuthorizedDevice_descriptor,
+              internal_static_proto_BasicAuthorizedDeviceProto_descriptor,
               new java.lang.String[] { "UserId", "LoginToken", "ExpirationDate", "Udid", },
-              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.class,
-              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDevice.Builder.class);
+              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.class,
+              com.lvl6.gamesuite.common.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder.class);
           return null;
         }
       };
