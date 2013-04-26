@@ -47,6 +47,10 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.lvl6</groupId>
 			<artifactId>pictures-data-model</artifactId>
 		</dependency>
@@ -65,6 +69,10 @@
 		<dependency>
 			<groupId>com.lvl6</groupId>
 			<artifactId>common-amqp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lvl6</groupId>
+			<artifactId>common-controllers</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>

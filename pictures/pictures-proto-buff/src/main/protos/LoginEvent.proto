@@ -8,6 +8,7 @@ option java_package = "com.lvl6.pictures.eventprotos";
 option java_outer_classname = "LoginEventProto";
 
 message LoginRequestProto {
+	//udid should always be set
 	optional BasicUserProto sender = 1;
 	
 	//find out client's friends that play this game
@@ -18,9 +19,9 @@ message LoginRequestProto {
 	enum LoginType {
 		LOGIN_TOKEN = 1;
 		FACEBOOK = 2;
-		NAME_EMAIL_PASSWORD = 3;
+		EMAIL_PASSWORD = 3;
 		//case where user didn't use facebook nor email
-		//in this case, name and udid should be set
+		//in this case, nameStrangersSee should be set
 		NO_CREDENTIALS = 4; 
 	}
 }
@@ -42,11 +43,11 @@ message LoginResponseProto {
 	enum LoginResponseStatus {
 		SUCCESS_LOGIN_TOKEN = 1;
 		SUCCESS_FACEBOOK_ID = 2;
-		SUCCESS_NAME_EMAIL_PASSWORD = 3;
+		SUCCESS_EMAIL_PASSWORD = 3;
 		SUCCESS_NO_CREDENTIALS = 4;
 		INVALID_LOGIN_TOKEN = 5;
 		INVALID_FACEBOOK_ID = 6;
-		INVALID_NAME_EMAIL_PASSWORD = 7;
+		INVALID_EMAIL_PASSWORD = 7;
 		INVALID_NO_CREDENTIALS = 8;
 		FAIL_OTHER = 9;
 	}

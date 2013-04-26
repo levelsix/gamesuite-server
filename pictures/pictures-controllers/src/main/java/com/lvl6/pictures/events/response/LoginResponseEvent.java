@@ -3,15 +3,15 @@ package com.lvl6.pictures.events.response;
 import java.nio.ByteBuffer;
 
 import com.google.protobuf.ByteString;
-import com.lvl6.gamesuite.common.events.NormalResponseEvent;
+import com.lvl6.gamesuite.common.events.PreDatabaseResponseEvent;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
 import com.lvl6.pictures.noneventprotos.PicturesEventProtocolProto.PicturesEventProtocolResponse;
 
-public class LoginResponseEvent extends NormalResponseEvent {
+public class LoginResponseEvent extends PreDatabaseResponseEvent {
   private LoginResponseProto loginResponseProto;
   
-  public LoginResponseEvent(String playerId) {
-    super(playerId);
+  public LoginResponseEvent(String udid) {
+    super(udid);
     eventType = PicturesEventProtocolResponse.S_LOGIN_EVENT_VALUE;
   }
   

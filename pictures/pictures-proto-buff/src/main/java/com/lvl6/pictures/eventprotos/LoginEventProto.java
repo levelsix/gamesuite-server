@@ -57,13 +57,13 @@ public final class LoginEventProto {
         implements com.google.protobuf.ProtocolMessageEnum {
       LOGIN_TOKEN(0, 1),
       FACEBOOK(1, 2),
-      NAME_EMAIL_PASSWORD(2, 3),
+      EMAIL_PASSWORD(2, 3),
       NO_CREDENTIALS(3, 4),
       ;
       
       public static final int LOGIN_TOKEN_VALUE = 1;
       public static final int FACEBOOK_VALUE = 2;
-      public static final int NAME_EMAIL_PASSWORD_VALUE = 3;
+      public static final int EMAIL_PASSWORD_VALUE = 3;
       public static final int NO_CREDENTIALS_VALUE = 4;
       
       
@@ -73,7 +73,7 @@ public final class LoginEventProto {
         switch (value) {
           case 1: return LOGIN_TOKEN;
           case 2: return FACEBOOK;
-          case 3: return NAME_EMAIL_PASSWORD;
+          case 3: return EMAIL_PASSWORD;
           case 4: return NO_CREDENTIALS;
           default: return null;
         }
@@ -105,7 +105,7 @@ public final class LoginEventProto {
       }
       
       private static final LoginType[] VALUES = {
-        LOGIN_TOKEN, FACEBOOK, NAME_EMAIL_PASSWORD, NO_CREDENTIALS, 
+        LOGIN_TOKEN, FACEBOOK, EMAIL_PASSWORD, NO_CREDENTIALS, 
       };
       
       public static LoginType valueOf(
@@ -768,22 +768,22 @@ public final class LoginEventProto {
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS_LOGIN_TOKEN(0, 1),
       SUCCESS_FACEBOOK_ID(1, 2),
-      SUCCESS_NAME_EMAIL_PASSWORD(2, 3),
+      SUCCESS_EMAIL_PASSWORD(2, 3),
       SUCCESS_NO_CREDENTIALS(3, 4),
       INVALID_LOGIN_TOKEN(4, 5),
       INVALID_FACEBOOK_ID(5, 6),
-      INVALID_NAME_EMAIL_PASSWORD(6, 7),
+      INVALID_EMAIL_PASSWORD(6, 7),
       INVALID_NO_CREDENTIALS(7, 8),
       FAIL_OTHER(8, 9),
       ;
       
       public static final int SUCCESS_LOGIN_TOKEN_VALUE = 1;
       public static final int SUCCESS_FACEBOOK_ID_VALUE = 2;
-      public static final int SUCCESS_NAME_EMAIL_PASSWORD_VALUE = 3;
+      public static final int SUCCESS_EMAIL_PASSWORD_VALUE = 3;
       public static final int SUCCESS_NO_CREDENTIALS_VALUE = 4;
       public static final int INVALID_LOGIN_TOKEN_VALUE = 5;
       public static final int INVALID_FACEBOOK_ID_VALUE = 6;
-      public static final int INVALID_NAME_EMAIL_PASSWORD_VALUE = 7;
+      public static final int INVALID_EMAIL_PASSWORD_VALUE = 7;
       public static final int INVALID_NO_CREDENTIALS_VALUE = 8;
       public static final int FAIL_OTHER_VALUE = 9;
       
@@ -794,11 +794,11 @@ public final class LoginEventProto {
         switch (value) {
           case 1: return SUCCESS_LOGIN_TOKEN;
           case 2: return SUCCESS_FACEBOOK_ID;
-          case 3: return SUCCESS_NAME_EMAIL_PASSWORD;
+          case 3: return SUCCESS_EMAIL_PASSWORD;
           case 4: return SUCCESS_NO_CREDENTIALS;
           case 5: return INVALID_LOGIN_TOKEN;
           case 6: return INVALID_FACEBOOK_ID;
-          case 7: return INVALID_NAME_EMAIL_PASSWORD;
+          case 7: return INVALID_EMAIL_PASSWORD;
           case 8: return INVALID_NO_CREDENTIALS;
           case 9: return FAIL_OTHER;
           default: return null;
@@ -831,7 +831,7 @@ public final class LoginEventProto {
       }
       
       private static final LoginResponseStatus[] VALUES = {
-        SUCCESS_LOGIN_TOKEN, SUCCESS_FACEBOOK_ID, SUCCESS_NAME_EMAIL_PASSWORD, SUCCESS_NO_CREDENTIALS, INVALID_LOGIN_TOKEN, INVALID_FACEBOOK_ID, INVALID_NAME_EMAIL_PASSWORD, INVALID_NO_CREDENTIALS, FAIL_OTHER, 
+        SUCCESS_LOGIN_TOKEN, SUCCESS_FACEBOOK_ID, SUCCESS_EMAIL_PASSWORD, SUCCESS_NO_CREDENTIALS, INVALID_LOGIN_TOKEN, INVALID_FACEBOOK_ID, INVALID_EMAIL_PASSWORD, INVALID_NO_CREDENTIALS, FAIL_OTHER, 
       };
       
       public static LoginResponseStatus valueOf(
@@ -2377,28 +2377,28 @@ public final class LoginEventProto {
     java.lang.String[] descriptorData = {
       "\n\020LoginEvent.proto\022\005proto\032\026TriviaGameFor" +
       "mat.proto\032\032TriviaQuestionFormat.proto\032\022C" +
-      "ompleteUser.proto\"\345\001\n\021LoginRequestProto\022" +
+      "ompleteUser.proto\"\340\001\n\021LoginRequestProto\022" +
       "%\n\006sender\030\001 \001(\0132\025.proto.BasicUserProto\022\031" +
       "\n\021facebookFriendIds\030\002 \003(\t\0225\n\tloginType\030\003" +
       " \001(\0162\".proto.LoginRequestProto.LoginType" +
-      "\"W\n\tLoginType\022\017\n\013LOGIN_TOKEN\020\001\022\014\n\010FACEBO" +
-      "OK\020\002\022\027\n\023NAME_EMAIL_PASSWORD\020\003\022\022\n\016NO_CRED" +
-      "ENTIALS\020\004\"\270\004\n\022LoginResponseProto\022+\n\treci" +
-      "pient\030\001 \001(\0132\030.proto.CompleteUserProto\022/\n",
-      "\016completedGames\030\002 \003(\0132\027.proto.GameResult" +
-      "sProto\022\'\n\006myTurn\030\003 \003(\0132\027.proto.OngoingGa" +
-      "meProto\022*\n\tnotMyTurn\030\004 \003(\0132\027.proto.Ongoi" +
-      "ngGameProto\022*\n\014newQuestions\030\005 \003(\0132\024.prot" +
-      "o.QuestionProto\022=\n\006status\030\006 \001(\0162-.proto." +
-      "LoginResponseProto.LoginResponseStatus\"\203" +
-      "\002\n\023LoginResponseStatus\022\027\n\023SUCCESS_LOGIN_" +
-      "TOKEN\020\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\037\n\033SUCC" +
-      "ESS_NAME_EMAIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_" +
-      "CREDENTIALS\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027",
-      "\n\023INVALID_FACEBOOK_ID\020\006\022\037\n\033INVALID_NAME_" +
-      "EMAIL_PASSWORD\020\007\022\032\n\026INVALID_NO_CREDENTIA" +
-      "LS\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com.lvl6.picture" +
-      "s.eventprotosB\017LoginEventProto"
+      "\"R\n\tLoginType\022\017\n\013LOGIN_TOKEN\020\001\022\014\n\010FACEBO" +
+      "OK\020\002\022\022\n\016EMAIL_PASSWORD\020\003\022\022\n\016NO_CREDENTIA" +
+      "LS\020\004\"\256\004\n\022LoginResponseProto\022+\n\trecipient" +
+      "\030\001 \001(\0132\030.proto.CompleteUserProto\022/\n\016comp",
+      "letedGames\030\002 \003(\0132\027.proto.GameResultsProt" +
+      "o\022\'\n\006myTurn\030\003 \003(\0132\027.proto.OngoingGamePro" +
+      "to\022*\n\tnotMyTurn\030\004 \003(\0132\027.proto.OngoingGam" +
+      "eProto\022*\n\014newQuestions\030\005 \003(\0132\024.proto.Que" +
+      "stionProto\022=\n\006status\030\006 \001(\0162-.proto.Login" +
+      "ResponseProto.LoginResponseStatus\"\371\001\n\023Lo" +
+      "ginResponseStatus\022\027\n\023SUCCESS_LOGIN_TOKEN" +
+      "\020\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SUCCESS_E" +
+      "MAIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_CREDENTIAL" +
+      "S\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023INVALID_",
+      "FACEBOOK_ID\020\006\022\032\n\026INVALID_EMAIL_PASSWORD\020" +
+      "\007\022\032\n\026INVALID_NO_CREDENTIALS\020\010\022\016\n\nFAIL_OT" +
+      "HER\020\tB0\n\035com.lvl6.pictures.eventprotosB\017" +
+      "LoginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

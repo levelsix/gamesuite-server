@@ -7,8 +7,8 @@ option java_outer_classname = "UserProto";
 //links the response to the person who sent the corresponding request
 message BasicUserProto {
 	optional string userId = 1;
-	optional string nameStrangersSee = 2;
-	optional string nameFriendsSee = 3;
+	optional string nameStrangersSee = 2; //name that non facebook users use
+	optional string nameFriendsSee = 3; //name that facebook users use
 	optional string email = 4;
 	optional string password = 5; //only set in *RequestEvents and only if needed
 	optional string facebookId = 6;

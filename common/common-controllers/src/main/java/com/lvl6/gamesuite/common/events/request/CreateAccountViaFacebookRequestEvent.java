@@ -2,6 +2,9 @@ package com.lvl6.gamesuite.common.events.request;
 
 import java.nio.ByteBuffer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.lvl6.gamesuite.common.eventprotos.CreateAccountEventProto.CreateAccountViaFacebookRequestProto;
@@ -9,6 +12,8 @@ import com.lvl6.gamesuite.common.events.PreDatabaseRequestEvent;
 
 public class CreateAccountViaFacebookRequestEvent extends PreDatabaseRequestEvent {
 
+  private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+  
   private CreateAccountViaFacebookRequestProto createAccountViaFacebookRequestProto;
   
   /**
@@ -23,7 +28,7 @@ public class CreateAccountViaFacebookRequestEvent extends PreDatabaseRequestEven
       
       udid = createAccountViaFacebookRequestProto.getUdid();
     } catch (InvalidProtocolBufferException e) {
-      e.printStackTrace();
+      log.error("unexpected error: CreateAccountViaFacebookRequestEvent. ", e);
     }
   }
 
