@@ -1,5 +1,7 @@
 package com.lvl6.gamesuite.common.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,12 +88,12 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
 
   private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaNoCredentialsRequestProto request,
       String nameStrangersSee, String udid) {
-    /*if (!(request.hasName()) || nameStrangersSee.isEmpty()) {
+    if (!(request.hasNameStrangersSee()) || nameStrangersSee.isEmpty()) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
-      log.error("unexpected error: no nameStrangersSee provided. password:" + password
-      		+ ", nameStrangersSee:" + nameStrangersSee + ", email:" + email + ", udid:" + udid);
+      log.error("unexpected error: no nameStrangersSee provided. nameStrangersSee:" + nameStrangersSee +
+          ", udid:" + udid);
       return false;
-    }*/
+    }
     if (!authorizedDeviceService.isValidUdid(udid)) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_UDID);
       log.error("unexpected error: invalid udid provided. udid=" + udid);
@@ -103,7 +105,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   
   private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee,
       String udid, String deviceId) {
-    /*
+    
     String facebookIdNull = null;
     String emailNull = null;
     String udidNull = null;
@@ -115,16 +117,17 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
           responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_NAME);
           log.error("user error: Either name in use nameStrangersSee or user already has " +
               "account with us. user=" + existing);
+          return false;
         } else {
           //maybe just ignore instead and not treat this as a fail...
           log.error("unexpected error: user returned does not have same nameStrangersSee, nor email. user=" + u +
               " args=[nameStrangersSee=" + nameStrangersSee + ", udid=" + udid + ", deviceId=" + deviceId);
           responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+          return false;
         }
       }
-      return false;
     }
-    */
+    
     return true;
   }
   
