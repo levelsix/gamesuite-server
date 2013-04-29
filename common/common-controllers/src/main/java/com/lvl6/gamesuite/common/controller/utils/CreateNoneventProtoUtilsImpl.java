@@ -33,7 +33,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     }
     
     if (null != ad) {
-      BasicAuthorizedDeviceProto badp = createBasicAuthorizedDeviceProto(ad); 
+      BasicAuthorizedDeviceProto badp = createBasicAuthorizedDeviceProto(ad, userId); 
       if (null != badp) {
         bpb.setBadp(badp);
       }
@@ -42,22 +42,19 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     return bpb.build();
   }
   
-  public BasicAuthorizedDeviceProto createBasicAuthorizedDeviceProto(AuthorizedDevice ad) {
+  public BasicAuthorizedDeviceProto createBasicAuthorizedDeviceProto(AuthorizedDevice ad,
+      String userId) {
     if (null != ad) {
       Builder bad = BasicAuthorizedDeviceProto.newBuilder();
       String udid = ad.getUdid();
       String loginToken = ad.getToken();
       Date expirationDate = ad.getExpires();
+      
+      bad.setBasicAuthorizedDeviceId(ad.getId());
+      bad.setUserId(userId);
+      bad.setLoginToken(loginToken);
+      bad.setExpirationDate(expirationDate.getTime());
       bad.setUdid(udid);
-      if (null != loginToken && !loginToken.isEmpty()) {
-        bad.setLoginToken(loginToken);
-      }
-      if (null != expirationDate) {
-        bad.setExpirationDate(expirationDate.getTime());
-      }
-      if (null != udid && !udid.isEmpty()) {
-        bad.setUdid(udid);
-      }
       return bad.build();
     } else {
       return null;
