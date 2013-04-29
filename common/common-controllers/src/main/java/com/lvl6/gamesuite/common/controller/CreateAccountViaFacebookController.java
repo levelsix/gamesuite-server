@@ -83,7 +83,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     //autowire or use new()...
     CreateAccountResponseEvent resEvent =  new CreateAccountResponseEvent(udid);
     resEvent.setTag(event.getTag());
-    resEvent.setUserCreateResponseProto(resProto);
+    resEvent.setCreateAccountResponseProto(resProto);
     
     log.info("Writing event: " + resEvent);
     getEventWriter().processPreDBResponseEvent(resEvent, udid);

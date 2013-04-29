@@ -2,9 +2,6 @@ package com.lvl6.gamesuite.common.controller;
 
 import java.util.List;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,7 @@ import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
+import com.lvl6.gamesuite.user.utils.EmailUtil;
 
 @Component @DependsOn("gameServer") public class CreateAccountViaEmailController extends EventController {
   
@@ -35,12 +33,11 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   
   @Autowired
   protected AuthorizedDeviceService authorizedDeviceService;
-  
+
+
   @Autowired
   protected CreateNoneventProtoUtils noneventProtoUtils;
 
-  @Autowired
-  protected InternetAddress internetAddress;
 
   @Override
   public RequestEvent createRequestEvent() {
@@ -88,7 +85,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     //autowire or use new()...
     CreateAccountResponseEvent resEvent =  new CreateAccountResponseEvent(udid);
     resEvent.setTag(event.getTag());
-    resEvent.setUserCreateResponseProto(resProto);
+    resEvent.setCreateAccountResponseProto(resProto);
     
     log.info("Writing event: " + resEvent);
     getEventWriter().processPreDBResponseEvent(resEvent, udid);
@@ -102,7 +99,7 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
       		+ ", nameStrangersSee:" + nameStrangersSee + ", email:" + email + ", udid:" + udid);
       return false;
     }
-    if (!(request.hasEmail()) || email.isEmpty() || !isValidEmailAddressFormat(email)) {
+    if (!(request.hasEmail()) || email.isEmpty() || !EmailUtil.isValidEmailAddressFormat(email)) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_EMAIL);
       log.error("user error: email given is invalid. email=" + email);
       return false;
@@ -175,24 +172,21 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     return success;
   }
   
-  public boolean isValidEmailAddressFormat(String email) {
-    boolean result = true;
-    try {
-       InternetAddress emailAddr = new InternetAddress(email);
-       emailAddr.validate();
-    } catch (AddressException ex) {
-       result = false;
-    }
-    return result;
- }
-  
-  
   public UserSignupService getService() {
     return userSignupService;
   }
   
   public void setService(UserSignupService service) {
     this.userSignupService = service;
+  }
+  
+  public AuthorizedDeviceService getAuthorizedDeviceService() {
+    return authorizedDeviceService;
+  }
+
+  public void setAuthorizedDeviceService(
+      AuthorizedDeviceService authorizedDeviceService) {
+    this.authorizedDeviceService = authorizedDeviceService;
   }
   
   public CreateNoneventProtoUtils getNoneventProtoUtils() {
@@ -202,14 +196,5 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
     this.noneventProtoUtils = noneventProtoUtils;
   }
-
-  public InternetAddress getInternetAddress() {
-    return internetAddress;
-  }
-
-  public void setInternetAddress(InternetAddress internetAddress) {
-    this.internetAddress = internetAddress;
-  }
-
   
 }

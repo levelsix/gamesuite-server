@@ -29,8 +29,8 @@ public class CreateAccountResponseEvent extends PreDatabaseResponseEvent{
     return b.size();
   }
 
-  public void setUserCreateResponseProto(CreateAccountResponseProto UserCreateResponseProto) {
-    this.createAccountResponseProto = UserCreateResponseProto;
+  public void setCreateAccountResponseProto(CreateAccountResponseProto createAccountResponseProto) {
+    this.createAccountResponseProto = createAccountResponseProto;
   }
   
 }
