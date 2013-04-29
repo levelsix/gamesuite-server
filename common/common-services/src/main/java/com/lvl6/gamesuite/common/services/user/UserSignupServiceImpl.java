@@ -23,8 +23,8 @@ public class UserSignupServiceImpl implements UserSignupService {
 	@Autowired
 	protected UserDao userDao; 
 	
-	@Autowired
-	protected PasswordUtil passwordUtil;
+//	@Autowired
+//	protected PasswordUtil passwordUtil;
 	
   @Autowired
   protected Random rand;
@@ -92,8 +92,8 @@ public class UserSignupServiceImpl implements UserSignupService {
 	  } else if (null != email) {
 	    existing = userDao.findByEmail(email);
 	  }
-	  //TODO: FIND BY UDID, 
-	  //if more than one, get the most recent person
+	  //TODO: FIND BY UDID (?) 
+	  
 	  return existing;
 	}
 
@@ -138,16 +138,16 @@ public class UserSignupServiceImpl implements UserSignupService {
 	}
 
 
-	@Override
-	public PasswordUtil getPasswordUtil() {
-		return passwordUtil;
-	}
-
-
-	@Override
-	public void setPasswordUtil(PasswordUtil passwordUtil) {
-		this.passwordUtil = passwordUtil;
-	}
+//	@Override
+//	public PasswordUtil getPasswordUtil() {
+//		return passwordUtil;
+//	}
+//
+//
+//	@Override
+//	public void setPasswordUtil(PasswordUtil passwordUtil) {
+//		this.passwordUtil = passwordUtil;
+//	}
 	
 	
 }

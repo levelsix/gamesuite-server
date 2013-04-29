@@ -18,6 +18,7 @@ message BasicUserProto {
 
 //this holds the login token and its expiration date (like an http cookie)
 message BasicAuthorizedDeviceProto {
+	optional string basicAuthorizedDeviceId = 5;
 	optional string userId = 1;
 	optional string loginToken = 2;
 	optional int64 expirationDate = 3;

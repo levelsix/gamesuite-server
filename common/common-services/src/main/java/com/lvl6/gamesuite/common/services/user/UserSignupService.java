@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.User;
-import com.lvl6.gamesuite.user.utils.PasswordUtil;
+//import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
 public interface UserSignupService {
 
@@ -24,8 +24,8 @@ public interface UserSignupService {
 
 	public abstract void setUserDao(UserDao userDao);
 
-	public abstract PasswordUtil getPasswordUtil();
-
-	public abstract void setPasswordUtil(PasswordUtil passwordUtil);
+//	public abstract PasswordUtil getPasswordUtil();
+//
+//	public abstract void setPasswordUtil(PasswordUtil passwordUtil);
 
 }
