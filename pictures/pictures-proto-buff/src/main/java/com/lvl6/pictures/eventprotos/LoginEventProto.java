@@ -792,6 +792,16 @@ public final class LoginEventProto {
     // optional .proto.LoginResponseProto.LoginResponseStatus status = 6;
     boolean hasStatus();
     com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus getStatus();
+    
+    // repeated .proto.BasicUserProto facebookFriendsWithAccounts = 7;
+    java.util.List<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto> 
+        getFacebookFriendsWithAccountsList();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getFacebookFriendsWithAccounts(int index);
+    int getFacebookFriendsWithAccountsCount();
+    java.util.List<? extends com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> 
+        getFacebookFriendsWithAccountsOrBuilderList();
+    com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getFacebookFriendsWithAccountsOrBuilder(
+        int index);
   }
   public static final class LoginResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -1019,6 +1029,27 @@ public final class LoginEventProto {
       return status_;
     }
     
+    // repeated .proto.BasicUserProto facebookFriendsWithAccounts = 7;
+    public static final int FACEBOOKFRIENDSWITHACCOUNTS_FIELD_NUMBER = 7;
+    private java.util.List<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto> facebookFriendsWithAccounts_;
+    public java.util.List<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto> getFacebookFriendsWithAccountsList() {
+      return facebookFriendsWithAccounts_;
+    }
+    public java.util.List<? extends com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> 
+        getFacebookFriendsWithAccountsOrBuilderList() {
+      return facebookFriendsWithAccounts_;
+    }
+    public int getFacebookFriendsWithAccountsCount() {
+      return facebookFriendsWithAccounts_.size();
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getFacebookFriendsWithAccounts(int index) {
+      return facebookFriendsWithAccounts_.get(index);
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getFacebookFriendsWithAccountsOrBuilder(
+        int index) {
+      return facebookFriendsWithAccounts_.get(index);
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       completedGames_ = java.util.Collections.emptyList();
@@ -1026,6 +1057,7 @@ public final class LoginEventProto {
       notMyTurn_ = java.util.Collections.emptyList();
       newQuestions_ = java.util.Collections.emptyList();
       status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
+      facebookFriendsWithAccounts_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1056,6 +1088,9 @@ public final class LoginEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeEnum(6, status_.getNumber());
+      }
+      for (int i = 0; i < facebookFriendsWithAccounts_.size(); i++) {
+        output.writeMessage(7, facebookFriendsWithAccounts_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -1089,6 +1124,10 @@ public final class LoginEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, status_.getNumber());
+      }
+      for (int i = 0; i < facebookFriendsWithAccounts_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, facebookFriendsWithAccounts_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1211,6 +1250,7 @@ public final class LoginEventProto {
           getMyTurnFieldBuilder();
           getNotMyTurnFieldBuilder();
           getNewQuestionsFieldBuilder();
+          getFacebookFriendsWithAccountsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1251,6 +1291,12 @@ public final class LoginEventProto {
         }
         status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
         bitField0_ = (bitField0_ & ~0x00000020);
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          facebookFriendsWithAccounts_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+        } else {
+          facebookFriendsWithAccountsBuilder_.clear();
+        }
         return this;
       }
       
@@ -1337,6 +1383,15 @@ public final class LoginEventProto {
           to_bitField0_ |= 0x00000002;
         }
         result.status_ = status_;
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+            facebookFriendsWithAccounts_ = java.util.Collections.unmodifiableList(facebookFriendsWithAccounts_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.facebookFriendsWithAccounts_ = facebookFriendsWithAccounts_;
+        } else {
+          result.facebookFriendsWithAccounts_ = facebookFriendsWithAccountsBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1463,6 +1518,32 @@ public final class LoginEventProto {
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          if (!other.facebookFriendsWithAccounts_.isEmpty()) {
+            if (facebookFriendsWithAccounts_.isEmpty()) {
+              facebookFriendsWithAccounts_ = other.facebookFriendsWithAccounts_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureFacebookFriendsWithAccountsIsMutable();
+              facebookFriendsWithAccounts_.addAll(other.facebookFriendsWithAccounts_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.facebookFriendsWithAccounts_.isEmpty()) {
+            if (facebookFriendsWithAccountsBuilder_.isEmpty()) {
+              facebookFriendsWithAccountsBuilder_.dispose();
+              facebookFriendsWithAccountsBuilder_ = null;
+              facebookFriendsWithAccounts_ = other.facebookFriendsWithAccounts_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              facebookFriendsWithAccountsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getFacebookFriendsWithAccountsFieldBuilder() : null;
+            } else {
+              facebookFriendsWithAccountsBuilder_.addAllMessages(other.facebookFriendsWithAccounts_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1536,6 +1617,12 @@ public final class LoginEventProto {
                 bitField0_ |= 0x00000020;
                 status_ = value;
               }
+              break;
+            }
+            case 58: {
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addFacebookFriendsWithAccounts(subBuilder.buildPartial());
               break;
             }
           }
@@ -2402,6 +2489,192 @@ public final class LoginEventProto {
         return this;
       }
       
+      // repeated .proto.BasicUserProto facebookFriendsWithAccounts = 7;
+      private java.util.List<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto> facebookFriendsWithAccounts_ =
+        java.util.Collections.emptyList();
+      private void ensureFacebookFriendsWithAccountsIsMutable() {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+          facebookFriendsWithAccounts_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto>(facebookFriendsWithAccounts_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> facebookFriendsWithAccountsBuilder_;
+      
+      public java.util.List<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto> getFacebookFriendsWithAccountsList() {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(facebookFriendsWithAccounts_);
+        } else {
+          return facebookFriendsWithAccountsBuilder_.getMessageList();
+        }
+      }
+      public int getFacebookFriendsWithAccountsCount() {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          return facebookFriendsWithAccounts_.size();
+        } else {
+          return facebookFriendsWithAccountsBuilder_.getCount();
+        }
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getFacebookFriendsWithAccounts(int index) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          return facebookFriendsWithAccounts_.get(index);
+        } else {
+          return facebookFriendsWithAccountsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setFacebookFriendsWithAccounts(
+          int index, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto value) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.set(index, value);
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setFacebookFriendsWithAccounts(
+          int index, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder builderForValue) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addFacebookFriendsWithAccounts(com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto value) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.add(value);
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addFacebookFriendsWithAccounts(
+          int index, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto value) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.add(index, value);
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addFacebookFriendsWithAccounts(
+          com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder builderForValue) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.add(builderForValue.build());
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addFacebookFriendsWithAccounts(
+          int index, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder builderForValue) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllFacebookFriendsWithAccounts(
+          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto> values) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          ensureFacebookFriendsWithAccountsIsMutable();
+          super.addAll(values, facebookFriendsWithAccounts_);
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearFacebookFriendsWithAccounts() {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          facebookFriendsWithAccounts_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeFacebookFriendsWithAccounts(int index) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          ensureFacebookFriendsWithAccountsIsMutable();
+          facebookFriendsWithAccounts_.remove(index);
+          onChanged();
+        } else {
+          facebookFriendsWithAccountsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder getFacebookFriendsWithAccountsBuilder(
+          int index) {
+        return getFacebookFriendsWithAccountsFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getFacebookFriendsWithAccountsOrBuilder(
+          int index) {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          return facebookFriendsWithAccounts_.get(index);  } else {
+          return facebookFriendsWithAccountsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> 
+           getFacebookFriendsWithAccountsOrBuilderList() {
+        if (facebookFriendsWithAccountsBuilder_ != null) {
+          return facebookFriendsWithAccountsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(facebookFriendsWithAccounts_);
+        }
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder addFacebookFriendsWithAccountsBuilder() {
+        return getFacebookFriendsWithAccountsFieldBuilder().addBuilder(
+            com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance());
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder addFacebookFriendsWithAccountsBuilder(
+          int index) {
+        return getFacebookFriendsWithAccountsFieldBuilder().addBuilder(
+            index, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder> 
+           getFacebookFriendsWithAccountsBuilderList() {
+        return getFacebookFriendsWithAccountsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder> 
+          getFacebookFriendsWithAccountsFieldBuilder() {
+        if (facebookFriendsWithAccountsBuilder_ == null) {
+          facebookFriendsWithAccountsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder>(
+                  facebookFriendsWithAccounts_,
+                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  getParentForChildren(),
+                  isClean());
+          facebookFriendsWithAccounts_ = null;
+        }
+        return facebookFriendsWithAccountsBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto)
     }
     
@@ -2440,7 +2713,7 @@ public final class LoginEventProto {
       " \001(\0162\".proto.LoginRequestProto.LoginType" +
       "\022\031\n\021initializeAccount\030\004 \001(\010\"R\n\tLoginType" +
       "\022\017\n\013LOGIN_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL" +
-      "_PASSWORD\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\256\004\n\022Logi" +
+      "_PASSWORD\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\352\004\n\022Logi" +
       "nResponseProto\022+\n\trecipient\030\001 \001(\0132\030.prot",
       "o.CompleteUserProto\022/\n\016completedGames\030\002 " +
       "\003(\0132\027.proto.GameResultsProto\022\'\n\006myTurn\030\003" +
@@ -2448,15 +2721,16 @@ public final class LoginEventProto {
       "rn\030\004 \003(\0132\027.proto.OngoingGameProto\022*\n\014new" +
       "Questions\030\005 \003(\0132\024.proto.QuestionProto\022=\n" +
       "\006status\030\006 \001(\0162-.proto.LoginResponseProto" +
-      ".LoginResponseStatus\"\371\001\n\023LoginResponseSt" +
-      "atus\022\027\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023SUCCESS" +
-      "_FACEBOOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_PASSWORD" +
-      "\020\003\022\032\n\026SUCCESS_NO_CREDENTIALS\020\004\022\027\n\023INVALI",
-      "D_LOGIN_TOKEN\020\005\022\027\n\023INVALID_FACEBOOK_ID\020\006" +
-      "\022\032\n\026INVALID_EMAIL_PASSWORD\020\007\022\032\n\026INVALID_" +
-      "NO_CREDENTIALS\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com." +
-      "lvl6.pictures.eventprotosB\017LoginEventPro" +
-      "to"
+      ".LoginResponseStatus\022:\n\033facebookFriendsW" +
+      "ithAccounts\030\007 \003(\0132\025.proto.BasicUserProto" +
+      "\"\371\001\n\023LoginResponseStatus\022\027\n\023SUCCESS_LOGI" +
+      "N_TOKEN\020\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SU",
+      "CCESS_EMAIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_CRE" +
+      "DENTIALS\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023I" +
+      "NVALID_FACEBOOK_ID\020\006\022\032\n\026INVALID_EMAIL_PA" +
+      "SSWORD\020\007\022\032\n\026INVALID_NO_CREDENTIALS\020\010\022\016\n\n" +
+      "FAIL_OTHER\020\tB0\n\035com.lvl6.pictures.eventp" +
+      "rotosB\017LoginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2476,7 +2750,7 @@ public final class LoginEventProto {
           internal_static_proto_LoginResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoginResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", },
+              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", "FacebookFriendsWithAccounts", },
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.class,
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder.class);
           return null;

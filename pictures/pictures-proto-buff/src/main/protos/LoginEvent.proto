@@ -43,6 +43,8 @@ message LoginResponseProto {
 	
 	optional LoginResponseStatus status = 6;
 	
+	//friends who are playing this game
+	repeated BasicUserProto facebookFriendsWithAccounts = 7;
 	
 	enum LoginResponseStatus {
 		SUCCESS_LOGIN_TOKEN = 1;
