@@ -4,11 +4,11 @@ option java_package = "com.lvl6.pictures.noneventprotos";
 option java_outer_classname = "PicturesEventProtocolProto";
 
 enum PicturesEventProtocolRequest {
-	//numbering should start at 1000
+	//numbering should start at 1000 (OTHER PROJECTS MIGHT BE USING 1-1000)
 	C_LOGIN_EVENT = 1000;	
 }
 
 enum PicturesEventProtocolResponse {
-	//numbering should start at 1000
+	//numbering should start at 1000 (OTHER PROJECTS MIGHT BE USING 1-1000)
 	S_LOGIN_EVENT = 1000;
 }
