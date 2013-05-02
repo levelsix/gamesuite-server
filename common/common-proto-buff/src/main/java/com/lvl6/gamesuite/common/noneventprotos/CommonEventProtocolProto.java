@@ -82,17 +82,23 @@ public final class CommonEventProtocolProto {
   
   public enum CommonEventProtocolResponse
       implements com.google.protobuf.ProtocolMessageEnum {
-    S_CREATE_ACCOUNT_EVENT(0, 1),
+    S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT(0, 1),
+    S_CREATE_ACCOUNT_VIA_EMAIL_EVENT(1, 2),
+    S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT(2, 3),
     ;
     
-    public static final int S_CREATE_ACCOUNT_EVENT_VALUE = 1;
+    public static final int S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT_VALUE = 1;
+    public static final int S_CREATE_ACCOUNT_VIA_EMAIL_EVENT_VALUE = 2;
+    public static final int S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT_VALUE = 3;
     
     
     public final int getNumber() { return value; }
     
     public static CommonEventProtocolResponse valueOf(int value) {
       switch (value) {
-        case 1: return S_CREATE_ACCOUNT_EVENT;
+        case 1: return S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT;
+        case 2: return S_CREATE_ACCOUNT_VIA_EMAIL_EVENT;
+        case 3: return S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT;
         default: return null;
       }
     }
@@ -123,7 +129,7 @@ public final class CommonEventProtocolProto {
     }
     
     private static final CommonEventProtocolResponse[] VALUES = {
-      S_CREATE_ACCOUNT_EVENT, 
+      S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT, S_CREATE_ACCOUNT_VIA_EMAIL_EVENT, S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT, 
     };
     
     public static CommonEventProtocolResponse valueOf(
@@ -159,10 +165,13 @@ public final class CommonEventProtocolProto {
       "ommonEventProtocolRequest\022\'\n#C_CREATE_AC" +
       "COUNT_VIA_FACEBOOK_EVENT\020\001\022$\n C_CREATE_A" +
       "CCOUNT_VIA_EMAIL_EVENT\020\002\022-\n)C_CREATE_ACC" +
-      "OUNT_VIA_NO_CREDENTIALS_EVENT\020\003*9\n\033Commo" +
-      "nEventProtocolResponse\022\032\n\026S_CREATE_ACCOU" +
-      "NT_EVENT\020\001BD\n(com.lvl6.gamesuite.common." +
-      "noneventprotosB\030CommonEventProtocolProto"
+      "OUNT_VIA_NO_CREDENTIALS_EVENT\020\003*\233\001\n\033Comm" +
+      "onEventProtocolResponse\022\'\n#S_CREATE_ACCO" +
+      "UNT_VIA_FACEBOOK_EVENT\020\001\022$\n S_CREATE_ACC" +
+      "OUNT_VIA_EMAIL_EVENT\020\002\022-\n)S_CREATE_ACCOU" +
+      "NT_VIA_NO_CREDENTIALS_EVENT\020\003BD\n(com.lvl" +
+      "6.gamesuite.common.noneventprotosB\030Commo",
+      "nEventProtocolProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
