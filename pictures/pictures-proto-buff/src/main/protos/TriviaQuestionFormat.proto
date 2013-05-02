@@ -4,7 +4,7 @@ option java_package = "com.lvl6.pictures.noneventprotos";
 option java_outer_classname = "TriviaQuestionFormatProto";
 
 message QuestionProto {
-	//mutually exlucisive, if one is set the other is not set
+	//mutually exclusive, if one is set the other is not set
 	optional MultipleChoiceQuestionProto multipleChoice = 1;
 	optional PictureQuestionProto pictures = 2;
 }
