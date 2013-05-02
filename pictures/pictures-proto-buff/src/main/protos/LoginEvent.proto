@@ -1,6 +1,6 @@
 import "TriviaGameFormat.proto";
 import "TriviaQuestionFormat.proto";
-import "CompleteUser.proto";
+import "User.proto";
 
 package proto;
 

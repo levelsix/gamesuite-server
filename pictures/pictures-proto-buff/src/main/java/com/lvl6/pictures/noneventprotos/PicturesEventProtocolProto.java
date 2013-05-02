@@ -10,17 +10,17 @@ public final class PicturesEventProtocolProto {
   }
   public enum PicturesEventProtocolRequest
       implements com.google.protobuf.ProtocolMessageEnum {
-    C_LOGIN_EVENT(0, 1000),
+    C_REFILL_GAME_TOKENS_BY_WAITING_EVENT(0, 1000),
     ;
     
-    public static final int C_LOGIN_EVENT_VALUE = 1000;
+    public static final int C_REFILL_GAME_TOKENS_BY_WAITING_EVENT_VALUE = 1000;
     
     
     public final int getNumber() { return value; }
     
     public static PicturesEventProtocolRequest valueOf(int value) {
       switch (value) {
-        case 1000: return C_LOGIN_EVENT;
+        case 1000: return C_REFILL_GAME_TOKENS_BY_WAITING_EVENT;
         default: return null;
       }
     }
@@ -51,7 +51,7 @@ public final class PicturesEventProtocolProto {
     }
     
     private static final PicturesEventProtocolRequest[] VALUES = {
-      C_LOGIN_EVENT, 
+      C_REFILL_GAME_TOKENS_BY_WAITING_EVENT, 
     };
     
     public static PicturesEventProtocolRequest valueOf(
@@ -76,17 +76,17 @@ public final class PicturesEventProtocolProto {
   
   public enum PicturesEventProtocolResponse
       implements com.google.protobuf.ProtocolMessageEnum {
-    S_LOGIN_EVENT(0, 1000),
+    S_REFILL_GAME_TOKENS_BY_WAITING_EVENT(0, 1000),
     ;
     
-    public static final int S_LOGIN_EVENT_VALUE = 1000;
+    public static final int S_REFILL_GAME_TOKENS_BY_WAITING_EVENT_VALUE = 1000;
     
     
     public final int getNumber() { return value; }
     
     public static PicturesEventProtocolResponse valueOf(int value) {
       switch (value) {
-        case 1000: return S_LOGIN_EVENT;
+        case 1000: return S_REFILL_GAME_TOKENS_BY_WAITING_EVENT;
         default: return null;
       }
     }
@@ -117,7 +117,7 @@ public final class PicturesEventProtocolProto {
     }
     
     private static final PicturesEventProtocolResponse[] VALUES = {
-      S_LOGIN_EVENT, 
+      S_REFILL_GAME_TOKENS_BY_WAITING_EVENT, 
     };
     
     public static PicturesEventProtocolResponse valueOf(
@@ -149,12 +149,13 @@ public final class PicturesEventProtocolProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033PicturesEventProtocol.proto\022\005proto*2\n\034" +
-      "PicturesEventProtocolRequest\022\022\n\rC_LOGIN_" +
-      "EVENT\020\350\007*3\n\035PicturesEventProtocolRespons" +
-      "e\022\022\n\rS_LOGIN_EVENT\020\350\007B>\n com.lvl6.pictur" +
-      "es.noneventprotosB\032PicturesEventProtocol" +
-      "Proto"
+      "\n\033PicturesEventProtocol.proto\022\005proto*J\n\034" +
+      "PicturesEventProtocolRequest\022*\n%C_REFILL" +
+      "_GAME_TOKENS_BY_WAITING_EVENT\020\350\007*K\n\035Pict" +
+      "uresEventProtocolResponse\022*\n%S_REFILL_GA" +
+      "ME_TOKENS_BY_WAITING_EVENT\020\350\007B>\n com.lvl" +
+      "6.pictures.noneventprotosB\032PicturesEvent" +
+      "ProtocolProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

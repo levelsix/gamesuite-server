@@ -2706,31 +2706,31 @@ public final class LoginEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\020LoginEvent.proto\022\005proto\032\026TriviaGameFor" +
-      "mat.proto\032\032TriviaQuestionFormat.proto\032\022C" +
-      "ompleteUser.proto\"\373\001\n\021LoginRequestProto\022" +
-      "%\n\006sender\030\001 \001(\0132\025.proto.BasicUserProto\022\031" +
-      "\n\021facebookFriendIds\030\002 \003(\t\0225\n\tloginType\030\003" +
-      " \001(\0162\".proto.LoginRequestProto.LoginType" +
-      "\022\031\n\021initializeAccount\030\004 \001(\010\"R\n\tLoginType" +
-      "\022\017\n\013LOGIN_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL" +
-      "_PASSWORD\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\352\004\n\022Logi" +
-      "nResponseProto\022+\n\trecipient\030\001 \001(\0132\030.prot",
-      "o.CompleteUserProto\022/\n\016completedGames\030\002 " +
-      "\003(\0132\027.proto.GameResultsProto\022\'\n\006myTurn\030\003" +
-      " \003(\0132\027.proto.OngoingGameProto\022*\n\tnotMyTu" +
-      "rn\030\004 \003(\0132\027.proto.OngoingGameProto\022*\n\014new" +
-      "Questions\030\005 \003(\0132\024.proto.QuestionProto\022=\n" +
-      "\006status\030\006 \001(\0162-.proto.LoginResponseProto" +
-      ".LoginResponseStatus\022:\n\033facebookFriendsW" +
-      "ithAccounts\030\007 \003(\0132\025.proto.BasicUserProto" +
-      "\"\371\001\n\023LoginResponseStatus\022\027\n\023SUCCESS_LOGI" +
-      "N_TOKEN\020\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SU",
-      "CCESS_EMAIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_CRE" +
-      "DENTIALS\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023I" +
-      "NVALID_FACEBOOK_ID\020\006\022\032\n\026INVALID_EMAIL_PA" +
-      "SSWORD\020\007\022\032\n\026INVALID_NO_CREDENTIALS\020\010\022\016\n\n" +
-      "FAIL_OTHER\020\tB0\n\035com.lvl6.pictures.eventp" +
-      "rotosB\017LoginEventProto"
+      "mat.proto\032\032TriviaQuestionFormat.proto\032\nU" +
+      "ser.proto\"\373\001\n\021LoginRequestProto\022%\n\006sende" +
+      "r\030\001 \001(\0132\025.proto.BasicUserProto\022\031\n\021facebo" +
+      "okFriendIds\030\002 \003(\t\0225\n\tloginType\030\003 \001(\0162\".p" +
+      "roto.LoginRequestProto.LoginType\022\031\n\021init" +
+      "ializeAccount\030\004 \001(\010\"R\n\tLoginType\022\017\n\013LOGI" +
+      "N_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL_PASSWOR" +
+      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\352\004\n\022LoginRespons" +
+      "eProto\022+\n\trecipient\030\001 \001(\0132\030.proto.Comple",
+      "teUserProto\022/\n\016completedGames\030\002 \003(\0132\027.pr" +
+      "oto.GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.p" +
+      "roto.OngoingGameProto\022*\n\tnotMyTurn\030\004 \003(\013" +
+      "2\027.proto.OngoingGameProto\022*\n\014newQuestion" +
+      "s\030\005 \003(\0132\024.proto.QuestionProto\022=\n\006status\030" +
+      "\006 \001(\0162-.proto.LoginResponseProto.LoginRe" +
+      "sponseStatus\022:\n\033facebookFriendsWithAccou" +
+      "nts\030\007 \003(\0132\025.proto.BasicUserProto\"\371\001\n\023Log" +
+      "inResponseStatus\022\027\n\023SUCCESS_LOGIN_TOKEN\020" +
+      "\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SUCCESS_EM",
+      "AIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_CREDENTIALS" +
+      "\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023INVALID_F" +
+      "ACEBOOK_ID\020\006\022\032\n\026INVALID_EMAIL_PASSWORD\020\007" +
+      "\022\032\n\026INVALID_NO_CREDENTIALS\020\010\022\016\n\nFAIL_OTH" +
+      "ER\020\tB0\n\035com.lvl6.pictures.eventprotosB\017L" +
+      "oginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
