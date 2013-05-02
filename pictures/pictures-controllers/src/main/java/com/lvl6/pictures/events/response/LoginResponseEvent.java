@@ -4,15 +4,15 @@ import java.nio.ByteBuffer;
 
 import com.google.protobuf.ByteString;
 import com.lvl6.gamesuite.common.events.PreDatabaseResponseEvent;
+import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonEventProtocolResponse;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
-import com.lvl6.pictures.noneventprotos.PicturesEventProtocolProto.PicturesEventProtocolResponse;
 
 public class LoginResponseEvent extends PreDatabaseResponseEvent {
   private LoginResponseProto loginResponseProto;
   
   public LoginResponseEvent(String udid) {
     super(udid);
-    eventType = PicturesEventProtocolResponse.S_LOGIN_EVENT_VALUE;
+    eventType = CommonEventProtocolResponse.S_LOGIN_EVENT_VALUE;
   }
   
   @Override
