@@ -1,5 +1,6 @@
 import "TriviaRoundFormat.proto";
 import "TriviaQuestionFormat.proto";
+import "User.proto";
 
 package proto;
 
@@ -21,6 +22,6 @@ message GameResultsProto {
 
 message PlayerGameResultsProto {
 	//pertinent player information here
-	
-	repeated BasicRoundResultsProto previousRoundsStats = 1;
+	optional BasicUserProto bup = 1;
+	repeated BasicRoundResultsProto previousRoundsStats = 2;
 }
