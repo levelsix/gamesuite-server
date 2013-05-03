@@ -168,6 +168,7 @@ import com.lvl6.gamesuite.user.utils.EmailUtil;
       
       success = true;
     } catch (Exception e) {
+      success = false;
       log.error("failed to create user or device. user=" + newUser + ", authorizedDevice="+ ad, e);
     }
     return success;
