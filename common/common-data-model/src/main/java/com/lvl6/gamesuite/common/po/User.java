@@ -34,7 +34,7 @@ public class User extends BasePersistentObject {
   protected String password;
   
 	
-	@Size(min = 3)
+	//@Size(min = 3)
 	@Column(unique=true)
 	@Index(name = "user_email_index")
 	protected String email = "";
