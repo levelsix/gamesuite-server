@@ -1,6 +1,7 @@
 package com.lvl6.common.persistence.test;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -15,8 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.AuthorizedDeviceDao;
 import com.lvl6.gamesuite.common.dao.UserDao;
@@ -40,18 +43,22 @@ public class TestJpa {
 	protected AuthorizedDeviceDao authorizedDeviceDao;
 	
 	
-
+	@Transactional
+	@Rollback(true)
   @Test
 	public void testSetup() {
 		log.info("Testing JPA setup");
 		User testuser = new User();
 		testuser.setNameStrangersSee("Test User");
-		testuser.setNameFriendsSee("hi");
+		testuser.setNameFriendsSee("hihhj");
+		testuser.setEmail("foo@gmail.com");
+		
 		//testuser.setUdid("TestUser1");
 		testuser.setLastLogin(new Date());
+		assertNull("testuser=" + testuser, testuser.getId());
 		List<User> existing = getUserDao().findByNameStrangersSee(testuser.getNameStrangersSee());
 		assertTrue("searched for name strangers see: " + 
-		    testuser.getNameStrangersSee(), existing.isEmpty());
+		    testuser.getNameStrangersSee() + ", got:" + existing, existing.isEmpty());
 		User fromDb = null;
 		if(null != existing && !existing.isEmpty()) {
 		  fromDb = existing.get(0);
@@ -64,6 +71,8 @@ public class TestJpa {
 		}
 	}
 
+	@Transactional
+	@Rollback(true)
   @Test
   public void testAuthorizedDeviceCreation() {
     String userId = "userId";
@@ -86,40 +95,41 @@ public class TestJpa {
     assertNotNull("No login token", ad.getToken());
   }
 
+	@Transactional
+  @Rollback(true)
   @Test
   public void testDuplicateNameOrEmail() {
     User joeGmail = new User();
     joeGmail.setNameStrangersSee("joe");
+    joeGmail.setNameFriendsSee("foo");
     joeGmail.setEmail("joe@gmail.com");
     joeGmail.setPassword("123");
     
-    User joeFacebook = new User();
-    joeFacebook.setNameStrangersSee("joe");
-    joeFacebook.setFacebookId("facebookId");
+    getUserDao().save(joeGmail);
     
-    List<User> joeList = new ArrayList<User>();
-    joeList.add(joeGmail);
-    joeList.add(joeFacebook);
-    getUserDao().save(joeList);
-    
-    String joseph = "Joe";
+    //same nameStrangersSee as above
+    String joe = "Joe";
     String josephGmail = "joe2@gmail.com";
     
+    //same email as above
     String josef = "josef";
     String josefGmail = "Joe@gmail.com";
     
-    List<User> existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josephGmail, joseph);
-    assertNotNull("searched for email=" + josephGmail + ", name=" + joseph, existing);
+    List<User> existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josephGmail, joe);
+    assertNotNull("searched for email=" + josephGmail + ", name=" + joe, existing);
     existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josefGmail, josef);
     assertNotNull("searched for email=" + josefGmail + ", name=" + josef, existing);
     
   }
   
+	@Transactional
+  @Rollback(true)
   @Test
   public void testGetAuthorizedDevicesExceptSome() {
     String userId = "userId";
     String udid = "udid";
     String deviceId = "deviceId";
+    
     
     String udid2 = "udid2";
     String deviceId2 = "deviceId2";
