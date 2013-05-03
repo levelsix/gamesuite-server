@@ -1018,6 +1018,10 @@ public final class UserProto {
     // optional string udid = 4;
     boolean hasUdid();
     String getUdid();
+    
+    // optional string deviceId = 6;
+    boolean hasDeviceId();
+    String getDeviceId();
   }
   public static final class BasicAuthorizedDeviceProto extends
       com.google.protobuf.GeneratedMessage
@@ -1186,12 +1190,45 @@ public final class UserProto {
       }
     }
     
+    // optional string deviceId = 6;
+    public static final int DEVICEID_FIELD_NUMBER = 6;
+    private java.lang.Object deviceId_;
+    public boolean hasDeviceId() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getDeviceId() {
+      java.lang.Object ref = deviceId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          deviceId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDeviceIdBytes() {
+      java.lang.Object ref = deviceId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        deviceId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       basicAuthorizedDeviceId_ = "";
       userId_ = "";
       loginToken_ = "";
       expirationDate_ = 0L;
       udid_ = "";
+      deviceId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1219,6 +1256,9 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(5, getBasicAuthorizedDeviceIdBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getDeviceIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1248,6 +1288,10 @@ public final class UserProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, getBasicAuthorizedDeviceIdBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getDeviceIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1383,6 +1427,8 @@ public final class UserProto {
         bitField0_ = (bitField0_ & ~0x00000008);
         udid_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        deviceId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -1441,6 +1487,10 @@ public final class UserProto {
           to_bitField0_ |= 0x00000010;
         }
         result.udid_ = udid_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.deviceId_ = deviceId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1471,6 +1521,9 @@ public final class UserProto {
         }
         if (other.hasUdid()) {
           setUdid(other.getUdid());
+        }
+        if (other.hasDeviceId()) {
+          setDeviceId(other.getDeviceId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1526,6 +1579,11 @@ public final class UserProto {
             case 42: {
               bitField0_ |= 0x00000001;
               basicAuthorizedDeviceId_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              deviceId_ = input.readBytes();
               break;
             }
           }
@@ -1696,6 +1754,42 @@ public final class UserProto {
       void setUdid(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000010;
         udid_ = value;
+        onChanged();
+      }
+      
+      // optional string deviceId = 6;
+      private java.lang.Object deviceId_ = "";
+      public boolean hasDeviceId() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getDeviceId() {
+        java.lang.Object ref = deviceId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          deviceId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDeviceId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        deviceId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDeviceId() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        deviceId_ = getDefaultInstance().getDeviceId();
+        onChanged();
+        return this;
+      }
+      void setDeviceId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        deviceId_ = value;
         onChanged();
       }
       
@@ -2841,17 +2935,17 @@ public final class UserProto {
       "\022\026\n\016nameFriendsSee\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022" +
       "\020\n\010password\030\005 \001(\t\022\022\n\nfacebookId\030\006 \001(\t\022/\n" +
       "\004badp\030\007 \001(\0132!.proto.BasicAuthorizedDevic" +
-      "eProto\"\207\001\n\032BasicAuthorizedDeviceProto\022\037\n" +
+      "eProto\"\231\001\n\032BasicAuthorizedDeviceProto\022\037\n" +
       "\027basicAuthorizedDeviceId\030\005 \001(\t\022\016\n\006userId" +
       "\030\001 \001(\t\022\022\n\nloginToken\030\002 \001(\t\022\026\n\016expiration" +
-      "Date\030\003 \001(\003\022\014\n\004udid\030\004 \001(\t\"\342\001\n\021CompleteUse" +
-      "rProto\022\016\n\006userId\030\001 \001(\t\022\030\n\020nameStrangersS",
-      "ee\030\002 \001(\t\022\026\n\016nameFriendsSee\030\003 \001(\t\022\r\n\005emai" +
-      "l\030\004 \001(\t\022\020\n\010password\030\005 \001(\t\022\022\n\nfacebookId\030" +
-      "\006 \001(\t\022/\n\004badp\030\007 \001(\0132!.proto.BasicAuthori" +
-      "zedDeviceProto\022\021\n\tlastLogin\030\010 \001(\003\022\022\n\nsig" +
-      "nupDate\030\t \001(\005B-\n com.lvl6.pictures.nonev" +
-      "entprotosB\tUserProto"
+      "Date\030\003 \001(\003\022\014\n\004udid\030\004 \001(\t\022\020\n\010deviceId\030\006 \001" +
+      "(\t\"\342\001\n\021CompleteUserProto\022\016\n\006userId\030\001 \001(\t",
+      "\022\030\n\020nameStrangersSee\030\002 \001(\t\022\026\n\016nameFriend" +
+      "sSee\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\020\n\010password\030\005 " +
+      "\001(\t\022\022\n\nfacebookId\030\006 \001(\t\022/\n\004badp\030\007 \001(\0132!." +
+      "proto.BasicAuthorizedDeviceProto\022\021\n\tlast" +
+      "Login\030\010 \001(\003\022\022\n\nsignupDate\030\t \001(\005B-\n com.l" +
+      "vl6.pictures.noneventprotosB\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2871,7 +2965,7 @@ public final class UserProto {
           internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BasicAuthorizedDeviceProto_descriptor,
-              new java.lang.String[] { "BasicAuthorizedDeviceId", "UserId", "LoginToken", "ExpirationDate", "Udid", },
+              new java.lang.String[] { "BasicAuthorizedDeviceId", "UserId", "LoginToken", "ExpirationDate", "Udid", "DeviceId", },
               com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.class,
               com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder.class);
           internal_static_proto_CompleteUserProto_descriptor =

@@ -49,12 +49,14 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
       String udid = ad.getUdid();
       String loginToken = ad.getToken();
       Date expirationDate = ad.getExpires();
+      String deviceId = ad.getDeviceId();
       
       bad.setBasicAuthorizedDeviceId(ad.getId());
       bad.setUserId(userId);
       bad.setLoginToken(loginToken);
       bad.setExpirationDate(expirationDate.getTime());
       bad.setUdid(udid);
+      bad.setDeviceId(deviceId);
       return bad.build();
     } else {
       return null;

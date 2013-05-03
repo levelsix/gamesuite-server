@@ -23,6 +23,7 @@ message BasicAuthorizedDeviceProto {
 	optional string loginToken = 2;
 	optional int64 expirationDate = 3;
 	optional string udid = 4;
+	optional string deviceId = 6;
 }
 
 
