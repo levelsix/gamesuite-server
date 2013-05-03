@@ -18,4 +18,6 @@ public interface UserDao extends JpaRepository<User, String> {
 	
 	public List<User> findByEmailOrNameStrangersSeeAndPasswordIsNotNull(String email, String nameStrangersSee);
 	
+	public User findById(String id);
+	
 }

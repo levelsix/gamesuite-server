@@ -12,4 +12,8 @@ public interface AuthorizedDeviceDao extends JpaRepository<AuthorizedDevice, Str
     public List<AuthorizedDevice> findByUserIdAndUdid(String userId, String udid);
     
     public List<AuthorizedDevice> findByUserIdAndIdNotIn(String userId, Collection<String> id);
+    
+    public List<AuthorizedDevice> findByIdNotIn(Collection<String> ids);
+    
+    public List<AuthorizedDevice> findByUserIdIn(Collection<String> userIds);
 }
