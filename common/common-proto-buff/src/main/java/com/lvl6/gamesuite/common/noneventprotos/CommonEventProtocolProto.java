@@ -89,12 +89,14 @@ public final class CommonEventProtocolProto {
     S_CREATE_ACCOUNT_VIA_EMAIL_EVENT(1, 2),
     S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT(2, 3),
     S_LOGIN_EVENT(3, 4),
+    S_FORCE_LOGOUT_EVENT(4, 50),
     ;
     
     public static final int S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT_VALUE = 1;
     public static final int S_CREATE_ACCOUNT_VIA_EMAIL_EVENT_VALUE = 2;
     public static final int S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT_VALUE = 3;
     public static final int S_LOGIN_EVENT_VALUE = 4;
+    public static final int S_FORCE_LOGOUT_EVENT_VALUE = 50;
     
     
     public final int getNumber() { return value; }
@@ -105,6 +107,7 @@ public final class CommonEventProtocolProto {
         case 2: return S_CREATE_ACCOUNT_VIA_EMAIL_EVENT;
         case 3: return S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT;
         case 4: return S_LOGIN_EVENT;
+        case 50: return S_FORCE_LOGOUT_EVENT;
         default: return null;
       }
     }
@@ -135,7 +138,7 @@ public final class CommonEventProtocolProto {
     }
     
     private static final CommonEventProtocolResponse[] VALUES = {
-      S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT, S_CREATE_ACCOUNT_VIA_EMAIL_EVENT, S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT, S_LOGIN_EVENT, 
+      S_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT, S_CREATE_ACCOUNT_VIA_EMAIL_EVENT, S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT, S_LOGIN_EVENT, S_FORCE_LOGOUT_EVENT, 
     };
     
     public static CommonEventProtocolResponse valueOf(
@@ -172,13 +175,14 @@ public final class CommonEventProtocolProto {
       "COUNT_VIA_FACEBOOK_EVENT\020\001\022$\n C_CREATE_A" +
       "CCOUNT_VIA_EMAIL_EVENT\020\002\022-\n)C_CREATE_ACC" +
       "OUNT_VIA_NO_CREDENTIALS_EVENT\020\003\022\021\n\rC_LOG" +
-      "IN_EVENT\020\004*\256\001\n\033CommonEventProtocolRespon" +
+      "IN_EVENT\020\004*\310\001\n\033CommonEventProtocolRespon" +
       "se\022\'\n#S_CREATE_ACCOUNT_VIA_FACEBOOK_EVEN" +
       "T\020\001\022$\n S_CREATE_ACCOUNT_VIA_EMAIL_EVENT\020" +
       "\002\022-\n)S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS" +
-      "_EVENT\020\003\022\021\n\rS_LOGIN_EVENT\020\004BD\n(com.lvl6.",
-      "gamesuite.common.noneventprotosB\030CommonE" +
-      "ventProtocolProto"
+      "_EVENT\020\003\022\021\n\rS_LOGIN_EVENT\020\004\022\030\n\024S_FORCE_L",
+      "OGOUT_EVENT\0202BD\n(com.lvl6.gamesuite.comm" +
+      "on.noneventprotosB\030CommonEventProtocolPr" +
+      "oto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
