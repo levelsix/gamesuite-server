@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.joda.time.DateTime;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -77,7 +78,7 @@ public class TestJpa {
     DateTime expiry = new DateTime();
     expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
     ad.setExpires(expiry.toDate());
-    getAuthorizedDeviceDao().save(ad);
+    ad = getAuthorizedDeviceDao().save(ad);
     
     assertNotNull("AuthorizedDevice was just set, though...", ad);
     assertNotNull("No expiry date", ad.getExpires());
@@ -144,11 +145,15 @@ public class TestJpa {
     List<AuthorizedDevice> adList = new ArrayList<AuthorizedDevice>();
     adList.add(ad2);
     adList.add(ad);
+    getAuthorizedDeviceDao().save(ad);
     getAuthorizedDeviceDao().save(adList);
     
+    long deviceCount = getAuthorizedDeviceDao().count();
+    Assert.assertTrue(deviceCount > 0);
     //the authorized device ids to exclude
     List<String> id = new ArrayList<String>();
     id.add(ad.getId());
+    
     
     //log.error("adList=" + adList);
     //log.error("id=" + id);
