@@ -117,9 +117,10 @@ public class TestJpa {
     
     List<User> existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josephGmail, joe);
     assertNotNull("searched for email=" + josephGmail + ", name=" + joe, existing);
+    assertTrue("existing=" + existing, !existing.isEmpty());
     existing = getUserDao().findByEmailOrNameStrangersSeeAndPasswordIsNotNull(josefGmail, josef);
     assertNotNull("searched for email=" + josefGmail + ", name=" + josef, existing);
-    
+    assertTrue("existing=" + existing, !existing.isEmpty());
   }
   
 	@Transactional
@@ -135,7 +136,7 @@ public class TestJpa {
     String deviceId2 = "deviceId2";
     
     DateTime expiry = new DateTime();
-    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
+    expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
     
     //first device for user
     AuthorizedDevice ad = new AuthorizedDevice();
