@@ -33,7 +33,7 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
       ad.setDeviceId(deviceId);
       
       DateTime expiry = new DateTime();
-      expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
+      expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
       ad.setExpires(expiry.toDate());
       
       ad = authorizedDeviceDao.save(ad);
