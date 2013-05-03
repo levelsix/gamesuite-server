@@ -1,6 +1,7 @@
 package com.lvl6.gamesuite.common.services.user;
 
 import java.util.Date;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,17 @@ public class LoginServiceImpl implements LoginService {
     }
     return success;
   }
-
+  
   protected byte[] getSalt(Date signupDate) {
     String str =""+signupDate.getTime();
     return str.getBytes();
   }
+  
+  @Override
+  public List<User> getFacebookUsers(List<String> facebookIds) {
+    return userDao.findByFacebookIdIn(facebookIds);
+  }
+
   
   @Override
   public PasswordUtil getPasswordUtil() {
@@ -94,4 +101,5 @@ public class LoginServiceImpl implements LoginService {
       AuthorizedDeviceService authorizedDeviceService) {
     this.authorizedDeviceService = authorizedDeviceService;
   }
+
 }

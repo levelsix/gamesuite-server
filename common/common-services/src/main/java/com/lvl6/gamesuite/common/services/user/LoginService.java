@@ -1,5 +1,7 @@
 package com.lvl6.gamesuite.common.services.user;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
@@ -18,6 +20,8 @@ public interface LoginService {
   
   public abstract boolean validCredentials(User inDb, String nameStrangersSee, String email, String password);
 
+  public abstract List<User> getFacebookUsers(List<String> facebookIds);
+  
   public abstract PasswordUtil getPasswordUtil();
 
   public abstract void setPasswordUtil(PasswordUtil passwordUtil);
