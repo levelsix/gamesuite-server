@@ -113,6 +113,55 @@ public class TestJpa {
     assertNotNull("searched for email=" + josefGmail + ", name=" + josef, existing);
     
   }
+  
+  @Test
+  public void testGetAuthorizedDevicesExceptSome() {
+    String userId = "userId";
+    String udid = "udid";
+    String deviceId = "deviceId";
+    
+    String udid2 = "udid2";
+    String deviceId2 = "deviceId2";
+    
+    DateTime expiry = new DateTime();
+    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
+    
+    //first device for user
+    AuthorizedDevice ad = new AuthorizedDevice();
+    ad.setUserId(userId);
+    ad.setUdid(udid);
+    ad.setDeviceId(deviceId);
+    ad.setExpires(expiry.toDate());
+    
+    //second device for user
+    AuthorizedDevice ad2 = new AuthorizedDevice();
+    ad2.setUserId(userId);
+    ad2.setUdid(udid2);
+    ad2.setDeviceId(deviceId2);
+    ad2.setExpires(expiry.toDate());
+    
+    //save both to the database
+    List<AuthorizedDevice> adList = new ArrayList<AuthorizedDevice>();
+    adList.add(ad2);
+    adList.add(ad);
+    getAuthorizedDeviceDao().save(adList);
+    
+    //the authorized device ids to exclude
+    List<String> id = new ArrayList<String>();
+    id.add(ad.getId());
+    
+    //log.error("adList=" + adList);
+    //log.error("id=" + id);
+    
+    //get all but the first device for user
+    assertNotNull("wtf userId is null", userId);
+    assertNotNull("wtf id is null", id);
+    assertTrue("id=" + id, !id.isEmpty());
+    List<AuthorizedDevice> inDbList = getAuthorizedDeviceDao().findByUserIdAndIdNotIn(userId, id);
+    
+    assertTrue("inDbList=" + inDbList, inDbList.size() == 1);
+    log.info("Should be same objects: inDbList=" + inDbList + " ad2=" + ad2);
+  }
 
 	public UserDao getUserDao() {
 		return userDao;
