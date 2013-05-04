@@ -708,6 +708,10 @@ public final class TriviaGameFormatProto {
   public interface GameResultsProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
+    // optional string gameId = 3;
+    boolean hasGameId();
+    String getGameId();
+    
     // optional .proto.PlayerGameResultsProto firstPlayer = 1;
     boolean hasFirstPlayer();
     com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto getFirstPlayer();
@@ -747,11 +751,43 @@ public final class TriviaGameFormatProto {
     }
     
     private int bitField0_;
+    // optional string gameId = 3;
+    public static final int GAMEID_FIELD_NUMBER = 3;
+    private java.lang.Object gameId_;
+    public boolean hasGameId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getGameId() {
+      java.lang.Object ref = gameId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          gameId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getGameIdBytes() {
+      java.lang.Object ref = gameId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        gameId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     // optional .proto.PlayerGameResultsProto firstPlayer = 1;
     public static final int FIRSTPLAYER_FIELD_NUMBER = 1;
     private com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto firstPlayer_;
     public boolean hasFirstPlayer() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto getFirstPlayer() {
       return firstPlayer_;
@@ -764,7 +800,7 @@ public final class TriviaGameFormatProto {
     public static final int SECONDPLAYER_FIELD_NUMBER = 2;
     private com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto secondPlayer_;
     public boolean hasSecondPlayer() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto getSecondPlayer() {
       return secondPlayer_;
@@ -774,6 +810,7 @@ public final class TriviaGameFormatProto {
     }
     
     private void initFields() {
+      gameId_ = "";
       firstPlayer_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance();
       secondPlayer_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance();
     }
@@ -789,11 +826,14 @@ public final class TriviaGameFormatProto {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(1, firstPlayer_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(2, secondPlayer_);
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(3, getGameIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -804,13 +844,17 @@ public final class TriviaGameFormatProto {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, firstPlayer_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, secondPlayer_);
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getGameIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -938,18 +982,20 @@ public final class TriviaGameFormatProto {
       
       public Builder clear() {
         super.clear();
+        gameId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
         if (firstPlayerBuilder_ == null) {
           firstPlayer_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance();
         } else {
           firstPlayerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (secondPlayerBuilder_ == null) {
           secondPlayer_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance();
         } else {
           secondPlayerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -991,13 +1037,17 @@ public final class TriviaGameFormatProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.gameId_ = gameId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         if (firstPlayerBuilder_ == null) {
           result.firstPlayer_ = firstPlayer_;
         } else {
           result.firstPlayer_ = firstPlayerBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         if (secondPlayerBuilder_ == null) {
           result.secondPlayer_ = secondPlayer_;
@@ -1020,6 +1070,9 @@ public final class TriviaGameFormatProto {
       
       public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto other) {
         if (other == com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.getDefaultInstance()) return this;
+        if (other.hasGameId()) {
+          setGameId(other.getGameId());
+        }
         if (other.hasFirstPlayer()) {
           mergeFirstPlayer(other.getFirstPlayer());
         }
@@ -1075,18 +1128,59 @@ public final class TriviaGameFormatProto {
               setSecondPlayer(subBuilder.buildPartial());
               break;
             }
+            case 26: {
+              bitField0_ |= 0x00000001;
+              gameId_ = input.readBytes();
+              break;
+            }
           }
         }
       }
       
       private int bitField0_;
       
+      // optional string gameId = 3;
+      private java.lang.Object gameId_ = "";
+      public boolean hasGameId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getGameId() {
+        java.lang.Object ref = gameId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          gameId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setGameId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        gameId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearGameId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        gameId_ = getDefaultInstance().getGameId();
+        onChanged();
+        return this;
+      }
+      void setGameId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        gameId_ = value;
+        onChanged();
+      }
+      
       // optional .proto.PlayerGameResultsProto firstPlayer = 1;
       private com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto firstPlayer_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProtoOrBuilder> firstPlayerBuilder_;
       public boolean hasFirstPlayer() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto getFirstPlayer() {
         if (firstPlayerBuilder_ == null) {
@@ -1105,7 +1199,7 @@ public final class TriviaGameFormatProto {
         } else {
           firstPlayerBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder setFirstPlayer(
@@ -1116,12 +1210,12 @@ public final class TriviaGameFormatProto {
         } else {
           firstPlayerBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder mergeFirstPlayer(com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto value) {
         if (firstPlayerBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
               firstPlayer_ != com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance()) {
             firstPlayer_ =
               com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.newBuilder(firstPlayer_).mergeFrom(value).buildPartial();
@@ -1132,7 +1226,7 @@ public final class TriviaGameFormatProto {
         } else {
           firstPlayerBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder clearFirstPlayer() {
@@ -1142,11 +1236,11 @@ public final class TriviaGameFormatProto {
         } else {
           firstPlayerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.Builder getFirstPlayerBuilder() {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getFirstPlayerFieldBuilder().getBuilder();
       }
@@ -1176,7 +1270,7 @@ public final class TriviaGameFormatProto {
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.Builder, com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProtoOrBuilder> secondPlayerBuilder_;
       public boolean hasSecondPlayer() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto getSecondPlayer() {
         if (secondPlayerBuilder_ == null) {
@@ -1195,7 +1289,7 @@ public final class TriviaGameFormatProto {
         } else {
           secondPlayerBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder setSecondPlayer(
@@ -1206,12 +1300,12 @@ public final class TriviaGameFormatProto {
         } else {
           secondPlayerBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder mergeSecondPlayer(com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto value) {
         if (secondPlayerBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               secondPlayer_ != com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.getDefaultInstance()) {
             secondPlayer_ =
               com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.newBuilder(secondPlayer_).mergeFrom(value).buildPartial();
@@ -1222,7 +1316,7 @@ public final class TriviaGameFormatProto {
         } else {
           secondPlayerBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder clearSecondPlayer() {
@@ -1232,11 +1326,11 @@ public final class TriviaGameFormatProto {
         } else {
           secondPlayerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       public com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto.Builder getSecondPlayerBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getSecondPlayerFieldBuilder().getBuilder();
       }
@@ -1998,14 +2092,15 @@ public final class TriviaGameFormatProto {
       "roto\032\nUser.proto\"q\n\020OngoingGameProto\022*\n\t" +
       "gameSoFar\030\001 \001(\0132\027.proto.GameResultsProto" +
       "\0221\n\023myNewRoundQuestions\030\002 \003(\0132\024.proto.Qu" +
-      "estionProto\"{\n\020GameResultsProto\0222\n\013first" +
-      "Player\030\001 \001(\0132\035.proto.PlayerGameResultsPr" +
-      "oto\0223\n\014secondPlayer\030\002 \001(\0132\035.proto.Player" +
-      "GameResultsProto\"x\n\026PlayerGameResultsPro" +
-      "to\022\"\n\003bup\030\001 \001(\0132\025.proto.BasicUserProto\022:",
-      "\n\023previousRoundsStats\030\002 \003(\0132\035.proto.Basi" +
-      "cRoundResultsProtoB9\n com.lvl6.pictures." +
-      "noneventprotosB\025TriviaGameFormatProto"
+      "estionProto\"\213\001\n\020GameResultsProto\022\016\n\006game" +
+      "Id\030\003 \001(\t\0222\n\013firstPlayer\030\001 \001(\0132\035.proto.Pl" +
+      "ayerGameResultsProto\0223\n\014secondPlayer\030\002 \001" +
+      "(\0132\035.proto.PlayerGameResultsProto\"x\n\026Pla" +
+      "yerGameResultsProto\022\"\n\003bup\030\001 \001(\0132\025.proto",
+      ".BasicUserProto\022:\n\023previousRoundsStats\030\002" +
+      " \003(\0132\035.proto.BasicRoundResultsProtoB9\n c" +
+      "om.lvl6.pictures.noneventprotosB\025TriviaG" +
+      "ameFormatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2025,7 +2120,7 @@ public final class TriviaGameFormatProto {
           internal_static_proto_GameResultsProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_GameResultsProto_descriptor,
-              new java.lang.String[] { "FirstPlayer", "SecondPlayer", },
+              new java.lang.String[] { "GameId", "FirstPlayer", "SecondPlayer", },
               com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.class,
               com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.Builder.class);
           internal_static_proto_PlayerGameResultsProto_descriptor =

@@ -16,6 +16,7 @@ message OngoingGameProto {
 }
 
 message GameResultsProto {
+	optional string gameId = 3;
 	optional PlayerGameResultsProto firstPlayer = 1;
 	optional PlayerGameResultsProto secondPlayer = 2;
 }
