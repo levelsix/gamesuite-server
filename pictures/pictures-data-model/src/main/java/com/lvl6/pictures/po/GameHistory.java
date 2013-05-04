@@ -36,5 +36,47 @@ public class GameHistory extends BasePersistentObject {
   
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   protected Set<RoundHistory> roundHistory;
+
   
+  
+  public String getPlayerOneId() {
+    return playerOneId;
+  }
+
+  public void setPlayerOneId(String playerOneId) {
+    this.playerOneId = playerOneId;
+  }
+
+  public String getPlayerTwoId() {
+    return playerTwoId;
+  }
+
+  public void setPlayerTwoId(String playerTwoId) {
+    this.playerTwoId = playerTwoId;
+  }
+
+  public Date getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(Date startTime) {
+    this.startTime = startTime;
+  }
+
+  public Date getEndTime() {
+    return endTime;
+  }
+
+  public void setEndTime(Date endTime) {
+    this.endTime = endTime;
+  }
+
+  public Set<RoundHistory> getRoundHistory() {
+    return roundHistory;
+  }
+
+  public void setRoundHistory(Set<RoundHistory> roundHistory) {
+    this.roundHistory = roundHistory;
+  }
+
 }
