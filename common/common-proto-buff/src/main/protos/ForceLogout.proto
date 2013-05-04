@@ -5,5 +5,5 @@ option java_outer_classname = "ForceLogoutProto";
 
 message ForceLogoutResponseProto {
 	//atm (2013-5-3), all gamesuite games will have this
-	optional string udid = 1;
+	optional string userId = 1; //not sure if this is even needed
 }

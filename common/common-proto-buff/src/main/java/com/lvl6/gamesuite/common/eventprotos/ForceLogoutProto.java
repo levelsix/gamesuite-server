@@ -11,9 +11,9 @@ public final class ForceLogoutProto {
   public interface ForceLogoutResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string udid = 1;
-    boolean hasUdid();
-    String getUdid();
+    // optional string userId = 1;
+    boolean hasUserId();
+    String getUserId();
   }
   public static final class ForceLogoutResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -44,14 +44,14 @@ public final class ForceLogoutProto {
     }
     
     private int bitField0_;
-    // optional string udid = 1;
-    public static final int UDID_FIELD_NUMBER = 1;
-    private java.lang.Object udid_;
-    public boolean hasUdid() {
+    // optional string userId = 1;
+    public static final int USERID_FIELD_NUMBER = 1;
+    private java.lang.Object userId_;
+    public boolean hasUserId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getUdid() {
-      java.lang.Object ref = udid_;
+    public String getUserId() {
+      java.lang.Object ref = userId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -59,17 +59,17 @@ public final class ForceLogoutProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          udid_ = s;
+          userId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getUdidBytes() {
-      java.lang.Object ref = udid_;
+    private com.google.protobuf.ByteString getUserIdBytes() {
+      java.lang.Object ref = userId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        udid_ = b;
+        userId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -77,7 +77,7 @@ public final class ForceLogoutProto {
     }
     
     private void initFields() {
-      udid_ = "";
+      userId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -92,7 +92,7 @@ public final class ForceLogoutProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getUdidBytes());
+        output.writeBytes(1, getUserIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -105,7 +105,7 @@ public final class ForceLogoutProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getUdidBytes());
+          .computeBytesSize(1, getUserIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -231,7 +231,7 @@ public final class ForceLogoutProto {
       
       public Builder clear() {
         super.clear();
-        udid_ = "";
+        userId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -274,7 +274,7 @@ public final class ForceLogoutProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.udid_ = udid_;
+        result.userId_ = userId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -291,8 +291,8 @@ public final class ForceLogoutProto {
       
       public Builder mergeFrom(com.lvl6.gamesuite.common.eventprotos.ForceLogoutProto.ForceLogoutResponseProto other) {
         if (other == com.lvl6.gamesuite.common.eventprotos.ForceLogoutProto.ForceLogoutResponseProto.getDefaultInstance()) return this;
-        if (other.hasUdid()) {
-          setUdid(other.getUdid());
+        if (other.hasUserId()) {
+          setUserId(other.getUserId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -327,7 +327,7 @@ public final class ForceLogoutProto {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              udid_ = input.readBytes();
+              userId_ = input.readBytes();
               break;
             }
           }
@@ -336,39 +336,39 @@ public final class ForceLogoutProto {
       
       private int bitField0_;
       
-      // optional string udid = 1;
-      private java.lang.Object udid_ = "";
-      public boolean hasUdid() {
+      // optional string userId = 1;
+      private java.lang.Object userId_ = "";
+      public boolean hasUserId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getUdid() {
-        java.lang.Object ref = udid_;
+      public String getUserId() {
+        java.lang.Object ref = userId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          udid_ = s;
+          userId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setUdid(String value) {
+      public Builder setUserId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        udid_ = value;
+        userId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUdid() {
+      public Builder clearUserId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        udid_ = getDefaultInstance().getUdid();
+        userId_ = getDefaultInstance().getUserId();
         onChanged();
         return this;
       }
-      void setUdid(com.google.protobuf.ByteString value) {
+      void setUserId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        udid_ = value;
+        userId_ = value;
         onChanged();
       }
       
@@ -397,10 +397,10 @@ public final class ForceLogoutProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021ForceLogout.proto\022\005proto\"(\n\030ForceLogou" +
-      "tResponseProto\022\014\n\004udid\030\001 \001(\tB9\n%com.lvl6" +
-      ".gamesuite.common.eventprotosB\020ForceLogo" +
-      "utProto"
+      "\n\021ForceLogout.proto\022\005proto\"*\n\030ForceLogou" +
+      "tResponseProto\022\016\n\006userId\030\001 \001(\tB9\n%com.lv" +
+      "l6.gamesuite.common.eventprotosB\020ForceLo" +
+      "goutProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -412,7 +412,7 @@ public final class ForceLogoutProto {
           internal_static_proto_ForceLogoutResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_ForceLogoutResponseProto_descriptor,
-              new java.lang.String[] { "Udid", },
+              new java.lang.String[] { "UserId", },
               com.lvl6.gamesuite.common.eventprotos.ForceLogoutProto.ForceLogoutResponseProto.class,
               com.lvl6.gamesuite.common.eventprotos.ForceLogoutProto.ForceLogoutResponseProto.Builder.class);
           return null;
