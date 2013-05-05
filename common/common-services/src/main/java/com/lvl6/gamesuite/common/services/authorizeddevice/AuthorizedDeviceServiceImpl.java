@@ -1,5 +1,6 @@
 package com.lvl6.gamesuite.common.services.authorizeddevice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -71,6 +72,16 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
     } else {
       return true;
     }
+  }
+  
+  @Override
+  public List<AuthorizedDevice> otherDevicesSharingUserAccount(String userId, AuthorizedDevice exempt) {
+    String exemptId = exempt.getId();
+    List<String> exemptions = new ArrayList<String>();
+    exemptions.add(exemptId);
+    
+    List<AuthorizedDevice> otherDevices = getAuthorizedDeviceDao().findByUserIdAndIdNotIn(userId, exemptions);
+    return otherDevices;
   }
   
   
