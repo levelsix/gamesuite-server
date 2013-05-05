@@ -1320,17 +1320,17 @@ public final class TriviaQuestionFormatProto {
   public interface MultipleChoiceAnswerProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional bool isImage = 1;
-    boolean hasIsImage();
-    boolean getIsImage();
+    // optional .proto.MultipleChoiceAnswerProto.AnswerType type = 1;
+    boolean hasType();
+    com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType getType();
     
     // optional string id = 2;
     boolean hasId();
     String getId();
     
-    // optional string sentence = 3;
-    boolean hasSentence();
-    String getSentence();
+    // optional string answer = 3;
+    boolean hasAnswer();
+    String getAnswer();
   }
   public static final class MultipleChoiceAnswerProto extends
       com.google.protobuf.GeneratedMessage
@@ -1360,15 +1360,84 @@ public final class TriviaQuestionFormatProto {
       return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.internal_static_proto_MultipleChoiceAnswerProto_fieldAccessorTable;
     }
     
+    public enum AnswerType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      TEXT(0, 1),
+      PICTURE(1, 2),
+      ;
+      
+      public static final int TEXT_VALUE = 1;
+      public static final int PICTURE_VALUE = 2;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static AnswerType valueOf(int value) {
+        switch (value) {
+          case 1: return TEXT;
+          case 2: return PICTURE;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<AnswerType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<AnswerType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<AnswerType>() {
+              public AnswerType findValueByNumber(int number) {
+                return AnswerType.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final AnswerType[] VALUES = {
+        TEXT, PICTURE, 
+      };
+      
+      public static AnswerType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private AnswerType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.MultipleChoiceAnswerProto.AnswerType)
+    }
+    
     private int bitField0_;
-    // optional bool isImage = 1;
-    public static final int ISIMAGE_FIELD_NUMBER = 1;
-    private boolean isImage_;
-    public boolean hasIsImage() {
+    // optional .proto.MultipleChoiceAnswerProto.AnswerType type = 1;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType type_;
+    public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public boolean getIsImage() {
-      return isImage_;
+    public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType getType() {
+      return type_;
     }
     
     // optional string id = 2;
@@ -1403,14 +1472,14 @@ public final class TriviaQuestionFormatProto {
       }
     }
     
-    // optional string sentence = 3;
-    public static final int SENTENCE_FIELD_NUMBER = 3;
-    private java.lang.Object sentence_;
-    public boolean hasSentence() {
+    // optional string answer = 3;
+    public static final int ANSWER_FIELD_NUMBER = 3;
+    private java.lang.Object answer_;
+    public boolean hasAnswer() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getSentence() {
-      java.lang.Object ref = sentence_;
+    public String getAnswer() {
+      java.lang.Object ref = answer_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -1418,17 +1487,17 @@ public final class TriviaQuestionFormatProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          sentence_ = s;
+          answer_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getSentenceBytes() {
-      java.lang.Object ref = sentence_;
+    private com.google.protobuf.ByteString getAnswerBytes() {
+      java.lang.Object ref = answer_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        sentence_ = b;
+        answer_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1436,9 +1505,9 @@ public final class TriviaQuestionFormatProto {
     }
     
     private void initFields() {
-      isImage_ = false;
+      type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType.TEXT;
       id_ = "";
-      sentence_ = "";
+      answer_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1453,13 +1522,13 @@ public final class TriviaQuestionFormatProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, isImage_);
+        output.writeEnum(1, type_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getSentenceBytes());
+        output.writeBytes(3, getAnswerBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1472,7 +1541,7 @@ public final class TriviaQuestionFormatProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, isImage_);
+          .computeEnumSize(1, type_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1480,7 +1549,7 @@ public final class TriviaQuestionFormatProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getSentenceBytes());
+          .computeBytesSize(3, getAnswerBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1606,11 +1675,11 @@ public final class TriviaQuestionFormatProto {
       
       public Builder clear() {
         super.clear();
-        isImage_ = false;
+        type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType.TEXT;
         bitField0_ = (bitField0_ & ~0x00000001);
         id_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        sentence_ = "";
+        answer_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -1653,7 +1722,7 @@ public final class TriviaQuestionFormatProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.isImage_ = isImage_;
+        result.type_ = type_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -1661,7 +1730,7 @@ public final class TriviaQuestionFormatProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.sentence_ = sentence_;
+        result.answer_ = answer_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1678,14 +1747,14 @@ public final class TriviaQuestionFormatProto {
       
       public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto other) {
         if (other == com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.getDefaultInstance()) return this;
-        if (other.hasIsImage()) {
-          setIsImage(other.getIsImage());
+        if (other.hasType()) {
+          setType(other.getType());
         }
         if (other.hasId()) {
           setId(other.getId());
         }
-        if (other.hasSentence()) {
-          setSentence(other.getSentence());
+        if (other.hasAnswer()) {
+          setAnswer(other.getAnswer());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1719,8 +1788,14 @@ public final class TriviaQuestionFormatProto {
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              isImage_ = input.readBool();
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType value = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = value;
+              }
               break;
             }
             case 18: {
@@ -1730,7 +1805,7 @@ public final class TriviaQuestionFormatProto {
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              sentence_ = input.readBytes();
+              answer_ = input.readBytes();
               break;
             }
           }
@@ -1739,23 +1814,26 @@ public final class TriviaQuestionFormatProto {
       
       private int bitField0_;
       
-      // optional bool isImage = 1;
-      private boolean isImage_ ;
-      public boolean hasIsImage() {
+      // optional .proto.MultipleChoiceAnswerProto.AnswerType type = 1;
+      private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType.TEXT;
+      public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public boolean getIsImage() {
-        return isImage_;
+      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType getType() {
+        return type_;
       }
-      public Builder setIsImage(boolean value) {
+      public Builder setType(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
         bitField0_ |= 0x00000001;
-        isImage_ = value;
+        type_ = value;
         onChanged();
         return this;
       }
-      public Builder clearIsImage() {
+      public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        isImage_ = false;
+        type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.AnswerType.TEXT;
         onChanged();
         return this;
       }
@@ -1796,39 +1874,39 @@ public final class TriviaQuestionFormatProto {
         onChanged();
       }
       
-      // optional string sentence = 3;
-      private java.lang.Object sentence_ = "";
-      public boolean hasSentence() {
+      // optional string answer = 3;
+      private java.lang.Object answer_ = "";
+      public boolean hasAnswer() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getSentence() {
-        java.lang.Object ref = sentence_;
+      public String getAnswer() {
+        java.lang.Object ref = answer_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          sentence_ = s;
+          answer_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setSentence(String value) {
+      public Builder setAnswer(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        sentence_ = value;
+        answer_ = value;
         onChanged();
         return this;
       }
-      public Builder clearSentence() {
+      public Builder clearAnswer() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        sentence_ = getDefaultInstance().getSentence();
+        answer_ = getDefaultInstance().getAnswer();
         onChanged();
         return this;
       }
-      void setSentence(com.google.protobuf.ByteString value) {
+      void setAnswer(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000004;
-        sentence_ = value;
+        answer_ = value;
         onChanged();
       }
       
@@ -1846,15 +1924,18 @@ public final class TriviaQuestionFormatProto {
   public interface PictureQuestionProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
+    // optional string pictureQuestionId = 4;
+    boolean hasPictureQuestionId();
+    String getPictureQuestionId();
+    
     // repeated string imageNames = 1;
     java.util.List<String> getImageNamesList();
     int getImageNamesCount();
     String getImageNames(int index);
     
-    // repeated string lettersForAnswer = 2;
-    java.util.List<String> getLettersForAnswerList();
-    int getLettersForAnswerCount();
-    String getLettersForAnswer(int index);
+    // optional string answer = 2;
+    boolean hasAnswer();
+    String getAnswer();
     
     // repeated string uselessLetters = 3;
     java.util.List<String> getUselessLettersList();
@@ -1889,6 +1970,39 @@ public final class TriviaQuestionFormatProto {
       return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.internal_static_proto_PictureQuestionProto_fieldAccessorTable;
     }
     
+    private int bitField0_;
+    // optional string pictureQuestionId = 4;
+    public static final int PICTUREQUESTIONID_FIELD_NUMBER = 4;
+    private java.lang.Object pictureQuestionId_;
+    public boolean hasPictureQuestionId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getPictureQuestionId() {
+      java.lang.Object ref = pictureQuestionId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          pictureQuestionId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPictureQuestionIdBytes() {
+      java.lang.Object ref = pictureQuestionId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        pictureQuestionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     // repeated string imageNames = 1;
     public static final int IMAGENAMES_FIELD_NUMBER = 1;
     private com.google.protobuf.LazyStringList imageNames_;
@@ -1903,18 +2017,36 @@ public final class TriviaQuestionFormatProto {
       return imageNames_.get(index);
     }
     
-    // repeated string lettersForAnswer = 2;
-    public static final int LETTERSFORANSWER_FIELD_NUMBER = 2;
-    private com.google.protobuf.LazyStringList lettersForAnswer_;
-    public java.util.List<String>
-        getLettersForAnswerList() {
-      return lettersForAnswer_;
+    // optional string answer = 2;
+    public static final int ANSWER_FIELD_NUMBER = 2;
+    private java.lang.Object answer_;
+    public boolean hasAnswer() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getLettersForAnswerCount() {
-      return lettersForAnswer_.size();
+    public String getAnswer() {
+      java.lang.Object ref = answer_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          answer_ = s;
+        }
+        return s;
+      }
     }
-    public String getLettersForAnswer(int index) {
-      return lettersForAnswer_.get(index);
+    private com.google.protobuf.ByteString getAnswerBytes() {
+      java.lang.Object ref = answer_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        answer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // repeated string uselessLetters = 3;
@@ -1932,8 +2064,9 @@ public final class TriviaQuestionFormatProto {
     }
     
     private void initFields() {
+      pictureQuestionId_ = "";
       imageNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      lettersForAnswer_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      answer_ = "";
       uselessLetters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
@@ -1951,11 +2084,14 @@ public final class TriviaQuestionFormatProto {
       for (int i = 0; i < imageNames_.size(); i++) {
         output.writeBytes(1, imageNames_.getByteString(i));
       }
-      for (int i = 0; i < lettersForAnswer_.size(); i++) {
-        output.writeBytes(2, lettersForAnswer_.getByteString(i));
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getAnswerBytes());
       }
       for (int i = 0; i < uselessLetters_.size(); i++) {
         output.writeBytes(3, uselessLetters_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(4, getPictureQuestionIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1975,14 +2111,9 @@ public final class TriviaQuestionFormatProto {
         size += dataSize;
         size += 1 * getImageNamesList().size();
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < lettersForAnswer_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(lettersForAnswer_.getByteString(i));
-        }
-        size += dataSize;
-        size += 1 * getLettersForAnswerList().size();
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getAnswerBytes());
       }
       {
         int dataSize = 0;
@@ -1992,6 +2123,10 @@ public final class TriviaQuestionFormatProto {
         }
         size += dataSize;
         size += 1 * getUselessLettersList().size();
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getPictureQuestionIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2117,12 +2252,14 @@ public final class TriviaQuestionFormatProto {
       
       public Builder clear() {
         super.clear();
-        imageNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        pictureQuestionId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        lettersForAnswer_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        imageNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
-        uselessLetters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        answer_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
+        uselessLetters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -2160,24 +2297,28 @@ public final class TriviaQuestionFormatProto {
       public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto buildPartial() {
         com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto result = new com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.pictureQuestionId_ = pictureQuestionId_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
           imageNames_ = new com.google.protobuf.UnmodifiableLazyStringList(
               imageNames_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.imageNames_ = imageNames_;
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          lettersForAnswer_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              lettersForAnswer_);
           bitField0_ = (bitField0_ & ~0x00000002);
         }
-        result.lettersForAnswer_ = lettersForAnswer_;
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        result.imageNames_ = imageNames_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.answer_ = answer_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
           uselessLetters_ = new com.google.protobuf.UnmodifiableLazyStringList(
               uselessLetters_);
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.uselessLetters_ = uselessLetters_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -2193,30 +2334,26 @@ public final class TriviaQuestionFormatProto {
       
       public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto other) {
         if (other == com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto.getDefaultInstance()) return this;
+        if (other.hasPictureQuestionId()) {
+          setPictureQuestionId(other.getPictureQuestionId());
+        }
         if (!other.imageNames_.isEmpty()) {
           if (imageNames_.isEmpty()) {
             imageNames_ = other.imageNames_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           } else {
             ensureImageNamesIsMutable();
             imageNames_.addAll(other.imageNames_);
           }
           onChanged();
         }
-        if (!other.lettersForAnswer_.isEmpty()) {
-          if (lettersForAnswer_.isEmpty()) {
-            lettersForAnswer_ = other.lettersForAnswer_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureLettersForAnswerIsMutable();
-            lettersForAnswer_.addAll(other.lettersForAnswer_);
-          }
-          onChanged();
+        if (other.hasAnswer()) {
+          setAnswer(other.getAnswer());
         }
         if (!other.uselessLetters_.isEmpty()) {
           if (uselessLetters_.isEmpty()) {
             uselessLetters_ = other.uselessLetters_;
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureUselessLettersIsMutable();
             uselessLetters_.addAll(other.uselessLetters_);
@@ -2260,13 +2397,18 @@ public final class TriviaQuestionFormatProto {
               break;
             }
             case 18: {
-              ensureLettersForAnswerIsMutable();
-              lettersForAnswer_.add(input.readBytes());
+              bitField0_ |= 0x00000004;
+              answer_ = input.readBytes();
               break;
             }
             case 26: {
               ensureUselessLettersIsMutable();
               uselessLetters_.add(input.readBytes());
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000001;
+              pictureQuestionId_ = input.readBytes();
               break;
             }
           }
@@ -2275,12 +2417,48 @@ public final class TriviaQuestionFormatProto {
       
       private int bitField0_;
       
+      // optional string pictureQuestionId = 4;
+      private java.lang.Object pictureQuestionId_ = "";
+      public boolean hasPictureQuestionId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getPictureQuestionId() {
+        java.lang.Object ref = pictureQuestionId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          pictureQuestionId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPictureQuestionId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        pictureQuestionId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPictureQuestionId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pictureQuestionId_ = getDefaultInstance().getPictureQuestionId();
+        onChanged();
+        return this;
+      }
+      void setPictureQuestionId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        pictureQuestionId_ = value;
+        onChanged();
+      }
+      
       // repeated string imageNames = 1;
       private com.google.protobuf.LazyStringList imageNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureImageNamesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
           imageNames_ = new com.google.protobuf.LazyStringArrayList(imageNames_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
       public java.util.List<String>
@@ -2321,7 +2499,7 @@ public final class TriviaQuestionFormatProto {
       }
       public Builder clearImageNames() {
         imageNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2331,68 +2509,48 @@ public final class TriviaQuestionFormatProto {
         onChanged();
       }
       
-      // repeated string lettersForAnswer = 2;
-      private com.google.protobuf.LazyStringList lettersForAnswer_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureLettersForAnswerIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          lettersForAnswer_ = new com.google.protobuf.LazyStringArrayList(lettersForAnswer_);
-          bitField0_ |= 0x00000002;
-         }
+      // optional string answer = 2;
+      private java.lang.Object answer_ = "";
+      public boolean hasAnswer() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public java.util.List<String>
-          getLettersForAnswerList() {
-        return java.util.Collections.unmodifiableList(lettersForAnswer_);
+      public String getAnswer() {
+        java.lang.Object ref = answer_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          answer_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public int getLettersForAnswerCount() {
-        return lettersForAnswer_.size();
-      }
-      public String getLettersForAnswer(int index) {
-        return lettersForAnswer_.get(index);
-      }
-      public Builder setLettersForAnswer(
-          int index, String value) {
+      public Builder setAnswer(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensureLettersForAnswerIsMutable();
-        lettersForAnswer_.set(index, value);
+  bitField0_ |= 0x00000004;
+        answer_ = value;
         onChanged();
         return this;
       }
-      public Builder addLettersForAnswer(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureLettersForAnswerIsMutable();
-        lettersForAnswer_.add(value);
+      public Builder clearAnswer() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        answer_ = getDefaultInstance().getAnswer();
         onChanged();
         return this;
       }
-      public Builder addAllLettersForAnswer(
-          java.lang.Iterable<String> values) {
-        ensureLettersForAnswerIsMutable();
-        super.addAll(values, lettersForAnswer_);
-        onChanged();
-        return this;
-      }
-      public Builder clearLettersForAnswer() {
-        lettersForAnswer_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
-      void addLettersForAnswer(com.google.protobuf.ByteString value) {
-        ensureLettersForAnswerIsMutable();
-        lettersForAnswer_.add(value);
+      void setAnswer(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        answer_ = value;
         onChanged();
       }
       
       // repeated string uselessLetters = 3;
       private com.google.protobuf.LazyStringList uselessLetters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureUselessLettersIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
           uselessLetters_ = new com.google.protobuf.LazyStringArrayList(uselessLetters_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
          }
       }
       public java.util.List<String>
@@ -2433,7 +2591,7 @@ public final class TriviaQuestionFormatProto {
       }
       public Builder clearUselessLetters() {
         uselessLetters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -2489,13 +2647,16 @@ public final class TriviaQuestionFormatProto {
       "ures\030\002 \001(\0132\033.proto.PictureQuestionProto\"" +
       "t\n\033MultipleChoiceQuestionProto\022\020\n\010questi" +
       "on\030\001 \001(\t\022\020\n\010answerId\030\002 \001(\t\0221\n\007answers\030\003 " +
-      "\003(\0132 .proto.MultipleChoiceAnswerProto\"J\n" +
-      "\031MultipleChoiceAnswerProto\022\017\n\007isImage\030\001 " +
-      "\001(\010\022\n\n\002id\030\002 \001(\t\022\020\n\010sentence\030\003 \001(\t\"\\\n\024Pic" +
-      "tureQuestionProto\022\022\n\nimageNames\030\001 \003(\t\022\030\n",
-      "\020lettersForAnswer\030\002 \003(\t\022\026\n\016uselessLetter" +
-      "s\030\003 \003(\tB=\n com.lvl6.pictures.noneventpro" +
-      "tosB\031TriviaQuestionFormatProto"
+      "\003(\0132 .proto.MultipleChoiceAnswerProto\"\227\001" +
+      "\n\031MultipleChoiceAnswerProto\0229\n\004type\030\001 \001(" +
+      "\0162+.proto.MultipleChoiceAnswerProto.Answ" +
+      "erType\022\n\n\002id\030\002 \001(\t\022\016\n\006answer\030\003 \001(\t\"#\n\nAn",
+      "swerType\022\010\n\004TEXT\020\001\022\013\n\007PICTURE\020\002\"m\n\024Pictu" +
+      "reQuestionProto\022\031\n\021pictureQuestionId\030\004 \001" +
+      "(\t\022\022\n\nimageNames\030\001 \003(\t\022\016\n\006answer\030\002 \001(\t\022\026" +
+      "\n\016uselessLetters\030\003 \003(\tB=\n com.lvl6.pictu" +
+      "res.noneventprotosB\031TriviaQuestionFormat" +
+      "Proto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2523,7 +2684,7 @@ public final class TriviaQuestionFormatProto {
           internal_static_proto_MultipleChoiceAnswerProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_MultipleChoiceAnswerProto_descriptor,
-              new java.lang.String[] { "IsImage", "Id", "Sentence", },
+              new java.lang.String[] { "Type", "Id", "Answer", },
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.class,
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.Builder.class);
           internal_static_proto_PictureQuestionProto_descriptor =
@@ -2531,7 +2692,7 @@ public final class TriviaQuestionFormatProto {
           internal_static_proto_PictureQuestionProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_PictureQuestionProto_descriptor,
-              new java.lang.String[] { "ImageNames", "LettersForAnswer", "UselessLetters", },
+              new java.lang.String[] { "PictureQuestionId", "ImageNames", "Answer", "UselessLetters", },
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto.class,
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto.Builder.class);
           return null;

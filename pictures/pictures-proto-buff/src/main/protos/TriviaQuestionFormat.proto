@@ -10,19 +10,30 @@ message QuestionProto {
 }
 
 message MultipleChoiceQuestionProto {
+	optional string id = 4;
 	optional string question = 1;
 	optional string answerId = 2;
 	repeated MultipleChoiceAnswerProto answers = 3;
 }
 
 message MultipleChoiceAnswerProto {
-	optional bool isImage = 1;
+	optional AnswerType type = 1;
 	optional string id = 2;
-	optional string sentence = 3;
+	optional string answer = 3;
+	
+	enum AnswerType {
+		TEXT = 1;
+		PICTURE = 2;
+	}
 }
 
 message PictureQuestionProto {
+	optional string id = 4;
 	repeated string imageNames = 1;
-	repeated string lettersForAnswer = 2;
+	
+	//could be one word string or multiple worded string
+	optional string answer = 2;
+	
+	//could be set or not
 	repeated string uselessLetters = 3;
 }
