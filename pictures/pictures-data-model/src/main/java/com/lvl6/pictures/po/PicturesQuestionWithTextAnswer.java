@@ -20,11 +20,12 @@ public class PicturesQuestionWithTextAnswer extends QuestionBase {
 	@Size(min=1, max=4)
 	protected Set<String> images; 
 	
-	
+	//space delineated words
 	@NotNull
 	protected String answer;
 
-
+	
+	
 	public Set<String> getImages() {
 		return images;
 	}
