@@ -21,12 +21,12 @@ public class QuestionAnswered extends BasePersistentObject {
 	@Index(name="question_answered_round_number_index")
 	protected int roundNumber;
 
-	
+	//the nth question user saw
 	@NotNull
 	@Index(name="question_answered_question_number_index")
 	protected int questionNumber;
 	
-	
+	//for helping to select questions the user will see next
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "answered_date")
 	@NotNull
