@@ -17,9 +17,9 @@ message MultipleChoiceQuestionProto {
 }
 
 message MultipleChoiceAnswerProto {
-	optional AnswerType type = 1;
 	optional string id = 2;
 	optional string answer = 3;
+	optional AnswerType type = 1;
 	
 	enum AnswerType {
 		TEXT = 1;
@@ -33,7 +33,4 @@ message PictureQuestionProto {
 	
 	//could be one word string or multiple worded string
 	optional string answer = 2;
-	
-	//could be set or not
-	repeated string uselessLetters = 3;
 }
