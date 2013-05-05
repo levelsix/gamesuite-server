@@ -44,4 +44,12 @@ public class MultipleChoiceAnswer extends BasePersistentObject {
 		this.answer = answer;
 	}
 
+	public AnswerType getAnswerType() {
+	  return answerType;
+	}
+
+	public void setAnswerType(AnswerType answerType) {
+	  this.answerType = answerType;
+	}
+
 }
