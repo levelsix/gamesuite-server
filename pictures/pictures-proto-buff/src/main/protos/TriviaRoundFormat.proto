@@ -7,6 +7,7 @@ option java_outer_classname = "TriviaRoundFormatProto";
 
 
 message BasicRoundResultsProto {
+	optional string id = 5;
 	optional int32 numQuestionsSeen = 1;
 	optional int32 numQuestionsAnsweredCorrectly = 2;
 	optional int32 score = 3;
@@ -15,9 +16,16 @@ message BasicRoundResultsProto {
 }
 
 message CompleteRoundResultsProto {
+	optional string id = 6;
 	optional int32 numQuestionsSeen = 1;
 	optional int32 numQuestionsAnsweredCorrectly = 2;
 	optional int32 score = 3;
 	optional int32 roundNumber = 4;
 	repeated QuestionProto questions = 5;
+}
+
+message BasicRoundProto {
+	optional string id = 1;
+	repeated QuestionProto questions = 2;
+	optional int32 roundNumber = 3;
 }

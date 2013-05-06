@@ -16,15 +16,10 @@ public final class TriviaGameFormatProto {
     com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto getGameSoFar();
     com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder getGameSoFarOrBuilder();
     
-    // repeated .proto.QuestionProto myNewRoundQuestions = 2;
-    java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> 
-        getMyNewRoundQuestionsList();
-    com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto getMyNewRoundQuestions(int index);
-    int getMyNewRoundQuestionsCount();
-    java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder> 
-        getMyNewRoundQuestionsOrBuilderList();
-    com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getMyNewRoundQuestionsOrBuilder(
-        int index);
+    // optional .proto.BasicRoundProto myNewRound = 2;
+    boolean hasMyNewRound();
+    com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getMyNewRound();
+    com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder getMyNewRoundOrBuilder();
   }
   public static final class OngoingGameProto extends
       com.google.protobuf.GeneratedMessage
@@ -68,30 +63,22 @@ public final class TriviaGameFormatProto {
       return gameSoFar_;
     }
     
-    // repeated .proto.QuestionProto myNewRoundQuestions = 2;
-    public static final int MYNEWROUNDQUESTIONS_FIELD_NUMBER = 2;
-    private java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> myNewRoundQuestions_;
-    public java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> getMyNewRoundQuestionsList() {
-      return myNewRoundQuestions_;
+    // optional .proto.BasicRoundProto myNewRound = 2;
+    public static final int MYNEWROUND_FIELD_NUMBER = 2;
+    private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto myNewRound_;
+    public boolean hasMyNewRound() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder> 
-        getMyNewRoundQuestionsOrBuilderList() {
-      return myNewRoundQuestions_;
+    public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getMyNewRound() {
+      return myNewRound_;
     }
-    public int getMyNewRoundQuestionsCount() {
-      return myNewRoundQuestions_.size();
-    }
-    public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto getMyNewRoundQuestions(int index) {
-      return myNewRoundQuestions_.get(index);
-    }
-    public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getMyNewRoundQuestionsOrBuilder(
-        int index) {
-      return myNewRoundQuestions_.get(index);
+    public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder getMyNewRoundOrBuilder() {
+      return myNewRound_;
     }
     
     private void initFields() {
       gameSoFar_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.getDefaultInstance();
-      myNewRoundQuestions_ = java.util.Collections.emptyList();
+      myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -108,8 +95,8 @@ public final class TriviaGameFormatProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(1, gameSoFar_);
       }
-      for (int i = 0; i < myNewRoundQuestions_.size(); i++) {
-        output.writeMessage(2, myNewRoundQuestions_.get(i));
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, myNewRound_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -124,9 +111,9 @@ public final class TriviaGameFormatProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, gameSoFar_);
       }
-      for (int i = 0; i < myNewRoundQuestions_.size(); i++) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, myNewRoundQuestions_.get(i));
+          .computeMessageSize(2, myNewRound_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -245,7 +232,7 @@ public final class TriviaGameFormatProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getGameSoFarFieldBuilder();
-          getMyNewRoundQuestionsFieldBuilder();
+          getMyNewRoundFieldBuilder();
         }
       }
       private static Builder create() {
@@ -260,12 +247,12 @@ public final class TriviaGameFormatProto {
           gameSoFarBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (myNewRoundQuestionsBuilder_ == null) {
-          myNewRoundQuestions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+        if (myNewRoundBuilder_ == null) {
+          myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
         } else {
-          myNewRoundQuestionsBuilder_.clear();
+          myNewRoundBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -312,14 +299,13 @@ public final class TriviaGameFormatProto {
         } else {
           result.gameSoFar_ = gameSoFarBuilder_.build();
         }
-        if (myNewRoundQuestionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            myNewRoundQuestions_ = java.util.Collections.unmodifiableList(myNewRoundQuestions_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.myNewRoundQuestions_ = myNewRoundQuestions_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (myNewRoundBuilder_ == null) {
+          result.myNewRound_ = myNewRound_;
         } else {
-          result.myNewRoundQuestions_ = myNewRoundQuestionsBuilder_.build();
+          result.myNewRound_ = myNewRoundBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -340,31 +326,8 @@ public final class TriviaGameFormatProto {
         if (other.hasGameSoFar()) {
           mergeGameSoFar(other.getGameSoFar());
         }
-        if (myNewRoundQuestionsBuilder_ == null) {
-          if (!other.myNewRoundQuestions_.isEmpty()) {
-            if (myNewRoundQuestions_.isEmpty()) {
-              myNewRoundQuestions_ = other.myNewRoundQuestions_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureMyNewRoundQuestionsIsMutable();
-              myNewRoundQuestions_.addAll(other.myNewRoundQuestions_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.myNewRoundQuestions_.isEmpty()) {
-            if (myNewRoundQuestionsBuilder_.isEmpty()) {
-              myNewRoundQuestionsBuilder_.dispose();
-              myNewRoundQuestionsBuilder_ = null;
-              myNewRoundQuestions_ = other.myNewRoundQuestions_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              myNewRoundQuestionsBuilder_ = 
-                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getMyNewRoundQuestionsFieldBuilder() : null;
-            } else {
-              myNewRoundQuestionsBuilder_.addAllMessages(other.myNewRoundQuestions_);
-            }
-          }
+        if (other.hasMyNewRound()) {
+          mergeMyNewRound(other.getMyNewRound());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -407,9 +370,12 @@ public final class TriviaGameFormatProto {
               break;
             }
             case 18: {
-              com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.newBuilder();
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.newBuilder();
+              if (hasMyNewRound()) {
+                subBuilder.mergeFrom(getMyNewRound());
+              }
               input.readMessage(subBuilder, extensionRegistry);
-              addMyNewRoundQuestions(subBuilder.buildPartial());
+              setMyNewRound(subBuilder.buildPartial());
               break;
             }
           }
@@ -508,190 +474,94 @@ public final class TriviaGameFormatProto {
         return gameSoFarBuilder_;
       }
       
-      // repeated .proto.QuestionProto myNewRoundQuestions = 2;
-      private java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> myNewRoundQuestions_ =
-        java.util.Collections.emptyList();
-      private void ensureMyNewRoundQuestionsIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          myNewRoundQuestions_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto>(myNewRoundQuestions_);
-          bitField0_ |= 0x00000002;
-         }
+      // optional .proto.BasicRoundProto myNewRound = 2;
+      private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder> myNewRoundBuilder_;
+      public boolean hasMyNewRound() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      
-      private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder> myNewRoundQuestionsBuilder_;
-      
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> getMyNewRoundQuestionsList() {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(myNewRoundQuestions_);
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getMyNewRound() {
+        if (myNewRoundBuilder_ == null) {
+          return myNewRound_;
         } else {
-          return myNewRoundQuestionsBuilder_.getMessageList();
+          return myNewRoundBuilder_.getMessage();
         }
       }
-      public int getMyNewRoundQuestionsCount() {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          return myNewRoundQuestions_.size();
-        } else {
-          return myNewRoundQuestionsBuilder_.getCount();
-        }
-      }
-      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto getMyNewRoundQuestions(int index) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          return myNewRoundQuestions_.get(index);
-        } else {
-          return myNewRoundQuestionsBuilder_.getMessage(index);
-        }
-      }
-      public Builder setMyNewRoundQuestions(
-          int index, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto value) {
-        if (myNewRoundQuestionsBuilder_ == null) {
+      public Builder setMyNewRound(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto value) {
+        if (myNewRoundBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.set(index, value);
+          myNewRound_ = value;
           onChanged();
         } else {
-          myNewRoundQuestionsBuilder_.setMessage(index, value);
+          myNewRoundBuilder_.setMessage(value);
         }
+        bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder setMyNewRoundQuestions(
-          int index, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder builderForValue) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.set(index, builderForValue.build());
+      public Builder setMyNewRound(
+          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder builderForValue) {
+        if (myNewRoundBuilder_ == null) {
+          myNewRound_ = builderForValue.build();
           onChanged();
         } else {
-          myNewRoundQuestionsBuilder_.setMessage(index, builderForValue.build());
+          myNewRoundBuilder_.setMessage(builderForValue.build());
         }
+        bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder addMyNewRoundQuestions(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto value) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
+      public Builder mergeMyNewRound(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto value) {
+        if (myNewRoundBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              myNewRound_ != com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance()) {
+            myNewRound_ =
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.newBuilder(myNewRound_).mergeFrom(value).buildPartial();
+          } else {
+            myNewRound_ = value;
           }
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.add(value);
           onChanged();
         } else {
-          myNewRoundQuestionsBuilder_.addMessage(value);
+          myNewRoundBuilder_.mergeFrom(value);
         }
+        bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder addMyNewRoundQuestions(
-          int index, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto value) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.add(index, value);
+      public Builder clearMyNewRound() {
+        if (myNewRoundBuilder_ == null) {
+          myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
           onChanged();
         } else {
-          myNewRoundQuestionsBuilder_.addMessage(index, value);
+          myNewRoundBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      public Builder addMyNewRoundQuestions(
-          com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder builderForValue) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.add(builderForValue.build());
-          onChanged();
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder getMyNewRoundBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getMyNewRoundFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder getMyNewRoundOrBuilder() {
+        if (myNewRoundBuilder_ != null) {
+          return myNewRoundBuilder_.getMessageOrBuilder();
         } else {
-          myNewRoundQuestionsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addMyNewRoundQuestions(
-          int index, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder builderForValue) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          myNewRoundQuestionsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addAllMyNewRoundQuestions(
-          java.lang.Iterable<? extends com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> values) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          ensureMyNewRoundQuestionsIsMutable();
-          super.addAll(values, myNewRoundQuestions_);
-          onChanged();
-        } else {
-          myNewRoundQuestionsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      public Builder clearMyNewRoundQuestions() {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          myNewRoundQuestions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          myNewRoundQuestionsBuilder_.clear();
-        }
-        return this;
-      }
-      public Builder removeMyNewRoundQuestions(int index) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          ensureMyNewRoundQuestionsIsMutable();
-          myNewRoundQuestions_.remove(index);
-          onChanged();
-        } else {
-          myNewRoundQuestionsBuilder_.remove(index);
-        }
-        return this;
-      }
-      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder getMyNewRoundQuestionsBuilder(
-          int index) {
-        return getMyNewRoundQuestionsFieldBuilder().getBuilder(index);
-      }
-      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getMyNewRoundQuestionsOrBuilder(
-          int index) {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          return myNewRoundQuestions_.get(index);  } else {
-          return myNewRoundQuestionsBuilder_.getMessageOrBuilder(index);
+          return myNewRound_;
         }
       }
-      public java.util.List<? extends com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder> 
-           getMyNewRoundQuestionsOrBuilderList() {
-        if (myNewRoundQuestionsBuilder_ != null) {
-          return myNewRoundQuestionsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(myNewRoundQuestions_);
-        }
-      }
-      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder addMyNewRoundQuestionsBuilder() {
-        return getMyNewRoundQuestionsFieldBuilder().addBuilder(
-            com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.getDefaultInstance());
-      }
-      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder addMyNewRoundQuestionsBuilder(
-          int index) {
-        return getMyNewRoundQuestionsFieldBuilder().addBuilder(
-            index, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.getDefaultInstance());
-      }
-      public java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder> 
-           getMyNewRoundQuestionsBuilderList() {
-        return getMyNewRoundQuestionsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder> 
-          getMyNewRoundQuestionsFieldBuilder() {
-        if (myNewRoundQuestionsBuilder_ == null) {
-          myNewRoundQuestionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder>(
-                  myNewRoundQuestions_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder> 
+          getMyNewRoundFieldBuilder() {
+        if (myNewRoundBuilder_ == null) {
+          myNewRoundBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder>(
+                  myNewRound_,
                   getParentForChildren(),
                   isClean());
-          myNewRoundQuestions_ = null;
+          myNewRound_ = null;
         }
-        return myNewRoundQuestionsBuilder_;
+        return myNewRoundBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.OngoingGameProto)
@@ -2089,18 +1959,18 @@ public final class TriviaGameFormatProto {
     java.lang.String[] descriptorData = {
       "\n\026TriviaGameFormat.proto\022\005proto\032\027TriviaR" +
       "oundFormat.proto\032\032TriviaQuestionFormat.p" +
-      "roto\032\nUser.proto\"q\n\020OngoingGameProto\022*\n\t" +
+      "roto\032\nUser.proto\"j\n\020OngoingGameProto\022*\n\t" +
       "gameSoFar\030\001 \001(\0132\027.proto.GameResultsProto" +
-      "\0221\n\023myNewRoundQuestions\030\002 \003(\0132\024.proto.Qu" +
-      "estionProto\"\213\001\n\020GameResultsProto\022\016\n\006game" +
-      "Id\030\003 \001(\t\0222\n\013firstPlayer\030\001 \001(\0132\035.proto.Pl" +
-      "ayerGameResultsProto\0223\n\014secondPlayer\030\002 \001" +
-      "(\0132\035.proto.PlayerGameResultsProto\"x\n\026Pla" +
-      "yerGameResultsProto\022\"\n\003bup\030\001 \001(\0132\025.proto",
-      ".BasicUserProto\022:\n\023previousRoundsStats\030\002" +
-      " \003(\0132\035.proto.BasicRoundResultsProtoB9\n c" +
-      "om.lvl6.pictures.noneventprotosB\025TriviaG" +
-      "ameFormatProto"
+      "\022*\n\nmyNewRound\030\002 \001(\0132\026.proto.BasicRoundP" +
+      "roto\"\213\001\n\020GameResultsProto\022\016\n\006gameId\030\003 \001(" +
+      "\t\0222\n\013firstPlayer\030\001 \001(\0132\035.proto.PlayerGam" +
+      "eResultsProto\0223\n\014secondPlayer\030\002 \001(\0132\035.pr" +
+      "oto.PlayerGameResultsProto\"x\n\026PlayerGame" +
+      "ResultsProto\022\"\n\003bup\030\001 \001(\0132\025.proto.BasicU",
+      "serProto\022:\n\023previousRoundsStats\030\002 \003(\0132\035." +
+      "proto.BasicRoundResultsProtoB9\n com.lvl6" +
+      ".pictures.noneventprotosB\025TriviaGameForm" +
+      "atProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2112,7 +1982,7 @@ public final class TriviaGameFormatProto {
           internal_static_proto_OngoingGameProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_OngoingGameProto_descriptor,
-              new java.lang.String[] { "GameSoFar", "MyNewRoundQuestions", },
+              new java.lang.String[] { "GameSoFar", "MyNewRound", },
               com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.class,
               com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto.Builder.class);
           internal_static_proto_GameResultsProto_descriptor =

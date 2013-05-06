@@ -12,7 +12,7 @@ message OngoingGameProto {
 	
 	//if this is set, this implies user receiving it
 	//is 'secondPlayer' in GameResultsProto 'gameSoFar'
-	repeated QuestionProto myNewRoundQuestions = 2;
+	optional BasicRoundProto myNewRound = 2;
 }
 
 message GameResultsProto {
