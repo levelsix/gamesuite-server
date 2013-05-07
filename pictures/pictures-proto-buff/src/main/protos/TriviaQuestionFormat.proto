@@ -29,6 +29,8 @@ message MultipleChoiceAnswerProto {
 
 message PictureQuestionProto {
 	optional string id = 4;
+	
+	//at the moment, either one image or 4 images
 	repeated string imageNames = 1;
 	
 	//could be one word string or multiple worded string
