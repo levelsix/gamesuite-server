@@ -29,6 +29,7 @@ message CreateAccountViaEmailRequestProto {
 message CreateAccountViaNoCredentialsRequestProto {
 	optional string udid = 1;
 	optional string deviceId = 2;
+	//client will no longer have to send the name, keep it here in case
 	optional string nameStrangersSee = 3; 
 }
 

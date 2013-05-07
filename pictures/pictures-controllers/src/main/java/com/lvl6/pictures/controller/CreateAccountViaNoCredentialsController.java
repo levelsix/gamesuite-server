@@ -89,12 +89,13 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
 
   private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaNoCredentialsRequestProto request,
       String nameStrangersSee, String udid) {
-    if (!(request.hasNameStrangersSee()) || nameStrangersSee.isEmpty()) {
-      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
-      log.error("unexpected error: no nameStrangersSee provided. nameStrangersSee:" + nameStrangersSee +
-          ", udid:" + udid);
-      return false;
-    }
+    //not requiring client to generate a name
+//    if (!(request.hasNameStrangersSee()) || nameStrangersSee.isEmpty()) {
+//      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
+//      log.error("unexpected error: no nameStrangersSee provided. nameStrangersSee:" + nameStrangersSee +
+//          ", udid:" + udid);
+//      return false;
+//    }
     if (!authorizedDeviceService.isValidUdid(udid)) {
       responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_UDID);
       log.error("unexpected error: invalid udid provided. udid=" + udid);
@@ -106,6 +107,10 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   
   private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee,
       String udid, String deviceId) {
+    //didn't require client to send over a name
+    if (null == nameStrangersSee || nameStrangersSee.isEmpty()) {
+      nameStrangersSee = userSignupService.generateRandomName(nameStrangersSee);
+    }
     
     String facebookIdNull = null;
     String emailNull = null;
