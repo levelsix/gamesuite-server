@@ -26,7 +26,7 @@ public class QuestionAnswered extends BasePersistentObject {
 	@Index(name="question_answered_question_number_index")
 	protected int questionNumber;
 	
-	//for helping to select questions the user will see next
+	//for helping to select questions the user will see next (questions user hasn't seen recently)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "answered_date")
 	@NotNull
@@ -40,8 +40,8 @@ public class QuestionAnswered extends BasePersistentObject {
 	
 	
 	@NotNull
-	@Index(name="question_answered_question_id_index")
-	protected String questionId;
+	@Index(name="question_answered_question_index")
+	protected QuestionBase question;
 	
 	
 	@NotNull
@@ -88,13 +88,13 @@ public class QuestionAnswered extends BasePersistentObject {
 	}
 
 
-	public String getQuestionId() {
-		return questionId;
+	public QuestionBase getQuestion() {
+		return question;
 	}
 
 
-	public void setQuestionId(String questionId) {
-		this.questionId = questionId;
+	public void setQuestion(QuestionBase question) {
+		this.question = question;
 	}
 
 

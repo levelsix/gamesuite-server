@@ -1,6 +1,7 @@
 package com.lvl6.pictures.po;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class GameHistory extends BasePersistentObject {
   @Temporal(TemporalType.TIMESTAMP)
   protected Date startTime = new Date();
   
-  //if not null then game is completed
+  //if null then game is not completed
   @Temporal(TemporalType.TIMESTAMP)
   protected Date endTime;
   
@@ -38,6 +39,18 @@ public class GameHistory extends BasePersistentObject {
   protected Set<RoundHistory> roundHistory;
 
   
+  
+  public Set<RoundHistory> getRoundHistoryForUser(String userId) {
+    Set<RoundHistory> rhSetForUser = new HashSet<RoundHistory>();
+    
+    for (RoundHistory rh : roundHistory) {
+      if (rh.getUserId().equals(userId)) {
+        rhSetForUser.add(rh);
+      }
+    }
+    
+    return rhSetForUser;
+  }
   
   public String getPlayerOneId() {
     return playerOneId;
