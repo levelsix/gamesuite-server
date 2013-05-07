@@ -55,7 +55,7 @@ public class TestPicturesJpa {
 	}
 	
 	@Transactional
-  @Rollback(false)
+  @Rollback(true)
 	@Test
 	public void testMultipleChoice() {
 	  MultipleChoiceQuestion mcq = new MultipleChoiceQuestion();
