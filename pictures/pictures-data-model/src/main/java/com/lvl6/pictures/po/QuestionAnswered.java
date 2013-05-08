@@ -41,7 +41,11 @@ public class QuestionAnswered extends BasePersistentObject {
 	
 	@NotNull
 	@Index(name="question_answered_question_index")
-	protected QuestionBase question;
+	protected String question;
+	
+	
+	@NotNull
+	protected String questionType;
 	
 	
 	@NotNull
@@ -88,12 +92,12 @@ public class QuestionAnswered extends BasePersistentObject {
 	}
 
 
-	public QuestionBase getQuestion() {
+	public String getQuestion() {
 		return question;
 	}
 
 
-	public void setQuestion(QuestionBase question) {
+	public void setQuestion(String question) {
 		this.question = question;
 	}
 
