@@ -4,7 +4,7 @@ package com.lvl6.pictures.po;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -13,8 +13,9 @@ import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
-@MappedSuperclass
-public class QuestionBase extends BasePersistentObject {
+//@MappedSuperclass
+@Entity
+abstract public class QuestionBase extends BasePersistentObject {
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -40,7 +41,4 @@ public class QuestionBase extends BasePersistentObject {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	
-	
-	
 }

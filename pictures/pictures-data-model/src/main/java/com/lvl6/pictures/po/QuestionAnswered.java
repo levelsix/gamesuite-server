@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -40,8 +41,9 @@ public class QuestionAnswered extends BasePersistentObject {
 	
 	
 	@NotNull
-	@Index(name="question_answered_question_index")
-	protected String question;
+	//@Index(name="question_answered_question_index")
+	@ManyToOne
+	protected QuestionBase question;
 	
 	
 	@NotNull
@@ -92,12 +94,12 @@ public class QuestionAnswered extends BasePersistentObject {
 	}
 
 
-	public String getQuestion() {
+	public QuestionBase getQuestion() {
 		return question;
 	}
 
 
-	public void setQuestion(String question) {
+	public void setQuestion(QuestionBase question) {
 		this.question = question;
 	}
 
