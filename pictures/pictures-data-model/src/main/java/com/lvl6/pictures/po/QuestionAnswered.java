@@ -46,7 +46,8 @@ public class QuestionAnswered extends BasePersistentObject {
 	protected QuestionBase question;
 	
 	
-	@NotNull
+	//use question.getClass().getName() as the value for type
+	//@NotNull
 	protected String questionType;
 	
 	

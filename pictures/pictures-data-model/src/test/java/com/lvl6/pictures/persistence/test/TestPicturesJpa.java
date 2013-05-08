@@ -1,6 +1,11 @@
 package com.lvl6.pictures.persistence.test;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -16,10 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
 import com.lvl6.pictures.dao.PictureQuestionWithTextAnswerDao;
+import com.lvl6.pictures.dao.QuestionAnsweredDao;
 import com.lvl6.pictures.po.AnswerType;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.PicturesQuestionWithTextAnswer;
+import com.lvl6.pictures.po.QuestionAnswered;
 
 
 
@@ -36,55 +43,53 @@ public class TestPicturesJpa {
 	@Resource 
 	protected MultipleChoiceQuestionDao multipleChoiceQuestionDao;
 	
-	@Transactional
-  @Rollback(true)
-	@Test
-	public void testSetup() {
-		log.info("Testing Pictures JPA");
-		PicturesQuestionWithTextAnswer q = new PicturesQuestionWithTextAnswer();
-		q.setAnswer("The Answer");
-		Set<String> images = new HashSet<String>();
-		images.add("image1");
-		images.add("image2");
-		images.add("image3");
-		images.add("image4");
-		q.setImages(images);
-		q.setCreatedBy("JUnit");
-		q = getPictureDao().save(q);
-		log.info("Created Picture question: {}", q.getId());
+	@Resource
+	protected QuestionAnsweredDao qaDao;
+
+	
+
+  public PicturesQuestionWithTextAnswer createPicturesQuestionWithTextAnswer() {
+	  PicturesQuestionWithTextAnswer q = new PicturesQuestionWithTextAnswer();
+    q.setAnswer("The Answer");
+    Set<String> images = new HashSet<String>();
+    images.add("image1");
+    images.add("image2");
+    images.add("image3");
+    images.add("image4");
+    q.setImages(images);
+    q.setCreatedBy("JUnit");
+    
+    return q;
 	}
 	
-	@Transactional
-  @Rollback(true)
-	@Test
-	public void testMultipleChoice() {
+	public MultipleChoiceQuestion createMultipleChoiceQuestion(AnswerType at) {
 	  MultipleChoiceQuestion mcq = new MultipleChoiceQuestion();
-	  String question = "Which drink is made from the leaves of a plant?";
-	  mcq.setQuestion(question);
-	  mcq.setCreatedBy("JUnit");
-	  
-	  MultipleChoiceAnswer mcaA = new MultipleChoiceAnswer();
+    String question = "Which drink is made from the leaves of a plant?";
+    mcq.setQuestion(question);
+    mcq.setCreatedBy("JUnit");
+    
+    MultipleChoiceAnswer mcaA = new MultipleChoiceAnswer();
     String answerA = "milk";
     mcaA.setAnswer(answerA);
-    mcaA.setAnswerType(AnswerType.TEXT);
+    mcaA.setAnswerType(at);
     mcaA.setCorrect(false);
     
     MultipleChoiceAnswer mcaB = new MultipleChoiceAnswer();
     String answerB = "orange juice";
     mcaB.setAnswer(answerB);
-    mcaB.setAnswerType(AnswerType.TEXT);
+    mcaB.setAnswerType(at);
     mcaB.setCorrect(false);
     
     MultipleChoiceAnswer mcaC = new MultipleChoiceAnswer();
     String answerC = "coffee";
     mcaC.setAnswer(answerC);
-    mcaC.setAnswerType(AnswerType.TEXT);
+    mcaC.setAnswerType(at);
     mcaC.setCorrect(false);
     
     MultipleChoiceAnswer mcaD = new MultipleChoiceAnswer();
     String answerD = "tea";
     mcaD.setAnswer(answerD);
-    mcaD.setAnswerType(AnswerType.TEXT);
+    mcaD.setAnswerType(at);
     mcaD.setCorrect(true);
     
     
@@ -93,16 +98,49 @@ public class TestPicturesJpa {
     answers.add(mcaB);
     answers.add(mcaC);
     answers.add(mcaD);
-	  mcq.setAnswers(answers);
-	  
-	  
-	  getMultipleChoiceDao().save(mcq);
+    mcq.setAnswers(answers);
+    
+    return mcq;
+	}
+	
+	@Transactional
+  @Rollback(false)
+	@Test
+	public void testSetup() {
+		log.info("Testing Pictures JPA");
+		PicturesQuestionWithTextAnswer q = createPicturesQuestionWithTextAnswer();
+		q = getPictureDao().save(q);
+		log.info("Created Picture question: {}", q.getId());
 	}
 	
 //	@Transactional
-//  @Rollback(true)
+//  @Rollback(false)
+//	@Test
+//	public void testMultipleChoice() {
+//	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
+//	  MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
+//	  List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
+//	  mcqList.add(mcq);
+//	  mcqList.add(mcqImages);
+//	  getMultipleChoiceDao().save(mcqList);
+//	  List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
+//	  
+//	  assertTrue("multiple choice questions. Expected: " + mcqList
+//	      + ". Actually: "+ inDb, 2 == inDb.size());
+//	  
+//	  MultipleChoiceQuestion mcq1 = inDb.get(0);
+//	  MultipleChoiceQuestion mcq2 = inDb.get(1);
+//	  
+//	  assertTrue("Expected: not null. Actually: " + mcq1, null != mcq1.getId() && !(mcq1.getId().isEmpty()));
+//	  assertTrue("Expected: not null. Actually: " + mcq2, null != mcq2.getId() && !(mcq2.getId().isEmpty()));
+//	}
+//	
+//	@Transactional
+//  @Rollback(false)
 //  @Test
 //  public void testQuestionsAnswered() {
+//	  PicturesQuestionWithTextAnswer q = createPicturesQuestionWithTextAnswer();
+//	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
 //	  
 //	  int roundNumber = 1;
 //	  int questionNumber = 1;
@@ -114,12 +152,27 @@ public class TestPicturesJpa {
 //    qa.setRoundNumber(roundNumber);
 //    qa.setQuestionNumber(questionNumber);
 //    qa.setAnsweredDate(answeredDate);
+//    qa.setAnsweredByUser(answeredByUser);
+//    qa.setQuestion(q);
 //    
 //    QuestionAnswered qa2 = new QuestionAnswered();
 //    qa2.setRoundNumber(roundNumber);
 //    qa2.setQuestionNumber(questionNumber2);
 //    qa2.setAnsweredDate(answeredDate);
 //    qa2.setAnsweredByUser(answeredByUser);
+//    qa2.setQuestion(mcq);
+//    
+//    List<QuestionAnswered> qaList = new ArrayList<QuestionAnswered>();
+//    qaList.add(qa);
+//    qaList.add(qa2);
+//    
+//    getQaDao().save(qaList);
+//    
+//    List<QuestionAnswered> inDb = getQaDao().findAll();
+//    
+//    assertTrue("Expected: qaList. Actually: " + inDb, 2 == inDb.size());
+//    assertTrue("Expected: not null. Actually: " + qa, null != qa.getId() && !(qa.getId().isEmpty()));
+//    assertTrue("Expected: not null. Actually: " + mcq, null != mcq.getId() && !(mcq.getId().isEmpty()));
 //  }
 //
 //	@Transactional
@@ -130,9 +183,13 @@ public class TestPicturesJpa {
 //  }
 //	
 //	@Transactional
-//  @Rollback(true)
+//  @Rollback(false)
 //	@Test
 //	public void testGameHistory() {
+//	  int numQuestionsSeen = 4;
+//	  int numQuestionsAnsweredCorrectly = 0;
+//	  int score = 0;
+//	  int roundNumber = 1;
 //	  
 //	}
 	
@@ -142,23 +199,26 @@ public class TestPicturesJpa {
 		return pictureDao;
 	}
 
-
-
 	public void setPictureDao(PictureQuestionWithTextAnswerDao pictureDao) {
 		this.pictureDao = pictureDao;
 	}
-
 
 
 	public MultipleChoiceQuestionDao getMultipleChoiceDao() {
 		return multipleChoiceQuestionDao;
 	}
 
-
-
 	public void setMultipleChoiceDao(MultipleChoiceQuestionDao multipleChoiceDao) {
 		this.multipleChoiceQuestionDao = multipleChoiceDao;
 	}
 
+  
+  public QuestionAnsweredDao getQaDao() {
+    return qaDao;
+  }
+
+  public void setQaDao(QuestionAnsweredDao qaDao) {
+    this.qaDao = qaDao;
+  }	
 
 }
