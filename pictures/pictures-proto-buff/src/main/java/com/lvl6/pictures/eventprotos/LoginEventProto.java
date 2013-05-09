@@ -802,6 +802,11 @@ public final class LoginEventProto {
         getFacebookFriendsWithAccountsOrBuilderList();
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getFacebookFriendsWithAccountsOrBuilder(
         int index);
+    
+    // repeated string pictureNames = 8;
+    java.util.List<String> getPictureNamesList();
+    int getPictureNamesCount();
+    String getPictureNames(int index);
   }
   public static final class LoginResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -1050,6 +1055,20 @@ public final class LoginEventProto {
       return facebookFriendsWithAccounts_.get(index);
     }
     
+    // repeated string pictureNames = 8;
+    public static final int PICTURENAMES_FIELD_NUMBER = 8;
+    private com.google.protobuf.LazyStringList pictureNames_;
+    public java.util.List<String>
+        getPictureNamesList() {
+      return pictureNames_;
+    }
+    public int getPictureNamesCount() {
+      return pictureNames_.size();
+    }
+    public String getPictureNames(int index) {
+      return pictureNames_.get(index);
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       completedGames_ = java.util.Collections.emptyList();
@@ -1058,6 +1077,7 @@ public final class LoginEventProto {
       newQuestions_ = java.util.Collections.emptyList();
       status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
       facebookFriendsWithAccounts_ = java.util.Collections.emptyList();
+      pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1091,6 +1111,9 @@ public final class LoginEventProto {
       }
       for (int i = 0; i < facebookFriendsWithAccounts_.size(); i++) {
         output.writeMessage(7, facebookFriendsWithAccounts_.get(i));
+      }
+      for (int i = 0; i < pictureNames_.size(); i++) {
+        output.writeBytes(8, pictureNames_.getByteString(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -1128,6 +1151,15 @@ public final class LoginEventProto {
       for (int i = 0; i < facebookFriendsWithAccounts_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, facebookFriendsWithAccounts_.get(i));
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < pictureNames_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(pictureNames_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getPictureNamesList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1297,6 +1329,8 @@ public final class LoginEventProto {
         } else {
           facebookFriendsWithAccountsBuilder_.clear();
         }
+        pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
       
@@ -1392,6 +1426,12 @@ public final class LoginEventProto {
         } else {
           result.facebookFriendsWithAccounts_ = facebookFriendsWithAccountsBuilder_.build();
         }
+        if (((bitField0_ & 0x00000080) == 0x00000080)) {
+          pictureNames_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              pictureNames_);
+          bitField0_ = (bitField0_ & ~0x00000080);
+        }
+        result.pictureNames_ = pictureNames_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1544,6 +1584,16 @@ public final class LoginEventProto {
             }
           }
         }
+        if (!other.pictureNames_.isEmpty()) {
+          if (pictureNames_.isEmpty()) {
+            pictureNames_ = other.pictureNames_;
+            bitField0_ = (bitField0_ & ~0x00000080);
+          } else {
+            ensurePictureNamesIsMutable();
+            pictureNames_.addAll(other.pictureNames_);
+          }
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1623,6 +1673,11 @@ public final class LoginEventProto {
               com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addFacebookFriendsWithAccounts(subBuilder.buildPartial());
+              break;
+            }
+            case 66: {
+              ensurePictureNamesIsMutable();
+              pictureNames_.add(input.readBytes());
               break;
             }
           }
@@ -2675,6 +2730,62 @@ public final class LoginEventProto {
         return facebookFriendsWithAccountsBuilder_;
       }
       
+      // repeated string pictureNames = 8;
+      private com.google.protobuf.LazyStringList pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensurePictureNamesIsMutable() {
+        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+          pictureNames_ = new com.google.protobuf.LazyStringArrayList(pictureNames_);
+          bitField0_ |= 0x00000080;
+         }
+      }
+      public java.util.List<String>
+          getPictureNamesList() {
+        return java.util.Collections.unmodifiableList(pictureNames_);
+      }
+      public int getPictureNamesCount() {
+        return pictureNames_.size();
+      }
+      public String getPictureNames(int index) {
+        return pictureNames_.get(index);
+      }
+      public Builder setPictureNames(
+          int index, String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePictureNamesIsMutable();
+        pictureNames_.set(index, value);
+        onChanged();
+        return this;
+      }
+      public Builder addPictureNames(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePictureNamesIsMutable();
+        pictureNames_.add(value);
+        onChanged();
+        return this;
+      }
+      public Builder addAllPictureNames(
+          java.lang.Iterable<String> values) {
+        ensurePictureNamesIsMutable();
+        super.addAll(values, pictureNames_);
+        onChanged();
+        return this;
+      }
+      public Builder clearPictureNames() {
+        pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        onChanged();
+        return this;
+      }
+      void addPictureNames(com.google.protobuf.ByteString value) {
+        ensurePictureNamesIsMutable();
+        pictureNames_.add(value);
+        onChanged();
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto)
     }
     
@@ -2713,7 +2824,7 @@ public final class LoginEventProto {
       "roto.LoginRequestProto.LoginType\022\031\n\021init" +
       "ializeAccount\030\004 \001(\010\"R\n\tLoginType\022\017\n\013LOGI" +
       "N_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL_PASSWOR" +
-      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\352\004\n\022LoginRespons" +
+      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\200\005\n\022LoginRespons" +
       "eProto\022+\n\trecipient\030\001 \001(\0132\030.proto.Comple",
       "teUserProto\022/\n\016completedGames\030\002 \003(\0132\027.pr" +
       "oto.GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.p" +
@@ -2722,15 +2833,15 @@ public final class LoginEventProto {
       "s\030\005 \003(\0132\024.proto.QuestionProto\022=\n\006status\030" +
       "\006 \001(\0162-.proto.LoginResponseProto.LoginRe" +
       "sponseStatus\022:\n\033facebookFriendsWithAccou" +
-      "nts\030\007 \003(\0132\025.proto.BasicUserProto\"\371\001\n\023Log" +
-      "inResponseStatus\022\027\n\023SUCCESS_LOGIN_TOKEN\020" +
-      "\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SUCCESS_EM",
-      "AIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_CREDENTIALS" +
-      "\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023INVALID_F" +
-      "ACEBOOK_ID\020\006\022\032\n\026INVALID_EMAIL_PASSWORD\020\007" +
-      "\022\032\n\026INVALID_NO_CREDENTIALS\020\010\022\016\n\nFAIL_OTH" +
-      "ER\020\tB0\n\035com.lvl6.pictures.eventprotosB\017L" +
-      "oginEventProto"
+      "nts\030\007 \003(\0132\025.proto.BasicUserProto\022\024\n\014pict" +
+      "ureNames\030\010 \003(\t\"\371\001\n\023LoginResponseStatus\022\027" +
+      "\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023SUCCESS_FACEB",
+      "OOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_PASSWORD\020\003\022\032\n\026" +
+      "SUCCESS_NO_CREDENTIALS\020\004\022\027\n\023INVALID_LOGI" +
+      "N_TOKEN\020\005\022\027\n\023INVALID_FACEBOOK_ID\020\006\022\032\n\026IN" +
+      "VALID_EMAIL_PASSWORD\020\007\022\032\n\026INVALID_NO_CRE" +
+      "DENTIALS\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com.lvl6.p" +
+      "ictures.eventprotosB\017LoginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2750,7 +2861,7 @@ public final class LoginEventProto {
           internal_static_proto_LoginResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoginResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", "FacebookFriendsWithAccounts", },
+              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", "FacebookFriendsWithAccounts", "PictureNames", },
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.class,
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder.class);
           return null;

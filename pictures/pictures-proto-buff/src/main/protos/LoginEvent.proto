@@ -46,6 +46,8 @@ message LoginResponseProto {
 	//friends who are playing this game
 	repeated BasicUserProto facebookFriendsWithAccounts = 7;
 	
+	repeated string pictureNames = 8;
+	
 	enum LoginResponseStatus {
 		SUCCESS_LOGIN_TOKEN = 1;
 		SUCCESS_FACEBOOK_ID = 2;
