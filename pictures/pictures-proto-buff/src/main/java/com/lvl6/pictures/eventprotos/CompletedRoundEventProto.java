@@ -685,6 +685,10 @@ public final class CompletedRoundEventProto {
     boolean hasResults();
     com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto getResults();
     com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProtoOrBuilder getResultsOrBuilder();
+    
+    // optional .proto.CompletedRoundResponseProto.CompletedRoundResponseStatus status = 4;
+    boolean hasStatus();
+    com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus getStatus();
   }
   public static final class CompletedRoundResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -712,6 +716,87 @@ public final class CompletedRoundEventProto {
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.lvl6.pictures.eventprotos.CompletedRoundEventProto.internal_static_proto_CompletedRoundResponseProto_fieldAccessorTable;
+    }
+    
+    public enum CompletedRoundResponseStatus
+        implements com.google.protobuf.ProtocolMessageEnum {
+      SUCCESS(0, 1),
+      FAIL_GAME_DOES_NOT_EXIST(1, 2),
+      FAIL_GAME_ALREADY_COMPLETED(2, 3),
+      FAIL_INCORRECT_SCORE(3, 4),
+      FAIL_OTHER(4, 5),
+      FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME(5, 6),
+      ;
+      
+      public static final int SUCCESS_VALUE = 1;
+      public static final int FAIL_GAME_DOES_NOT_EXIST_VALUE = 2;
+      public static final int FAIL_GAME_ALREADY_COMPLETED_VALUE = 3;
+      public static final int FAIL_INCORRECT_SCORE_VALUE = 4;
+      public static final int FAIL_OTHER_VALUE = 5;
+      public static final int FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME_VALUE = 6;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static CompletedRoundResponseStatus valueOf(int value) {
+        switch (value) {
+          case 1: return SUCCESS;
+          case 2: return FAIL_GAME_DOES_NOT_EXIST;
+          case 3: return FAIL_GAME_ALREADY_COMPLETED;
+          case 4: return FAIL_INCORRECT_SCORE;
+          case 5: return FAIL_OTHER;
+          case 6: return FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<CompletedRoundResponseStatus>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<CompletedRoundResponseStatus>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<CompletedRoundResponseStatus>() {
+              public CompletedRoundResponseStatus findValueByNumber(int number) {
+                return CompletedRoundResponseStatus.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final CompletedRoundResponseStatus[] VALUES = {
+        SUCCESS, FAIL_GAME_DOES_NOT_EXIST, FAIL_GAME_ALREADY_COMPLETED, FAIL_INCORRECT_SCORE, FAIL_OTHER, FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME, 
+      };
+      
+      public static CompletedRoundResponseStatus valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private CompletedRoundResponseStatus(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.CompletedRoundResponseProto.CompletedRoundResponseStatus)
     }
     
     private int bitField0_;
@@ -773,10 +858,21 @@ public final class CompletedRoundEventProto {
       return results_;
     }
     
+    // optional .proto.CompletedRoundResponseProto.CompletedRoundResponseStatus status = 4;
+    public static final int STATUS_FIELD_NUMBER = 4;
+    private com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus getStatus() {
+      return status_;
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       gameId_ = "";
       results_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto.getDefaultInstance();
+      status_ = com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -799,6 +895,9 @@ public final class CompletedRoundEventProto {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(3, results_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeEnum(4, status_.getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -819,6 +918,10 @@ public final class CompletedRoundEventProto {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, results_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, status_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -960,6 +1063,8 @@ public final class CompletedRoundEventProto {
           resultsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
+        status_ = com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -1018,6 +1123,10 @@ public final class CompletedRoundEventProto {
         } else {
           result.results_ = resultsBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1042,6 +1151,9 @@ public final class CompletedRoundEventProto {
         }
         if (other.hasResults()) {
           mergeResults(other.getResults());
+        }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1095,6 +1207,17 @@ public final class CompletedRoundEventProto {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setResults(subBuilder.buildPartial());
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus value = com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
+                status_ = value;
+              }
               break;
             }
           }
@@ -1317,6 +1440,30 @@ public final class CompletedRoundEventProto {
           results_ = null;
         }
         return resultsBuilder_;
+      }
+      
+      // optional .proto.CompletedRoundResponseProto.CompletedRoundResponseStatus status = 4;
+      private com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus status_ = com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus.SUCCESS;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus getStatus() {
+        return status_;
+      }
+      public Builder setStatus(com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000008;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        status_ = com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.CompletedRoundResponseStatus.SUCCESS;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.CompletedRoundResponseProto)
@@ -2212,18 +2359,25 @@ public final class CompletedRoundEventProto {
       "letedRoundRequestProto\022%\n\006sender\030\001 \001(\0132\025" +
       ".proto.BasicUserProto\022\016\n\006gameId\030\002 \001(\t\0221\n" +
       "\007results\030\003 \001(\0132 .proto.CompleteRoundResu" +
-      "ltsProto\"\207\001\n\033CompletedRoundResponseProto" +
+      "ltsProto\"\233\003\n\033CompletedRoundResponseProto" +
       "\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUserPro" +
       "to\022\016\n\006gameId\030\002 \001(\t\022.\n\007results\030\003 \001(\0132\035.pr" +
-      "oto.BasicRoundResultsProto\"\204\002\n$OtherUser" +
-      "CompletedRoundResponseProto\022(\n\trecipient",
-      "\030\001 \001(\0132\025.proto.BasicUserProto\0224\n\025userWho" +
-      "CompletedRound\030\002 \001(\0132\025.proto.BasicUserPr" +
-      "oto\022>\n\027roundUserCompletedBasic\030\003 \001(\0132\035.p" +
-      "roto.BasicRoundResultsProto\022<\n\022roundUser" +
-      "Completed\030\004 \001(\0132 .proto.CompleteRoundRes" +
-      "ultsProtoB9\n\035com.lvl6.pictures.eventprot" +
-      "osB\030CompletedRoundEventProto"
+      "oto.BasicRoundResultsProto\022O\n\006status\030\004 \001" +
+      "(\0162?.proto.CompletedRoundResponseProto.C",
+      "ompletedRoundResponseStatus\"\300\001\n\034Complete" +
+      "dRoundResponseStatus\022\013\n\007SUCCESS\020\001\022\034\n\030FAI" +
+      "L_GAME_DOES_NOT_EXIST\020\002\022\037\n\033FAIL_GAME_ALR" +
+      "EADY_COMPLETED\020\003\022\030\n\024FAIL_INCORRECT_SCORE" +
+      "\020\004\022\016\n\nFAIL_OTHER\020\005\022*\n&FAIL_CLIENT_TOO_AP" +
+      "ART_FROM_SERVER_TIME\020\006\"\204\002\n$OtherUserComp" +
+      "letedRoundResponseProto\022(\n\trecipient\030\001 \001" +
+      "(\0132\025.proto.BasicUserProto\0224\n\025userWhoComp" +
+      "letedRound\030\002 \001(\0132\025.proto.BasicUserProto\022" +
+      ">\n\027roundUserCompletedBasic\030\003 \001(\0132\035.proto",
+      ".BasicRoundResultsProto\022<\n\022roundUserComp" +
+      "leted\030\004 \001(\0132 .proto.CompleteRoundResults" +
+      "ProtoB9\n\035com.lvl6.pictures.eventprotosB\030" +
+      "CompletedRoundEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2243,7 +2397,7 @@ public final class CompletedRoundEventProto {
           internal_static_proto_CompletedRoundResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CompletedRoundResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "GameId", "Results", },
+              new java.lang.String[] { "Recipient", "GameId", "Results", "Status", },
               com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.class,
               com.lvl6.pictures.eventprotos.CompletedRoundEventProto.CompletedRoundResponseProto.Builder.class);
           internal_static_proto_OtherUserCompletedRoundResponseProto_descriptor =

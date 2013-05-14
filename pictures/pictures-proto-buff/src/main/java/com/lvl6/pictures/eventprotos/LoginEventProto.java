@@ -807,6 +807,11 @@ public final class LoginEventProto {
     java.util.List<String> getPictureNamesList();
     int getPictureNamesCount();
     String getPictureNames(int index);
+    
+    // optional .proto.LoginResponseProto.LoginConstants loginConstants = 9;
+    boolean hasLoginConstants();
+    com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants getLoginConstants();
+    com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder getLoginConstantsOrBuilder();
   }
   public static final class LoginResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -924,6 +929,572 @@ public final class LoginEventProto {
       }
       
       // @@protoc_insertion_point(enum_scope:proto.LoginResponseProto.LoginResponseStatus)
+    }
+    
+    public interface LoginConstantsOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+      
+      // optional int32 defaultInitialTokens = 1;
+      boolean hasDefaultInitialTokens();
+      int getDefaultInitialTokens();
+      
+      // optional int32 defaultInitialRubies = 2;
+      boolean hasDefaultInitialRubies();
+      int getDefaultInitialRubies();
+      
+      // optional int32 defaultRoundsPerGame = 3;
+      boolean hasDefaultRoundsPerGame();
+      int getDefaultRoundsPerGame();
+      
+      // optional int32 defaultMinutesPerRound = 4;
+      boolean hasDefaultMinutesPerRound();
+      int getDefaultMinutesPerRound();
+      
+      // optional int32 defaultQuestionsPerRound = 5;
+      boolean hasDefaultQuestionsPerRound();
+      int getDefaultQuestionsPerRound();
+    }
+    public static final class LoginConstants extends
+        com.google.protobuf.GeneratedMessage
+        implements LoginConstantsOrBuilder {
+      // Use LoginConstants.newBuilder() to construct.
+      private LoginConstants(Builder builder) {
+        super(builder);
+      }
+      private LoginConstants(boolean noInit) {}
+      
+      private static final LoginConstants defaultInstance;
+      public static LoginConstants getDefaultInstance() {
+        return defaultInstance;
+      }
+      
+      public LoginConstants getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+      
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable;
+      }
+      
+      private int bitField0_;
+      // optional int32 defaultInitialTokens = 1;
+      public static final int DEFAULTINITIALTOKENS_FIELD_NUMBER = 1;
+      private int defaultInitialTokens_;
+      public boolean hasDefaultInitialTokens() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getDefaultInitialTokens() {
+        return defaultInitialTokens_;
+      }
+      
+      // optional int32 defaultInitialRubies = 2;
+      public static final int DEFAULTINITIALRUBIES_FIELD_NUMBER = 2;
+      private int defaultInitialRubies_;
+      public boolean hasDefaultInitialRubies() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public int getDefaultInitialRubies() {
+        return defaultInitialRubies_;
+      }
+      
+      // optional int32 defaultRoundsPerGame = 3;
+      public static final int DEFAULTROUNDSPERGAME_FIELD_NUMBER = 3;
+      private int defaultRoundsPerGame_;
+      public boolean hasDefaultRoundsPerGame() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getDefaultRoundsPerGame() {
+        return defaultRoundsPerGame_;
+      }
+      
+      // optional int32 defaultMinutesPerRound = 4;
+      public static final int DEFAULTMINUTESPERROUND_FIELD_NUMBER = 4;
+      private int defaultMinutesPerRound_;
+      public boolean hasDefaultMinutesPerRound() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getDefaultMinutesPerRound() {
+        return defaultMinutesPerRound_;
+      }
+      
+      // optional int32 defaultQuestionsPerRound = 5;
+      public static final int DEFAULTQUESTIONSPERROUND_FIELD_NUMBER = 5;
+      private int defaultQuestionsPerRound_;
+      public boolean hasDefaultQuestionsPerRound() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public int getDefaultQuestionsPerRound() {
+        return defaultQuestionsPerRound_;
+      }
+      
+      private void initFields() {
+        defaultInitialTokens_ = 0;
+        defaultInitialRubies_ = 0;
+        defaultRoundsPerGame_ = 0;
+        defaultMinutesPerRound_ = 0;
+        defaultQuestionsPerRound_ = 0;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+        
+        memoizedIsInitialized = 1;
+        return true;
+      }
+      
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeInt32(1, defaultInitialTokens_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeInt32(2, defaultInitialRubies_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          output.writeInt32(3, defaultRoundsPerGame_);
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          output.writeInt32(4, defaultMinutesPerRound_);
+        }
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          output.writeInt32(5, defaultQuestionsPerRound_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+      
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+      
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, defaultInitialTokens_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(2, defaultInitialRubies_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(3, defaultRoundsPerGame_);
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(4, defaultMinutesPerRound_);
+        }
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(5, defaultQuestionsPerRound_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+      
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+      
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        Builder builder = newBuilder();
+        if (builder.mergeDelimitedFrom(input)) {
+          return builder.buildParsed();
+        } else {
+          return null;
+        }
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Builder builder = newBuilder();
+        if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+          return builder.buildParsed();
+        } else {
+          return null;
+        }
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+      
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_descriptor;
+        }
+        
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable;
+        }
+        
+        // Construct using com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+        
+        private Builder(BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+        
+        public Builder clear() {
+          super.clear();
+          defaultInitialTokens_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          defaultInitialRubies_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          defaultRoundsPerGame_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000004);
+          defaultMinutesPerRound_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000008);
+          defaultQuestionsPerRound_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000010);
+          return this;
+        }
+        
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+        
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDescriptor();
+        }
+        
+        public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants getDefaultInstanceForType() {
+          return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance();
+        }
+        
+        public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants build() {
+          com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+        
+        private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants buildParsed()
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(
+              result).asInvalidProtocolBufferException();
+          }
+          return result;
+        }
+        
+        public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants buildPartial() {
+          com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants result = new com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.defaultInitialTokens_ = defaultInitialTokens_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.defaultInitialRubies_ = defaultInitialRubies_;
+          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+            to_bitField0_ |= 0x00000004;
+          }
+          result.defaultRoundsPerGame_ = defaultRoundsPerGame_;
+          if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+            to_bitField0_ |= 0x00000008;
+          }
+          result.defaultMinutesPerRound_ = defaultMinutesPerRound_;
+          if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+            to_bitField0_ |= 0x00000010;
+          }
+          result.defaultQuestionsPerRound_ = defaultQuestionsPerRound_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+        
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants) {
+            return mergeFrom((com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+        
+        public Builder mergeFrom(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants other) {
+          if (other == com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance()) return this;
+          if (other.hasDefaultInitialTokens()) {
+            setDefaultInitialTokens(other.getDefaultInitialTokens());
+          }
+          if (other.hasDefaultInitialRubies()) {
+            setDefaultInitialRubies(other.getDefaultInitialRubies());
+          }
+          if (other.hasDefaultRoundsPerGame()) {
+            setDefaultRoundsPerGame(other.getDefaultRoundsPerGame());
+          }
+          if (other.hasDefaultMinutesPerRound()) {
+            setDefaultMinutesPerRound(other.getDefaultMinutesPerRound());
+          }
+          if (other.hasDefaultQuestionsPerRound()) {
+            setDefaultQuestionsPerRound(other.getDefaultQuestionsPerRound());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+        
+        public final boolean isInitialized() {
+          return true;
+        }
+        
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder(
+              this.getUnknownFields());
+          while (true) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  this.setUnknownFields(unknownFields.build());
+                  onChanged();
+                  return this;
+                }
+                break;
+              }
+              case 8: {
+                bitField0_ |= 0x00000001;
+                defaultInitialTokens_ = input.readInt32();
+                break;
+              }
+              case 16: {
+                bitField0_ |= 0x00000002;
+                defaultInitialRubies_ = input.readInt32();
+                break;
+              }
+              case 24: {
+                bitField0_ |= 0x00000004;
+                defaultRoundsPerGame_ = input.readInt32();
+                break;
+              }
+              case 32: {
+                bitField0_ |= 0x00000008;
+                defaultMinutesPerRound_ = input.readInt32();
+                break;
+              }
+              case 40: {
+                bitField0_ |= 0x00000010;
+                defaultQuestionsPerRound_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        }
+        
+        private int bitField0_;
+        
+        // optional int32 defaultInitialTokens = 1;
+        private int defaultInitialTokens_ ;
+        public boolean hasDefaultInitialTokens() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        public int getDefaultInitialTokens() {
+          return defaultInitialTokens_;
+        }
+        public Builder setDefaultInitialTokens(int value) {
+          bitField0_ |= 0x00000001;
+          defaultInitialTokens_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearDefaultInitialTokens() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          defaultInitialTokens_ = 0;
+          onChanged();
+          return this;
+        }
+        
+        // optional int32 defaultInitialRubies = 2;
+        private int defaultInitialRubies_ ;
+        public boolean hasDefaultInitialRubies() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        public int getDefaultInitialRubies() {
+          return defaultInitialRubies_;
+        }
+        public Builder setDefaultInitialRubies(int value) {
+          bitField0_ |= 0x00000002;
+          defaultInitialRubies_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearDefaultInitialRubies() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          defaultInitialRubies_ = 0;
+          onChanged();
+          return this;
+        }
+        
+        // optional int32 defaultRoundsPerGame = 3;
+        private int defaultRoundsPerGame_ ;
+        public boolean hasDefaultRoundsPerGame() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        public int getDefaultRoundsPerGame() {
+          return defaultRoundsPerGame_;
+        }
+        public Builder setDefaultRoundsPerGame(int value) {
+          bitField0_ |= 0x00000004;
+          defaultRoundsPerGame_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearDefaultRoundsPerGame() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          defaultRoundsPerGame_ = 0;
+          onChanged();
+          return this;
+        }
+        
+        // optional int32 defaultMinutesPerRound = 4;
+        private int defaultMinutesPerRound_ ;
+        public boolean hasDefaultMinutesPerRound() {
+          return ((bitField0_ & 0x00000008) == 0x00000008);
+        }
+        public int getDefaultMinutesPerRound() {
+          return defaultMinutesPerRound_;
+        }
+        public Builder setDefaultMinutesPerRound(int value) {
+          bitField0_ |= 0x00000008;
+          defaultMinutesPerRound_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearDefaultMinutesPerRound() {
+          bitField0_ = (bitField0_ & ~0x00000008);
+          defaultMinutesPerRound_ = 0;
+          onChanged();
+          return this;
+        }
+        
+        // optional int32 defaultQuestionsPerRound = 5;
+        private int defaultQuestionsPerRound_ ;
+        public boolean hasDefaultQuestionsPerRound() {
+          return ((bitField0_ & 0x00000010) == 0x00000010);
+        }
+        public int getDefaultQuestionsPerRound() {
+          return defaultQuestionsPerRound_;
+        }
+        public Builder setDefaultQuestionsPerRound(int value) {
+          bitField0_ |= 0x00000010;
+          defaultQuestionsPerRound_ = value;
+          onChanged();
+          return this;
+        }
+        public Builder clearDefaultQuestionsPerRound() {
+          bitField0_ = (bitField0_ & ~0x00000010);
+          defaultQuestionsPerRound_ = 0;
+          onChanged();
+          return this;
+        }
+        
+        // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto.LoginConstants)
+      }
+      
+      static {
+        defaultInstance = new LoginConstants(true);
+        defaultInstance.initFields();
+      }
+      
+      // @@protoc_insertion_point(class_scope:proto.LoginResponseProto.LoginConstants)
     }
     
     private int bitField0_;
@@ -1069,6 +1640,19 @@ public final class LoginEventProto {
       return pictureNames_.get(index);
     }
     
+    // optional .proto.LoginResponseProto.LoginConstants loginConstants = 9;
+    public static final int LOGINCONSTANTS_FIELD_NUMBER = 9;
+    private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants loginConstants_;
+    public boolean hasLoginConstants() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants getLoginConstants() {
+      return loginConstants_;
+    }
+    public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder getLoginConstantsOrBuilder() {
+      return loginConstants_;
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
       completedGames_ = java.util.Collections.emptyList();
@@ -1078,6 +1662,7 @@ public final class LoginEventProto {
       status_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus.SUCCESS_LOGIN_TOKEN;
       facebookFriendsWithAccounts_ = java.util.Collections.emptyList();
       pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      loginConstants_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1114,6 +1699,9 @@ public final class LoginEventProto {
       }
       for (int i = 0; i < pictureNames_.size(); i++) {
         output.writeBytes(8, pictureNames_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeMessage(9, loginConstants_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1160,6 +1748,10 @@ public final class LoginEventProto {
         }
         size += dataSize;
         size += 1 * getPictureNamesList().size();
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, loginConstants_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1283,6 +1875,7 @@ public final class LoginEventProto {
           getNotMyTurnFieldBuilder();
           getNewQuestionsFieldBuilder();
           getFacebookFriendsWithAccountsFieldBuilder();
+          getLoginConstantsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1331,6 +1924,12 @@ public final class LoginEventProto {
         }
         pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000080);
+        if (loginConstantsBuilder_ == null) {
+          loginConstants_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance();
+        } else {
+          loginConstantsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -1432,6 +2031,14 @@ public final class LoginEventProto {
           bitField0_ = (bitField0_ & ~0x00000080);
         }
         result.pictureNames_ = pictureNames_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        if (loginConstantsBuilder_ == null) {
+          result.loginConstants_ = loginConstants_;
+        } else {
+          result.loginConstants_ = loginConstantsBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1594,6 +2201,9 @@ public final class LoginEventProto {
           }
           onChanged();
         }
+        if (other.hasLoginConstants()) {
+          mergeLoginConstants(other.getLoginConstants());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1678,6 +2288,15 @@ public final class LoginEventProto {
             case 66: {
               ensurePictureNamesIsMutable();
               pictureNames_.add(input.readBytes());
+              break;
+            }
+            case 74: {
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder subBuilder = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.newBuilder();
+              if (hasLoginConstants()) {
+                subBuilder.mergeFrom(getLoginConstants());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setLoginConstants(subBuilder.buildPartial());
               break;
             }
           }
@@ -2786,6 +3405,96 @@ public final class LoginEventProto {
         onChanged();
       }
       
+      // optional .proto.LoginResponseProto.LoginConstants loginConstants = 9;
+      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants loginConstants_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder> loginConstantsBuilder_;
+      public boolean hasLoginConstants() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants getLoginConstants() {
+        if (loginConstantsBuilder_ == null) {
+          return loginConstants_;
+        } else {
+          return loginConstantsBuilder_.getMessage();
+        }
+      }
+      public Builder setLoginConstants(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants value) {
+        if (loginConstantsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          loginConstants_ = value;
+          onChanged();
+        } else {
+          loginConstantsBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      public Builder setLoginConstants(
+          com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder builderForValue) {
+        if (loginConstantsBuilder_ == null) {
+          loginConstants_ = builderForValue.build();
+          onChanged();
+        } else {
+          loginConstantsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      public Builder mergeLoginConstants(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants value) {
+        if (loginConstantsBuilder_ == null) {
+          if (((bitField0_ & 0x00000100) == 0x00000100) &&
+              loginConstants_ != com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance()) {
+            loginConstants_ =
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.newBuilder(loginConstants_).mergeFrom(value).buildPartial();
+          } else {
+            loginConstants_ = value;
+          }
+          onChanged();
+        } else {
+          loginConstantsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      public Builder clearLoginConstants() {
+        if (loginConstantsBuilder_ == null) {
+          loginConstants_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.getDefaultInstance();
+          onChanged();
+        } else {
+          loginConstantsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000100);
+        return this;
+      }
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder getLoginConstantsBuilder() {
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return getLoginConstantsFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder getLoginConstantsOrBuilder() {
+        if (loginConstantsBuilder_ != null) {
+          return loginConstantsBuilder_.getMessageOrBuilder();
+        } else {
+          return loginConstants_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder> 
+          getLoginConstantsFieldBuilder() {
+        if (loginConstantsBuilder_ == null) {
+          loginConstantsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstantsOrBuilder>(
+                  loginConstants_,
+                  getParentForChildren(),
+                  isClean());
+          loginConstants_ = null;
+        }
+        return loginConstantsBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto)
     }
     
@@ -2807,6 +3516,11 @@ public final class LoginEventProto {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_LoginResponseProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_LoginResponseProto_LoginConstants_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2824,7 +3538,7 @@ public final class LoginEventProto {
       "roto.LoginRequestProto.LoginType\022\031\n\021init" +
       "ializeAccount\030\004 \001(\010\"R\n\tLoginType\022\017\n\013LOGI" +
       "N_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL_PASSWOR" +
-      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\200\005\n\022LoginRespons" +
+      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\361\006\n\022LoginRespons" +
       "eProto\022+\n\trecipient\030\001 \001(\0132\030.proto.Comple",
       "teUserProto\022/\n\016completedGames\030\002 \003(\0132\027.pr" +
       "oto.GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.p" +
@@ -2834,14 +3548,20 @@ public final class LoginEventProto {
       "\006 \001(\0162-.proto.LoginResponseProto.LoginRe" +
       "sponseStatus\022:\n\033facebookFriendsWithAccou" +
       "nts\030\007 \003(\0132\025.proto.BasicUserProto\022\024\n\014pict" +
-      "ureNames\030\010 \003(\t\"\371\001\n\023LoginResponseStatus\022\027" +
-      "\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023SUCCESS_FACEB",
-      "OOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_PASSWORD\020\003\022\032\n\026" +
-      "SUCCESS_NO_CREDENTIALS\020\004\022\027\n\023INVALID_LOGI" +
-      "N_TOKEN\020\005\022\027\n\023INVALID_FACEBOOK_ID\020\006\022\032\n\026IN" +
-      "VALID_EMAIL_PASSWORD\020\007\022\032\n\026INVALID_NO_CRE" +
-      "DENTIALS\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com.lvl6.p" +
-      "ictures.eventprotosB\017LoginEventProto"
+      "ureNames\030\010 \003(\t\022@\n\016loginConstants\030\t \001(\0132(" +
+      ".proto.LoginResponseProto.LoginConstants",
+      "\032\254\001\n\016LoginConstants\022\034\n\024defaultInitialTok" +
+      "ens\030\001 \001(\005\022\034\n\024defaultInitialRubies\030\002 \001(\005\022" +
+      "\034\n\024defaultRoundsPerGame\030\003 \001(\005\022\036\n\026default" +
+      "MinutesPerRound\030\004 \001(\005\022 \n\030defaultQuestion" +
+      "sPerRound\030\005 \001(\005\"\371\001\n\023LoginResponseStatus\022" +
+      "\027\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023SUCCESS_FACE" +
+      "BOOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_PASSWORD\020\003\022\032\n" +
+      "\026SUCCESS_NO_CREDENTIALS\020\004\022\027\n\023INVALID_LOG" +
+      "IN_TOKEN\020\005\022\027\n\023INVALID_FACEBOOK_ID\020\006\022\032\n\026I" +
+      "NVALID_EMAIL_PASSWORD\020\007\022\032\n\026INVALID_NO_CR",
+      "EDENTIALS\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com.lvl6." +
+      "pictures.eventprotosB\017LoginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2861,9 +3581,17 @@ public final class LoginEventProto {
           internal_static_proto_LoginResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoginResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", "FacebookFriendsWithAccounts", "PictureNames", },
+              new java.lang.String[] { "Recipient", "CompletedGames", "MyTurn", "NotMyTurn", "NewQuestions", "Status", "FacebookFriendsWithAccounts", "PictureNames", "LoginConstants", },
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.class,
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder.class);
+          internal_static_proto_LoginResponseProto_LoginConstants_descriptor =
+            internal_static_proto_LoginResponseProto_descriptor.getNestedTypes().get(0);
+          internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_LoginResponseProto_LoginConstants_descriptor,
+              new java.lang.String[] { "DefaultInitialTokens", "DefaultInitialRubies", "DefaultRoundsPerGame", "DefaultMinutesPerRound", "DefaultQuestionsPerRound", },
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.class,
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder.class);
           return null;
         }
       };

@@ -22,6 +22,8 @@ message CompleteRoundResultsProto {
 	optional int32 score = 3;
 	optional int32 roundNumber = 4;
 	repeated QuestionProto questions = 5;
+	optional int64 startTime = 7;
+	optional int64 endTime = 8;
 }
 
 message BasicRoundProto {
