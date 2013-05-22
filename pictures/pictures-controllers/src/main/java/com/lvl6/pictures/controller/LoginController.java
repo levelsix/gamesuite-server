@@ -1,6 +1,7 @@
 package com.lvl6.pictures.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,7 @@ import com.lvl6.gamesuite.common.services.user.LoginService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 import com.lvl6.gamesuite.user.utils.EmailUtil;
 import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.pictures.controller.utils.RandomNumberUtils;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
@@ -35,6 +37,7 @@ import com.lvl6.pictures.events.request.LoginRequestEvent;
 import com.lvl6.pictures.events.response.LoginResponseEvent;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto;
+import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
@@ -62,9 +65,11 @@ public class LoginController extends EventController {
   @Autowired
   protected GameHistoryService gameHistoryService;
 
-
   @Autowired
   protected CreateNoneventProtoUtils noneventProtoUtils;
+
+  @Autowired
+  protected RandomNumberUtils randNumUtils;
 
 
   @Override
@@ -107,7 +112,7 @@ public class LoginController extends EventController {
     
     if (successful) {
       //need to set in responseBuilder the collection of picture names
-      Set<String> allImageNames = new HashSet<String>();
+      Set<String> allPictureNames = new HashSet<String>();
       
       //set the recipient
       responseBuilder.setRecipient(cupb);
@@ -118,13 +123,13 @@ public class LoginController extends EventController {
 
       // GET ALL THE GAMES THAT ARE THE USER'S TURN
       // GET ALL THE GAMES THAT ARE THE OPPONENT'S TURN
-      setOngoingGames(responseBuilder, userId, allImageNames);
+      setOngoingGames(responseBuilder, userId, allPictureNames);
       
       // CONSTRUCT THE NEW TRIVIA QUESTIONS
-      setNewQuestions(responseBuilder, userId);
+      setNewQuestions(responseBuilder, userId, allPictureNames);
       
       
-      responseBuilder.addAllPictureNames(allImageNames);
+      responseBuilder.addAllPictureNames(allPictureNames);
       
       if (LoginType.LOGIN_TOKEN == lt) {
         responseBuilder.setStatus(LoginResponseStatus.SUCCESS_LOGIN_TOKEN);
@@ -264,7 +269,7 @@ public class LoginController extends EventController {
     String nameNull = null;
     String emailNull = null;
     String udidNull = null;
-    List<User> userList = userSignupService.checkForExistingUser(facebookId, nameNull,
+    List<User> userList = getUserSignupService().checkForExistingUser(facebookId, nameNull,
         emailNull, udidNull);
     if (null != userList && userList.size() == 1) {
       //could check if some values matched...but what if user deleted app
@@ -291,7 +296,7 @@ public class LoginController extends EventController {
     String facebookIdNull = null;
     String udidNull = null;
     
-    List<User> userList = userSignupService.checkForExistingUser(facebookIdNull, nameStrangersSee,
+    List<User> userList = getUserSignupService().checkForExistingUser(facebookIdNull, nameStrangersSee,
         email, udidNull);
     if (null == userList || userList.size() != 1) {
       //don't want to print out password
@@ -320,7 +325,7 @@ public class LoginController extends EventController {
     String emailNull = null;
     String udidNull = null;
     
-    List<User> userList = userSignupService.checkForExistingUser(facebookIdNull, nameStrangersSee,
+    List<User> userList = getUserSignupService().checkForExistingUser(facebookIdNull, nameStrangersSee,
         emailNull, udidNull);
     if (null == userList || userList.size() != 1) {
       responseBuilder.setStatus(LoginResponseStatus.FAIL_OTHER);
@@ -357,12 +362,12 @@ public class LoginController extends EventController {
   private AuthorizedDevice updateUserLogin(BasicUserProto sender, String userId, DateTime now) {
     BasicAuthorizedDeviceProto badp = sender.getBadp();
     
-    User inDb = userSignupService.getUserDao().findById(userId);
+    User inDb = getUserSignupService().getUserDao().findById(userId);
     
     String udid = badp.getUdid();
     String deviceId = badp.getDeviceId();
     
-    return loginService.updateUserLastLogin(inDb, now, udid, deviceId);
+    return getLoginService().updateUserLastLogin(inDb, now, udid, deviceId);
   }
   
   private void kickOffOtherDevicesSharingAccount(String userId, AuthorizedDevice ad) {
@@ -384,11 +389,11 @@ public class LoginController extends EventController {
   private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
     List<BasicUserProto> bupList = new ArrayList<BasicUserProto>();
     
-    List<User> uList = loginService.getFacebookUsers(facebookFriendIds);
+    List<User> uList = getLoginService().getFacebookUsers(facebookFriendIds);
     //construct the protos for the users
     for (User u : uList) {
       AuthorizedDevice adNull = null;
-      BasicUserProto bup = noneventProtoUtils.createBasicUserProto(u, adNull);
+      BasicUserProto bup = getNoneventProtoUtils().createBasicUserProto(u, adNull);
       bupList.add(bup);
     }
     
@@ -396,23 +401,27 @@ public class LoginController extends EventController {
   }
   
   private void setCompletedGames(Builder responseBuilder, String userId) {
+    //arguments to getGameHistoryForUser(...)
     boolean nonCompletedGamesOnly = false;
     boolean completedGamesOnly = true;
-    
     DateTime now = new DateTime();
     int days = PicturesPoConstants.GAME_HISTORY__DEFAULT_COMPLETED_GAMES_MIN_DAYS_DISPLAYED;
     Date completedAfterThisTime = now.minusDays(days).toDate();
-    
-    List<String> specificGameHistoryIds = null;
+    List<String> specificGameHistoryIdsNull = null;
     
     List<GameHistory> completedGames =
-        gameHistoryService.getGameHistoryForUser(userId, nonCompletedGamesOnly,
-            completedGamesOnly, completedAfterThisTime, specificGameHistoryIds);
+        getGameHistoryService().getGameHistoryForUser(userId, nonCompletedGamesOnly,
+            completedGamesOnly, completedAfterThisTime, specificGameHistoryIdsNull);
+    
+    //if user has no recent completed don't do anything
+    if (null == completedGames || completedGames.isEmpty()) {
+      return;
+    }
     
     Map<String, BasicUserProto> idsToBups = getNoneventProtoUtils()
         .createIdsToBasicUserProtos(completedGames);
     
-    List<GameResultsProto> ghpList = noneventProtoUtils.createGameResultsProtos(
+    List<GameResultsProto> ghpList = getNoneventProtoUtils().createGameResultsProtos(
         completedGames, idsToBups);
     
     responseBuilder.addAllCompletedGames(ghpList);
@@ -420,7 +429,7 @@ public class LoginController extends EventController {
   
   //allPicNames is filled up and returned
   private void setOngoingGames(Builder responseBuilder, String userId,
-      Set<String> allPicNames) {
+      Set<String> allPictureNames) {
     //send to client
     List<GameHistory> myTurn = new ArrayList<GameHistory>();
     List<GameHistory> notMyTurn = new ArrayList<GameHistory>();
@@ -428,17 +437,17 @@ public class LoginController extends EventController {
     List<GameHistory> pendingGamesNotMyTurn = new ArrayList<GameHistory>();
     Set<String> allUserIds = new HashSet<String>();
     
-    gameHistoryService.groupOngoingGamesForUser(userId, myTurn, notMyTurn,
+    getGameHistoryService().groupOngoingGamesForUser(userId, myTurn, notMyTurn,
         pendingGamesMyTurn, pendingGamesNotMyTurn, allUserIds);
     
     //need to set in responseBuilder the collection of picture names
-    Set<String> picNames = gameHistoryService.getPictureNamesFromOngoingGames(
+    Set<String> picNames = getGameHistoryService().getPictureNamesFromOngoingGames(
         userId, myTurn, pendingGamesMyTurn);
-    allPicNames.addAll(picNames);
+    allPictureNames.addAll(picNames);
     
     //create the ongoing game protos
-    Map<String, BasicUserProto> idsToBups = noneventProtoUtils.createIdsToBasicUserProtos(
-        allUserIds);
+    Map<String, BasicUserProto> idsToBups = 
+        getNoneventProtoUtils().createIdsToBasicUserProtos(allUserIds);
     List<GameHistory> allMyTurn = new ArrayList<GameHistory>();
     List<GameHistory> allNotMyTurn = new ArrayList<GameHistory>();
     allMyTurn.addAll(myTurn);
@@ -447,29 +456,57 @@ public class LoginController extends EventController {
     allNotMyTurn.addAll(pendingGamesNotMyTurn);
     
     boolean isUserTurn = true;
-    List<OngoingGameProto> myTurnProtos = noneventProtoUtils.createOngoingGameProtosForUser(
+    List<OngoingGameProto> myTurnProtos = getNoneventProtoUtils().createOngoingGameProtosForUser(
         allMyTurn, idsToBups, userId, isUserTurn);
     
     isUserTurn = false;
-    List<OngoingGameProto> notMyTurnProtos = noneventProtoUtils.createOngoingGameProtosForUser(
+    List<OngoingGameProto> notMyTurnProtos = getNoneventProtoUtils().createOngoingGameProtosForUser(
         allNotMyTurn, idsToBups, userId, isUserTurn);
         
-    responseBuilder.addAllMyTurn(myTurnProtos);
-    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
+    //initially user does not have any games
+    if (null != myTurnProtos && !myTurnProtos.isEmpty()) {
+      responseBuilder.addAllMyTurn(myTurnProtos);
+    }
+    if (null != notMyTurnProtos && !myTurnProtos.isEmpty()) {
+      responseBuilder.addAllNotMyTurn(notMyTurnProtos);
+    }
   }
   
-  private void setNewQuestions(Builder responseBuilder, String userId) {
+  private void setNewQuestions(Builder responseBuilder, String userId,
+      Set<String> allPictureNames) {
+    List<QuestionProto> newQuestions = new ArrayList<QuestionProto>();
     //get all the questions the user has not seen yet
     //TODO: IDEALLY ONES THAT HAVE NOT BEEN GIVEN TO THE USER ALREADY
     //BUT GO RANDOM FOR NOW
-    
-    
     //get all the other questions prioritized by 
     //TODO: IDEALLY
     //1) time user last answered it
     //2) number of times user answered it
+    //or some heuristic regarding the two
     //BUT GO RANDOM FOR NOW
+    if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
+      log.error("db error: There are no questions to retrieve from the database.");
+      return;
+    }
+    int upperBound = getQuestionIdsToQuestions().size();
+    int limit = PicturesPoConstants.QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET;
+    Collection<Integer> randIndexNums =
+        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, limit);
     
+    QuestionBase[] questions = (QuestionBase[]) getQuestionIdsToQuestions().values().toArray();
+    
+    for(int index : randIndexNums) {
+      QuestionBase qb = questions[index];
+      
+      Set<String> picNames = qb.getPictureNames();
+      allPictureNames.addAll(picNames);
+      
+      QuestionProto proto = getNoneventProtoUtils().createQuestionProto(qb);
+      newQuestions.add(proto);
+    }
+    
+    //set responseBuilder
+    responseBuilder.addAllNewQuestions(newQuestions);
   }
   
   public Map<String, QuestionBase> getQuestionIdsToQuestions() {
@@ -481,11 +518,11 @@ public class LoginController extends EventController {
     this.questionIdsToQuestions = questionIdsToQuestions;
   }
   
-  public UserSignupService getService() {
+  public UserSignupService getUserSignupService() {
     return userSignupService;
   }
   
-  public void setService(UserSignupService service) {
+  public void setUserSingupService(UserSignupService service) {
     this.userSignupService = service;
   }
   
@@ -521,4 +558,13 @@ public class LoginController extends EventController {
   public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
     this.noneventProtoUtils = noneventProtoUtils;
   } 
+
+  public RandomNumberUtils getRandNumUtils() {
+    return randNumUtils;
+  }
+
+  public void setRandNumUtils(RandomNumberUtils randNumUtils) {
+    this.randNumUtils = randNumUtils;
+  }
+  
 }

@@ -201,54 +201,6 @@ public class TestPicturesJpa {
     assertTrue("Expected: mcqCount=1. Actual: mcqCount=" + mcqCount, 1 == mcqCount);
   }
 	
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testGetDistinctQuestionAnswered() {
-	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
-	  
-	  //variables used later
-	  int roundNumber = 1;
-    int questionNumber = 1;
-    int questionNumber2 = 2;
-    Date answeredDate = new Date();
-    String answeredByUser = "me";
-    
-    //first questionAnswered
-    QuestionAnswered qa = new QuestionAnswered();
-    qa.setRoundNumber(roundNumber);
-    qa.setQuestionNumber(questionNumber); 
-    qa.setAnsweredDate(answeredDate);
-    qa.setAnsweredByUser(answeredByUser);
-    qa.setQuestion(mcq);
-    //second questionAnswered (copy of above)
-    QuestionAnswered qa2 = new QuestionAnswered();
-    qa2.setRoundNumber(roundNumber);
-    qa2.setQuestionNumber(questionNumber2);
-    qa2.setAnsweredDate(answeredDate);
-    qa2.setAnsweredByUser(answeredByUser);
-    qa2.setQuestion(mcq);
-    //third questionAnswered
-    QuestionAnswered qa3 = new QuestionAnswered();
-    qa2.setRoundNumber(roundNumber);
-    qa2.setQuestionNumber(questionNumber2);
-    qa2.setAnsweredDate(answeredDate);
-    qa2.setAnsweredByUser("you");
-    qa2.setQuestion(mcq);
-    
-    List<QuestionAnswered> qaList = new ArrayList<QuestionAnswered>();
-    qaList.add(qa);
-    qaList.add(qa2);
-    qaList.add(qa3);
-    
-    getQaDao().save(qaList);
-    
-    List<String> inDb = getQaDao().findDistinctQuestionIdByAnsweredByUser(answeredByUser);
-    log.error("        question answered in database      " + inDb);
-    assertTrue("inDb=" + inDb, (null != inDb) && (1 == inDb.size()));
-    
-	}
-	
 //
 //	@Transactional
 //  @Rollback(true)
