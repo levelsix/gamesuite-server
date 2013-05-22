@@ -24,6 +24,10 @@ public class PicturesQuestionWithTextAnswer extends QuestionBase {
 	@NotNull
 	protected String answer;
 
+	@Override
+	public Set<String> getPictureNames() {
+	  return images;
+	}
 	
 	
 	public Set<String> getImages() {

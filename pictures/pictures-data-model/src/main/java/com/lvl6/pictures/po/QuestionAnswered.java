@@ -1,6 +1,7 @@
 package com.lvl6.pictures.po;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
@@ -46,14 +48,14 @@ public class QuestionAnswered extends BasePersistentObject {
 	protected QuestionBase question;
 	
 	
-	//use question.getClass().getName() as the value for type
-	//@NotNull
-	protected String questionType;
-	
-	
 	@NotNull
 	protected boolean correct;
 
+	
+	public Set<String> getPictureNames() {
+	  return question.getPictureNames();
+	}
+	
 
 	public int getRoundNumber() {
 		return roundNumber;
@@ -114,5 +116,9 @@ public class QuestionAnswered extends BasePersistentObject {
 		this.correct = correct;
 	}
 	
+	@Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 	
 }

@@ -59,6 +59,7 @@ public class TestPicturesJpa {
     images.add("image4");
     q.setImages(images);
     q.setCreatedBy("JUnit");
+    pictureDao.save(q);
     
     return q;
 	}
@@ -101,47 +102,48 @@ public class TestPicturesJpa {
     answers.add(mcaD);
     mcq.setAnswers(answers);
     
+    multipleChoiceQuestionDao.save(mcq);
     return mcq;
 	}
 	
-//	@Transactional
-//  @Rollback(true)
-//	@Test
-//	public void testSetup() {
-//		log.info("Testing Pictures JPA");
-//		PicturesQuestionWithTextAnswer q = createPicturesQuestionWithTextAnswer();
-//		getPictureDao().save(q);
-//		log.info("Created Picture question: {}", q.getId());
-//		
-//		List<PicturesQuestionWithTextAnswer> pqwtaList  = getPictureDao().findAll();
-//		assertTrue("Expected: not null. Actual: " + pqwtaList,
-//		    null != pqwtaList && 1 == pqwtaList.size());
-//	}
-//	
-//	@Transactional
-//  @Rollback(true)
-//	@Test
-//	public void testMultipleChoice() {
-//	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
-//	  MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
-//	  List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
-//	  mcqList.add(mcq);
-//	  mcqList.add(mcqImages);
-//	  getMultipleChoiceDao().save(mcqList);
-//	  List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
-//	  
-//	  assertTrue("multiple choice questions. Expected: " + mcqList
-//	      + ". Actually: "+ inDb, 2 == inDb.size());
-//	  
-//	  MultipleChoiceQuestion mcq1 = inDb.get(0);
-//	  MultipleChoiceQuestion mcq2 = inDb.get(1);
-//	  
-//	  assertTrue("Expected: not null. Actually: " + mcq1, null != mcq1.getId() && !(mcq1.getId().isEmpty()));
-//	  assertTrue("Expected: not null. Actually: " + mcq2, null != mcq2.getId() && !(mcq2.getId().isEmpty()));
-//	}
+	@Transactional
+  @Rollback(true)
+	@Test
+	public void testSetup() {
+		log.info("Testing Pictures JPA");
+		PicturesQuestionWithTextAnswer q = createPicturesQuestionWithTextAnswer();
+		getPictureDao().save(q);
+		log.info("Created Picture question: {}", q.getId());
+		
+		List<PicturesQuestionWithTextAnswer> pqwtaList  = getPictureDao().findAll();
+		assertTrue("Expected: not null. Actual: " + pqwtaList,
+		    null != pqwtaList && 1 == pqwtaList.size());
+	}
 	
 	@Transactional
-  @Rollback(false)
+  @Rollback(true)
+	@Test
+	public void testMultipleChoice() {
+	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
+	  MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
+	  List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
+	  mcqList.add(mcq);
+	  mcqList.add(mcqImages);
+	  getMultipleChoiceDao().save(mcqList);
+	  List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
+	  
+	  assertTrue("multiple choice questions. Expected: " + mcqList
+	      + ". Actually: "+ inDb, 2 == inDb.size());
+	  
+	  MultipleChoiceQuestion mcq1 = inDb.get(0);
+	  MultipleChoiceQuestion mcq2 = inDb.get(1);
+	  
+	  assertTrue("Expected: not null. Actually: " + mcq1, null != mcq1.getId() && !(mcq1.getId().isEmpty()));
+	  assertTrue("Expected: not null. Actually: " + mcq2, null != mcq2.getId() && !(mcq2.getId().isEmpty()));
+	}
+	
+	@Transactional
+  @Rollback(true)
   @Test
   public void testQuestionsAnswered() {
 	  PicturesQuestionWithTextAnswer pqwta = createPicturesQuestionWithTextAnswer();
@@ -155,7 +157,7 @@ public class TestPicturesJpa {
 	  
     QuestionAnswered qa = new QuestionAnswered();
     qa.setRoundNumber(roundNumber);
-    qa.setQuestionNumber(questionNumber);
+    qa.setQuestionNumber(questionNumber); 
     qa.setAnsweredDate(answeredDate);
     qa.setAnsweredByUser(answeredByUser);
     qa.setQuestion(pqwta);
@@ -186,19 +188,67 @@ public class TestPicturesJpa {
       if (qb instanceof MultipleChoiceQuestion) {
         mcqCount += 1;
         log.info("question base: " + qb);
-      }
-      if (qb instanceof PicturesQuestionWithTextAnswer) {
+      } else if (qb instanceof PicturesQuestionWithTextAnswer) {
         pqwtaCount += 1;
         log.info("question base: " + qb);
       }
       else {
-        assertTrue("???", 1 == 0);
+        assertTrue("unknown question base", 1 == 0);
       }
     }
     
     assertTrue("Expected: pqwtaCount=1. Actual: pqwtaCount=" + pqwtaCount, 1 == pqwtaCount);
     assertTrue("Expected: mcqCount=1. Actual: mcqCount=" + mcqCount, 1 == mcqCount);
   }
+	
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testGetDistinctQuestionAnswered() {
+	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
+	  
+	  //variables used later
+	  int roundNumber = 1;
+    int questionNumber = 1;
+    int questionNumber2 = 2;
+    Date answeredDate = new Date();
+    String answeredByUser = "me";
+    
+    //first questionAnswered
+    QuestionAnswered qa = new QuestionAnswered();
+    qa.setRoundNumber(roundNumber);
+    qa.setQuestionNumber(questionNumber); 
+    qa.setAnsweredDate(answeredDate);
+    qa.setAnsweredByUser(answeredByUser);
+    qa.setQuestion(mcq);
+    //second questionAnswered (copy of above)
+    QuestionAnswered qa2 = new QuestionAnswered();
+    qa2.setRoundNumber(roundNumber);
+    qa2.setQuestionNumber(questionNumber2);
+    qa2.setAnsweredDate(answeredDate);
+    qa2.setAnsweredByUser(answeredByUser);
+    qa2.setQuestion(mcq);
+    //third questionAnswered
+    QuestionAnswered qa3 = new QuestionAnswered();
+    qa2.setRoundNumber(roundNumber);
+    qa2.setQuestionNumber(questionNumber2);
+    qa2.setAnsweredDate(answeredDate);
+    qa2.setAnsweredByUser("you");
+    qa2.setQuestion(mcq);
+    
+    List<QuestionAnswered> qaList = new ArrayList<QuestionAnswered>();
+    qaList.add(qa);
+    qaList.add(qa2);
+    qaList.add(qa3);
+    
+    getQaDao().save(qaList);
+    
+    List<String> inDb = getQaDao().findDistinctQuestionIdByAnsweredByUser(answeredByUser);
+    log.error("        question answered in database      " + inDb);
+    assertTrue("inDb=" + inDb, (null != inDb) && (1 == inDb.size()));
+    
+	}
+	
 //
 //	@Transactional
 //  @Rollback(true)

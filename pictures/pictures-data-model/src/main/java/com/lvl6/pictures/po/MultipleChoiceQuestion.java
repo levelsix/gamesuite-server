@@ -1,5 +1,6 @@
 package com.lvl6.pictures.po;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,6 +27,22 @@ public class MultipleChoiceQuestion extends QuestionBase {
 		return question;
 	}
 
+	//when client gets questions to answer, client wants
+	//collection of picture names
+	@Override
+	public Set<String> getPictureNames() {
+	  Set<String> picNames = new HashSet<String>();
+	  
+	  for (MultipleChoiceAnswer mca : answers) {
+	    String picName = mca.getPictureName();
+	    if (null != picName) {
+	      picNames.add(picName);
+	    }
+	  }
+	  return picNames;
+	}
+	
+	
 	public void setQuestion(String question) {
 		this.question = question;
 	}

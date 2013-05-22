@@ -14,10 +14,13 @@ message StartRoundRequestProto {
 	
 	optional int32 roundNumber = 3;
 	optional bool isPlayerOne = 4;
-	optional int64 startTime = 5;
+	//this is to see if user time is in sync with server time
+	optional int64 startTime = 5;  
 	
 	//questions user sees in this round
 	repeated QuestionProto questions = 6;
+	
+	//might need tokens as well...
 }
 
 message StartRoundResponseProto {

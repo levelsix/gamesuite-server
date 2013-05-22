@@ -1,8 +1,7 @@
 package com.lvl6.pictures.po;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,12 +25,12 @@ public class RoundHistory extends BasePersistentObject {
 	@Index(name = "round_number_index")
 	protected int roundNumber;
 	
-	
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Index(name = "round_started_index")
 	protected Date roundStarted;
 	
-	
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Index(name = "round_ended_index")
 	protected Date roundEnded;
@@ -57,6 +56,14 @@ public class RoundHistory extends BasePersistentObject {
 	@Index(name = "user_id_index")
 	protected String userId;
 	
+	public Set<String> getPictureNames() {
+	  Set<String> allPicNames = new HashSet<String>();
+	  for (QuestionAnswered qa : questionsAnswered) {
+	    Set<String> picNames = qa.getPictureNames();
+	    allPicNames.addAll(picNames);
+	  }
+	  return allPicNames;
+	}
 	
 
 //	public List<PicturesQuestionWithTextAnswer> getPicturesQuestionWithTextAnswer() {

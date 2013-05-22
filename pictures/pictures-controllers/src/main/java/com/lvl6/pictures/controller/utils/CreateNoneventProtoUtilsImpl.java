@@ -3,6 +3,8 @@ package com.lvl6.pictures.controller.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,6 +15,7 @@ import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
+import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceQuestionProto;
@@ -29,7 +32,10 @@ import com.lvl6.pictures.po.GameHistory;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.PicturesQuestionWithTextAnswer;
+import com.lvl6.pictures.po.QuestionAnswered;
+import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundHistory;
+import com.lvl6.pictures.po.RoundPendingCompletion;
 
 public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   
@@ -37,7 +43,46 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   protected UserDao userDao; 
 
   
+  
+  @Override
+  public Map<String, BasicUserProto> createIdsToBasicUserProtos(List<GameHistory> ghList) {
+    Map<String, BasicUserProto> idsToBups = new HashMap<String, BasicUserProto>();
+    
+    Set<String> idSet = new HashSet<String>();
+    for (GameHistory gh : ghList) {
+      String playerOneId = gh.getPlayerOneId();
+      String playerTwoId = gh.getPlayerTwoId();
+      
+      idSet.add(playerOneId);
+      idSet.add(playerTwoId);
+    }
+    Map<String, User> idsToUsers = getUserDao().findByIdIn(idSet);
+    
+    AuthorizedDevice adNull = null;
+    for (String id : idsToUsers.keySet()) {
+      User u = idsToUsers.get(id);
+      
+      BasicUserProto bup = createBasicUserProto(u, adNull);
+      idsToBups.put(id, bup);
+    }
+    
+    return idsToBups;
+  }
 
+  @Override
+  public Map<String, BasicUserProto> createIdsToBasicUserProtos(Collection<String> userIds) {
+    Map<String, BasicUserProto> idsToBups = new HashMap<String, BasicUserProto>();
+    
+    Map<String, User> idsToUsers = getUserDao().findByIdIn(userIds);
+    AuthorizedDevice adNull = null;
+    for (String userId : idsToUsers.keySet()) {
+      User u = idsToUsers.get(userId);
+      BasicUserProto bup = createBasicUserProto(u, adNull);
+      idsToBups.put(userId, bup);
+    }
+    return idsToBups;
+  }
+  
   @Override
   public BasicUserProto createBasicUserProto (User aUser, AuthorizedDevice ad) {
     BasicUserProto.Builder bpb = BasicUserProto.newBuilder();
@@ -94,6 +139,64 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   }
   
   @Override
+  public List<OngoingGameProto> createOngoingGameProtosForUser(List<GameHistory> ghList,
+      Map<String, BasicUserProto> idsToBasicUserProtos, String userId, boolean isUserTurn) {
+    List<OngoingGameProto> ongoingGames = new ArrayList<OngoingGameProto>();
+    
+    for(GameHistory gh : ghList) {
+      OngoingGameProto ogp = createOngoingGameProtoForUser(gh, idsToBasicUserProtos, userId,
+          isUserTurn);
+      ongoingGames.add(ogp);
+    }
+    return ongoingGames;
+  }
+  
+  @Override
+  public OngoingGameProto createOngoingGameProtoForUser(GameHistory gh,
+      Map<String, BasicUserProto> idsToBasicUserProtos, String userId, boolean isUserTurn) {
+    OngoingGameProto.Builder ogpb = OngoingGameProto.newBuilder();
+    
+    //if it is user's turn, create BasicRoundProto if possible
+    if (isUserTurn) {
+      //see if user started but didn't finish a round
+      RoundPendingCompletion rpc = gh.getUnfinishedRound();
+      if(null != rpc && rpc.getUserId().equals(userId)) {
+
+        //user must have exited app when answering a round's questions or something
+        BasicRoundProto brp = createBasicRoundProto(rpc);
+        ogpb.setMyNewRound(brp);
+        
+      } else if (gh.getPlayerTwoId().equals(userId)) {
+        //creating for player two, grab player one's last round to construct
+        //the new questions
+        String playerOneId = gh.getPlayerOneId();
+
+        //if player two has RoundPendingCompletion then this is a duplicate
+        RoundHistory opponentsLastRound = gh.getLastRoundHistoryForUser(playerOneId);
+        BasicRoundProto brp = createBasicRoundProto(opponentsLastRound);
+
+        ogpb.setMyNewRound(brp);
+      }
+    }
+    GameResultsProto grp = createGameResultsProto(gh, idsToBasicUserProtos);
+    ogpb.setGameSoFar(grp);
+    return ogpb.build();
+  }
+  
+  @Override
+  public List<GameResultsProto> createGameResultsProtos(List<GameHistory> ghList,
+      Map<String, BasicUserProto> idsToBups) {
+    
+    List<GameResultsProto> returnValue = new ArrayList<GameResultsProto>();
+    for (GameHistory gh : ghList) {
+      GameResultsProto grp = createGameResultsProto(gh, idsToBups);
+      returnValue.add(grp);
+    }
+    
+    return returnValue;
+  }
+  
+  @Override
   public GameResultsProto createGameResultsProto(GameHistory gh, Map<String, BasicUserProto> userIdToBasicUserProto) {
     GameResultsProto.Builder grpb = GameResultsProto.newBuilder();
     String gameId = gh.getId();
@@ -138,7 +241,8 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     pgrpb.setBup(bup);
     //add the round result protos
     for(RoundHistory rh : rhCollection) {
-      //rh.roundEnded or rh.roundStarted for that matter maybe null, meaning the user has not begun this round
+      //rh.roundEnded or rh.roundStarted for that matter maybe null, meaning the user has not begun
+      //this round
       if (null == rh.getRoundEnded()) {
         continue;
       } else {
@@ -151,15 +255,42 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   }
   
   @Override
-  public BasicRoundProto createBasicRoundProto(String roundHistoryId, int roundNumber,
-      List<PicturesQuestionWithTextAnswer> pqwtaList, List<MultipleChoiceQuestion> mcqList) {
+  public BasicRoundProto createBasicRoundProto(RoundPendingCompletion rpc) {
     BasicRoundProto.Builder brpb = BasicRoundProto.newBuilder();
     
-    List<QuestionProto> qpList = createQuestionProtoList(pqwtaList, mcqList);
+    int roundNumber = rpc.getRoundNumber();
+    //to be filled up with the question bases contained in rpc
+    List<QuestionProto> qpList = new ArrayList<QuestionProto>();
     
-    brpb.setId(roundHistoryId);
-    brpb.addAllQuestions(qpList);
+    Set<QuestionBase> qbList = rpc.getQuestions();
+    for (QuestionBase qb : qbList) {
+      QuestionProto qp = createQuestionProto(qb);
+      qpList.add(qp);
+    }
+    
     brpb.setRoundNumber(roundNumber);
+    brpb.addAllQuestions(qpList);
+    return brpb.build();
+  }
+  
+  @Override
+  public BasicRoundProto createBasicRoundProto(RoundHistory rh) {
+    BasicRoundProto.Builder brpb = BasicRoundProto.newBuilder();
+    
+    String roundHistoryId = rh.getId();
+    int roundNumber = rh.getRoundNumber();
+    List<QuestionProto> qpList = new ArrayList<QuestionProto>();
+    Set<QuestionAnswered> qaList = rh.getQuestionsAnswered();
+    
+    for (QuestionAnswered qa : qaList) {
+      QuestionProto qp = createQuestionProto(qa);
+      
+      qpList.add(qp);
+    }
+
+    brpb.setId(roundHistoryId);
+    brpb.setRoundNumber(roundNumber);
+    brpb.addAllQuestions(qpList);
     
     return brpb.build();
   }
@@ -192,36 +323,36 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     return brpb.build();
   }
   
-  
   @Override
-  public List<QuestionProto> createQuestionProtoList(List<PicturesQuestionWithTextAnswer> pqwtaList,
-      List<MultipleChoiceQuestion> mcqList) {
-    List<QuestionProto> qpList = new ArrayList<QuestionProto>();
+  public QuestionProto createQuestionProto(QuestionBase qb) {
+    QuestionProto.Builder qpb = QuestionProto.newBuilder();
     
-    for (PicturesQuestionWithTextAnswer pqwta : pqwtaList) {
-      MultipleChoiceQuestion mcq = null;
-      QuestionProto qp = createQuestionProto(mcq, pqwta);
-      qpList.add(qp);
+    if (qb instanceof PicturesQuestionWithTextAnswer) {
+      PictureQuestionProto pqp = createPictureQuestionProto(
+          (PicturesQuestionWithTextAnswer) qb);
+      qpb.setPictures(pqp);
+    } else if (qb instanceof MultipleChoiceQuestion) {
+      MultipleChoiceQuestionProto mcqp = createMultipleChoiceQuestionProto(
+          (MultipleChoiceQuestion) qb);
+      qpb.setMultipleChoice(mcqp);
     }
     
-    for (MultipleChoiceQuestion mcq : mcqList) {
-      PicturesQuestionWithTextAnswer pqwta = null;
-      QuestionProto qp = createQuestionProto(mcq, pqwta);
-      qpList.add(qp);
-    }
-    
-    return qpList;
+    return qpb.build();
   }
   
   @Override
-  public QuestionProto createQuestionProto(MultipleChoiceQuestion mcq,
-      PicturesQuestionWithTextAnswer pqwta) {
+  public QuestionProto createQuestionProto(QuestionAnswered qa) {
     QuestionProto.Builder qpb = QuestionProto.newBuilder();
-    if (null == mcq) {
-      PictureQuestionProto pqp = createPictureQuestionProto(pqwta);
+    
+    QuestionBase qb = qa.getQuestion();
+    if (qb instanceof PicturesQuestionWithTextAnswer) {
+      PictureQuestionProto pqp = createPictureQuestionProto(
+          (PicturesQuestionWithTextAnswer) qb);
       qpb.setPictures(pqp);
-    } else {
-      MultipleChoiceQuestionProto mcqp = createMultipleChoiceQuestionProto(mcq);
+      
+    } else if (qb instanceof MultipleChoiceQuestion) {
+      MultipleChoiceQuestionProto mcqp = createMultipleChoiceQuestionProto(
+          (MultipleChoiceQuestion) qb);
       qpb.setMultipleChoice(mcqp);
     }
     

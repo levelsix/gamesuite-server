@@ -1,6 +1,13 @@
 package com.lvl6.pictures.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Resource;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -8,17 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.gamesuite.common.controller.EventController;
+import com.lvl6.gamesuite.common.eventprotos.ForceLogoutProto.ForceLogoutResponseProto;
 import com.lvl6.gamesuite.common.events.RequestEvent;
-import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto;
-import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType;
-import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
-import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder;
-import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus;
-import com.lvl6.pictures.events.request.LoginRequestEvent;
-import com.lvl6.pictures.events.response.LoginResponseEvent;
-import com.lvl6.pictures.noneventprotos.PicturesEventProtocolProto.PicturesEventProtocolRequest;
-import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
-import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
+import com.lvl6.gamesuite.common.events.response.ForceLogoutResponseEvent;
 import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonEventProtocolRequest;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
@@ -26,10 +25,30 @@ import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceServi
 import com.lvl6.gamesuite.common.services.user.LoginService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 import com.lvl6.gamesuite.user.utils.EmailUtil;
+import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus;
+import com.lvl6.pictures.events.request.LoginRequestEvent;
+import com.lvl6.pictures.events.response.LoginResponseEvent;
+import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
+import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto;
+import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
+import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
+import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
+import com.lvl6.pictures.po.GameHistory;
+import com.lvl6.pictures.po.QuestionBase;
+import com.lvl6.pictures.properties.PicturesPoConstants;
+import com.lvl6.pictures.services.gamehistory.GameHistoryService;
 
 public class LoginController extends EventController {
 
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+  
+  @Resource(name = "questionIdsToQuestions")
+  protected Map<String, QuestionBase> questionIdsToQuestions;
   
   @Autowired
   protected UserSignupService userSignupService;
@@ -40,6 +59,13 @@ public class LoginController extends EventController {
   @Autowired
   protected LoginService loginService;
   
+  @Autowired
+  protected GameHistoryService gameHistoryService;
+
+
+  @Autowired
+  protected CreateNoneventProtoUtils noneventProtoUtils;
+
 
   @Override
   public RequestEvent createRequestEvent() {
@@ -63,6 +89,7 @@ public class LoginController extends EventController {
     //response to send back to client
     LoginResponseProto.Builder responseBuilder = LoginResponseProto.newBuilder();
     responseBuilder.setStatus(LoginResponseStatus.FAIL_OTHER);
+    CompleteUserProto.Builder cupb = CompleteUserProto.newBuilder();
     
     boolean validRequestArgs = isValidRequestArguments(responseBuilder, sender,
         lt, now); 
@@ -74,11 +101,31 @@ public class LoginController extends EventController {
     }
     
     if (validRequest) {
-      successful = writeChangesToDb(responseBuilder, sender, lt, facebookFriendIds,
-          initializeAccount, now);
+      successful = writeChangesToDb(responseBuilder, sender, lt,
+          initializeAccount, now, cupb);
     }
     
     if (successful) {
+      //need to set in responseBuilder the collection of picture names
+      Set<String> allImageNames = new HashSet<String>();
+      
+      //set the recipient
+      responseBuilder.setRecipient(cupb);
+      
+      String userId = responseBuilder.getRecipient().getUserId(); 
+      // GET ALL THE COMPLETED GAMES THAT FINISHED SOME TIME AGO, OR MIN DEFAULT NUMBER OF GAMES
+      setCompletedGames(responseBuilder, userId);
+
+      // GET ALL THE GAMES THAT ARE THE USER'S TURN
+      // GET ALL THE GAMES THAT ARE THE OPPONENT'S TURN
+      setOngoingGames(responseBuilder, userId, allImageNames);
+      
+      // CONSTRUCT THE NEW TRIVIA QUESTIONS
+      setNewQuestions(responseBuilder, userId);
+      
+      
+      responseBuilder.addAllPictureNames(allImageNames);
+      
       if (LoginType.LOGIN_TOKEN == lt) {
         responseBuilder.setStatus(LoginResponseStatus.SUCCESS_LOGIN_TOKEN);
       }
@@ -86,13 +133,15 @@ public class LoginController extends EventController {
         responseBuilder.setStatus(LoginResponseStatus.SUCCESS_EMAIL_PASSWORD);
       }
       if (LoginType.FACEBOOK == lt) {
+        // CONSTRUCT THE BASIC USER PROTOS FOR THIS USER'S FACEBOOK FRIENDS
+        setFacebookFriends(responseBuilder, facebookFriendIds);
         responseBuilder.setStatus(LoginResponseStatus.SUCCESS_FACEBOOK_ID);
       }
       if (LoginType.NO_CREDENTIALS == lt) {
         responseBuilder.setStatus(LoginResponseStatus.SUCCESS_NO_CREDENTIALS);
       }
     }
-    //this is what the login request event does...
+    //this is what the login request event .java file does...
     String udid = reqProto.getSender().getBadp().getUdid();
     
     LoginResponseProto resProto = responseBuilder.build();
@@ -200,6 +249,8 @@ public class LoginController extends EventController {
     //checking the token client sent matches token in database, and db/client-sent user ids match
     if (null != bad && null != bad.getToken() && bad.getToken().equals(loginToken) &&
         null != userId && bad.getUserId().equals(userId)) {
+      CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(userId).build();
+      responseBuilder.setRecipient(r);
       return true;
     }
     log.error("unexpected error: authorizedDevice in the db=" + bad + ", sender=" + sender);
@@ -217,6 +268,11 @@ public class LoginController extends EventController {
         emailNull, udidNull);
     if (null != userList && userList.size() == 1) {
       //could check if some values matched...but what if user deleted app
+      //set userId because what if user deleted app?
+      User u = userList.get(0);
+      String uId = u.getId();
+      CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(uId).build();
+      responseBuilder.setRecipient(r);
       return true;
     }
     log.error("unexpected error: users in db with facebookId=" + facebookId + 
@@ -247,6 +303,8 @@ public class LoginController extends EventController {
     User inDb = userList.get(0);
     //check the user's email password match
     if (loginService.validCredentials(inDb, nameStrangersSee, email, password)) {
+      CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(inDb.getId()).build();
+      responseBuilder.setRecipient(r);
       return true;
     }
     
@@ -270,28 +328,157 @@ public class LoginController extends EventController {
       + userList);
       return false;
     }
-    
+    User inDb = userList.get(0);
+    CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(inDb.getId()).build();
+    responseBuilder.setRecipient(r);
     return true;
   }
   
   private boolean writeChangesToDb(Builder responseBuilder, BasicUserProto sender, LoginType lt,
-      List<String> facebookFriendIds, boolean initializeAccount, DateTime now) {
+      boolean initializeAccount, DateTime now, CompleteUserProto.Builder cupb) {
+    
+    String userId = responseBuilder.getRecipient().getUserId();
     if (initializeAccount) {
       //give the user all the power ups, coins and stuff
+    } else {
+      // CONSTRUCT THE USER (CURRENCY AND ALL)
     }
-    //TODO: RECORD THE USER LOGGING IN
-    // GET FACEBOOK FRIENDS IF LOGIN TYPE IS FACEBOOK AND 
-    // CONSTRUCT THE USER (EQUIPS, CURRENCY AND ALL)
-    // CONSTRUCT THE NEW TRIVIA QUESTIONS
-    // GET ALL THE COMPLETED GAMES
-    // GET ALL THE GAMES THAT ARE THE USER'S TURN
-    // GET ALL THE GAMES THAT ARE THE OPPONENT'S TURN
-    
-    if (LoginType.FACEBOOK == lt) {
       
+    // RECORD THE USER LOGGING IN
+    AuthorizedDevice ad = updateUserLogin(sender, userId, now);
+
+    //TODO: KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT
+    //idea get the udid's of the authorized devices user has and send a message to those udids
+    kickOffOtherDevicesSharingAccount(userId, ad);
+    
+    return true;
+  }
+  
+  private AuthorizedDevice updateUserLogin(BasicUserProto sender, String userId, DateTime now) {
+    BasicAuthorizedDeviceProto badp = sender.getBadp();
+    
+    User inDb = userSignupService.getUserDao().findById(userId);
+    
+    String udid = badp.getUdid();
+    String deviceId = badp.getDeviceId();
+    
+    return loginService.updateUserLastLogin(inDb, now, udid, deviceId);
+  }
+  
+  private void kickOffOtherDevicesSharingAccount(String userId, AuthorizedDevice ad) {
+    List<AuthorizedDevice> otherDevices = 
+        getAuthorizedDeviceService().otherDevicesSharingUserAccount(userId, ad);
+    
+    //send responses to clients telling them to log out immediately
+    //TODO: IMPROVE THIS IF POSSIBLE (userId for client to make sure this event is intended for them)
+    for (AuthorizedDevice anAuthorizedDevice : otherDevices) {
+      String udid = anAuthorizedDevice.getUdid();
+      ForceLogoutResponseEvent flre = new ForceLogoutResponseEvent(udid);
+      ForceLogoutResponseProto.Builder flrpb = ForceLogoutResponseProto.newBuilder().setUserId(userId);
+      flre.setForceLogoutResponseProto(flrpb.build());
+      getEventWriter().processPreDBResponseEvent(flre, udid);
     }
     
-    return false;
+  }
+  
+  private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
+    List<BasicUserProto> bupList = new ArrayList<BasicUserProto>();
+    
+    List<User> uList = loginService.getFacebookUsers(facebookFriendIds);
+    //construct the protos for the users
+    for (User u : uList) {
+      AuthorizedDevice adNull = null;
+      BasicUserProto bup = noneventProtoUtils.createBasicUserProto(u, adNull);
+      bupList.add(bup);
+    }
+    
+    responseBuilder.addAllFacebookFriendsWithAccounts(bupList);
+  }
+  
+  private void setCompletedGames(Builder responseBuilder, String userId) {
+    boolean nonCompletedGamesOnly = false;
+    boolean completedGamesOnly = true;
+    
+    DateTime now = new DateTime();
+    int days = PicturesPoConstants.GAME_HISTORY__DEFAULT_COMPLETED_GAMES_MIN_DAYS_DISPLAYED;
+    Date completedAfterThisTime = now.minusDays(days).toDate();
+    
+    List<String> specificGameHistoryIds = null;
+    
+    List<GameHistory> completedGames =
+        gameHistoryService.getGameHistoryForUser(userId, nonCompletedGamesOnly,
+            completedGamesOnly, completedAfterThisTime, specificGameHistoryIds);
+    
+    Map<String, BasicUserProto> idsToBups = getNoneventProtoUtils()
+        .createIdsToBasicUserProtos(completedGames);
+    
+    List<GameResultsProto> ghpList = noneventProtoUtils.createGameResultsProtos(
+        completedGames, idsToBups);
+    
+    responseBuilder.addAllCompletedGames(ghpList);
+  }
+  
+  //allPicNames is filled up and returned
+  private void setOngoingGames(Builder responseBuilder, String userId,
+      Set<String> allPicNames) {
+    //send to client
+    List<GameHistory> myTurn = new ArrayList<GameHistory>();
+    List<GameHistory> notMyTurn = new ArrayList<GameHistory>();
+    List<GameHistory> pendingGamesMyTurn = new ArrayList<GameHistory>();
+    List<GameHistory> pendingGamesNotMyTurn = new ArrayList<GameHistory>();
+    Set<String> allUserIds = new HashSet<String>();
+    
+    gameHistoryService.groupOngoingGamesForUser(userId, myTurn, notMyTurn,
+        pendingGamesMyTurn, pendingGamesNotMyTurn, allUserIds);
+    
+    //need to set in responseBuilder the collection of picture names
+    Set<String> picNames = gameHistoryService.getPictureNamesFromOngoingGames(
+        userId, myTurn, pendingGamesMyTurn);
+    allPicNames.addAll(picNames);
+    
+    //create the ongoing game protos
+    Map<String, BasicUserProto> idsToBups = noneventProtoUtils.createIdsToBasicUserProtos(
+        allUserIds);
+    List<GameHistory> allMyTurn = new ArrayList<GameHistory>();
+    List<GameHistory> allNotMyTurn = new ArrayList<GameHistory>();
+    allMyTurn.addAll(myTurn);
+    allMyTurn.addAll(pendingGamesMyTurn);
+    allNotMyTurn.addAll(notMyTurn);
+    allNotMyTurn.addAll(pendingGamesNotMyTurn);
+    
+    boolean isUserTurn = true;
+    List<OngoingGameProto> myTurnProtos = noneventProtoUtils.createOngoingGameProtosForUser(
+        allMyTurn, idsToBups, userId, isUserTurn);
+    
+    isUserTurn = false;
+    List<OngoingGameProto> notMyTurnProtos = noneventProtoUtils.createOngoingGameProtosForUser(
+        allNotMyTurn, idsToBups, userId, isUserTurn);
+        
+    responseBuilder.addAllMyTurn(myTurnProtos);
+    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
+  }
+  
+  private void setNewQuestions(Builder responseBuilder, String userId) {
+    //get all the questions the user has not seen yet
+    //TODO: IDEALLY ONES THAT HAVE NOT BEEN GIVEN TO THE USER ALREADY
+    //BUT GO RANDOM FOR NOW
+    
+    
+    //get all the other questions prioritized by 
+    //TODO: IDEALLY
+    //1) time user last answered it
+    //2) number of times user answered it
+    //BUT GO RANDOM FOR NOW
+    
+  }
+  
+  public Map<String, QuestionBase> getQuestionIdsToQuestions() {
+    return questionIdsToQuestions;
+  }
+
+  public void setQuestionIdsToQuestions(
+      Map<String, QuestionBase> questionIdsToQuestions) {
+    this.questionIdsToQuestions = questionIdsToQuestions;
   }
   
   public UserSignupService getService() {
@@ -318,6 +505,20 @@ public class LoginController extends EventController {
   public void setLoginService(LoginService loginService) {
     this.loginService = loginService;
   }
-
   
+  public GameHistoryService getGameHistoryService() {
+    return gameHistoryService;
+  }
+
+  public void setGameHistoryService(GameHistoryService gameHistoryService) {
+    this.gameHistoryService = gameHistoryService;
+  }
+
+  public CreateNoneventProtoUtils getNoneventProtoUtils() {
+    return noneventProtoUtils;
+  }
+
+  public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
+    this.noneventProtoUtils = noneventProtoUtils;
+  } 
 }
