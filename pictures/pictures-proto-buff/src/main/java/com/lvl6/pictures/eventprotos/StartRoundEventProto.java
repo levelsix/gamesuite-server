@@ -16,23 +16,31 @@ public final class StartRoundEventProto {
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getSender();
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional string gameId = 2;
+    // optional bool isRandomPlayer = 2;
+    boolean hasIsRandomPlayer();
+    boolean getIsRandomPlayer();
+    
+    // optional string opponent = 3;
+    boolean hasOpponent();
+    String getOpponent();
+    
+    // optional string gameId = 4;
     boolean hasGameId();
     String getGameId();
     
-    // optional int32 roundNumber = 3;
+    // optional int32 roundNumber = 5;
     boolean hasRoundNumber();
     int getRoundNumber();
     
-    // optional bool isPlayerOne = 4;
+    // optional bool isPlayerOne = 6;
     boolean hasIsPlayerOne();
     boolean getIsPlayerOne();
     
-    // optional int64 startTime = 5;
+    // optional int64 startTime = 7;
     boolean hasStartTime();
     long getStartTime();
     
-    // repeated .proto.QuestionProto questions = 6;
+    // repeated .proto.QuestionProto questions = 8;
     java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> 
         getQuestionsList();
     com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto getQuestions(int index);
@@ -41,6 +49,11 @@ public final class StartRoundEventProto {
         getQuestionsOrBuilderList();
     com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getQuestionsOrBuilder(
         int index);
+    
+    // repeated string images = 9;
+    java.util.List<String> getImagesList();
+    int getImagesCount();
+    String getImages(int index);
   }
   public static final class StartRoundRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -84,11 +97,53 @@ public final class StartRoundEventProto {
       return sender_;
     }
     
-    // optional string gameId = 2;
-    public static final int GAMEID_FIELD_NUMBER = 2;
+    // optional bool isRandomPlayer = 2;
+    public static final int ISRANDOMPLAYER_FIELD_NUMBER = 2;
+    private boolean isRandomPlayer_;
+    public boolean hasIsRandomPlayer() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public boolean getIsRandomPlayer() {
+      return isRandomPlayer_;
+    }
+    
+    // optional string opponent = 3;
+    public static final int OPPONENT_FIELD_NUMBER = 3;
+    private java.lang.Object opponent_;
+    public boolean hasOpponent() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getOpponent() {
+      java.lang.Object ref = opponent_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          opponent_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getOpponentBytes() {
+      java.lang.Object ref = opponent_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        opponent_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string gameId = 4;
+    public static final int GAMEID_FIELD_NUMBER = 4;
     private java.lang.Object gameId_;
     public boolean hasGameId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public String getGameId() {
       java.lang.Object ref = gameId_;
@@ -116,38 +171,38 @@ public final class StartRoundEventProto {
       }
     }
     
-    // optional int32 roundNumber = 3;
-    public static final int ROUNDNUMBER_FIELD_NUMBER = 3;
+    // optional int32 roundNumber = 5;
+    public static final int ROUNDNUMBER_FIELD_NUMBER = 5;
     private int roundNumber_;
     public boolean hasRoundNumber() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public int getRoundNumber() {
       return roundNumber_;
     }
     
-    // optional bool isPlayerOne = 4;
-    public static final int ISPLAYERONE_FIELD_NUMBER = 4;
+    // optional bool isPlayerOne = 6;
+    public static final int ISPLAYERONE_FIELD_NUMBER = 6;
     private boolean isPlayerOne_;
     public boolean hasIsPlayerOne() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public boolean getIsPlayerOne() {
       return isPlayerOne_;
     }
     
-    // optional int64 startTime = 5;
-    public static final int STARTTIME_FIELD_NUMBER = 5;
+    // optional int64 startTime = 7;
+    public static final int STARTTIME_FIELD_NUMBER = 7;
     private long startTime_;
     public boolean hasStartTime() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public long getStartTime() {
       return startTime_;
     }
     
-    // repeated .proto.QuestionProto questions = 6;
-    public static final int QUESTIONS_FIELD_NUMBER = 6;
+    // repeated .proto.QuestionProto questions = 8;
+    public static final int QUESTIONS_FIELD_NUMBER = 8;
     private java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> questions_;
     public java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> getQuestionsList() {
       return questions_;
@@ -167,13 +222,30 @@ public final class StartRoundEventProto {
       return questions_.get(index);
     }
     
+    // repeated string images = 9;
+    public static final int IMAGES_FIELD_NUMBER = 9;
+    private com.google.protobuf.LazyStringList images_;
+    public java.util.List<String>
+        getImagesList() {
+      return images_;
+    }
+    public int getImagesCount() {
+      return images_.size();
+    }
+    public String getImages(int index) {
+      return images_.get(index);
+    }
+    
     private void initFields() {
       sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
+      isRandomPlayer_ = false;
+      opponent_ = "";
       gameId_ = "";
       roundNumber_ = 0;
       isPlayerOne_ = false;
       startTime_ = 0L;
       questions_ = java.util.Collections.emptyList();
+      images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -191,19 +263,28 @@ public final class StartRoundEventProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getGameIdBytes());
+        output.writeBool(2, isRandomPlayer_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, roundNumber_);
+        output.writeBytes(3, getOpponentBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, isPlayerOne_);
+        output.writeBytes(4, getGameIdBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeInt64(5, startTime_);
+        output.writeInt32(5, roundNumber_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBool(6, isPlayerOne_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeInt64(7, startTime_);
       }
       for (int i = 0; i < questions_.size(); i++) {
-        output.writeMessage(6, questions_.get(i));
+        output.writeMessage(8, questions_.get(i));
+      }
+      for (int i = 0; i < images_.size(); i++) {
+        output.writeBytes(9, images_.getByteString(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -220,23 +301,40 @@ public final class StartRoundEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getGameIdBytes());
+          .computeBoolSize(2, isRandomPlayer_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, roundNumber_);
+          .computeBytesSize(3, getOpponentBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, isPlayerOne_);
+          .computeBytesSize(4, getGameIdBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, startTime_);
+          .computeInt32Size(5, roundNumber_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, isPlayerOne_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, startTime_);
       }
       for (int i = 0; i < questions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, questions_.get(i));
+          .computeMessageSize(8, questions_.get(i));
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < images_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(images_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getImagesList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -370,20 +468,26 @@ public final class StartRoundEventProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        gameId_ = "";
+        isRandomPlayer_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        roundNumber_ = 0;
+        opponent_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        isPlayerOne_ = false;
+        gameId_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        startTime_ = 0L;
+        roundNumber_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
+        isPlayerOne_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        startTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000040);
         if (questionsBuilder_ == null) {
           questions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000080);
         } else {
           questionsBuilder_.clear();
         }
+        images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -433,28 +537,42 @@ public final class StartRoundEventProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.gameId_ = gameId_;
+        result.isRandomPlayer_ = isRandomPlayer_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.roundNumber_ = roundNumber_;
+        result.opponent_ = opponent_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.isPlayerOne_ = isPlayerOne_;
+        result.gameId_ = gameId_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
+        result.roundNumber_ = roundNumber_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.isPlayerOne_ = isPlayerOne_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
         result.startTime_ = startTime_;
         if (questionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          if (((bitField0_ & 0x00000080) == 0x00000080)) {
             questions_ = java.util.Collections.unmodifiableList(questions_);
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x00000080);
           }
           result.questions_ = questions_;
         } else {
           result.questions_ = questionsBuilder_.build();
         }
+        if (((bitField0_ & 0x00000100) == 0x00000100)) {
+          images_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              images_);
+          bitField0_ = (bitField0_ & ~0x00000100);
+        }
+        result.images_ = images_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -474,6 +592,12 @@ public final class StartRoundEventProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
+        if (other.hasIsRandomPlayer()) {
+          setIsRandomPlayer(other.getIsRandomPlayer());
+        }
+        if (other.hasOpponent()) {
+          setOpponent(other.getOpponent());
+        }
         if (other.hasGameId()) {
           setGameId(other.getGameId());
         }
@@ -490,7 +614,7 @@ public final class StartRoundEventProto {
           if (!other.questions_.isEmpty()) {
             if (questions_.isEmpty()) {
               questions_ = other.questions_;
-              bitField0_ = (bitField0_ & ~0x00000020);
+              bitField0_ = (bitField0_ & ~0x00000080);
             } else {
               ensureQuestionsIsMutable();
               questions_.addAll(other.questions_);
@@ -503,7 +627,7 @@ public final class StartRoundEventProto {
               questionsBuilder_.dispose();
               questionsBuilder_ = null;
               questions_ = other.questions_;
-              bitField0_ = (bitField0_ & ~0x00000020);
+              bitField0_ = (bitField0_ & ~0x00000080);
               questionsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getQuestionsFieldBuilder() : null;
@@ -511,6 +635,16 @@ public final class StartRoundEventProto {
               questionsBuilder_.addAllMessages(other.questions_);
             }
           }
+        }
+        if (!other.images_.isEmpty()) {
+          if (images_.isEmpty()) {
+            images_ = other.images_;
+            bitField0_ = (bitField0_ & ~0x00000100);
+          } else {
+            ensureImagesIsMutable();
+            images_.addAll(other.images_);
+          }
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -552,30 +686,45 @@ public final class StartRoundEventProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 18: {
+            case 16: {
               bitField0_ |= 0x00000002;
-              gameId_ = input.readBytes();
+              isRandomPlayer_ = input.readBool();
               break;
             }
-            case 24: {
+            case 26: {
               bitField0_ |= 0x00000004;
-              roundNumber_ = input.readInt32();
+              opponent_ = input.readBytes();
               break;
             }
-            case 32: {
+            case 34: {
               bitField0_ |= 0x00000008;
-              isPlayerOne_ = input.readBool();
+              gameId_ = input.readBytes();
               break;
             }
             case 40: {
               bitField0_ |= 0x00000010;
+              roundNumber_ = input.readInt32();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              isPlayerOne_ = input.readBool();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
               startTime_ = input.readInt64();
               break;
             }
-            case 50: {
+            case 66: {
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addQuestions(subBuilder.buildPartial());
+              break;
+            }
+            case 74: {
+              ensureImagesIsMutable();
+              images_.add(input.readBytes());
               break;
             }
           }
@@ -674,10 +823,67 @@ public final class StartRoundEventProto {
         return senderBuilder_;
       }
       
-      // optional string gameId = 2;
+      // optional bool isRandomPlayer = 2;
+      private boolean isRandomPlayer_ ;
+      public boolean hasIsRandomPlayer() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public boolean getIsRandomPlayer() {
+        return isRandomPlayer_;
+      }
+      public Builder setIsRandomPlayer(boolean value) {
+        bitField0_ |= 0x00000002;
+        isRandomPlayer_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearIsRandomPlayer() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        isRandomPlayer_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // optional string opponent = 3;
+      private java.lang.Object opponent_ = "";
+      public boolean hasOpponent() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getOpponent() {
+        java.lang.Object ref = opponent_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          opponent_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setOpponent(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        opponent_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearOpponent() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        opponent_ = getDefaultInstance().getOpponent();
+        onChanged();
+        return this;
+      }
+      void setOpponent(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        opponent_ = value;
+        onChanged();
+      }
+      
+      // optional string gameId = 4;
       private java.lang.Object gameId_ = "";
       public boolean hasGameId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public String getGameId() {
         java.lang.Object ref = gameId_;
@@ -693,93 +899,93 @@ public final class StartRoundEventProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000008;
         gameId_ = value;
         onChanged();
         return this;
       }
       public Builder clearGameId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000008);
         gameId_ = getDefaultInstance().getGameId();
         onChanged();
         return this;
       }
       void setGameId(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000008;
         gameId_ = value;
         onChanged();
       }
       
-      // optional int32 roundNumber = 3;
+      // optional int32 roundNumber = 5;
       private int roundNumber_ ;
       public boolean hasRoundNumber() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public int getRoundNumber() {
         return roundNumber_;
       }
       public Builder setRoundNumber(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000010;
         roundNumber_ = value;
         onChanged();
         return this;
       }
       public Builder clearRoundNumber() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000010);
         roundNumber_ = 0;
         onChanged();
         return this;
       }
       
-      // optional bool isPlayerOne = 4;
+      // optional bool isPlayerOne = 6;
       private boolean isPlayerOne_ ;
       public boolean hasIsPlayerOne() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public boolean getIsPlayerOne() {
         return isPlayerOne_;
       }
       public Builder setIsPlayerOne(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000020;
         isPlayerOne_ = value;
         onChanged();
         return this;
       }
       public Builder clearIsPlayerOne() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000020);
         isPlayerOne_ = false;
         onChanged();
         return this;
       }
       
-      // optional int64 startTime = 5;
+      // optional int64 startTime = 7;
       private long startTime_ ;
       public boolean hasStartTime() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public long getStartTime() {
         return startTime_;
       }
       public Builder setStartTime(long value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         startTime_ = value;
         onChanged();
         return this;
       }
       public Builder clearStartTime() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000040);
         startTime_ = 0L;
         onChanged();
         return this;
       }
       
-      // repeated .proto.QuestionProto questions = 6;
+      // repeated .proto.QuestionProto questions = 8;
       private java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> questions_ =
         java.util.Collections.emptyList();
       private void ensureQuestionsIsMutable() {
-        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
           questions_ = new java.util.ArrayList<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto>(questions_);
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000080;
          }
       }
       
@@ -895,7 +1101,7 @@ public final class StartRoundEventProto {
       public Builder clearQuestions() {
         if (questionsBuilder_ == null) {
           questions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000080);
           onChanged();
         } else {
           questionsBuilder_.clear();
@@ -951,12 +1157,68 @@ public final class StartRoundEventProto {
           questionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder, com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder>(
                   questions_,
-                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  ((bitField0_ & 0x00000080) == 0x00000080),
                   getParentForChildren(),
                   isClean());
           questions_ = null;
         }
         return questionsBuilder_;
+      }
+      
+      // repeated string images = 9;
+      private com.google.protobuf.LazyStringList images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureImagesIsMutable() {
+        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+          images_ = new com.google.protobuf.LazyStringArrayList(images_);
+          bitField0_ |= 0x00000100;
+         }
+      }
+      public java.util.List<String>
+          getImagesList() {
+        return java.util.Collections.unmodifiableList(images_);
+      }
+      public int getImagesCount() {
+        return images_.size();
+      }
+      public String getImages(int index) {
+        return images_.get(index);
+      }
+      public Builder setImages(
+          int index, String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureImagesIsMutable();
+        images_.set(index, value);
+        onChanged();
+        return this;
+      }
+      public Builder addImages(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureImagesIsMutable();
+        images_.add(value);
+        onChanged();
+        return this;
+      }
+      public Builder addAllImages(
+          java.lang.Iterable<String> values) {
+        ensureImagesIsMutable();
+        super.addAll(values, images_);
+        onChanged();
+        return this;
+      }
+      public Builder clearImages() {
+        images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        onChanged();
+        return this;
+      }
+      void addImages(com.google.protobuf.ByteString value) {
+        ensureImagesIsMutable();
+        images_.add(value);
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.StartRoundRequestProto)
@@ -1580,18 +1842,19 @@ public final class StartRoundEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\025StartRoundEvent.proto\022\005proto\032\nUser.pro" +
-      "to\032\032TriviaQuestionFormat.proto\"\265\001\n\026Start" +
+      "to\032\032TriviaQuestionFormat.proto\"\357\001\n\026Start" +
       "RoundRequestProto\022%\n\006sender\030\001 \001(\0132\025.prot" +
-      "o.BasicUserProto\022\016\n\006gameId\030\002 \001(\t\022\023\n\013roun" +
-      "dNumber\030\003 \001(\005\022\023\n\013isPlayerOne\030\004 \001(\010\022\021\n\tst" +
-      "artTime\030\005 \001(\003\022\'\n\tquestions\030\006 \003(\0132\024.proto" +
-      ".QuestionProto\"\270\001\n\027StartRoundResponsePro" +
-      "to\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUserP" +
-      "roto\022\016\n\006gameId\030\002 \001(\t\"c\n\030StartRoundRespon" +
-      "seStatus\022\013\n\007SUCCESS\020\001\022*\n&FAIL_CLIENT_TOO",
-      "_APART_FROM_SERVER_TIME\020\002\022\016\n\nFAIL_OTHER\020" +
-      "\003B5\n\035com.lvl6.pictures.eventprotosB\024Star" +
-      "tRoundEventProto"
+      "o.BasicUserProto\022\026\n\016isRandomPlayer\030\002 \001(\010" +
+      "\022\020\n\010opponent\030\003 \001(\t\022\016\n\006gameId\030\004 \001(\t\022\023\n\013ro" +
+      "undNumber\030\005 \001(\005\022\023\n\013isPlayerOne\030\006 \001(\010\022\021\n\t" +
+      "startTime\030\007 \001(\003\022\'\n\tquestions\030\010 \003(\0132\024.pro" +
+      "to.QuestionProto\022\016\n\006images\030\t \003(\t\"\270\001\n\027Sta" +
+      "rtRoundResponseProto\022(\n\trecipient\030\001 \001(\0132" +
+      "\025.proto.BasicUserProto\022\016\n\006gameId\030\002 \001(\t\"c",
+      "\n\030StartRoundResponseStatus\022\013\n\007SUCCESS\020\001\022" +
+      "*\n&FAIL_CLIENT_TOO_APART_FROM_SERVER_TIM" +
+      "E\020\002\022\016\n\nFAIL_OTHER\020\003B5\n\035com.lvl6.pictures" +
+      ".eventprotosB\024StartRoundEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1603,7 +1866,7 @@ public final class StartRoundEventProto {
           internal_static_proto_StartRoundRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartRoundRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "GameId", "RoundNumber", "IsPlayerOne", "StartTime", "Questions", },
+              new java.lang.String[] { "Sender", "IsRandomPlayer", "Opponent", "GameId", "RoundNumber", "IsPlayerOne", "StartTime", "Questions", "Images", },
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundRequestProto.class,
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundRequestProto.Builder.class);
           internal_static_proto_StartRoundResponseProto_descriptor =

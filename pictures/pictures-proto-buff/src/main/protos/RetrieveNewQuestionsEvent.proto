@@ -17,6 +17,9 @@ message RetrieveNewQuestionsResponseProto {
 	optional BasicUserProto recipient = 1;
 	repeated QuestionProto newQuestions = 2;
 	
+	//the pictures that are in newQuestions
+	repeated string pictureNames = 8;
+	
 	enum RetrieveNewQuestionsResponseStatus {
 		SUCCESS = 1;
 		FAIL_OTHER = 2;

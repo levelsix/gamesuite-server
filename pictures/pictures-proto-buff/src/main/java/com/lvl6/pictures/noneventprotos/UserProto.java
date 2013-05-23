@@ -1804,6 +1804,458 @@ public final class UserProto {
     // @@protoc_insertion_point(class_scope:proto.BasicAuthorizedDeviceProto)
   }
   
+  public interface UserCurrencyProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional int32 numTokens = 1;
+    boolean hasNumTokens();
+    int getNumTokens();
+    
+    // optional int64 lastTokenRefillTime = 2;
+    boolean hasLastTokenRefillTime();
+    long getLastTokenRefillTime();
+    
+    // optional int32 numRubies = 3;
+    boolean hasNumRubies();
+    int getNumRubies();
+  }
+  public static final class UserCurrencyProto extends
+      com.google.protobuf.GeneratedMessage
+      implements UserCurrencyProtoOrBuilder {
+    // Use UserCurrencyProto.newBuilder() to construct.
+    private UserCurrencyProto(Builder builder) {
+      super(builder);
+    }
+    private UserCurrencyProto(boolean noInit) {}
+    
+    private static final UserCurrencyProto defaultInstance;
+    public static UserCurrencyProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public UserCurrencyProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_UserCurrencyProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_UserCurrencyProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional int32 numTokens = 1;
+    public static final int NUMTOKENS_FIELD_NUMBER = 1;
+    private int numTokens_;
+    public boolean hasNumTokens() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getNumTokens() {
+      return numTokens_;
+    }
+    
+    // optional int64 lastTokenRefillTime = 2;
+    public static final int LASTTOKENREFILLTIME_FIELD_NUMBER = 2;
+    private long lastTokenRefillTime_;
+    public boolean hasLastTokenRefillTime() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public long getLastTokenRefillTime() {
+      return lastTokenRefillTime_;
+    }
+    
+    // optional int32 numRubies = 3;
+    public static final int NUMRUBIES_FIELD_NUMBER = 3;
+    private int numRubies_;
+    public boolean hasNumRubies() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getNumRubies() {
+      return numRubies_;
+    }
+    
+    private void initFields() {
+      numTokens_ = 0;
+      lastTokenRefillTime_ = 0L;
+      numRubies_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, numTokens_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt64(2, lastTokenRefillTime_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, numRubies_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, numTokens_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, lastTokenRefillTime_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, numRubies_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_UserCurrencyProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.pictures.noneventprotos.UserProto.internal_static_proto_UserCurrencyProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        numTokens_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        lastTokenRefillTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        numRubies_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDescriptor();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto build() {
+        com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto buildPartial() {
+        com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto result = new com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.numTokens_ = numTokens_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.lastTokenRefillTime_ = lastTokenRefillTime_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.numRubies_ = numRubies_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto) {
+          return mergeFrom((com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto other) {
+        if (other == com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance()) return this;
+        if (other.hasNumTokens()) {
+          setNumTokens(other.getNumTokens());
+        }
+        if (other.hasLastTokenRefillTime()) {
+          setLastTokenRefillTime(other.getLastTokenRefillTime());
+        }
+        if (other.hasNumRubies()) {
+          setNumRubies(other.getNumRubies());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              numTokens_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              lastTokenRefillTime_ = input.readInt64();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              numRubies_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional int32 numTokens = 1;
+      private int numTokens_ ;
+      public boolean hasNumTokens() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getNumTokens() {
+        return numTokens_;
+      }
+      public Builder setNumTokens(int value) {
+        bitField0_ |= 0x00000001;
+        numTokens_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNumTokens() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        numTokens_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 lastTokenRefillTime = 2;
+      private long lastTokenRefillTime_ ;
+      public boolean hasLastTokenRefillTime() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public long getLastTokenRefillTime() {
+        return lastTokenRefillTime_;
+      }
+      public Builder setLastTokenRefillTime(long value) {
+        bitField0_ |= 0x00000002;
+        lastTokenRefillTime_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLastTokenRefillTime() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        lastTokenRefillTime_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 numRubies = 3;
+      private int numRubies_ ;
+      public boolean hasNumRubies() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getNumRubies() {
+        return numRubies_;
+      }
+      public Builder setNumRubies(int value) {
+        bitField0_ |= 0x00000004;
+        numRubies_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNumRubies() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        numRubies_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.UserCurrencyProto)
+    }
+    
+    static {
+      defaultInstance = new UserCurrencyProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.UserCurrencyProto)
+  }
+  
   public interface CompleteUserProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -1843,6 +2295,11 @@ public final class UserProto {
     // optional int32 signupDate = 9;
     boolean hasSignupDate();
     int getSignupDate();
+    
+    // optional .proto.UserCurrencyProto currency = 10;
+    boolean hasCurrency();
+    com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getCurrency();
+    com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder getCurrencyOrBuilder();
   }
   public static final class CompleteUserProto extends
       com.google.protobuf.GeneratedMessage
@@ -2098,6 +2555,19 @@ public final class UserProto {
       return signupDate_;
     }
     
+    // optional .proto.UserCurrencyProto currency = 10;
+    public static final int CURRENCY_FIELD_NUMBER = 10;
+    private com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto currency_;
+    public boolean hasCurrency() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getCurrency() {
+      return currency_;
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder getCurrencyOrBuilder() {
+      return currency_;
+    }
+    
     private void initFields() {
       userId_ = "";
       nameStrangersSee_ = "";
@@ -2108,6 +2578,7 @@ public final class UserProto {
       badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
       lastLogin_ = 0L;
       signupDate_ = 0;
+      currency_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2147,6 +2618,9 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeInt32(9, signupDate_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeMessage(10, currency_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2192,6 +2666,10 @@ public final class UserProto {
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, signupDate_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, currency_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2310,6 +2788,7 @@ public final class UserProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getBadpFieldBuilder();
+          getCurrencyFieldBuilder();
         }
       }
       private static Builder create() {
@@ -2340,6 +2819,12 @@ public final class UserProto {
         bitField0_ = (bitField0_ & ~0x00000080);
         signupDate_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
+        if (currencyBuilder_ == null) {
+          currency_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+        } else {
+          currencyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       
@@ -2418,6 +2903,14 @@ public final class UserProto {
           to_bitField0_ |= 0x00000100;
         }
         result.signupDate_ = signupDate_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        if (currencyBuilder_ == null) {
+          result.currency_ = currency_;
+        } else {
+          result.currency_ = currencyBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2460,6 +2953,9 @@ public final class UserProto {
         }
         if (other.hasSignupDate()) {
           setSignupDate(other.getSignupDate());
+        }
+        if (other.hasCurrency()) {
+          mergeCurrency(other.getCurrency());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2539,6 +3035,15 @@ public final class UserProto {
             case 72: {
               bitField0_ |= 0x00000100;
               signupDate_ = input.readInt32();
+              break;
+            }
+            case 82: {
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.newBuilder();
+              if (hasCurrency()) {
+                subBuilder.mergeFrom(getCurrency());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setCurrency(subBuilder.buildPartial());
               break;
             }
           }
@@ -2895,6 +3400,96 @@ public final class UserProto {
         return this;
       }
       
+      // optional .proto.UserCurrencyProto currency = 10;
+      private com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto currency_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder> currencyBuilder_;
+      public boolean hasCurrency() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getCurrency() {
+        if (currencyBuilder_ == null) {
+          return currency_;
+        } else {
+          return currencyBuilder_.getMessage();
+        }
+      }
+      public Builder setCurrency(com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto value) {
+        if (currencyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          currency_ = value;
+          onChanged();
+        } else {
+          currencyBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000200;
+        return this;
+      }
+      public Builder setCurrency(
+          com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder builderForValue) {
+        if (currencyBuilder_ == null) {
+          currency_ = builderForValue.build();
+          onChanged();
+        } else {
+          currencyBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000200;
+        return this;
+      }
+      public Builder mergeCurrency(com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto value) {
+        if (currencyBuilder_ == null) {
+          if (((bitField0_ & 0x00000200) == 0x00000200) &&
+              currency_ != com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance()) {
+            currency_ =
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.newBuilder(currency_).mergeFrom(value).buildPartial();
+          } else {
+            currency_ = value;
+          }
+          onChanged();
+        } else {
+          currencyBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000200;
+        return this;
+      }
+      public Builder clearCurrency() {
+        if (currencyBuilder_ == null) {
+          currency_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+          onChanged();
+        } else {
+          currencyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000200);
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder getCurrencyBuilder() {
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return getCurrencyFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder getCurrencyOrBuilder() {
+        if (currencyBuilder_ != null) {
+          return currencyBuilder_.getMessageOrBuilder();
+        } else {
+          return currency_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder> 
+          getCurrencyFieldBuilder() {
+        if (currencyBuilder_ == null) {
+          currencyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder>(
+                  currency_,
+                  getParentForChildren(),
+                  isClean());
+          currency_ = null;
+        }
+        return currencyBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.CompleteUserProto)
     }
     
@@ -2916,6 +3511,11 @@ public final class UserProto {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_BasicAuthorizedDeviceProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_UserCurrencyProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_UserCurrencyProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_CompleteUserProto_descriptor;
   private static
@@ -2939,13 +3539,17 @@ public final class UserProto {
       "\027basicAuthorizedDeviceId\030\005 \001(\t\022\016\n\006userId" +
       "\030\001 \001(\t\022\022\n\nloginToken\030\002 \001(\t\022\026\n\016expiration" +
       "Date\030\003 \001(\003\022\014\n\004udid\030\004 \001(\t\022\020\n\010deviceId\030\006 \001" +
-      "(\t\"\342\001\n\021CompleteUserProto\022\016\n\006userId\030\001 \001(\t",
-      "\022\030\n\020nameStrangersSee\030\002 \001(\t\022\026\n\016nameFriend" +
-      "sSee\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\020\n\010password\030\005 " +
-      "\001(\t\022\022\n\nfacebookId\030\006 \001(\t\022/\n\004badp\030\007 \001(\0132!." +
-      "proto.BasicAuthorizedDeviceProto\022\021\n\tlast" +
-      "Login\030\010 \001(\003\022\022\n\nsignupDate\030\t \001(\005B-\n com.l" +
-      "vl6.pictures.noneventprotosB\tUserProto"
+      "(\t\"V\n\021UserCurrencyProto\022\021\n\tnumTokens\030\001 \001",
+      "(\005\022\033\n\023lastTokenRefillTime\030\002 \001(\003\022\021\n\tnumRu" +
+      "bies\030\003 \001(\005\"\216\002\n\021CompleteUserProto\022\016\n\006user" +
+      "Id\030\001 \001(\t\022\030\n\020nameStrangersSee\030\002 \001(\t\022\026\n\016na" +
+      "meFriendsSee\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\020\n\010pas" +
+      "sword\030\005 \001(\t\022\022\n\nfacebookId\030\006 \001(\t\022/\n\004badp\030" +
+      "\007 \001(\0132!.proto.BasicAuthorizedDeviceProto" +
+      "\022\021\n\tlastLogin\030\010 \001(\003\022\022\n\nsignupDate\030\t \001(\005\022" +
+      "*\n\010currency\030\n \001(\0132\030.proto.UserCurrencyPr" +
+      "otoB-\n com.lvl6.pictures.noneventprotosB" +
+      "\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2968,12 +3572,20 @@ public final class UserProto {
               new java.lang.String[] { "BasicAuthorizedDeviceId", "UserId", "LoginToken", "ExpirationDate", "Udid", "DeviceId", },
               com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.class,
               com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder.class);
-          internal_static_proto_CompleteUserProto_descriptor =
+          internal_static_proto_UserCurrencyProto_descriptor =
             getDescriptor().getMessageTypes().get(2);
+          internal_static_proto_UserCurrencyProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_UserCurrencyProto_descriptor,
+              new java.lang.String[] { "NumTokens", "LastTokenRefillTime", "NumRubies", },
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.class,
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder.class);
+          internal_static_proto_CompleteUserProto_descriptor =
+            getDescriptor().getMessageTypes().get(3);
           internal_static_proto_CompleteUserProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CompleteUserProto_descriptor,
-              new java.lang.String[] { "UserId", "NameStrangersSee", "NameFriendsSee", "Email", "Password", "FacebookId", "Badp", "LastLogin", "SignupDate", },
+              new java.lang.String[] { "UserId", "NameStrangersSee", "NameFriendsSee", "Email", "Password", "FacebookId", "Badp", "LastLogin", "SignupDate", "Currency", },
               com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.class,
               com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder.class);
           return null;

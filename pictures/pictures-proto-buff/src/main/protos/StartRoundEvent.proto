@@ -9,18 +9,29 @@ option java_outer_classname = "StartRoundEventProto";
 message StartRoundRequestProto {
 	optional BasicUserProto sender = 1;
 	
-	//if this is round 1 then this will be null, else client always sets this
-	optional string gameId = 2;
+	//user can either play against someone they selected or
+	//ask server to select someone, if true don't set opponent
+	optional bool isRandomPlayer = 2;
 	
-	optional int32 roundNumber = 3;
-	optional bool isPlayerOne = 4;
+	//the opponent's id
+	optional string opponent = 3;
+
+	//if this is round 1 then this will be null, else client always sets this
+	optional string gameId = 4;
+	
+	optional int32 roundNumber = 5;
+	optional bool isPlayerOne = 6;
+	
 	//this is to see if user time is in sync with server time
-	optional int64 startTime = 5;  
+	optional int64 startTime = 7;  
 	
 	//questions user sees in this round
-	repeated QuestionProto questions = 6;
+	repeated QuestionProto questions = 8;
 	
-	//might need tokens as well...
+	//the image names in questions
+	repeated string images = 9;
+	
+	
 }
 
 message StartRoundResponseProto {
