@@ -41,7 +41,7 @@ message CompleteUserProto {
 	optional string facebookId = 6;
 	optional BasicAuthorizedDeviceProto badp = 7;
 	optional int64 lastLogin = 8;
-	optional int32 signupDate = 9;
+	optional int64 signupDate = 9;
 	
 	//power up information, tokens/rubies/in game currency
 	optional UserCurrencyProto currency = 10;

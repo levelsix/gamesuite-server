@@ -19,10 +19,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lvl6.gamesuite.common.dao.UserDao;
+import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.pictures.dao.CurrencyDao;
 import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
 import com.lvl6.pictures.dao.PictureQuestionWithTextAnswerDao;
 import com.lvl6.pictures.dao.QuestionAnsweredDao;
 import com.lvl6.pictures.po.AnswerType;
+import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.PicturesQuestionWithTextAnswer;
@@ -47,7 +51,11 @@ public class TestPicturesJpa {
 	@Resource
 	protected QuestionAnsweredDao qaDao;
 
+	@Resource
+	protected UserDao userDao;
 	
+	@Resource
+	protected CurrencyDao currencyDao;
 
   public PicturesQuestionWithTextAnswer createPicturesQuestionWithTextAnswer() {
 	  PicturesQuestionWithTextAnswer q = new PicturesQuestionWithTextAnswer();
@@ -201,6 +209,43 @@ public class TestPicturesJpa {
     assertTrue("Expected: mcqCount=1. Actual: mcqCount=" + mcqCount, 1 == mcqCount);
   }
 	
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testUserCurrency() {
+	  User u = new User();
+	  String nameStrangersSee = "food picker";
+	  Date signupDate = new Date();
+	  Date lastLogin = new Date();
+	  u.setNameStrangersSee(nameStrangersSee);
+	  u.setSignupDate(signupDate);
+	  u.setLastLogin(lastLogin);
+
+	  userDao.save(u);
+	  
+	  assertTrue("user="+ u, null != u.getId());
+	  
+	  Currency monies = new Currency();
+	  int tokens = 10;
+	  Date lastTokenRefillTime = signupDate;
+	  int rubies = 10;
+	  monies.setTokens(tokens);
+	  monies.setLastTokenRefillTime(lastTokenRefillTime);
+	  monies.setRubies(rubies);
+	  monies.setUserId(u.getId());
+	  
+	  assertTrue("monies=" + monies, null == monies.getId());
+	  currencyDao.save(monies);
+	  assertTrue("monies=" + monies, null != monies.getId());
+	  
+	  //retrieve from db
+	  Currency currencyInDb = currencyDao.findByUserId(u.getId());
+	  
+	  assertTrue("currencyInDb="+ currencyInDb,
+	      null != currencyInDb &&
+	      null != currencyInDb.getId());
+	}
+	
 //
 //	@Transactional
 //  @Rollback(true)
@@ -230,7 +275,6 @@ public class TestPicturesJpa {
 		this.pictureDao = pictureDao;
 	}
 
-
 	public MultipleChoiceQuestionDao getMultipleChoiceDao() {
 		return multipleChoiceQuestionDao;
 	}
@@ -239,13 +283,29 @@ public class TestPicturesJpa {
 		this.multipleChoiceQuestionDao = multipleChoiceDao;
 	}
 
-  
   public QuestionAnsweredDao getQaDao() {
     return qaDao;
   }
 
   public void setQaDao(QuestionAnsweredDao qaDao) {
     this.qaDao = qaDao;
+  }
+
+  public UserDao getUserDao() {
+    return userDao;
+  }
+
+  public void setUserDao(UserDao userDao) {
+    this.userDao = userDao;
+  }
+
+  public CurrencyDao getCurrencyDao() {
+    return currencyDao;
+  }
+
+  public void setCurrencyDao(CurrencyDao currencyDao) {
+    this.currencyDao = currencyDao;
   }	
 
+  
 }

@@ -19,6 +19,9 @@ import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResults
 import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
+import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
+import com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto;
+import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.GameHistory;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
@@ -36,9 +39,13 @@ public interface CreateNoneventProtoUtils {
   
   public abstract BasicUserProto createBasicUserProto(User aUser, AuthorizedDevice ad);
   
+  public abstract CompleteUserProto createCompleteUserProto(User aUser, AuthorizedDevice ad,
+      Currency monies);
+  
   public abstract BasicAuthorizedDeviceProto createBasicAuthorizedDeviceProto(AuthorizedDevice ad,
       String userId);
   
+  public abstract UserCurrencyProto createUserCurrencyProto(Currency monies);
   
   public abstract List<OngoingGameProto> createOngoingGameProtosForUser(List<GameHistory> ghList,
       Map<String, BasicUserProto> idsToBasicUserProtos, String userId, boolean isUserTurn);

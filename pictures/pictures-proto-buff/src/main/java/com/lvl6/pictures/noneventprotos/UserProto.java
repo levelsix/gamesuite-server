@@ -2292,9 +2292,9 @@ public final class UserProto {
     boolean hasLastLogin();
     long getLastLogin();
     
-    // optional int32 signupDate = 9;
+    // optional int64 signupDate = 9;
     boolean hasSignupDate();
-    int getSignupDate();
+    long getSignupDate();
     
     // optional .proto.UserCurrencyProto currency = 10;
     boolean hasCurrency();
@@ -2545,13 +2545,13 @@ public final class UserProto {
       return lastLogin_;
     }
     
-    // optional int32 signupDate = 9;
+    // optional int64 signupDate = 9;
     public static final int SIGNUPDATE_FIELD_NUMBER = 9;
-    private int signupDate_;
+    private long signupDate_;
     public boolean hasSignupDate() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
-    public int getSignupDate() {
+    public long getSignupDate() {
       return signupDate_;
     }
     
@@ -2577,7 +2577,7 @@ public final class UserProto {
       facebookId_ = "";
       badp_ = com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.getDefaultInstance();
       lastLogin_ = 0L;
-      signupDate_ = 0;
+      signupDate_ = 0L;
       currency_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
@@ -2617,7 +2617,7 @@ public final class UserProto {
         output.writeInt64(8, lastLogin_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeInt32(9, signupDate_);
+        output.writeInt64(9, signupDate_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeMessage(10, currency_);
@@ -2665,7 +2665,7 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, signupDate_);
+          .computeInt64Size(9, signupDate_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2817,7 +2817,7 @@ public final class UserProto {
         bitField0_ = (bitField0_ & ~0x00000040);
         lastLogin_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000080);
-        signupDate_ = 0;
+        signupDate_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000100);
         if (currencyBuilder_ == null) {
           currency_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
@@ -3034,7 +3034,7 @@ public final class UserProto {
             }
             case 72: {
               bitField0_ |= 0x00000100;
-              signupDate_ = input.readInt32();
+              signupDate_ = input.readInt64();
               break;
             }
             case 82: {
@@ -3379,15 +3379,15 @@ public final class UserProto {
         return this;
       }
       
-      // optional int32 signupDate = 9;
-      private int signupDate_ ;
+      // optional int64 signupDate = 9;
+      private long signupDate_ ;
       public boolean hasSignupDate() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      public int getSignupDate() {
+      public long getSignupDate() {
         return signupDate_;
       }
-      public Builder setSignupDate(int value) {
+      public Builder setSignupDate(long value) {
         bitField0_ |= 0x00000100;
         signupDate_ = value;
         onChanged();
@@ -3395,7 +3395,7 @@ public final class UserProto {
       }
       public Builder clearSignupDate() {
         bitField0_ = (bitField0_ & ~0x00000100);
-        signupDate_ = 0;
+        signupDate_ = 0L;
         onChanged();
         return this;
       }
@@ -3546,7 +3546,7 @@ public final class UserProto {
       "meFriendsSee\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\020\n\010pas" +
       "sword\030\005 \001(\t\022\022\n\nfacebookId\030\006 \001(\t\022/\n\004badp\030" +
       "\007 \001(\0132!.proto.BasicAuthorizedDeviceProto" +
-      "\022\021\n\tlastLogin\030\010 \001(\003\022\022\n\nsignupDate\030\t \001(\005\022" +
+      "\022\021\n\tlastLogin\030\010 \001(\003\022\022\n\nsignupDate\030\t \001(\003\022" +
       "*\n\010currency\030\n \001(\0132\030.proto.UserCurrencyPr" +
       "otoB-\n com.lvl6.pictures.noneventprotosB" +
       "\tUserProto"

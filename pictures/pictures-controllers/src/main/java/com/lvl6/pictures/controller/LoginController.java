@@ -41,9 +41,11 @@ import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
+import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.GameHistory;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.properties.PicturesPoConstants;
+import com.lvl6.pictures.services.currency.CurrencyService;
 import com.lvl6.pictures.services.gamehistory.GameHistoryService;
 
 public class LoginController extends EventController {
@@ -71,6 +73,8 @@ public class LoginController extends EventController {
   @Autowired
   protected RandomNumberUtils randNumUtils;
 
+  @Autowired
+  protected CurrencyService currencyService; 
 
   @Override
   public RequestEvent createRequestEvent() {
@@ -85,7 +89,7 @@ public class LoginController extends EventController {
   @Override
   protected void processRequestEvent(RequestEvent event) throws Exception {
     LoginRequestProto reqProto = ((LoginRequestEvent) event).getLoginRequestProto();
-    BasicUserProto sender = reqProto.getSender();
+    BasicUserProto sender = reqProto.getSender(); //sender might not have userId
     LoginType lt = reqProto.getLoginType();
     List<String> facebookFriendIds = reqProto.getFacebookFriendIdsList();
     boolean initializeAccount = reqProto.getInitializeAccount();
@@ -94,20 +98,29 @@ public class LoginController extends EventController {
     //response to send back to client
     LoginResponseProto.Builder responseBuilder = LoginResponseProto.newBuilder();
     responseBuilder.setStatus(LoginResponseStatus.FAIL_OTHER);
-    CompleteUserProto.Builder cupb = CompleteUserProto.newBuilder();
+    //CompleteUserProto.Builder cupb = CompleteUserProto.newBuilder();
     
+    //sender object might not have userId if user deleted app or something
+    List<String> userIdList = new ArrayList<String>();
+    List<User> userList = new ArrayList<User>();
+    User u = null; 
+        
     boolean validRequestArgs = isValidRequestArguments(responseBuilder, sender,
         lt, now); 
     boolean validRequest = false;
     boolean successful = false;
     
     if (validRequestArgs) {
-      validRequest = isValidRequest(responseBuilder, sender, lt, now);
+      //if valid the completeUserProto (cup) within responseBuilder is set
+      //but only the cup.userId is set
+      validRequest =
+          isValidRequest(responseBuilder, sender, lt, now, userIdList, userList);
     }
     
     if (validRequest) {
+      u = getUser(userIdList, userList);
       successful = writeChangesToDb(responseBuilder, sender, lt,
-          initializeAccount, now, cupb);
+          initializeAccount, now, u);
     }
     
     if (successful) {
@@ -115,7 +128,7 @@ public class LoginController extends EventController {
       Set<String> allPictureNames = new HashSet<String>();
       
       //set the recipient
-      responseBuilder.setRecipient(cupb);
+      //responseBuilder.setRecipient(cupb); //done in writeChangesToDb
       
       String userId = responseBuilder.getRecipient().getUserId(); 
       // GET ALL THE COMPLETED GAMES THAT FINISHED SOME TIME AGO, OR MIN DEFAULT NUMBER OF GAMES
@@ -223,25 +236,28 @@ public class LoginController extends EventController {
     return false;
   }
   
-  private boolean isValidRequest(Builder responseBuilder, 
-      BasicUserProto sender, LoginType lt, DateTime now) {
+  //if valid the completeUserProto (cup) within responseBuilder is set
+  //but only the cup.userId is set
+  private boolean isValidRequest(Builder responseBuilder, BasicUserProto sender,
+      LoginType lt, DateTime now, List<String> userIdList, List<User> userList) {
     if (LoginType.LOGIN_TOKEN == lt) {
-      return isValidLoginToken(responseBuilder, sender, now);
+      return isValidLoginToken(responseBuilder, sender, now, userIdList);
     }
     if (LoginType.FACEBOOK == lt) {
-      return isValidFacebookLogin(responseBuilder, sender);
+      return isValidFacebookLogin(responseBuilder, sender, userList);
     }
     if (LoginType.EMAIL_PASSWORD == lt) {
-      return isValidEmailPasswordLogin(responseBuilder, sender);
+      return isValidEmailPasswordLogin(responseBuilder, sender, userList);
     }
     if (LoginType.NO_CREDENTIALS == lt) {
-      return isValidNoCredentialsLogin(responseBuilder, sender);
+      return isValidNoCredentialsLogin(responseBuilder, sender, userList);
     }
     log.error("unexpected error: loginType=" + lt);
     return false;
   }
   
-  private boolean isValidLoginToken(Builder responseBuilder, BasicUserProto sender, DateTime now) {
+  private boolean isValidLoginToken(Builder responseBuilder, BasicUserProto sender,
+      DateTime now, List<String> userIdList) {
     log.info("login token validation");
     BasicAuthorizedDeviceProto badp = sender.getBadp();
     String userId = badp.getUserId();
@@ -254,8 +270,7 @@ public class LoginController extends EventController {
     //checking the token client sent matches token in database, and db/client-sent user ids match
     if (null != bad && null != bad.getToken() && bad.getToken().equals(loginToken) &&
         null != userId && bad.getUserId().equals(userId)) {
-      CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(userId).build();
-      responseBuilder.setRecipient(r);
+      userIdList.add(userId);
       return true;
     }
     log.error("unexpected error: authorizedDevice in the db=" + bad + ", sender=" + sender);
@@ -263,7 +278,8 @@ public class LoginController extends EventController {
     return false;
   }
   
-  private boolean isValidFacebookLogin(Builder responseBuilder, BasicUserProto sender) {
+  private boolean isValidFacebookLogin(Builder responseBuilder, BasicUserProto sender,
+      List<User> userObjList) {
     log.info("facebook login validation");
     String facebookId = sender.getFacebookId();
     String nameNull = null;
@@ -274,10 +290,7 @@ public class LoginController extends EventController {
     if (null != userList && userList.size() == 1) {
       //could check if some values matched...but what if user deleted app
       //set userId because what if user deleted app?
-      User u = userList.get(0);
-      String uId = u.getId();
-      CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(uId).build();
-      responseBuilder.setRecipient(r);
+      userObjList.addAll(userList);
       return true;
     }
     log.error("unexpected error: users in db with facebookId=" + facebookId + 
@@ -286,7 +299,8 @@ public class LoginController extends EventController {
     return false;
   }
   
-  private boolean isValidEmailPasswordLogin(Builder responseBuilder, BasicUserProto sender) {
+  private boolean isValidEmailPasswordLogin(Builder responseBuilder,
+      BasicUserProto sender, List<User> userObjList) {
     log.info("email, password validation");
     //verify said person exists and email, password match
     String email = sender.getEmail();
@@ -308,8 +322,7 @@ public class LoginController extends EventController {
     User inDb = userList.get(0);
     //check the user's email password match
     if (loginService.validCredentials(inDb, nameStrangersSee, email, password)) {
-      CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(inDb.getId()).build();
-      responseBuilder.setRecipient(r);
+      userObjList.add(inDb);
       return true;
     }
     
@@ -318,7 +331,8 @@ public class LoginController extends EventController {
     return false;
   }
   
-  private boolean isValidNoCredentialsLogin(Builder responseBuilder, BasicUserProto sender) {
+  private boolean isValidNoCredentialsLogin(Builder responseBuilder,
+      BasicUserProto sender, List<User> userObjList) {
     log.info("no credentials (aka just name) validation") ;
     String facebookIdNull = null;
     String nameStrangersSee = sender.getNameStrangersSee();
@@ -333,41 +347,59 @@ public class LoginController extends EventController {
       + userList);
       return false;
     }
-    User inDb = userList.get(0);
-    CompleteUserProto r = CompleteUserProto.newBuilder().setUserId(inDb.getId()).build();
-    responseBuilder.setRecipient(r);
+    userObjList.addAll(userList);
     return true;
   }
   
-  private boolean writeChangesToDb(Builder responseBuilder, BasicUserProto sender, LoginType lt,
-      boolean initializeAccount, DateTime now, CompleteUserProto.Builder cupb) {
+  private User getUser(List<String> userIdList, List<User> userList) {
+    if (!userList.isEmpty()) {
+      return userList.get(0);
+    }
+    String userId = userIdList.get(0);
+    return getLoginService().getUserById(userId);
     
-    String userId = responseBuilder.getRecipient().getUserId();
+  }
+  
+  private boolean writeChangesToDb(Builder responseBuilder, BasicUserProto sender, LoginType lt,
+      boolean initializeAccount, DateTime now, User u) {
+    
+    String userId = u.getId();
+    Currency monies = null;
     if (initializeAccount) {
-      //give the user all the power ups, coins and stuff
+      //give the user all the coins and stuff
+      monies = getCurrencyService().initializeUserCurrency(userId, now.toDate());
+      
     } else {
       // CONSTRUCT THE USER (CURRENCY AND ALL)
+      monies = getCurrencyService().getCurrencyForUser(userId);
     }
-      
+    if (null != monies) {
+      //every user should have currency!
+      log.error("user does not have currency. userProto=" + sender);
+    }
+    
     // RECORD THE USER LOGGING IN
-    AuthorizedDevice ad = updateUserLogin(sender, userId, now);
+    AuthorizedDevice ad = updateUserLogin(sender, u, now);
 
     //TODO: KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT
     //idea get the udid's of the authorized devices user has and send a message to those udids
     kickOffOtherDevicesSharingAccount(userId, ad);
     
+    CompleteUserProto cupb = 
+        getNoneventProtoUtils().createCompleteUserProto(u, ad, monies);
+    //set the recipient
+    responseBuilder.setRecipient(cupb);
+    
     return true;
   }
   
-  private AuthorizedDevice updateUserLogin(BasicUserProto sender, String userId, DateTime now) {
-    BasicAuthorizedDeviceProto badp = sender.getBadp();
-    
-    User inDb = getUserSignupService().getUserDao().findById(userId);
+  private AuthorizedDevice updateUserLogin(BasicUserProto sender, User u, DateTime now) {
+    BasicAuthorizedDeviceProto badp = sender.getBadp(); //would the client have this?
     
     String udid = badp.getUdid();
     String deviceId = badp.getDeviceId();
     
-    return getLoginService().updateUserLastLogin(inDb, now, udid, deviceId);
+    return getLoginService().updateUserLastLogin(u, now, udid, deviceId);
   }
   
   private void kickOffOtherDevicesSharingAccount(String userId, AuthorizedDevice ad) {
@@ -521,11 +553,11 @@ public class LoginController extends EventController {
   public UserSignupService getUserSignupService() {
     return userSignupService;
   }
-  
-  public void setUserSingupService(UserSignupService service) {
-    this.userSignupService = service;
+
+  public void setUserSignupService(UserSignupService userSignupService) {
+    this.userSignupService = userSignupService;
   }
-  
+
   public AuthorizedDeviceService getAuthorizedDeviceService() {
     return authorizedDeviceService;
   }
@@ -565,6 +597,14 @@ public class LoginController extends EventController {
 
   public void setRandNumUtils(RandomNumberUtils randNumUtils) {
     this.randNumUtils = randNumUtils;
+  }
+
+  public CurrencyService getCurrencyService() {
+    return currencyService;
+  }
+
+  public void setCurrencyService(CurrencyService currencyService) {
+    this.currencyService = currencyService;
   }
   
 }

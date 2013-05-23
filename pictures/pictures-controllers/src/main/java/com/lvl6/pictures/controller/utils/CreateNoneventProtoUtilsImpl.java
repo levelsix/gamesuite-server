@@ -27,7 +27,10 @@ import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResu
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
+import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
+import com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto;
 import com.lvl6.pictures.po.AnswerType;
+import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.GameHistory;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
@@ -108,34 +111,93 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     
     if (null != ad) {
       BasicAuthorizedDeviceProto badp = createBasicAuthorizedDeviceProto(ad, userId); 
-      if (null != badp) {
-        bpb.setBadp(badp);
-      }
+      bpb.setBadp(badp);
     }
     
     return bpb.build();
   }
   
   @Override
+  public CompleteUserProto createCompleteUserProto(User aUser,
+      AuthorizedDevice ad, Currency monies) {
+    CompleteUserProto.Builder cupb = CompleteUserProto.newBuilder();
+    
+    String userId = aUser.getId();
+    String nameStrangersSee = aUser.getNameStrangersSee();
+    String nameFriendsSee = aUser.getNameFriendsSee();
+    String email = aUser.getEmail();
+    String facebookId = aUser.getFacebookId();
+    Date lastLogin = aUser.getLastLogin();
+    Date signupDate = aUser.getSignupDate();
+    
+    if (null != userId) {
+      cupb.setUserId(userId);
+    }
+    if (null != nameStrangersSee) {
+      cupb.setNameStrangersSee(nameStrangersSee);
+    }
+    if (null != nameFriendsSee) {
+      cupb.setNameFriendsSee(nameFriendsSee);
+    }
+    if (null != email) {
+      cupb.setEmail(email);
+    }
+    if (null != facebookId) {
+      cupb.setFacebookId(facebookId);
+    }
+    if (null != lastLogin) {
+      cupb.setLastLogin(lastLogin.getTime());
+    }
+    if (null != signupDate) {
+      cupb.setSignupDate(signupDate.getTime());
+    }
+    
+    if (null != ad) {
+      BasicAuthorizedDeviceProto badp = createBasicAuthorizedDeviceProto(ad, userId); 
+      cupb.setBadp(badp);
+    }
+    if (null != monies) {
+      UserCurrencyProto ucp = createUserCurrencyProto(monies);
+      cupb.setCurrency(ucp);
+    }
+    
+    return cupb.build();
+  }
+  
+  @Override
   public BasicAuthorizedDeviceProto createBasicAuthorizedDeviceProto(AuthorizedDevice ad,
       String userId) {
-    if (null != ad) {
-      Builder bad = BasicAuthorizedDeviceProto.newBuilder();
-      String udid = ad.getUdid();
-      String loginToken = ad.getToken();
-      Date expirationDate = ad.getExpires();
-      String deviceId = ad.getDeviceId();
-      
-      bad.setBasicAuthorizedDeviceId(ad.getId());
-      bad.setUserId(userId);
-      bad.setLoginToken(loginToken);
-      bad.setExpirationDate(expirationDate.getTime());
-      bad.setUdid(udid);
-      bad.setDeviceId(deviceId);
-      return bad.build();
-    } else {
-      return null;
+    Builder bad = BasicAuthorizedDeviceProto.newBuilder();
+    String udid = ad.getUdid();
+    String loginToken = ad.getToken();
+    Date expirationDate = ad.getExpires();
+    String deviceId = ad.getDeviceId();
+
+    bad.setBasicAuthorizedDeviceId(ad.getId());
+    bad.setUserId(userId);
+    bad.setLoginToken(loginToken);
+    bad.setExpirationDate(expirationDate.getTime());
+    bad.setUdid(udid);
+    bad.setDeviceId(deviceId);
+    return bad.build();
+  }
+  
+  @Override
+  public UserCurrencyProto createUserCurrencyProto(Currency monies) {
+    UserCurrencyProto.Builder ucpb = UserCurrencyProto.newBuilder();
+
+    int numTokens = monies.getTokens();
+    ucpb.setNumTokens(numTokens);
+    
+    Date lastTokenRefillTime = monies.getLastTokenRefillTime();
+    if (null != lastTokenRefillTime) {
+      ucpb.setLastTokenRefillTime(lastTokenRefillTime.getTime());
     }
+    
+    int numRubies = monies.getRubies();
+    ucpb.setNumRubies(numRubies);
+    
+    return ucpb.build();
   }
   
   @Override

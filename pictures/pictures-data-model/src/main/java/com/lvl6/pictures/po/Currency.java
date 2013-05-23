@@ -9,11 +9,17 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 @Entity
 public class Currency extends BasePersistentObject {
   
+  //used to play games against opponents
   protected int tokens;
   
   protected Date lastTokenRefillTime;
   
+  //used to purchase power ups
   protected int rubies;
+
+  protected String userId;
+  
+  
 
   public int getTokens() {
     return tokens;
@@ -37,6 +43,14 @@ public class Currency extends BasePersistentObject {
 
   public void setRubies(int rubies) {
     this.rubies = rubies;
+  }
+ 
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
   
 }

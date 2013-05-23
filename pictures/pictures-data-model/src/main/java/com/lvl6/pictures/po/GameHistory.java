@@ -46,8 +46,8 @@ public class GameHistory extends BasePersistentObject {
   //this is for when:
   //player one begins a round against someone
   //player two begins the round player one finished
-  //deleted when either player finishes the round
-  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  //deleted when either player finishes the round, so can be null
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = true)
   protected RoundPendingCompletion unfinishedRound;
 
   
