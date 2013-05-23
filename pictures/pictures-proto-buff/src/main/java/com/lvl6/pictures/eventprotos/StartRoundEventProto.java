@@ -1841,8 +1841,8 @@ public final class StartRoundEventProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\025StartRoundEvent.proto\022\005proto\032\nUser.pro" +
-      "to\032\032TriviaQuestionFormat.proto\"\357\001\n\026Start" +
+      "\n\025StartRoundEvent.proto\022\005proto\032\032TriviaQu" +
+      "estionFormat.proto\032\nUser.proto\"\357\001\n\026Start" +
       "RoundRequestProto\022%\n\006sender\030\001 \001(\0132\025.prot" +
       "o.BasicUserProto\022\026\n\016isRandomPlayer\030\002 \001(\010" +
       "\022\020\n\010opponent\030\003 \001(\t\022\016\n\006gameId\030\004 \001(\t\022\023\n\013ro" +
@@ -1883,8 +1883,8 @@ public final class StartRoundEventProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
           com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.getDescriptor(),
+          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
         }, assigner);
   }
   

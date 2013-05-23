@@ -1,4 +1,5 @@
 import "User.proto";
+
 package proto;
 
 option java_package = "com.lvl6.pictures.eventprotos";

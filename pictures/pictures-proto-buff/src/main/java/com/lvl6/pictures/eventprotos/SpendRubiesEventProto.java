@@ -1004,7 +1004,7 @@ public final class SpendRubiesEventProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026SpendRubiesEvent.proto\022\005proto\032\nUser.Pr" +
+      "\n\026SpendRubiesEvent.proto\022\005proto\032\nUser.pr" +
       "oto\"U\n\027SpendRubiesRequestProto\022%\n\006sender" +
       "\030\001 \001(\0132\025.proto.BasicUserProto\022\023\n\013amountS" +
       "pent\030\002 \001(\005\"\222\001\n\030SpendRubiesResponseProto\022" +

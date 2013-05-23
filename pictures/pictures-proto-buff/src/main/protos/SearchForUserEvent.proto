@@ -22,6 +22,4 @@ message SearchForUserResponseProto {
 		FAIL_OTHER = 3;
 	}
 	
-	
-	
 }

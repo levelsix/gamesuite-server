@@ -1,4 +1,4 @@
-import "User.Proto";
+import "User.proto";
 
 package proto;
 

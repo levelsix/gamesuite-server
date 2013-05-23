@@ -1,5 +1,5 @@
-import "User.proto";
 import "TriviaQuestionFormat.proto";
+import "User.proto";
 
 package proto;
 
@@ -30,7 +30,6 @@ message StartRoundRequestProto {
 	
 	//the image names in questions
 	repeated string images = 9;
-	
 	
 }
 

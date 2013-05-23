@@ -2299,8 +2299,8 @@ public final class CompletedRoundEventProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\031CompletedRoundEvent.proto\022\005proto\032\nUser" +
-      ".proto\032\027TriviaRoundFormat.proto\"\206\001\n\032Comp" +
+      "\n\031CompletedRoundEvent.proto\022\005proto\032\027Triv" +
+      "iaRoundFormat.proto\032\nUser.proto\"\206\001\n\032Comp" +
       "letedRoundRequestProto\022%\n\006sender\030\001 \001(\0132\025" +
       ".proto.BasicUserProto\022\016\n\006gameId\030\002 \001(\t\0221\n" +
       "\007results\030\003 \001(\0132 .proto.CompleteRoundResu" +
@@ -2357,8 +2357,8 @@ public final class CompletedRoundEventProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
           com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.getDescriptor(),
+          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
         }, assigner);
   }
   

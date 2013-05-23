@@ -1386,7 +1386,7 @@ public final class RetrieveNewQuestionsEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\037RetrieveNewQuestionsEvent.proto\022\005proto" +
-      "\032\nUser.proto\032\032TriviaQuestionFormat.proto" +
+      "\032\032TriviaQuestionFormat.proto\032\nUser.proto" +
       "\"e\n RetrieveNewQuestionsRequestProto\022%\n\006" +
       "sender\030\001 \001(\0132\025.proto.BasicUserProto\022\032\n\022n" +
       "umQuestionsWanted\030\002 \001(\005\"\322\001\n!RetrieveNewQ" +
@@ -1425,8 +1425,8 @@ public final class RetrieveNewQuestionsEventProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
           com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.getDescriptor(),
+          com.lvl6.pictures.noneventprotos.UserProto.getDescriptor(),
         }, assigner);
   }
   
