@@ -49,11 +49,6 @@ public final class StartRoundEventProto {
         getQuestionsOrBuilderList();
     com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getQuestionsOrBuilder(
         int index);
-    
-    // repeated string images = 9;
-    java.util.List<String> getImagesList();
-    int getImagesCount();
-    String getImages(int index);
   }
   public static final class StartRoundRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -222,20 +217,6 @@ public final class StartRoundEventProto {
       return questions_.get(index);
     }
     
-    // repeated string images = 9;
-    public static final int IMAGES_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList images_;
-    public java.util.List<String>
-        getImagesList() {
-      return images_;
-    }
-    public int getImagesCount() {
-      return images_.size();
-    }
-    public String getImages(int index) {
-      return images_.get(index);
-    }
-    
     private void initFields() {
       sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       isRandomPlayer_ = false;
@@ -245,7 +226,6 @@ public final class StartRoundEventProto {
       isPlayerOne_ = false;
       startTime_ = 0L;
       questions_ = java.util.Collections.emptyList();
-      images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -282,9 +262,6 @@ public final class StartRoundEventProto {
       }
       for (int i = 0; i < questions_.size(); i++) {
         output.writeMessage(8, questions_.get(i));
-      }
-      for (int i = 0; i < images_.size(); i++) {
-        output.writeBytes(9, images_.getByteString(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -326,15 +303,6 @@ public final class StartRoundEventProto {
       for (int i = 0; i < questions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, questions_.get(i));
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < images_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(images_.getByteString(i));
-        }
-        size += dataSize;
-        size += 1 * getImagesList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -486,8 +454,6 @@ public final class StartRoundEventProto {
         } else {
           questionsBuilder_.clear();
         }
-        images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -567,12 +533,6 @@ public final class StartRoundEventProto {
         } else {
           result.questions_ = questionsBuilder_.build();
         }
-        if (((bitField0_ & 0x00000100) == 0x00000100)) {
-          images_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              images_);
-          bitField0_ = (bitField0_ & ~0x00000100);
-        }
-        result.images_ = images_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -635,16 +595,6 @@ public final class StartRoundEventProto {
               questionsBuilder_.addAllMessages(other.questions_);
             }
           }
-        }
-        if (!other.images_.isEmpty()) {
-          if (images_.isEmpty()) {
-            images_ = other.images_;
-            bitField0_ = (bitField0_ & ~0x00000100);
-          } else {
-            ensureImagesIsMutable();
-            images_.addAll(other.images_);
-          }
-          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -720,11 +670,6 @@ public final class StartRoundEventProto {
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addQuestions(subBuilder.buildPartial());
-              break;
-            }
-            case 74: {
-              ensureImagesIsMutable();
-              images_.add(input.readBytes());
               break;
             }
           }
@@ -1165,62 +1110,6 @@ public final class StartRoundEventProto {
         return questionsBuilder_;
       }
       
-      // repeated string images = 9;
-      private com.google.protobuf.LazyStringList images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureImagesIsMutable() {
-        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
-          images_ = new com.google.protobuf.LazyStringArrayList(images_);
-          bitField0_ |= 0x00000100;
-         }
-      }
-      public java.util.List<String>
-          getImagesList() {
-        return java.util.Collections.unmodifiableList(images_);
-      }
-      public int getImagesCount() {
-        return images_.size();
-      }
-      public String getImages(int index) {
-        return images_.get(index);
-      }
-      public Builder setImages(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureImagesIsMutable();
-        images_.set(index, value);
-        onChanged();
-        return this;
-      }
-      public Builder addImages(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureImagesIsMutable();
-        images_.add(value);
-        onChanged();
-        return this;
-      }
-      public Builder addAllImages(
-          java.lang.Iterable<String> values) {
-        ensureImagesIsMutable();
-        super.addAll(values, images_);
-        onChanged();
-        return this;
-      }
-      public Builder clearImages() {
-        images_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        onChanged();
-        return this;
-      }
-      void addImages(com.google.protobuf.ByteString value) {
-        ensureImagesIsMutable();
-        images_.add(value);
-        onChanged();
-      }
-      
       // @@protoc_insertion_point(builder_scope:proto.StartRoundRequestProto)
     }
     
@@ -1272,7 +1161,7 @@ public final class StartRoundEventProto {
       return com.lvl6.pictures.eventprotos.StartRoundEventProto.internal_static_proto_StartRoundResponseProto_fieldAccessorTable;
     }
     
-    public enum StartRoundResponseStatus
+    public enum StartRoundStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
       FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME(1, 2),
@@ -1286,7 +1175,7 @@ public final class StartRoundEventProto {
       
       public final int getNumber() { return value; }
       
-      public static StartRoundResponseStatus valueOf(int value) {
+      public static StartRoundStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
           case 2: return FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME;
@@ -1295,15 +1184,15 @@ public final class StartRoundEventProto {
         }
       }
       
-      public static com.google.protobuf.Internal.EnumLiteMap<StartRoundResponseStatus>
+      public static com.google.protobuf.Internal.EnumLiteMap<StartRoundStatus>
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static com.google.protobuf.Internal.EnumLiteMap<StartRoundResponseStatus>
+      private static com.google.protobuf.Internal.EnumLiteMap<StartRoundStatus>
           internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<StartRoundResponseStatus>() {
-              public StartRoundResponseStatus findValueByNumber(int number) {
-                return StartRoundResponseStatus.valueOf(number);
+            new com.google.protobuf.Internal.EnumLiteMap<StartRoundStatus>() {
+              public StartRoundStatus findValueByNumber(int number) {
+                return StartRoundStatus.valueOf(number);
               }
             };
       
@@ -1320,11 +1209,11 @@ public final class StartRoundEventProto {
         return com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.getDescriptor().getEnumTypes().get(0);
       }
       
-      private static final StartRoundResponseStatus[] VALUES = {
+      private static final StartRoundStatus[] VALUES = {
         SUCCESS, FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME, FAIL_OTHER, 
       };
       
-      public static StartRoundResponseStatus valueOf(
+      public static StartRoundStatus valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
@@ -1336,12 +1225,12 @@ public final class StartRoundEventProto {
       private final int index;
       private final int value;
       
-      private StartRoundResponseStatus(int index, int value) {
+      private StartRoundStatus(int index, int value) {
         this.index = index;
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:proto.StartRoundResponseProto.StartRoundResponseStatus)
+      // @@protoc_insertion_point(enum_scope:proto.StartRoundResponseProto.StartRoundStatus)
     }
     
     private int bitField0_;
@@ -1842,19 +1731,19 @@ public final class StartRoundEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\025StartRoundEvent.proto\022\005proto\032\032TriviaQu" +
-      "estionFormat.proto\032\nUser.proto\"\357\001\n\026Start" +
+      "estionFormat.proto\032\nUser.proto\"\337\001\n\026Start" +
       "RoundRequestProto\022%\n\006sender\030\001 \001(\0132\025.prot" +
       "o.BasicUserProto\022\026\n\016isRandomPlayer\030\002 \001(\010" +
       "\022\020\n\010opponent\030\003 \001(\t\022\016\n\006gameId\030\004 \001(\t\022\023\n\013ro" +
       "undNumber\030\005 \001(\005\022\023\n\013isPlayerOne\030\006 \001(\010\022\021\n\t" +
       "startTime\030\007 \001(\003\022\'\n\tquestions\030\010 \003(\0132\024.pro" +
-      "to.QuestionProto\022\016\n\006images\030\t \003(\t\"\270\001\n\027Sta" +
-      "rtRoundResponseProto\022(\n\trecipient\030\001 \001(\0132" +
-      "\025.proto.BasicUserProto\022\016\n\006gameId\030\002 \001(\t\"c",
-      "\n\030StartRoundResponseStatus\022\013\n\007SUCCESS\020\001\022" +
-      "*\n&FAIL_CLIENT_TOO_APART_FROM_SERVER_TIM" +
-      "E\020\002\022\016\n\nFAIL_OTHER\020\003B5\n\035com.lvl6.pictures" +
-      ".eventprotosB\024StartRoundEventProto"
+      "to.QuestionProto\"\260\001\n\027StartRoundResponseP" +
+      "roto\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUse" +
+      "rProto\022\016\n\006gameId\030\002 \001(\t\"[\n\020StartRoundStat",
+      "us\022\013\n\007SUCCESS\020\001\022*\n&FAIL_CLIENT_TOO_APART" +
+      "_FROM_SERVER_TIME\020\002\022\016\n\nFAIL_OTHER\020\003B5\n\035c" +
+      "om.lvl6.pictures.eventprotosB\024StartRound" +
+      "EventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1866,7 +1755,7 @@ public final class StartRoundEventProto {
           internal_static_proto_StartRoundRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartRoundRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "IsRandomPlayer", "Opponent", "GameId", "RoundNumber", "IsPlayerOne", "StartTime", "Questions", "Images", },
+              new java.lang.String[] { "Sender", "IsRandomPlayer", "Opponent", "GameId", "RoundNumber", "IsPlayerOne", "StartTime", "Questions", },
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundRequestProto.class,
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundRequestProto.Builder.class);
           internal_static_proto_StartRoundResponseProto_descriptor =

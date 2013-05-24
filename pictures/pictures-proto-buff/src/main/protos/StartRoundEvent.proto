@@ -27,10 +27,6 @@ message StartRoundRequestProto {
 	
 	//questions user sees in this round
 	repeated QuestionProto questions = 8;
-	
-	//the image names in questions
-	repeated string images = 9;
-	
 }
 
 message StartRoundResponseProto {
@@ -39,7 +35,7 @@ message StartRoundResponseProto {
 	optional BasicUserProto recipient = 1;
 	optional string gameId = 2;
 	
-	enum StartRoundResponseStatus {
+	enum StartRoundStatus {
 		SUCCESS = 1;
 		FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME = 2;
 		FAIL_OTHER = 3;
