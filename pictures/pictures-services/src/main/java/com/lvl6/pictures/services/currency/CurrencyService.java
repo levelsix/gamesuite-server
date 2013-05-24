@@ -11,6 +11,13 @@ public interface CurrencyService {
   
   public abstract Currency getCurrencyForUser(String userId);
   
+  public abstract boolean canRegenerateToken(Date lastRefillTime, Date now);
+  
+  public abstract int numTokensRegenerated(Currency c, Date now);
+  
+  public abstract void refillTokensForUser(Currency c, int newTokenAmount,
+      Date timeRefilled);
+  
   public abstract CurrencyDao getCurrencyDao();
   
   public abstract void setCurrencyDao(CurrencyDao currencyDao);

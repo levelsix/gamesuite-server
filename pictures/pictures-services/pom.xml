@@ -46,6 +46,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lvl6</groupId>
+			<artifactId>common-controllers</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lvl6</groupId>
 			<artifactId>pictures-data-model</artifactId>
 		</dependency>
 	</dependencies>

@@ -3,9 +3,12 @@ package com.lvl6.pictures.properties;
 public class PicturesPoConstants {
   
   //user
-  public static int USER__DEFAULT_INITIAL_TOKENS = 10;
-  public static int USER__DEFAULT_MAX_TOKENS = 20;
-  public static int USER__DEFAULT_INITIAL_RUBIES = 20;
+  
+  //currency
+  public static int CURRENCY__MINUTES_FOR_TOKEN_REGENERATION = 2;
+  public static int CURRENCY__DEFAULT_MAX_TOKENS = 20;
+  public static int CURRENCY__DEFAULT_INITIAL_TOKENS = 10;
+  public static int CURRENCY__DEFAULT_INITIAL_RUBIES = 20;
   
   //game history
   public static int GAME_HISTORY__DEFAULT_NUM_DISPLAYED_GAMES = 5;  //might not be used

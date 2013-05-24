@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 @Entity
@@ -53,4 +55,8 @@ public class Currency extends BasePersistentObject {
     this.userId = userId;
   }
   
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 }

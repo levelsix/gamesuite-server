@@ -535,14 +535,14 @@ public final class RefillTokensByWaitingEventProto {
       FAIL_NOT_READY_YET(1, 2),
       FAIL_ALREADY_MAX(2, 3),
       FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME(3, 4),
-      FAIL_OTHER_FAIL(4, 5),
+      FAIL_OTHER(4, 5),
       ;
       
       public static final int SUCCESS_VALUE = 1;
       public static final int FAIL_NOT_READY_YET_VALUE = 2;
       public static final int FAIL_ALREADY_MAX_VALUE = 3;
       public static final int FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME_VALUE = 4;
-      public static final int FAIL_OTHER_FAIL_VALUE = 5;
+      public static final int FAIL_OTHER_VALUE = 5;
       
       
       public final int getNumber() { return value; }
@@ -553,7 +553,7 @@ public final class RefillTokensByWaitingEventProto {
           case 2: return FAIL_NOT_READY_YET;
           case 3: return FAIL_ALREADY_MAX;
           case 4: return FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME;
-          case 5: return FAIL_OTHER_FAIL;
+          case 5: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -584,7 +584,7 @@ public final class RefillTokensByWaitingEventProto {
       }
       
       private static final RefillTokensByWaitingStatus[] VALUES = {
-        SUCCESS, FAIL_NOT_READY_YET, FAIL_ALREADY_MAX, FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME, FAIL_OTHER_FAIL, 
+        SUCCESS, FAIL_NOT_READY_YET, FAIL_ALREADY_MAX, FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME, FAIL_OTHER, 
       };
       
       public static RefillTokensByWaitingStatus valueOf(
@@ -1079,17 +1079,17 @@ public final class RefillTokensByWaitingEventProto {
       "\n RefillTokensByWaitingEvent.proto\022\005prot" +
       "o\032\nUser.proto\"[\n!RefillTokensByWaitingRe" +
       "questProto\022%\n\006sender\030\001 \001(\0132\025.proto.Basic" +
-      "UserProto\022\017\n\007curTime\030\002 \001(\003\"\301\002\n\"RefillTok" +
+      "UserProto\022\017\n\007curTime\030\002 \001(\003\"\274\002\n\"RefillTok" +
       "ensByWaitingResponseProto\022(\n\trecipient\030\001" +
       " \001(\0132\025.proto.BasicUserProto\022U\n\006status\030\002 " +
       "\001(\0162E.proto.RefillTokensByWaitingRespons" +
-      "eProto.RefillTokensByWaitingStatus\"\231\001\n\033R" +
+      "eProto.RefillTokensByWaitingStatus\"\224\001\n\033R" +
       "efillTokensByWaitingStatus\022\013\n\007SUCCESS\020\001\022" +
       "\026\n\022FAIL_NOT_READY_YET\020\002\022\024\n\020FAIL_ALREADY_",
       "MAX\020\003\022*\n&FAIL_CLIENT_TOO_APART_FROM_SERV" +
-      "ER_TIME\020\004\022\023\n\017FAIL_OTHER_FAIL\020\005B@\n\035com.lv" +
-      "l6.pictures.eventprotosB\037RefillTokensByW" +
-      "aitingEventProto"
+      "ER_TIME\020\004\022\016\n\nFAIL_OTHER\020\005B@\n\035com.lvl6.pi" +
+      "ctures.eventprotosB\037RefillTokensByWaitin" +
+      "gEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
