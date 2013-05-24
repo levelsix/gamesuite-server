@@ -2,6 +2,8 @@ package com.lvl6.pictures.po;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +32,12 @@ abstract public class QuestionBase extends BasePersistentObject {
 		return createdDate;
 	}
 
+	//when client gets questions to answer, client wants
+	//collection of picture names
+	public Set<String> getPictureNames() {
+	  return new HashSet<String>();
+	}
+	
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}

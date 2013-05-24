@@ -19,10 +19,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lvl6.gamesuite.common.dao.UserDao;
+import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.pictures.dao.CurrencyDao;
 import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
 import com.lvl6.pictures.dao.PictureQuestionWithTextAnswerDao;
 import com.lvl6.pictures.dao.QuestionAnsweredDao;
 import com.lvl6.pictures.po.AnswerType;
+import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.PicturesQuestionWithTextAnswer;
@@ -47,7 +51,11 @@ public class TestPicturesJpa {
 	@Resource
 	protected QuestionAnsweredDao qaDao;
 
+	@Resource
+	protected UserDao userDao;
 	
+	@Resource
+	protected CurrencyDao currencyDao;
 
   public PicturesQuestionWithTextAnswer createPicturesQuestionWithTextAnswer() {
 	  PicturesQuestionWithTextAnswer q = new PicturesQuestionWithTextAnswer();
@@ -59,6 +67,7 @@ public class TestPicturesJpa {
     images.add("image4");
     q.setImages(images);
     q.setCreatedBy("JUnit");
+    pictureDao.save(q);
     
     return q;
 	}
@@ -101,47 +110,48 @@ public class TestPicturesJpa {
     answers.add(mcaD);
     mcq.setAnswers(answers);
     
+    multipleChoiceQuestionDao.save(mcq);
     return mcq;
 	}
 	
-//	@Transactional
-//  @Rollback(true)
-//	@Test
-//	public void testSetup() {
-//		log.info("Testing Pictures JPA");
-//		PicturesQuestionWithTextAnswer q = createPicturesQuestionWithTextAnswer();
-//		getPictureDao().save(q);
-//		log.info("Created Picture question: {}", q.getId());
-//		
-//		List<PicturesQuestionWithTextAnswer> pqwtaList  = getPictureDao().findAll();
-//		assertTrue("Expected: not null. Actual: " + pqwtaList,
-//		    null != pqwtaList && 1 == pqwtaList.size());
-//	}
-//	
-//	@Transactional
-//  @Rollback(true)
-//	@Test
-//	public void testMultipleChoice() {
-//	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
-//	  MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
-//	  List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
-//	  mcqList.add(mcq);
-//	  mcqList.add(mcqImages);
-//	  getMultipleChoiceDao().save(mcqList);
-//	  List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
-//	  
-//	  assertTrue("multiple choice questions. Expected: " + mcqList
-//	      + ". Actually: "+ inDb, 2 == inDb.size());
-//	  
-//	  MultipleChoiceQuestion mcq1 = inDb.get(0);
-//	  MultipleChoiceQuestion mcq2 = inDb.get(1);
-//	  
-//	  assertTrue("Expected: not null. Actually: " + mcq1, null != mcq1.getId() && !(mcq1.getId().isEmpty()));
-//	  assertTrue("Expected: not null. Actually: " + mcq2, null != mcq2.getId() && !(mcq2.getId().isEmpty()));
-//	}
+	@Transactional
+  @Rollback(true)
+	@Test
+	public void testSetup() {
+		log.info("Testing Pictures JPA");
+		PicturesQuestionWithTextAnswer q = createPicturesQuestionWithTextAnswer();
+		getPictureDao().save(q);
+		log.info("Created Picture question: {}", q.getId());
+		
+		List<PicturesQuestionWithTextAnswer> pqwtaList  = getPictureDao().findAll();
+		assertTrue("Expected: not null. Actual: " + pqwtaList,
+		    null != pqwtaList && 1 == pqwtaList.size());
+	}
 	
 	@Transactional
-  @Rollback(false)
+  @Rollback(true)
+	@Test
+	public void testMultipleChoice() {
+	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
+	  MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
+	  List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
+	  mcqList.add(mcq);
+	  mcqList.add(mcqImages);
+	  getMultipleChoiceDao().save(mcqList);
+	  List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
+	  
+	  assertTrue("multiple choice questions. Expected: " + mcqList
+	      + ". Actually: "+ inDb, 2 == inDb.size());
+	  
+	  MultipleChoiceQuestion mcq1 = inDb.get(0);
+	  MultipleChoiceQuestion mcq2 = inDb.get(1);
+	  
+	  assertTrue("Expected: not null. Actually: " + mcq1, null != mcq1.getId() && !(mcq1.getId().isEmpty()));
+	  assertTrue("Expected: not null. Actually: " + mcq2, null != mcq2.getId() && !(mcq2.getId().isEmpty()));
+	}
+	
+	@Transactional
+  @Rollback(true)
   @Test
   public void testQuestionsAnswered() {
 	  PicturesQuestionWithTextAnswer pqwta = createPicturesQuestionWithTextAnswer();
@@ -155,7 +165,7 @@ public class TestPicturesJpa {
 	  
     QuestionAnswered qa = new QuestionAnswered();
     qa.setRoundNumber(roundNumber);
-    qa.setQuestionNumber(questionNumber);
+    qa.setQuestionNumber(questionNumber); 
     qa.setAnsweredDate(answeredDate);
     qa.setAnsweredByUser(answeredByUser);
     qa.setQuestion(pqwta);
@@ -186,19 +196,56 @@ public class TestPicturesJpa {
       if (qb instanceof MultipleChoiceQuestion) {
         mcqCount += 1;
         log.info("question base: " + qb);
-      }
-      if (qb instanceof PicturesQuestionWithTextAnswer) {
+      } else if (qb instanceof PicturesQuestionWithTextAnswer) {
         pqwtaCount += 1;
         log.info("question base: " + qb);
       }
       else {
-        assertTrue("???", 1 == 0);
+        assertTrue("unknown question base", 1 == 0);
       }
     }
     
     assertTrue("Expected: pqwtaCount=1. Actual: pqwtaCount=" + pqwtaCount, 1 == pqwtaCount);
     assertTrue("Expected: mcqCount=1. Actual: mcqCount=" + mcqCount, 1 == mcqCount);
   }
+	
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testUserCurrency() {
+	  User u = new User();
+	  String nameStrangersSee = "food picker";
+	  Date signupDate = new Date();
+	  Date lastLogin = new Date();
+	  u.setNameStrangersSee(nameStrangersSee);
+	  u.setSignupDate(signupDate);
+	  u.setLastLogin(lastLogin);
+
+	  userDao.save(u);
+	  
+	  assertTrue("user="+ u, null != u.getId());
+	  
+	  Currency monies = new Currency();
+	  int tokens = 10;
+	  Date lastTokenRefillTime = signupDate;
+	  int rubies = 10;
+	  monies.setTokens(tokens);
+	  monies.setLastTokenRefillTime(lastTokenRefillTime);
+	  monies.setRubies(rubies);
+	  monies.setUserId(u.getId());
+	  
+	  assertTrue("monies=" + monies, null == monies.getId());
+	  currencyDao.save(monies);
+	  assertTrue("monies=" + monies, null != monies.getId());
+	  
+	  //retrieve from db
+	  Currency currencyInDb = currencyDao.findByUserId(u.getId());
+	  
+	  assertTrue("currencyInDb="+ currencyInDb,
+	      null != currencyInDb &&
+	      null != currencyInDb.getId());
+	}
+	
 //
 //	@Transactional
 //  @Rollback(true)
@@ -228,7 +275,6 @@ public class TestPicturesJpa {
 		this.pictureDao = pictureDao;
 	}
 
-
 	public MultipleChoiceQuestionDao getMultipleChoiceDao() {
 		return multipleChoiceQuestionDao;
 	}
@@ -237,13 +283,29 @@ public class TestPicturesJpa {
 		this.multipleChoiceQuestionDao = multipleChoiceDao;
 	}
 
-  
   public QuestionAnsweredDao getQaDao() {
     return qaDao;
   }
 
   public void setQaDao(QuestionAnsweredDao qaDao) {
     this.qaDao = qaDao;
+  }
+
+  public UserDao getUserDao() {
+    return userDao;
+  }
+
+  public void setUserDao(UserDao userDao) {
+    this.userDao = userDao;
+  }
+
+  public CurrencyDao getCurrencyDao() {
+    return currencyDao;
+  }
+
+  public void setCurrencyDao(CurrencyDao currencyDao) {
+    this.currencyDao = currencyDao;
   }	
 
+  
 }

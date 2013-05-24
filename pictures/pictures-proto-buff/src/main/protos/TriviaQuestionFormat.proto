@@ -10,15 +10,28 @@ message QuestionProto {
 }
 
 message MultipleChoiceQuestionProto {
+	//uniquely identifies this MultipleChoiceQuestionProto
 	optional string id = 4;
+	
+	//question stored in the database
 	optional string question = 1;
+	
+	//references id property in MultipleChoiceAnswerProto
 	optional string answerId = 2;
+	
+	//bunch of answers (images or phrases) tied to this proto
 	repeated MultipleChoiceAnswerProto answers = 3;
 }
 
 message MultipleChoiceAnswerProto {
+	//uniquely identifies this MultipleChoiceAnswerProto
 	optional string id = 2;
+	
+	//a phrase/sentence or a picture
 	optional string answer = 3;
+	
+	//determines if answer property above is a phrase/sentence or
+	//a picture
 	optional AnswerType type = 1;
 	
 	enum AnswerType {

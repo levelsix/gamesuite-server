@@ -69,6 +69,11 @@ public class LoginServiceImpl implements LoginService {
     return userDao.findByFacebookIdIn(facebookIds);
   }
 
+  @Override
+  public User getUserById(String userId) {
+    return userDao.findById(userId);
+  }
+  
   
   @Override
   public PasswordUtil getPasswordUtil() {

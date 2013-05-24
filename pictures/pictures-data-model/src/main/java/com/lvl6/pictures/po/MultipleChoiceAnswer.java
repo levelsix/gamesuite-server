@@ -26,6 +26,18 @@ public class MultipleChoiceAnswer extends BasePersistentObject {
 	@Index(name="multiple_choice_answer_type_index")
 	protected AnswerType answerType;
 	
+	//if answer is a picture return the name, purpose is: 
+	//when client gets questions to answer, client wants
+	//collection of picture names
+	public String getPictureName() {
+	  if(AnswerType.PICTURE == answerType) {
+	    return answer;
+	  } else {
+	    return null;
+	  }
+	  
+	}
+	
 	
 	
 	public boolean isCorrect() {

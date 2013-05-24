@@ -1,13 +1,18 @@
 package com.lvl6.pictures.po;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -38,7 +43,40 @@ public class GameHistory extends BasePersistentObject {
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   protected Set<RoundHistory> roundHistory;
 
+  //this is for when:
+  //player one begins a round against someone
+  //player two begins the round player one finished
+  //deleted when either player finishes the round, so can be null
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = true)
+  protected RoundPendingCompletion unfinishedRound;
+
   
+  /**
+   * Groups the RoundHistory collection by userIds 
+   * (i.e games for playerOne and playerTwo) 
+   * @return
+   */
+  public Map<String, List<RoundHistory>> getIdsToRoundHistories() {
+    Map<String, List<RoundHistory>> idsToRoundHistories = 
+        new HashMap<String, List<RoundHistory>>();
+    
+    for(RoundHistory rh : roundHistory) {
+      String userId = rh.getUserId();
+      
+      if (idsToRoundHistories.containsKey(userId)) {
+        //preexisting round history group, in map, for user
+        List<RoundHistory> rhList = idsToRoundHistories.get(userId);
+        rhList.add(rh);
+      } else {
+        //create new round history group, in map, for user
+        List<RoundHistory> rhList = new ArrayList<RoundHistory>();
+        rhList.add(rh);
+        idsToRoundHistories.put(userId, rhList);
+      }
+    }
+    
+    return idsToRoundHistories;
+  }
   
   public Set<RoundHistory> getRoundHistoryForUser(String userId) {
     Set<RoundHistory> rhSetForUser = new HashSet<RoundHistory>();
@@ -51,6 +89,29 @@ public class GameHistory extends BasePersistentObject {
     
     return rhSetForUser;
   }
+  
+  public RoundHistory getLastRoundHistoryForUser(String userId) {
+    RoundHistory lastRound = null;
+    for (RoundHistory rh : roundHistory) {
+      String rhUserId = rh.getUserId();
+      if (!rhUserId.equals(userId)) {
+        continue;
+      }
+      if(null == lastRound) {
+        lastRound = rh;
+        continue;
+      }
+
+      int prevRoundNum = lastRound.getRoundNumber();
+      int currRoundNum = rh.getRoundNumber();
+
+      if(currRoundNum > prevRoundNum) {
+        lastRound = rh;
+      }
+    }
+    return lastRound;
+  }
+  
   
   public String getPlayerOneId() {
     return playerOneId;
@@ -90,6 +151,14 @@ public class GameHistory extends BasePersistentObject {
 
   public void setRoundHistory(Set<RoundHistory> roundHistory) {
     this.roundHistory = roundHistory;
+  }
+
+  public RoundPendingCompletion getUnfinishedRound() {
+    return unfinishedRound;
+  }
+
+  public void setUnfinishedRound(RoundPendingCompletion unfinishedRound) {
+    this.unfinishedRound = unfinishedRound;
   }
 
 }

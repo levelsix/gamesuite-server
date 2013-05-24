@@ -28,10 +28,6 @@
 			<param-value>com.lvl6.ui.admin.Lvl6Admin</param-value>
 		</init-param>
 		<init-param>
-			<param-name>ignorePaths</param-name>
-			<param-value>/iddiction,/healthcheck</param-value>
-		</init-param>
-		<init-param>
 			<param-name>configuration</param-name>
 			<param-value>${wicket.mode}</param-value>
 		</init-param>

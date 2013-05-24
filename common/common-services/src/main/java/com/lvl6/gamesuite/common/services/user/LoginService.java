@@ -22,6 +22,8 @@ public interface LoginService {
 
   public abstract List<User> getFacebookUsers(List<String> facebookIds);
   
+  public abstract User getUserById(String userId);
+  
   public abstract PasswordUtil getPasswordUtil();
 
   public abstract void setPasswordUtil(PasswordUtil passwordUtil);

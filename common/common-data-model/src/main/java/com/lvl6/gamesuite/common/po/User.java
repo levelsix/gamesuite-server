@@ -23,7 +23,7 @@ public class User extends BasePersistentObject {
 	@Index(name = "user_name_strangers_see_index")
 	protected String nameStrangersSee = "";
 
-	@Size(min = 3, max = 30)
+	//@Size(min = 3, max = 30)
 	@Index(name = "user_name_friends_see_index")
 	// not sure if this index is needed
 	protected String nameFriendsSee = "";
@@ -46,14 +46,6 @@ public class User extends BasePersistentObject {
 	protected Date signupDate = new Date();
 
 	protected String facebookId;
-
-	public String getFacebookId() {
-		return facebookId;
-	}
-
-	public void setFacebookId(String facebookId) {
-		this.facebookId = facebookId;
-	}
 
 	public String getNameStrangersSee() {
 		return nameStrangersSee;
@@ -101,6 +93,14 @@ public class User extends BasePersistentObject {
 
 	public void setSignupDate(Date signupDate) {
 		this.signupDate = signupDate;
+	}
+
+	public String getFacebookId() {
+		return facebookId;
+	}
+
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
 	}
 
 	@Override

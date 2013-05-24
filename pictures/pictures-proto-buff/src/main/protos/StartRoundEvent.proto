@@ -1,0 +1,43 @@
+import "TriviaQuestionFormat.proto";
+import "User.proto";
+
+package proto;
+
+option java_package = "com.lvl6.pictures.eventprotos";
+option java_outer_classname = "StartRoundEventProto";
+
+message StartRoundRequestProto {
+	optional BasicUserProto sender = 1;
+	
+	//user can either play against someone they selected or
+	//ask server to select someone, if true don't set opponent
+	optional bool isRandomPlayer = 2;
+	
+	//the opponent's id
+	optional string opponent = 3;
+
+	//if this is round 1 then this will be null, else client always sets this
+	optional string gameId = 4;
+	
+	optional int32 roundNumber = 5;
+	optional bool isPlayerOne = 6;
+	
+	//this is to see if user time is in sync with server time
+	optional int64 startTime = 7;  
+	
+	//questions user sees in this round
+	repeated QuestionProto questions = 8;
+}
+
+message StartRoundResponseProto {
+	//NOTE: cost to start a round is one token
+	
+	optional BasicUserProto recipient = 1;
+	optional string gameId = 2;
+	
+	enum StartRoundStatus {
+		SUCCESS = 1;
+		FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME = 2;
+		FAIL_OTHER = 3;
+	}
+}
