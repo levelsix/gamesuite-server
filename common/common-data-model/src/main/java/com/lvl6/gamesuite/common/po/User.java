@@ -13,121 +13,99 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
-
 @Entity
-@Table( name = "users" )
+@Table(name = "users")
 public class User extends BasePersistentObject {
 
-	
-  @NotNull
-	@Size(min = 3, max=30)
-	@Column(unique=true)
+	@NotNull
+	@Size(min = 3, max = 30)
+	@Column(unique = true)
 	@Index(name = "user_name_strangers_see_index")
 	protected String nameStrangersSee = "";
 
+	@Size(min = 3, max = 30)
+	@Index(name = "user_name_friends_see_index")
+	// not sure if this index is needed
+	protected String nameFriendsSee = "";
 
-  @Size(min = 3, max=30)
-  @Index(name = "user_name_friends_see_index")//not sure if this index is needed
-  protected String nameFriendsSee = "";
+	protected String password;
 
-  
-  protected String password;
-  
-	
-	//@Size(min = 3)
-	@Column(unique=true)
+	// @Size(min = 3)
+	@Column(unique = true)
 	@Index(name = "user_email_index")
 	protected String email = "";
-	
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "user_last_login_index")
 	protected Date lastLogin = new Date();
 
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "user_signup_date_index")
 	protected Date signupDate = new Date();
-	
-	
-	protected String facebookId;
 
+	protected String facebookId;
 
 	public String getFacebookId() {
 		return facebookId;
 	}
 
-
 	public void setFacebookId(String facebookId) {
 		this.facebookId = facebookId;
 	}
-  
-	
-  public String getNameStrangersSee() {
-    return nameStrangersSee;
-  }
 
+	public String getNameStrangersSee() {
+		return nameStrangersSee;
+	}
 
-  public void setNameStrangersSee(String nameStrangersSee) {
-    this.nameStrangersSee = nameStrangersSee;
-  }
+	public void setNameStrangersSee(String nameStrangersSee) {
+		this.nameStrangersSee = nameStrangersSee;
+	}
 
-  
-  public String getNameFriendsSee() {
-    return nameFriendsSee;
-  }
+	public String getNameFriendsSee() {
+		return nameFriendsSee;
+	}
 
+	public void setNameFriendsSee(String nameFriendsSee) {
+		this.nameFriendsSee = nameFriendsSee;
+	}
 
-  public void setNameFriendsSee(String nameFriendsSee) {
-    this.nameFriendsSee = nameFriendsSee;
-  }
-  
-  
 	public Date getLastLogin() {
 		return lastLogin;
 	}
-
 
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
 	public Date getSignupDate() {
 		return signupDate;
 	}
-
 
 	public void setSignupDate(Date signupDate) {
 		this.signupDate = signupDate;
 	}
 
-	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
-	
+
 }
