@@ -9,6 +9,7 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
+import com.lvl6.gamesuite.common.controller.utils.EventWriter;
 import com.lvl6.gamesuite.common.events.GameEvent;
 import com.lvl6.gamesuite.common.events.NormalResponseEvent;
 import com.lvl6.gamesuite.common.events.ResponseEvent;
@@ -42,12 +43,15 @@ public class EventWriterAmqp extends EventWriter {
 
 	private static org.slf4j.Logger log = LoggerFactory.getLogger(EventWriterAmqp.class);
 
+	
+	@Override
 	protected void processEvent(GameEvent event) {
 		if (event instanceof ResponseEvent)
 			processResponseEvent((ResponseEvent) event);
 
 	}
 
+	@Override
 	public void processPreDBResponseEvent(ResponseEvent event, String udid) {
 		//log.info("writer received predb event=\n"+event.toString());
 		byte[] buff = getByteArray(event);
@@ -103,13 +107,6 @@ public class EventWriterAmqp extends EventWriter {
 		clientsTemplate.send(routingKey, new Message(buff, msgProps));
 	}
 
-	@Override
-	public void processClanResponseEvent(ResponseEvent event, int clanId) {
-		MessageProperties msgProps = getProps();
-		String clanIdString = "clan_" + clanId;
-		log.info("Sending clan response event with routing key:" + clanIdString);
-		chatTemplate.send(clanIdString, new Message(getByteArray(event), msgProps));
-	}
 
 	public void processGlobalChatResponseEvent(ResponseEvent event) {
 		MessageProperties msgProps = getProps();

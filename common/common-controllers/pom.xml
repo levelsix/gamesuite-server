@@ -55,10 +55,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lvl6</groupId>
-			<artifactId>common-amqp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.lvl6</groupId>
 			<artifactId>common-services</artifactId>
 		</dependency>
 	</dependencies>

@@ -1,5 +1,10 @@
 package com.lvl6.gamesuite.eventhandlers;
 
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -9,6 +14,9 @@ import org.springframework.amqp.core.MessageListener;
 
 import com.hazelcast.core.IMap;
 import com.lvl6.gamesuite.common.dto.ConnectedPlayer;
+import com.lvl6.gamesuite.common.events.PreDatabaseRequestEvent;
+import com.lvl6.gamesuite.common.events.RequestEvent;
+import com.lvl6.gamesuite.common.utils.Attachment;
 
 public class AmqpGameEventHandler extends AbstractGameEventHandler implements MessageListener {
 
@@ -40,7 +48,7 @@ public class AmqpGameEventHandler extends AbstractGameEventHandler implements Me
 
 	@Override
 	public void onMessage(Message msg) {
-		/*try {
+		try {
 		if (msg != null) {
 			log.debug("Received message", msg.getMessageProperties().getMessageId());
 			Attachment attachment = new Attachment();
@@ -55,9 +63,9 @@ public class AmqpGameEventHandler extends AbstractGameEventHandler implements Me
 		}
 		}catch(Exception e) {
 			log.error("Error processing amqp message", e);
-		}*/
+		}
 	}
-	/*
+	
 	protected void processAttachment(Attachment attachment) {
 		ByteBuffer bb = ByteBuffer.wrap(Arrays.copyOf(attachment.payload, attachment.payloadSize));
 		EventController ec = getServer().getEventControllerByEventType(attachment.eventType);
@@ -81,11 +89,10 @@ public class AmqpGameEventHandler extends AbstractGameEventHandler implements Me
 			updatePlayerToServerMaps(event);
 			ec.handleEvent(event);
 		}
-	}*/
-/*
+	}
+
 	@Override
-	protected void delegateEvent(byte[] bytes, RequestEvent event, String ip_connection_id,
-			EventProtocolRequest eventType) {
+	protected void delegateEvent(byte[] bytes, RequestEvent event, String ip_connection_id,	EventProtocolRequest eventType) {
 		if (event != null && eventType.getNumber() < 0) {
 			log.error("the event type is < 0");
 			return;
@@ -134,5 +141,5 @@ public class AmqpGameEventHandler extends AbstractGameEventHandler implements Me
 			log.info("New player with UdId: " + newp.getUdid());
 		}
 	}
-*/
+
 }

@@ -1,4 +1,4 @@
-package com.lvl6.gamesuite.amqp.services;
+package com.lvl6.gamesuite.common.controller.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,6 @@ public abstract class EventWriter  {
 			log.error("Error handling event: {}", event, e);
 		}
 	}
-	
 
 	protected abstract void processEvent(GameEvent event) throws Exception;
 
@@ -29,17 +28,6 @@ public abstract class EventWriter  {
 	public abstract void processGlobalChatResponseEvent(ResponseEvent event);
 
 	public abstract void processPreDBResponseEvent(ResponseEvent event, String udid);
-	
-	public void handleClanEvent(ResponseEvent event, int clanId) {
-		try {
-			processClanResponseEvent(event, clanId);
-		} catch (Exception e) {
-			log.error("Error handling clan event: " + event, e);
-		}
-	}
 
-	public abstract void processClanResponseEvent(ResponseEvent event, int clanId);
-	
-	//public abstract void sendAdminMessage(String message);
 	
 }
