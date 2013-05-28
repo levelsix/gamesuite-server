@@ -16,7 +16,9 @@ message StartRoundRequestProto {
 	//the opponent's id
 	optional string opponent = 3;
 
-	//if this is round 1 then this will be null, else client always sets this
+	//will most likely be null if round 1, else client always sets this
+	//could be that user started round 1 in a game and app crashed. in this
+	//case game id would exist and this should be set
 	optional string gameId = 4;
 	
 	optional int32 roundNumber = 5;
@@ -34,10 +36,16 @@ message StartRoundResponseProto {
 	
 	optional BasicUserProto recipient = 1;
 	optional string gameId = 2;
+	optional StartRoundStatus status = 3;
 	
 	enum StartRoundStatus {
 		SUCCESS = 1;
 		FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME = 2;
 		FAIL_OTHER = 3;
+		FAIL_NOT_ENOUGH_TOKENS = 4;
+		FAIL_GAME_ENDED = 5;
+		FAIL_NOT_USER_TURN = 6;
+		FAIL_WRONG_OPPONENTS = 7;
+		FAIL_WRONG_ROUND_NUMBER = 8;
 	}
 }

@@ -110,7 +110,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     boolean userIsPlayerOne = true;
     
     Map<String, List<RoundHistory>> idsToRoundHistories =
-        gh.getIdsToRoundHistories();
+        gh.getUserIdsToRoundHistories();
     
     if (idsToRoundHistories.containsKey(playerOneId)) {
       playerOneRounds = idsToRoundHistories.get(playerOneId).size();
@@ -163,6 +163,9 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     return allPicNames;
   }
   
+  public GameHistory getGameHistoryById(String gameId) {
+    return gameHistoryDao.findById(gameId);
+  }
   
   @Override
   public GameHistoryDao getGameHistoryDao() {

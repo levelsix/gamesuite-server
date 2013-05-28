@@ -1132,6 +1132,10 @@ public final class StartRoundEventProto {
     // optional string gameId = 2;
     boolean hasGameId();
     String getGameId();
+    
+    // optional .proto.StartRoundResponseProto.StartRoundStatus status = 3;
+    boolean hasStatus();
+    com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus getStatus();
   }
   public static final class StartRoundResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -1166,11 +1170,21 @@ public final class StartRoundEventProto {
       SUCCESS(0, 1),
       FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME(1, 2),
       FAIL_OTHER(2, 3),
+      FAIL_NOT_ENOUGH_TOKENS(3, 4),
+      FAIL_GAME_ENDED(4, 5),
+      FAIL_NOT_USER_TURN(5, 6),
+      FAIL_WRONG_OPPONENTS(6, 7),
+      FAIL_WRONG_ROUND_NUMBER(7, 8),
       ;
       
       public static final int SUCCESS_VALUE = 1;
       public static final int FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME_VALUE = 2;
       public static final int FAIL_OTHER_VALUE = 3;
+      public static final int FAIL_NOT_ENOUGH_TOKENS_VALUE = 4;
+      public static final int FAIL_GAME_ENDED_VALUE = 5;
+      public static final int FAIL_NOT_USER_TURN_VALUE = 6;
+      public static final int FAIL_WRONG_OPPONENTS_VALUE = 7;
+      public static final int FAIL_WRONG_ROUND_NUMBER_VALUE = 8;
       
       
       public final int getNumber() { return value; }
@@ -1180,6 +1194,11 @@ public final class StartRoundEventProto {
           case 1: return SUCCESS;
           case 2: return FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME;
           case 3: return FAIL_OTHER;
+          case 4: return FAIL_NOT_ENOUGH_TOKENS;
+          case 5: return FAIL_GAME_ENDED;
+          case 6: return FAIL_NOT_USER_TURN;
+          case 7: return FAIL_WRONG_OPPONENTS;
+          case 8: return FAIL_WRONG_ROUND_NUMBER;
           default: return null;
         }
       }
@@ -1210,7 +1229,7 @@ public final class StartRoundEventProto {
       }
       
       private static final StartRoundStatus[] VALUES = {
-        SUCCESS, FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME, FAIL_OTHER, 
+        SUCCESS, FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME, FAIL_OTHER, FAIL_NOT_ENOUGH_TOKENS, FAIL_GAME_ENDED, FAIL_NOT_USER_TURN, FAIL_WRONG_OPPONENTS, FAIL_WRONG_ROUND_NUMBER, 
       };
       
       public static StartRoundStatus valueOf(
@@ -1279,9 +1298,20 @@ public final class StartRoundEventProto {
       }
     }
     
+    // optional .proto.StartRoundResponseProto.StartRoundStatus status = 3;
+    public static final int STATUS_FIELD_NUMBER = 3;
+    private com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus getStatus() {
+      return status_;
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       gameId_ = "";
+      status_ = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1301,6 +1331,9 @@ public final class StartRoundEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getGameIdBytes());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeEnum(3, status_.getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -1317,6 +1350,10 @@ public final class StartRoundEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getGameIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, status_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1451,6 +1488,8 @@ public final class StartRoundEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         gameId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        status_ = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -1501,6 +1540,10 @@ public final class StartRoundEventProto {
           to_bitField0_ |= 0x00000002;
         }
         result.gameId_ = gameId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1522,6 +1565,9 @@ public final class StartRoundEventProto {
         }
         if (other.hasGameId()) {
           setGameId(other.getGameId());
+        }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1566,6 +1612,17 @@ public final class StartRoundEventProto {
             case 18: {
               bitField0_ |= 0x00000002;
               gameId_ = input.readBytes();
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus value = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                bitField0_ |= 0x00000004;
+                status_ = value;
+              }
               break;
             }
           }
@@ -1700,6 +1757,30 @@ public final class StartRoundEventProto {
         onChanged();
       }
       
+      // optional .proto.StartRoundResponseProto.StartRoundStatus status = 3;
+      private com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus status_ = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.SUCCESS;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus getStatus() {
+        return status_;
+      }
+      public Builder setStatus(com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        status_ = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.SUCCESS;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.StartRoundResponseProto)
     }
     
@@ -1737,13 +1818,18 @@ public final class StartRoundEventProto {
       "\022\020\n\010opponent\030\003 \001(\t\022\016\n\006gameId\030\004 \001(\t\022\023\n\013ro" +
       "undNumber\030\005 \001(\005\022\023\n\013isPlayerOne\030\006 \001(\010\022\021\n\t" +
       "startTime\030\007 \001(\003\022\'\n\tquestions\030\010 \003(\0132\024.pro" +
-      "to.QuestionProto\"\260\001\n\027StartRoundResponseP" +
+      "to.QuestionProto\"\362\002\n\027StartRoundResponseP" +
       "roto\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUse" +
-      "rProto\022\016\n\006gameId\030\002 \001(\t\"[\n\020StartRoundStat",
-      "us\022\013\n\007SUCCESS\020\001\022*\n&FAIL_CLIENT_TOO_APART" +
-      "_FROM_SERVER_TIME\020\002\022\016\n\nFAIL_OTHER\020\003B5\n\035c" +
-      "om.lvl6.pictures.eventprotosB\024StartRound" +
-      "EventProto"
+      "rProto\022\016\n\006gameId\030\002 \001(\t\022?\n\006status\030\003 \001(\0162/",
+      ".proto.StartRoundResponseProto.StartRoun" +
+      "dStatus\"\333\001\n\020StartRoundStatus\022\013\n\007SUCCESS\020" +
+      "\001\022*\n&FAIL_CLIENT_TOO_APART_FROM_SERVER_T" +
+      "IME\020\002\022\016\n\nFAIL_OTHER\020\003\022\032\n\026FAIL_NOT_ENOUGH" +
+      "_TOKENS\020\004\022\023\n\017FAIL_GAME_ENDED\020\005\022\026\n\022FAIL_N" +
+      "OT_USER_TURN\020\006\022\030\n\024FAIL_WRONG_OPPONENTS\020\007" +
+      "\022\033\n\027FAIL_WRONG_ROUND_NUMBER\020\010B5\n\035com.lvl" +
+      "6.pictures.eventprotosB\024StartRoundEventP" +
+      "roto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1763,7 +1849,7 @@ public final class StartRoundEventProto {
           internal_static_proto_StartRoundResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartRoundResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "GameId", },
+              new java.lang.String[] { "Recipient", "GameId", "Status", },
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.class,
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.Builder.class);
           return null;

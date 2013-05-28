@@ -132,6 +132,7 @@ public class TestPicturesJpa {
   @Rollback(true)
 	@Test
 	public void testMultipleChoice() {
+	  //making sure saving multiple choice questions to the database works
 	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
 	  MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
 	  List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
@@ -154,6 +155,7 @@ public class TestPicturesJpa {
   @Rollback(true)
   @Test
   public void testQuestionsAnswered() {
+	  //checking whether saving question answered to the database works
 	  PicturesQuestionWithTextAnswer pqwta = createPicturesQuestionWithTextAnswer();
 	  MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
 	  
@@ -207,6 +209,19 @@ public class TestPicturesJpa {
     
     assertTrue("Expected: pqwtaCount=1. Actual: pqwtaCount=" + pqwtaCount, 1 == pqwtaCount);
     assertTrue("Expected: mcqCount=1. Actual: mcqCount=" + mcqCount, 1 == mcqCount);
+    
+    //seeing if saving a question id (tied to an existing question) works or
+    //if the whole thing is needed
+//    int questionNumber3 = 3;
+//    QuestionAnswered qa3 = new QuestionAnswered();
+//    qa3.setRoundNumber(roundNumber);
+//    qa3.setQuestionNumber(questionNumber3); 
+//    qa3.setAnsweredDate(answeredDate);
+//    qa3.setAnsweredByUser(answeredByUser);
+//    qa3.setQuestion(pqwta);
+    //TRY SAVING TO DB
+//    getQaDao().save(qa3);
+    //DOESN'T WORK, NEED TO RETRIEVE FROM DB
   }
 	
 	@Transactional

@@ -407,6 +407,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     QuestionProto.Builder qpb = QuestionProto.newBuilder();
     
     QuestionBase qb = qa.getQuestion();
+    String id = qb.getId();
     if (qb instanceof PicturesQuestionWithTextAnswer) {
       PictureQuestionProto pqp = createPictureQuestionProto(
           (PicturesQuestionWithTextAnswer) qb);
@@ -418,17 +419,16 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
       qpb.setMultipleChoice(mcqp);
     }
     
+    qpb.setId(id);
     return qpb.build();
   }
   
   @Override
   public MultipleChoiceQuestionProto createMultipleChoiceQuestionProto(MultipleChoiceQuestion mcq) {
     MultipleChoiceQuestionProto.Builder mcqpb = MultipleChoiceQuestionProto.newBuilder();
-    String mcqId = mcq.getId();
     String question = mcq.getQuestion();
     Set<MultipleChoiceAnswer> mcaSet = mcq.getAnswers();
     
-    mcqpb.setId(mcqId);
     mcqpb.setQuestion(question);
     for (MultipleChoiceAnswer mca : mcaSet) {
       if (mca.isCorrect()) {
@@ -463,11 +463,9 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   public PictureQuestionProto createPictureQuestionProto(PicturesQuestionWithTextAnswer pqwta) {
     PictureQuestionProto.Builder pqpb = PictureQuestionProto.newBuilder();
     
-    String pictureQuestionId = pqwta.getId();
     Set<String> images = pqwta.getImages();
     String answer = pqwta.getAnswer();
     
-    pqpb.setId(pictureQuestionId);
     
     //images could be null
     for (String img : images) {

@@ -19,6 +19,8 @@ public interface GameHistoryService {
   public abstract Set<String> getPictureNamesFromOngoingGames(String userId,
       List<GameHistory> myTurn, List<GameHistory> pendingGamesMyTurn);
   
+  public abstract GameHistory getGameHistoryById(String gameId);
+  
   public abstract GameHistoryDao getGameHistoryDao();
   
   public abstract void setGameHistoryDao(GameHistoryDao gameHistoryDao);
