@@ -15,7 +15,7 @@ public class PicturesPoConstants {
   public static int GAME_HISTORY__DEFAULT_COMPLETED_GAMES_MIN_DAYS_DISPLAYED= 2; //might not be used
   
   //round history
-  public static int ROUND_HISTORY__DEFAULT_ROUNDS_PER_GAME = 3;
+  public static int ROUND_HISTORY__DEFAULT_ROUNDS_PER_PLAYER_PER_GAME = 3;
   public static int ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND = 2;
   
   //question base

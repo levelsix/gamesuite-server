@@ -2,6 +2,8 @@ package com.lvl6.gamesuite.common.services.user;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +75,12 @@ public class LoginServiceImpl implements LoginService {
   public User getUserById(String userId) {
     return userDao.findById(userId);
   }
+  
+  @Override
+  public Map<String, User> getUsersByIds(Set<String> userIds) {
+    return userDao.findByIdIn(userIds);
+  }
+  
   
   
   @Override

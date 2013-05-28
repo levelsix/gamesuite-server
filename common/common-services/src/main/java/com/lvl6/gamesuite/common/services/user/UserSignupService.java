@@ -15,6 +15,8 @@ public interface UserSignupService {
 	public abstract List<User> checkForExistingUser(String facebookId, String name, String email, String udid);
 	
 	public abstract String generateRandomName(String name);
+  
+  public abstract User getRandomUser();
 
 	public abstract Random getRand();
 	

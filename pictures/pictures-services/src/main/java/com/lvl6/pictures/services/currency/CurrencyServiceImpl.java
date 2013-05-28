@@ -1,6 +1,10 @@
 package com.lvl6.pictures.services.currency;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,6 +39,18 @@ public class CurrencyServiceImpl implements CurrencyService {
   }
   
   @Override
+  public Map<String, Currency> getCurrenciesByUserIds(Set<String> ids) {
+    Map<String, Currency> currenciesByUserIds = new HashMap<String, Currency>();
+    List<Currency> monies = currencyDao.findByUserIdIn(ids);
+    
+    for (Currency money : monies) {
+      String userId = money.getUserId();
+      currenciesByUserIds.put(userId, money);
+    }
+    return currenciesByUserIds;
+  }
+  
+  @Override
   public boolean canRegenerateToken(Date lastRefillTime, Date now) {
     int minDifference = timeUtils.numMinutesDifference(lastRefillTime, now);
     
@@ -62,12 +78,26 @@ public class CurrencyServiceImpl implements CurrencyService {
   }
   
   @Override
-  public void refillTokensForUser(Currency c, int newTokenAmount,
+  public void updateTokensForUser(Currency c, int newTokenAmount,
       Date timeRefilled) {
-    c.setLastTokenRefillTime(timeRefilled);
+    if (null != timeRefilled) {
+      c.setLastTokenRefillTime(timeRefilled);
+    }
     c.setTokens(newTokenAmount);
     
     getCurrencyDao().save(c);
+  }
+  
+  public void spendTokenForUser(Currency c, Date startDate) {
+    int maxTokens = PicturesPoConstants.CURRENCY__DEFAULT_MAX_TOKENS;
+    int currentTokens = c.getTokens();
+    Date timeRefilled = null;
+    if (currentTokens == maxTokens) {
+      timeRefilled = startDate;
+    }
+    int newTokenAmount = currentTokens - 1;
+    
+    updateTokensForUser(c, newTokenAmount, timeRefilled);
   }
   
   @Override

@@ -8,6 +8,8 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
@@ -117,6 +119,19 @@ public class UserSignupServiceImpl implements UserSignupService {
     }
     return null;
   }
+  
+  @Override
+  public User getRandomUser() {
+    int numUsers = (int) userDao.count();
+    int pageNumber = rand.nextInt(numUsers);
+    int size = 1;
+    
+    Page<User> result = userDao.findAll(new PageRequest(pageNumber, size));
+    //TODO: maybe some error checking
+    return result.getContent().get(0);
+  }
+  
+  
 
   public Random getRand() {
     return rand;

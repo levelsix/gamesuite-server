@@ -65,26 +65,37 @@ public class RefillTokensByWaitingController extends EventController {
         new RefillTokensByWaitingResponseEvent(userId);
     resEvent.setTag(event.getTag());
     
-    User inDb = getLoginService().getUserById(userId);
-    List<Currency> monies = new ArrayList<Currency>();
-    //validate request
-    boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
-        clientDate, monies);
-    
-    boolean successful = false;
-    if (validRequest) {
-      successful = writeChangesToDb(monies, clientDate);
+    try {
+      User inDb = getLoginService().getUserById(userId);
+      List<Currency> monies = new ArrayList<Currency>();
+      //validate request
+      boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
+          clientDate, monies);
+
+      boolean successful = false;
+      if (validRequest) {
+        successful = writeChangesToDb(monies, clientDate);
+      }
+
+      if (successful) {
+        responseBuilder.setStatus(RefillTokensByWaitingStatus.SUCCESS);
+      }
+
+      //write to client
+      resEvent.setRefillTokensByWaitingResponseProto(responseBuilder.build());
+      log.info("Writing event: " + resEvent);
+      getEventWriter().handleEvent(resEvent);
+      
+    } catch (Exception e) {
+      log.error("exception in RefillTokensByWaitingController processRequestEvent", e);
+      try {
+        //try to tell client that something failed
+        responseBuilder.setStatus(RefillTokensByWaitingStatus.FAIL_OTHER);
+        getEventWriter().handleEvent(resEvent);
+      } catch (Exception e2) {
+        log.error("exception in RefillTokensByWaitingController processRequestEvent", e2);
+      }
     }
-    
-    if (successful) {
-      responseBuilder.setStatus(RefillTokensByWaitingStatus.SUCCESS);
-    }
-    
-    //write to client
-    resEvent.setRefillTokensByWaitingResponseProto(responseBuilder.build());
-    
-    log.info("Writing event: " + resEvent);
-    getEventWriter().handleEvent(resEvent);
   }
 
   private boolean isValidRequest(Builder responseBuilder, BasicUserProto sender,
@@ -133,11 +144,11 @@ public class RefillTokensByWaitingController extends EventController {
       Currency money = monies.get(0);
       int newTokenAmount =
           getCurrencyService().numTokensRegenerated(money, clientDate);
-      getCurrencyService().refillTokensForUser(money, newTokenAmount, clientDate);
+      getCurrencyService().updateTokensForUser(money, newTokenAmount, clientDate);
       return true;
       
     } catch (Exception e) {
-      log.error("unexpected error: problem with saving to db.");
+      log.error("unexpected error: problem with saving to db.", e);
     }
     return false;
   }

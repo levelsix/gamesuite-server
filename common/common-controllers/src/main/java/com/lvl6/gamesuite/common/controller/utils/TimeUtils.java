@@ -10,6 +10,9 @@ public class TimeUtils {
   public static int NUM_MINUTES_LEEWAY_FOR_CLIENT_TIME = 10;
   
   public boolean isSynchronizedWithServerTime(Date maybeNow) {
+    if (null == maybeNow) {
+      return false;
+    }
     DateTime possiblyNow = new DateTime(maybeNow); 
     DateTime now = new DateTime();
     Period interim = new Period(possiblyNow, now);

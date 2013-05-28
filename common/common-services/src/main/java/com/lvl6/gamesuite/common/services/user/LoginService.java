@@ -1,6 +1,8 @@
 package com.lvl6.gamesuite.common.services.user;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.joda.time.DateTime;
 
@@ -23,6 +25,8 @@ public interface LoginService {
   public abstract List<User> getFacebookUsers(List<String> facebookIds);
   
   public abstract User getUserById(String userId);
+  
+  public abstract Map<String, User> getUsersByIds(Set<String> userId);
   
   public abstract PasswordUtil getPasswordUtil();
 
