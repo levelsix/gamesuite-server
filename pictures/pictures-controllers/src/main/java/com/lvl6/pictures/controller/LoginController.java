@@ -381,7 +381,7 @@ public class LoginController extends EventController {
     // RECORD THE USER LOGGING IN
     AuthorizedDevice ad = updateUserLogin(sender, u, now);
 
-    //TODO: KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT
+    //KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT
     //idea get the udid's of the authorized devices user has and send a message to those udids
     kickOffOtherDevicesSharingAccount(userId, ad);
     

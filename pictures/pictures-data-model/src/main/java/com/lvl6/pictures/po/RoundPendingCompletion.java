@@ -1,12 +1,17 @@
 package com.lvl6.pictures.po;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
@@ -24,6 +29,11 @@ public class RoundPendingCompletion extends BasePersistentObject {
   @NotNull
   String userId;
 
+  @Temporal(TemporalType.TIMESTAMP)
+  @NotNull
+  @Index(name="started_round_date_index")
+  protected Date startDate = new Date();
+  
   
   
   public int getRoundNumber() {
@@ -48,6 +58,14 @@ public class RoundPendingCompletion extends BasePersistentObject {
 
   public void setUserId(String userId) {
     this.userId = userId;
+  }
+
+  public Date getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(Date startDate) {
+    this.startDate = startDate;
   }
   
 }

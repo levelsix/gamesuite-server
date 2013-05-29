@@ -136,6 +136,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     }
   }
   
+  @Override
   public Set<String> getPictureNamesFromOngoingGames(String userId,
       List<GameHistory> myTurn, List<GameHistory> pendingGamesMyTurn) {
     Set<String> allPicNames = new HashSet<String>();
@@ -163,8 +164,14 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     return allPicNames;
   }
   
+  @Override
   public GameHistory getGameHistoryById(String gameId) {
     return gameHistoryDao.findById(gameId);
+  }
+  
+  @Override
+  public void saveGameHistory(GameHistory gh) {
+    gameHistoryDao.save(gh);
   }
   
   @Override
@@ -176,7 +183,5 @@ public class GameHistoryServiceImpl implements GameHistoryService {
   public void setGameHistoryDao(GameHistoryDao gameHistoryDao) {
     this.gameHistoryDao = gameHistoryDao;
   }
-
-  
   
 }

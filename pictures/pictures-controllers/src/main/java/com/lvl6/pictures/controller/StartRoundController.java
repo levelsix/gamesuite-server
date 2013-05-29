@@ -1,5 +1,6 @@
 package com.lvl6.pictures.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -27,25 +28,30 @@ import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.GameHistory;
+import com.lvl6.pictures.po.RoundPendingCompletion;
 import com.lvl6.pictures.properties.PicturesPoConstants;
 import com.lvl6.pictures.services.currency.CurrencyService;
 import com.lvl6.pictures.services.gamehistory.GameHistoryService;
+import com.lvl6.pictures.services.roundpendingcompletion.RoundPendingCompletionService;
 
 public class StartRoundController extends EventController {
   
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
   
   @Autowired
-  protected LoginService loginService;
+  protected CurrencyService currencyService;
   
   @Autowired
   protected GameHistoryService gameHistoryService;
+
+  @Autowired
+  protected LoginService loginService;
+  
+  @Autowired
+  protected RoundPendingCompletionService rpcService;
   
   @Autowired
   protected TimeUtils timeUtils;
-  
-  @Autowired
-  protected CurrencyService currencyService;
 
   @Autowired
   protected UserSignupService userSignupService;
@@ -81,6 +87,7 @@ public class StartRoundController extends EventController {
     //response to send back to client
     Builder responseBuilder = StartRoundResponseProto.newBuilder();
     responseBuilder.setStatus(StartRoundStatus.FAIL_OTHER);
+    responseBuilder.setRecipient(sender);
     StartRoundResponseEvent resEvent = new StartRoundResponseEvent(userId);
     resEvent.setTag(event.getTag());
     
@@ -95,10 +102,8 @@ public class StartRoundController extends EventController {
       //read from db
       Map<String, User> usersByIds = getLoginService().getUsersByIds(userIds);
       GameHistory gh = null;
-      boolean isRoundOne = true;
       if (null != gameId && !gameId.isEmpty()) {
         gh = getGameHistoryService().getGameHistoryById(gameId);
-        isRoundOne = false;
       }
       //need to get currency to make sure user has enough tokens to play
       Currency c = getCurrencyService().getCurrencyForUser(userId);
@@ -114,13 +119,18 @@ public class StartRoundController extends EventController {
         if (isRandomPlayer) {
           opponentId = getRandomPlayer(userId, usersByIds);
         }
-        //TODO:get the questions to record into RoundPendingCompletion
+        
+        if (null == gh) {
+          gh = constructNewGame(userId, opponentId, startDate);
+        }
         
         successful = writeChangesToDb(userId, opponentId, usersByIds, c,
-            gameId, gh, isRoundOne, startDate);
+            gh, roundNumber, questions, startDate);
       }
 
       if (successful) {
+        //not using gameId because game might not have existed before now
+        responseBuilder.setGameId(gh.getId());
         responseBuilder.setStatus(StartRoundStatus.SUCCESS);
       }
 
@@ -249,24 +259,83 @@ public class StartRoundController extends EventController {
     return key;
   }
   
+  private RoundPendingCompletion createUnfinishedRound(String userId, 
+      int roundNumber, List<QuestionProto> questionProtos) {
+    List<String> questionIds = getQuestionIds(questionProtos);
+    RoundPendingCompletion rpc = 
+        getRpcService().createUnfinishedRound(userId, roundNumber, questionIds);
+    return rpc;
+  }
+  
+  private List<String> getQuestionIds(List<QuestionProto> questions) {
+    List<String> questionIds = new ArrayList<String>();
+    
+    for (QuestionProto qp : questions) {
+      String qpId = qp.getId();
+      questionIds.add(qpId);
+    }
+    
+    return questionIds;
+  }
+
+  private GameHistory constructNewGame(String playerOneId, String playerTwoId,
+      Date startDate) {
+    GameHistory gh = new GameHistory();
+    gh.setPlayerOneId(playerOneId);
+    gh.setPlayerTwoId(playerTwoId);
+    gh.setStartTime(startDate);
+    return gh;
+  }
   
   private boolean writeChangesToDb(String userId, String opponentId,
-      Map<String, User> usersByIds, Currency c, String gameId, GameHistory gh,
-      boolean isRoundOne, Date startDate) {
+      Map<String, User> usersByIds, Currency c, GameHistory gh,
+      int roundNumber, List<QuestionProto> questions, Date startDate) {
     try {
-      //don't spend the token if the the round is a pending completion round
+      RoundPendingCompletion rpc = gh.getUnfinishedRound();
+      boolean startingNewRound = true;
       
-      //if the user's tokens is max set user's lastTokenRefilledTime
-      //to startDate
-      getCurrencyService().spendTokenForUser(c, startDate);
+      if (null != rpc) {
+        startingNewRound = false;
+        //record restarting the unfinished round
+        getRpcService().restartRoundPendingCompletion(startDate, rpc);
+        
+      } else {
+        //record the RoundPendingCompletion to represent the new round
+        rpc = createUnfinishedRound(userId, roundNumber,
+            questions);
+        gh.setUnfinishedRound(rpc);
+      }
       
+      //save the game history
+      getGameHistoryService().saveGameHistory(gh);
+      
+      //don't spend the token if the round is a pending completion round
+      //if the gh has a round pending completion
+      if (startingNewRound) {
+        getCurrencyService().spendTokenForUser(c, startDate);
+      }
       
     } catch (Exception e) {
       log.error("unexpected error: problem with saving to db.");
     }
     return false;
   }
-
+  
+  public CurrencyService getCurrencyService() {
+    return currencyService;
+  }
+  
+  public void setCurrencyService(CurrencyService currencyService) {
+    this.currencyService = currencyService;
+  }
+  
+  public GameHistoryService getGameHistoryService() {
+    return gameHistoryService;
+  }
+  
+  public void setGameHistoryService(GameHistoryService gameHistoryService) {
+    this.gameHistoryService = gameHistoryService;
+  }
   
   public LoginService getLoginService() {
     return loginService;
@@ -275,21 +344,13 @@ public class StartRoundController extends EventController {
   public void setLoginService(LoginService loginService) {
     this.loginService = loginService;
   }
-
-  public GameHistoryService getGameHistoryService() {
-    return gameHistoryService;
+  
+  public RoundPendingCompletionService getRpcService() {
+    return rpcService;
   }
 
-  public void setGameHistoryService(GameHistoryService gameHistoryService) {
-    this.gameHistoryService = gameHistoryService;
-  }
-
-  public CurrencyService getCurrencyService() {
-    return currencyService;
-  }
-
-  public void setCurrencyService(CurrencyService currencyService) {
-    this.currencyService = currencyService;
+  public void setRpcService(RoundPendingCompletionService rpcService) {
+    this.rpcService = rpcService;
   }
 
   public TimeUtils getTimeUtils() {

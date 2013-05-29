@@ -89,6 +89,8 @@ public class CurrencyServiceImpl implements CurrencyService {
   }
   
   public void spendTokenForUser(Currency c, Date startDate) {
+    //if the user's tokens is max set user's lastTokenRefilledTime
+    //to startDate
     int maxTokens = PicturesPoConstants.CURRENCY__DEFAULT_MAX_TOKENS;
     int currentTokens = c.getTokens();
     Date timeRefilled = null;
