@@ -142,10 +142,13 @@ public class StartRoundController extends EventController {
       
     } catch (Exception e) {
       log.error("exception in StartRoundController processRequestEvent", e);
+      
       try {
         //try to tell client that something failed
         responseBuilder.setStatus(StartRoundStatus.FAIL_OTHER);
+        resEvent.setStartRoundResponseProto(responseBuilder.build());
         getEventWriter().handleEvent(resEvent);
+        
       } catch (Exception e2) {
         log.error("exception in StartRoundController processRequestEvent", e2);
       }

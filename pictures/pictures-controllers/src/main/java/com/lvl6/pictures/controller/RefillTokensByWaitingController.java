@@ -88,10 +88,13 @@ public class RefillTokensByWaitingController extends EventController {
       
     } catch (Exception e) {
       log.error("exception in RefillTokensByWaitingController processRequestEvent", e);
+      
       try {
         //try to tell client that something failed
         responseBuilder.setStatus(RefillTokensByWaitingStatus.FAIL_OTHER);
+        resEvent.setRefillTokensByWaitingResponseProto(responseBuilder.build());
         getEventWriter().handleEvent(resEvent);
+        
       } catch (Exception e2) {
         log.error("exception in RefillTokensByWaitingController processRequestEvent", e2);
       }

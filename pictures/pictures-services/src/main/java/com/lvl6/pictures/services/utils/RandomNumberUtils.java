@@ -1,4 +1,4 @@
-package com.lvl6.pictures.controller.utils;
+package com.lvl6.pictures.services.utils;
 
 import java.util.Collection;
 import java.util.HashSet;

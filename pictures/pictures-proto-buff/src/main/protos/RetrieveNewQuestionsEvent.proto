@@ -18,9 +18,11 @@ message RetrieveNewQuestionsResponseProto {
 	repeated QuestionProto newQuestions = 2;
 	
 	//the pictures that are in newQuestions
-	repeated string pictureNames = 8;
+	repeated string pictureNames = 3;
 	
-	enum RetrieveNewQuestionsResponseStatus {
+	optional RetrieveNewQuestionsStatus status = 4;
+	
+	enum RetrieveNewQuestionsStatus {
 		SUCCESS = 1;
 		FAIL_OTHER = 2;
 	}

@@ -507,10 +507,14 @@ public final class RetrieveNewQuestionsEventProto {
     com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProtoOrBuilder getNewQuestionsOrBuilder(
         int index);
     
-    // repeated string pictureNames = 8;
+    // repeated string pictureNames = 3;
     java.util.List<String> getPictureNamesList();
     int getPictureNamesCount();
     String getPictureNames(int index);
+    
+    // optional .proto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus status = 4;
+    boolean hasStatus();
+    com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus getStatus();
   }
   public static final class RetrieveNewQuestionsResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -540,7 +544,7 @@ public final class RetrieveNewQuestionsEventProto {
       return com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.internal_static_proto_RetrieveNewQuestionsResponseProto_fieldAccessorTable;
     }
     
-    public enum RetrieveNewQuestionsResponseStatus
+    public enum RetrieveNewQuestionsStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
       FAIL_OTHER(1, 2),
@@ -552,7 +556,7 @@ public final class RetrieveNewQuestionsEventProto {
       
       public final int getNumber() { return value; }
       
-      public static RetrieveNewQuestionsResponseStatus valueOf(int value) {
+      public static RetrieveNewQuestionsStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
           case 2: return FAIL_OTHER;
@@ -560,15 +564,15 @@ public final class RetrieveNewQuestionsEventProto {
         }
       }
       
-      public static com.google.protobuf.Internal.EnumLiteMap<RetrieveNewQuestionsResponseStatus>
+      public static com.google.protobuf.Internal.EnumLiteMap<RetrieveNewQuestionsStatus>
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static com.google.protobuf.Internal.EnumLiteMap<RetrieveNewQuestionsResponseStatus>
+      private static com.google.protobuf.Internal.EnumLiteMap<RetrieveNewQuestionsStatus>
           internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<RetrieveNewQuestionsResponseStatus>() {
-              public RetrieveNewQuestionsResponseStatus findValueByNumber(int number) {
-                return RetrieveNewQuestionsResponseStatus.valueOf(number);
+            new com.google.protobuf.Internal.EnumLiteMap<RetrieveNewQuestionsStatus>() {
+              public RetrieveNewQuestionsStatus findValueByNumber(int number) {
+                return RetrieveNewQuestionsStatus.valueOf(number);
               }
             };
       
@@ -585,11 +589,11 @@ public final class RetrieveNewQuestionsEventProto {
         return com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.getDescriptor().getEnumTypes().get(0);
       }
       
-      private static final RetrieveNewQuestionsResponseStatus[] VALUES = {
+      private static final RetrieveNewQuestionsStatus[] VALUES = {
         SUCCESS, FAIL_OTHER, 
       };
       
-      public static RetrieveNewQuestionsResponseStatus valueOf(
+      public static RetrieveNewQuestionsStatus valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
@@ -601,12 +605,12 @@ public final class RetrieveNewQuestionsEventProto {
       private final int index;
       private final int value;
       
-      private RetrieveNewQuestionsResponseStatus(int index, int value) {
+      private RetrieveNewQuestionsStatus(int index, int value) {
         this.index = index;
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:proto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsResponseStatus)
+      // @@protoc_insertion_point(enum_scope:proto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus)
     }
     
     private int bitField0_;
@@ -644,8 +648,8 @@ public final class RetrieveNewQuestionsEventProto {
       return newQuestions_.get(index);
     }
     
-    // repeated string pictureNames = 8;
-    public static final int PICTURENAMES_FIELD_NUMBER = 8;
+    // repeated string pictureNames = 3;
+    public static final int PICTURENAMES_FIELD_NUMBER = 3;
     private com.google.protobuf.LazyStringList pictureNames_;
     public java.util.List<String>
         getPictureNamesList() {
@@ -658,10 +662,21 @@ public final class RetrieveNewQuestionsEventProto {
       return pictureNames_.get(index);
     }
     
+    // optional .proto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus status = 4;
+    public static final int STATUS_FIELD_NUMBER = 4;
+    private com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus getStatus() {
+      return status_;
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       newQuestions_ = java.util.Collections.emptyList();
       pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      status_ = com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -682,7 +697,10 @@ public final class RetrieveNewQuestionsEventProto {
         output.writeMessage(2, newQuestions_.get(i));
       }
       for (int i = 0; i < pictureNames_.size(); i++) {
-        output.writeBytes(8, pictureNames_.getByteString(i));
+        output.writeBytes(3, pictureNames_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(4, status_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -709,6 +727,10 @@ public final class RetrieveNewQuestionsEventProto {
         }
         size += dataSize;
         size += 1 * getPictureNamesList().size();
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, status_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -850,6 +872,8 @@ public final class RetrieveNewQuestionsEventProto {
         }
         pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
+        status_ = com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -911,6 +935,10 @@ public final class RetrieveNewQuestionsEventProto {
           bitField0_ = (bitField0_ & ~0x00000004);
         }
         result.pictureNames_ = pictureNames_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -966,6 +994,9 @@ public final class RetrieveNewQuestionsEventProto {
           }
           onChanged();
         }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1012,9 +1043,20 @@ public final class RetrieveNewQuestionsEventProto {
               addNewQuestions(subBuilder.buildPartial());
               break;
             }
-            case 66: {
+            case 26: {
               ensurePictureNamesIsMutable();
               pictureNames_.add(input.readBytes());
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus value = com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
+                status_ = value;
+              }
               break;
             }
           }
@@ -1299,7 +1341,7 @@ public final class RetrieveNewQuestionsEventProto {
         return newQuestionsBuilder_;
       }
       
-      // repeated string pictureNames = 8;
+      // repeated string pictureNames = 3;
       private com.google.protobuf.LazyStringList pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensurePictureNamesIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
@@ -1355,6 +1397,30 @@ public final class RetrieveNewQuestionsEventProto {
         onChanged();
       }
       
+      // optional .proto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus status = 4;
+      private com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus status_ = com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus.SUCCESS;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus getStatus() {
+        return status_;
+      }
+      public Builder setStatus(com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000008;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        status_ = com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus.SUCCESS;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.RetrieveNewQuestionsResponseProto)
     }
     
@@ -1389,14 +1455,16 @@ public final class RetrieveNewQuestionsEventProto {
       "\032\032TriviaQuestionFormat.proto\032\nUser.proto" +
       "\"e\n RetrieveNewQuestionsRequestProto\022%\n\006" +
       "sender\030\001 \001(\0132\025.proto.BasicUserProto\022\032\n\022n" +
-      "umQuestionsWanted\030\002 \001(\005\"\322\001\n!RetrieveNewQ" +
+      "umQuestionsWanted\030\002 \001(\005\"\237\002\n!RetrieveNewQ" +
       "uestionsResponseProto\022(\n\trecipient\030\001 \001(\013" +
       "2\025.proto.BasicUserProto\022*\n\014newQuestions\030" +
       "\002 \003(\0132\024.proto.QuestionProto\022\024\n\014pictureNa" +
-      "mes\030\010 \003(\t\"A\n\"RetrieveNewQuestionsRespons" +
-      "eStatus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002B?\n\035",
-      "com.lvl6.pictures.eventprotosB\036RetrieveN" +
-      "ewQuestionsEventProto"
+      "mes\030\003 \003(\t\022S\n\006status\030\004 \001(\0162C.proto.Retrie" +
+      "veNewQuestionsResponseProto.RetrieveNewQ",
+      "uestionsStatus\"9\n\032RetrieveNewQuestionsSt" +
+      "atus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002B?\n\035com" +
+      ".lvl6.pictures.eventprotosB\036RetrieveNewQ" +
+      "uestionsEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1416,7 +1484,7 @@ public final class RetrieveNewQuestionsEventProto {
           internal_static_proto_RetrieveNewQuestionsResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrieveNewQuestionsResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "NewQuestions", "PictureNames", },
+              new java.lang.String[] { "Recipient", "NewQuestions", "PictureNames", "Status", },
               com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.class,
               com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.Builder.class);
           return null;

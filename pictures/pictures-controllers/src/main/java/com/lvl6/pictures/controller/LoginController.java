@@ -1,14 +1,11 @@
 package com.lvl6.pictures.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.Resource;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -27,12 +24,12 @@ import com.lvl6.gamesuite.common.services.user.LoginService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 import com.lvl6.gamesuite.user.utils.EmailUtil;
 import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.pictures.controller.utils.RandomNumberUtils;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus;
+import com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus;
 import com.lvl6.pictures.events.request.LoginRequestEvent;
 import com.lvl6.pictures.events.response.LoginResponseEvent;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
@@ -47,13 +44,11 @@ import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.properties.PicturesPoConstants;
 import com.lvl6.pictures.services.currency.CurrencyService;
 import com.lvl6.pictures.services.gamehistory.GameHistoryService;
+import com.lvl6.pictures.services.questionbase.QuestionBaseService;
 
 public class LoginController extends EventController {
 
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
-  
-  @Resource(name = "questionIdsToQuestions")
-  protected Map<String, QuestionBase> questionIdsToQuestions;
   
   @Autowired
   protected UserSignupService userSignupService;
@@ -71,10 +66,10 @@ public class LoginController extends EventController {
   protected CreateNoneventProtoUtils noneventProtoUtils;
 
   @Autowired
-  protected RandomNumberUtils randNumUtils;
-
-  @Autowired
   protected CurrencyService currencyService; 
+  
+  @Autowired
+  protected QuestionBaseService questionBaseService;
 
   @Override
   public RequestEvent createRequestEvent() {
@@ -94,81 +89,96 @@ public class LoginController extends EventController {
     List<String> facebookFriendIds = reqProto.getFacebookFriendIdsList();
     boolean initializeAccount = reqProto.getInitializeAccount();
     DateTime now = new DateTime();
+    //this is what the login request event .java file does...
+    String udid = reqProto.getSender().getBadp().getUdid();
     
     //response to send back to client
     LoginResponseProto.Builder responseBuilder = LoginResponseProto.newBuilder();
     responseBuilder.setStatus(LoginResponseStatus.FAIL_OTHER);
     //CompleteUserProto.Builder cupb = CompleteUserProto.newBuilder();
+    LoginResponseEvent resEvent = new LoginResponseEvent(udid);
+    resEvent.setTag(event.getTag());
     
     //sender object might not have userId if user deleted app or something
     List<String> userIdList = new ArrayList<String>();
     List<User> userList = new ArrayList<User>();
     User u = null; 
         
-    boolean validRequestArgs = isValidRequestArguments(responseBuilder, sender,
-        lt, now); 
-    boolean validRequest = false;
-    boolean successful = false;
-    
-    if (validRequestArgs) {
-      //if valid the completeUserProto (cup) within responseBuilder is set
-      //but only the cup.userId is set
-      validRequest =
-          isValidRequest(responseBuilder, sender, lt, now, userIdList, userList);
-    }
-    
-    if (validRequest) {
-      u = getUser(userIdList, userList);
-      successful = writeChangesToDb(responseBuilder, sender, lt,
-          initializeAccount, now, u);
-    }
-    
-    if (successful) {
-      //need to set in responseBuilder the collection of picture names
-      Set<String> allPictureNames = new HashSet<String>();
-      
-      //set the recipient
-      //responseBuilder.setRecipient(cupb); //done in writeChangesToDb
-      
-      String userId = responseBuilder.getRecipient().getUserId(); 
-      // GET ALL THE COMPLETED GAMES THAT FINISHED SOME TIME AGO, OR MIN DEFAULT NUMBER OF GAMES
-      setCompletedGames(responseBuilder, userId);
+    try {
+      boolean validRequestArgs = isValidRequestArguments(responseBuilder, sender,
+          lt, now); 
+      boolean validRequest = false;
+      boolean successful = false;
 
-      // GET ALL THE GAMES THAT ARE THE USER'S TURN
-      // GET ALL THE GAMES THAT ARE THE OPPONENT'S TURN
-      setOngoingGames(responseBuilder, userId, allPictureNames);
-      
-      // CONSTRUCT THE NEW TRIVIA QUESTIONS
-      setNewQuestions(responseBuilder, userId, allPictureNames);
-      
-      
-      responseBuilder.addAllPictureNames(allPictureNames);
-      
-      if (LoginType.LOGIN_TOKEN == lt) {
-        responseBuilder.setStatus(LoginResponseStatus.SUCCESS_LOGIN_TOKEN);
+      if (validRequestArgs) {
+        //if valid the completeUserProto (cup) within responseBuilder is set
+        //but only the cup.userId is set
+        validRequest =
+            isValidRequest(responseBuilder, sender, lt, now, userIdList, userList);
       }
-      if (LoginType.EMAIL_PASSWORD == lt) {
-        responseBuilder.setStatus(LoginResponseStatus.SUCCESS_EMAIL_PASSWORD);
+
+      if (validRequest) {
+        u = getUser(userIdList, userList);
+        successful = writeChangesToDb(responseBuilder, sender, lt,
+            initializeAccount, now, u);
       }
-      if (LoginType.FACEBOOK == lt) {
-        // CONSTRUCT THE BASIC USER PROTOS FOR THIS USER'S FACEBOOK FRIENDS
-        setFacebookFriends(responseBuilder, facebookFriendIds);
-        responseBuilder.setStatus(LoginResponseStatus.SUCCESS_FACEBOOK_ID);
+
+      if (successful) {
+        //need to set in responseBuilder the collection of picture names
+        Set<String> allPictureNames = new HashSet<String>();
+
+        //set the recipient
+        //responseBuilder.setRecipient(cupb); //done in writeChangesToDb
+
+        String userId = responseBuilder.getRecipient().getUserId(); 
+        // GET ALL THE COMPLETED GAMES THAT FINISHED SOME TIME AGO, OR MIN DEFAULT NUMBER OF GAMES
+        setCompletedGames(responseBuilder, userId);
+
+        // GET ALL THE GAMES THAT ARE THE USER'S TURN
+        // GET ALL THE GAMES THAT ARE THE OPPONENT'S TURN
+        setOngoingGames(responseBuilder, userId, allPictureNames);
+
+        // CONSTRUCT THE NEW TRIVIA QUESTIONS
+        setNewQuestions(responseBuilder, userId, allPictureNames);
+
+
+        responseBuilder.addAllPictureNames(allPictureNames);
+
+        if (LoginType.LOGIN_TOKEN == lt) {
+          responseBuilder.setStatus(LoginResponseStatus.SUCCESS_LOGIN_TOKEN);
+        }
+        if (LoginType.EMAIL_PASSWORD == lt) {
+          responseBuilder.setStatus(LoginResponseStatus.SUCCESS_EMAIL_PASSWORD);
+        }
+        if (LoginType.FACEBOOK == lt) {
+          // CONSTRUCT THE BASIC USER PROTOS FOR THIS USER'S FACEBOOK FRIENDS
+          setFacebookFriends(responseBuilder, facebookFriendIds);
+          responseBuilder.setStatus(LoginResponseStatus.SUCCESS_FACEBOOK_ID);
+        }
+        if (LoginType.NO_CREDENTIALS == lt) {
+          responseBuilder.setStatus(LoginResponseStatus.SUCCESS_NO_CREDENTIALS);
+        }
       }
-      if (LoginType.NO_CREDENTIALS == lt) {
-        responseBuilder.setStatus(LoginResponseStatus.SUCCESS_NO_CREDENTIALS);
+      
+
+      LoginResponseProto resProto = responseBuilder.build();
+      resEvent.setLoginResponseProto(resProto);
+
+      log.info("Writing event: " + resEvent);
+      getEventWriter().processPreDBResponseEvent(resEvent, udid);
+    } catch (Exception e) {
+      log.error("exception in LoginController processRequestEvent", e);
+      
+      try {
+        //try to tell client that something failed
+        responseBuilder.setStatus(LoginResponseStatus.FAIL_OTHER);
+        resEvent.setLoginResponseProto(responseBuilder.build());
+        getEventWriter().handleEvent(resEvent);
+        
+      } catch (Exception e2) {
+        log.error("exception in RetrieveNewQuestionsController processRequestEvent", e2);
       }
     }
-    //this is what the login request event .java file does...
-    String udid = reqProto.getSender().getBadp().getUdid();
-    
-    LoginResponseProto resProto = responseBuilder.build();
-    LoginResponseEvent resEvent = new LoginResponseEvent(udid);
-    resEvent.setTag(event.getTag());
-    resEvent.setLoginResponseProto(resProto);
-    
-    log.info("Writing event: " + resEvent);
-    getEventWriter().processPreDBResponseEvent(resEvent, udid);
   }
   
   private boolean isValidRequestArguments(Builder responseBuilder, 
@@ -516,38 +526,20 @@ public class LoginController extends EventController {
     //2) number of times user answered it
     //or some heuristic regarding the two
     //BUT GO RANDOM FOR NOW
-    if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
-      log.error("db error: There are no questions to retrieve from the database.");
-      return;
-    }
-    int upperBound = getQuestionIdsToQuestions().size();
-    int limit = PicturesPoConstants.QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET;
-    Collection<Integer> randIndexNums =
-        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, limit);
     
-    QuestionBase[] questions = (QuestionBase[]) getQuestionIdsToQuestions().values().toArray();
+    int amount =
+        PicturesPoConstants.QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET;
+    List<QuestionBase> questions =
+        getQuestionBaseService().getRandomQuestions(amount, allPictureNames);
     
-    for(int index : randIndexNums) {
-      QuestionBase qb = questions[index];
-      
-      Set<String> picNames = qb.getPictureNames();
-      allPictureNames.addAll(picNames);
-      
-      QuestionProto proto = getNoneventProtoUtils().createQuestionProto(qb);
+    for(QuestionBase qb : questions) {
+      QuestionProto proto =
+          getNoneventProtoUtils().createQuestionProto(qb);
       newQuestions.add(proto);
     }
     
     //set responseBuilder
     responseBuilder.addAllNewQuestions(newQuestions);
-  }
-  
-  public Map<String, QuestionBase> getQuestionIdsToQuestions() {
-    return questionIdsToQuestions;
-  }
-
-  public void setQuestionIdsToQuestions(
-      Map<String, QuestionBase> questionIdsToQuestions) {
-    this.questionIdsToQuestions = questionIdsToQuestions;
   }
   
   public UserSignupService getUserSignupService() {
@@ -591,20 +583,20 @@ public class LoginController extends EventController {
     this.noneventProtoUtils = noneventProtoUtils;
   } 
 
-  public RandomNumberUtils getRandNumUtils() {
-    return randNumUtils;
-  }
-
-  public void setRandNumUtils(RandomNumberUtils randNumUtils) {
-    this.randNumUtils = randNumUtils;
-  }
-
   public CurrencyService getCurrencyService() {
     return currencyService;
   }
 
   public void setCurrencyService(CurrencyService currencyService) {
     this.currencyService = currencyService;
+  }
+
+  public QuestionBaseService getQuestionBaseService() {
+    return questionBaseService;
+  }
+
+  public void setQuestionBaseService(QuestionBaseService questionBaseService) {
+    this.questionBaseService = questionBaseService;
   }
   
 }
