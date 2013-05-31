@@ -24,6 +24,8 @@ public interface CurrencyService {
   
   public abstract void spendTokenForUser(Currency c, Date startDate);
   
+  public abstract void updateRubiesForUser(Currency c, int amountSpent);
+  
   public abstract CurrencyDao getCurrencyDao();
   
   public abstract void setCurrencyDao(CurrencyDao currencyDao);

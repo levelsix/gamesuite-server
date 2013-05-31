@@ -496,6 +496,15 @@ public final class SpendRubiesEventProto {
     boolean hasRecipient();
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getRecipient();
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getRecipientOrBuilder();
+    
+    // optional .proto.SpendRubiesResponseProto.SpendRubiesStatus status = 2;
+    boolean hasStatus();
+    com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus getStatus();
+    
+    // optional .proto.UserCurrencyProto currentFunds = 3;
+    boolean hasCurrentFunds();
+    com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getCurrentFunds();
+    com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder getCurrentFundsOrBuilder();
   }
   public static final class SpendRubiesResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -611,8 +620,33 @@ public final class SpendRubiesEventProto {
       return recipient_;
     }
     
+    // optional .proto.SpendRubiesResponseProto.SpendRubiesStatus status = 2;
+    public static final int STATUS_FIELD_NUMBER = 2;
+    private com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus getStatus() {
+      return status_;
+    }
+    
+    // optional .proto.UserCurrencyProto currentFunds = 3;
+    public static final int CURRENTFUNDS_FIELD_NUMBER = 3;
+    private com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto currentFunds_;
+    public boolean hasCurrentFunds() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getCurrentFunds() {
+      return currentFunds_;
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder getCurrentFundsOrBuilder() {
+      return currentFunds_;
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
+      status_ = com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus.SUCCESS;
+      currentFunds_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -629,6 +663,12 @@ public final class SpendRubiesEventProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(1, recipient_);
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(2, status_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeMessage(3, currentFunds_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -641,6 +681,14 @@ public final class SpendRubiesEventProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, recipient_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, status_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, currentFunds_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -759,6 +807,7 @@ public final class SpendRubiesEventProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getRecipientFieldBuilder();
+          getCurrentFundsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -773,6 +822,14 @@ public final class SpendRubiesEventProto {
           recipientBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        if (currentFundsBuilder_ == null) {
+          currentFunds_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+        } else {
+          currentFundsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -819,6 +876,18 @@ public final class SpendRubiesEventProto {
         } else {
           result.recipient_ = recipientBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.status_ = status_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        if (currentFundsBuilder_ == null) {
+          result.currentFunds_ = currentFunds_;
+        } else {
+          result.currentFunds_ = currentFundsBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -837,6 +906,12 @@ public final class SpendRubiesEventProto {
         if (other == com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.getDefaultInstance()) return this;
         if (other.hasRecipient()) {
           mergeRecipient(other.getRecipient());
+        }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
+        }
+        if (other.hasCurrentFunds()) {
+          mergeCurrentFunds(other.getCurrentFunds());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -876,6 +951,26 @@ public final class SpendRubiesEventProto {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setRecipient(subBuilder.buildPartial());
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus value = com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(2, rawValue);
+              } else {
+                bitField0_ |= 0x00000002;
+                status_ = value;
+              }
+              break;
+            }
+            case 26: {
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.newBuilder();
+              if (hasCurrentFunds()) {
+                subBuilder.mergeFrom(getCurrentFunds());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setCurrentFunds(subBuilder.buildPartial());
               break;
             }
           }
@@ -974,6 +1069,120 @@ public final class SpendRubiesEventProto {
         return recipientBuilder_;
       }
       
+      // optional .proto.SpendRubiesResponseProto.SpendRubiesStatus status = 2;
+      private com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus status_ = com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus.SUCCESS;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus getStatus() {
+        return status_;
+      }
+      public Builder setStatus(com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        status_ = com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.SpendRubiesStatus.SUCCESS;
+        onChanged();
+        return this;
+      }
+      
+      // optional .proto.UserCurrencyProto currentFunds = 3;
+      private com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto currentFunds_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder> currentFundsBuilder_;
+      public boolean hasCurrentFunds() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto getCurrentFunds() {
+        if (currentFundsBuilder_ == null) {
+          return currentFunds_;
+        } else {
+          return currentFundsBuilder_.getMessage();
+        }
+      }
+      public Builder setCurrentFunds(com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto value) {
+        if (currentFundsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          currentFunds_ = value;
+          onChanged();
+        } else {
+          currentFundsBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      public Builder setCurrentFunds(
+          com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder builderForValue) {
+        if (currentFundsBuilder_ == null) {
+          currentFunds_ = builderForValue.build();
+          onChanged();
+        } else {
+          currentFundsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      public Builder mergeCurrentFunds(com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto value) {
+        if (currentFundsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              currentFunds_ != com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance()) {
+            currentFunds_ =
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.newBuilder(currentFunds_).mergeFrom(value).buildPartial();
+          } else {
+            currentFunds_ = value;
+          }
+          onChanged();
+        } else {
+          currentFundsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      public Builder clearCurrentFunds() {
+        if (currentFundsBuilder_ == null) {
+          currentFunds_ = com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.getDefaultInstance();
+          onChanged();
+        } else {
+          currentFundsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder getCurrentFundsBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getCurrentFundsFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder getCurrentFundsOrBuilder() {
+        if (currentFundsBuilder_ != null) {
+          return currentFundsBuilder_.getMessageOrBuilder();
+        } else {
+          return currentFunds_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder> 
+          getCurrentFundsFieldBuilder() {
+        if (currentFundsBuilder_ == null) {
+          currentFundsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProtoOrBuilder>(
+                  currentFunds_,
+                  getParentForChildren(),
+                  isClean());
+          currentFunds_ = null;
+        }
+        return currentFundsBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.SpendRubiesResponseProto)
     }
     
@@ -1007,12 +1216,15 @@ public final class SpendRubiesEventProto {
       "\n\026SpendRubiesEvent.proto\022\005proto\032\nUser.pr" +
       "oto\"U\n\027SpendRubiesRequestProto\022%\n\006sender" +
       "\030\001 \001(\0132\025.proto.BasicUserProto\022\023\n\013amountS" +
-      "pent\030\002 \001(\005\"\222\001\n\030SpendRubiesResponseProto\022" +
+      "pent\030\002 \001(\005\"\205\002\n\030SpendRubiesResponseProto\022" +
       "(\n\trecipient\030\001 \001(\0132\025.proto.BasicUserProt" +
-      "o\"L\n\021SpendRubiesStatus\022\013\n\007SUCCESS\020\001\022\032\n\026F" +
-      "AIL_NOT_ENOUGH_RUBIES\020\002\022\016\n\nFAIL_OTHER\020\003B" +
-      "6\n\035com.lvl6.pictures.eventprotosB\025SpendR" +
-      "ubiesEventProto"
+      "o\022A\n\006status\030\002 \001(\01621.proto.SpendRubiesRes" +
+      "ponseProto.SpendRubiesStatus\022.\n\014currentF" +
+      "unds\030\003 \001(\0132\030.proto.UserCurrencyProto\"L\n\021" +
+      "SpendRubiesStatus\022\013\n\007SUCCESS\020\001\022\032\n\026FAIL_N" +
+      "OT_ENOUGH_RUBIES\020\002\022\016\n\nFAIL_OTHER\020\003B6\n\035co",
+      "m.lvl6.pictures.eventprotosB\025SpendRubies" +
+      "EventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1032,7 +1244,7 @@ public final class SpendRubiesEventProto {
           internal_static_proto_SpendRubiesResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_SpendRubiesResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", },
+              new java.lang.String[] { "Recipient", "Status", "CurrentFunds", },
               com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.class,
               com.lvl6.pictures.eventprotos.SpendRubiesEventProto.SpendRubiesResponseProto.Builder.class);
           return null;

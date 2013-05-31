@@ -12,6 +12,8 @@ message SpendRubiesRequestProto {
 
 message SpendRubiesResponseProto {
 	optional BasicUserProto recipient = 1;
+	optional SpendRubiesStatus status = 2;
+	optional UserCurrencyProto currentFunds = 3;
 	
 	enum SpendRubiesStatus {
 		SUCCESS = 1;

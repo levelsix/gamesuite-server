@@ -317,7 +317,7 @@ public class StartRoundController extends EventController {
       if (startingNewRound) {
         getCurrencyService().spendTokenForUser(c, startDate);
       }
-      
+      return true;
     } catch (Exception e) {
       log.error("unexpected error: problem with saving to db.");
     }
