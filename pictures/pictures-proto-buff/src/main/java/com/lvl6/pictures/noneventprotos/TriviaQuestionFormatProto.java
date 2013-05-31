@@ -8,6 +8,633 @@ public final class TriviaQuestionFormatProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  public interface QuestionAnsweredProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string questionId = 1;
+    boolean hasQuestionId();
+    String getQuestionId();
+    
+    // optional .proto.QuestionAnsweredProto.AnswerType type = 2;
+    boolean hasType();
+    com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getType();
+    
+    // optional int32 questionNumber = 3;
+    boolean hasQuestionNumber();
+    int getQuestionNumber();
+    
+    // optional int64 timeAnswered = 4;
+    boolean hasTimeAnswered();
+    long getTimeAnswered();
+  }
+  public static final class QuestionAnsweredProto extends
+      com.google.protobuf.GeneratedMessage
+      implements QuestionAnsweredProtoOrBuilder {
+    // Use QuestionAnsweredProto.newBuilder() to construct.
+    private QuestionAnsweredProto(Builder builder) {
+      super(builder);
+    }
+    private QuestionAnsweredProto(boolean noInit) {}
+    
+    private static final QuestionAnsweredProto defaultInstance;
+    public static QuestionAnsweredProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public QuestionAnsweredProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.internal_static_proto_QuestionAnsweredProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.internal_static_proto_QuestionAnsweredProto_fieldAccessorTable;
+    }
+    
+    public enum AnswerType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      CORRECT(0, 1),
+      INCORRECT(1, 2),
+      SKIPPED(2, 3),
+      ;
+      
+      public static final int CORRECT_VALUE = 1;
+      public static final int INCORRECT_VALUE = 2;
+      public static final int SKIPPED_VALUE = 3;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static AnswerType valueOf(int value) {
+        switch (value) {
+          case 1: return CORRECT;
+          case 2: return INCORRECT;
+          case 3: return SKIPPED;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<AnswerType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<AnswerType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<AnswerType>() {
+              public AnswerType findValueByNumber(int number) {
+                return AnswerType.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final AnswerType[] VALUES = {
+        CORRECT, INCORRECT, SKIPPED, 
+      };
+      
+      public static AnswerType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private AnswerType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.QuestionAnsweredProto.AnswerType)
+    }
+    
+    private int bitField0_;
+    // optional string questionId = 1;
+    public static final int QUESTIONID_FIELD_NUMBER = 1;
+    private java.lang.Object questionId_;
+    public boolean hasQuestionId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getQuestionId() {
+      java.lang.Object ref = questionId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          questionId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getQuestionIdBytes() {
+      java.lang.Object ref = questionId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        questionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional .proto.QuestionAnsweredProto.AnswerType type = 2;
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType type_;
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getType() {
+      return type_;
+    }
+    
+    // optional int32 questionNumber = 3;
+    public static final int QUESTIONNUMBER_FIELD_NUMBER = 3;
+    private int questionNumber_;
+    public boolean hasQuestionNumber() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getQuestionNumber() {
+      return questionNumber_;
+    }
+    
+    // optional int64 timeAnswered = 4;
+    public static final int TIMEANSWERED_FIELD_NUMBER = 4;
+    private long timeAnswered_;
+    public boolean hasTimeAnswered() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public long getTimeAnswered() {
+      return timeAnswered_;
+    }
+    
+    private void initFields() {
+      questionId_ = "";
+      type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+      questionNumber_ = 0;
+      timeAnswered_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getQuestionIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(2, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, questionNumber_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt64(4, timeAnswered_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getQuestionIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, questionNumber_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, timeAnswered_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.internal_static_proto_QuestionAnsweredProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.internal_static_proto_QuestionAnsweredProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        questionId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        questionNumber_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        timeAnswered_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.getDescriptor();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto build() {
+        com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto buildPartial() {
+        com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto result = new com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.questionId_ = questionId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.questionNumber_ = questionNumber_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.timeAnswered_ = timeAnswered_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto) {
+          return mergeFrom((com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto other) {
+        if (other == com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.getDefaultInstance()) return this;
+        if (other.hasQuestionId()) {
+          setQuestionId(other.getQuestionId());
+        }
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasQuestionNumber()) {
+          setQuestionNumber(other.getQuestionNumber());
+        }
+        if (other.hasTimeAnswered()) {
+          setTimeAnswered(other.getTimeAnswered());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              questionId_ = input.readBytes();
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType value = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(2, rawValue);
+              } else {
+                bitField0_ |= 0x00000002;
+                type_ = value;
+              }
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              questionNumber_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              timeAnswered_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string questionId = 1;
+      private java.lang.Object questionId_ = "";
+      public boolean hasQuestionId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getQuestionId() {
+        java.lang.Object ref = questionId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          questionId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setQuestionId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        questionId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearQuestionId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        questionId_ = getDefaultInstance().getQuestionId();
+        onChanged();
+        return this;
+      }
+      void setQuestionId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        questionId_ = value;
+        onChanged();
+      }
+      
+      // optional .proto.QuestionAnsweredProto.AnswerType type = 2;
+      private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getType() {
+        return type_;
+      }
+      public Builder setType(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 questionNumber = 3;
+      private int questionNumber_ ;
+      public boolean hasQuestionNumber() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getQuestionNumber() {
+        return questionNumber_;
+      }
+      public Builder setQuestionNumber(int value) {
+        bitField0_ |= 0x00000004;
+        questionNumber_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearQuestionNumber() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        questionNumber_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 timeAnswered = 4;
+      private long timeAnswered_ ;
+      public boolean hasTimeAnswered() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public long getTimeAnswered() {
+        return timeAnswered_;
+      }
+      public Builder setTimeAnswered(long value) {
+        bitField0_ |= 0x00000008;
+        timeAnswered_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTimeAnswered() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        timeAnswered_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.QuestionAnsweredProto)
+    }
+    
+    static {
+      defaultInstance = new QuestionAnsweredProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.QuestionAnsweredProto)
+  }
+  
   public interface QuestionProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -2502,6 +3129,11 @@ public final class TriviaQuestionFormatProto {
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_QuestionAnsweredProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_QuestionAnsweredProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_QuestionProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -2530,29 +3162,42 @@ public final class TriviaQuestionFormatProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032TriviaQuestionFormat.proto\022\005proto\"\206\001\n\r" +
-      "QuestionProto\022\n\n\002id\030\001 \001(\t\022:\n\016multipleCho" +
-      "ice\030\002 \001(\0132\".proto.MultipleChoiceQuestion" +
-      "Proto\022-\n\010pictures\030\003 \001(\0132\033.proto.PictureQ" +
-      "uestionProto\"t\n\033MultipleChoiceQuestionPr" +
-      "oto\022\020\n\010question\030\001 \001(\t\022\020\n\010answerId\030\002 \001(\t\022" +
-      "1\n\007answers\030\003 \003(\0132 .proto.MultipleChoiceA" +
-      "nswerProto\"\227\001\n\031MultipleChoiceAnswerProto" +
-      "\022\n\n\002id\030\001 \001(\t\022\016\n\006answer\030\002 \001(\t\0229\n\004type\030\003 \001" +
-      "(\0162+.proto.MultipleChoiceAnswerProto.Ans",
-      "werType\"#\n\nAnswerType\022\010\n\004TEXT\020\001\022\013\n\007PICTU" +
-      "RE\020\002\":\n\024PictureQuestionProto\022\022\n\nimageNam" +
-      "es\030\001 \003(\t\022\016\n\006answer\030\002 \001(\tB=\n com.lvl6.pic" +
-      "tures.noneventprotosB\031TriviaQuestionForm" +
-      "atProto"
+      "\n\032TriviaQuestionFormat.proto\022\005proto\"\307\001\n\025" +
+      "QuestionAnsweredProto\022\022\n\nquestionId\030\001 \001(" +
+      "\t\0225\n\004type\030\002 \001(\0162\'.proto.QuestionAnswered" +
+      "Proto.AnswerType\022\026\n\016questionNumber\030\003 \001(\005" +
+      "\022\024\n\014timeAnswered\030\004 \001(\003\"5\n\nAnswerType\022\013\n\007" +
+      "CORRECT\020\001\022\r\n\tINCORRECT\020\002\022\013\n\007SKIPPED\020\003\"\206\001" +
+      "\n\rQuestionProto\022\n\n\002id\030\001 \001(\t\022:\n\016multipleC" +
+      "hoice\030\002 \001(\0132\".proto.MultipleChoiceQuesti" +
+      "onProto\022-\n\010pictures\030\003 \001(\0132\033.proto.Pictur" +
+      "eQuestionProto\"t\n\033MultipleChoiceQuestion",
+      "Proto\022\020\n\010question\030\001 \001(\t\022\020\n\010answerId\030\002 \001(" +
+      "\t\0221\n\007answers\030\003 \003(\0132 .proto.MultipleChoic" +
+      "eAnswerProto\"\227\001\n\031MultipleChoiceAnswerPro" +
+      "to\022\n\n\002id\030\001 \001(\t\022\016\n\006answer\030\002 \001(\t\0229\n\004type\030\003" +
+      " \001(\0162+.proto.MultipleChoiceAnswerProto.A" +
+      "nswerType\"#\n\nAnswerType\022\010\n\004TEXT\020\001\022\013\n\007PIC" +
+      "TURE\020\002\":\n\024PictureQuestionProto\022\022\n\nimageN" +
+      "ames\030\001 \003(\t\022\016\n\006answer\030\002 \001(\tB=\n com.lvl6.p" +
+      "ictures.noneventprotosB\031TriviaQuestionFo" +
+      "rmatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_proto_QuestionProto_descriptor =
+          internal_static_proto_QuestionAnsweredProto_descriptor =
             getDescriptor().getMessageTypes().get(0);
+          internal_static_proto_QuestionAnsweredProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_QuestionAnsweredProto_descriptor,
+              new java.lang.String[] { "QuestionId", "Type", "QuestionNumber", "TimeAnswered", },
+              com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.class,
+              com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.Builder.class);
+          internal_static_proto_QuestionProto_descriptor =
+            getDescriptor().getMessageTypes().get(1);
           internal_static_proto_QuestionProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_QuestionProto_descriptor,
@@ -2560,7 +3205,7 @@ public final class TriviaQuestionFormatProto {
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.class,
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto.Builder.class);
           internal_static_proto_MultipleChoiceQuestionProto_descriptor =
-            getDescriptor().getMessageTypes().get(1);
+            getDescriptor().getMessageTypes().get(2);
           internal_static_proto_MultipleChoiceQuestionProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_MultipleChoiceQuestionProto_descriptor,
@@ -2568,7 +3213,7 @@ public final class TriviaQuestionFormatProto {
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceQuestionProto.class,
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceQuestionProto.Builder.class);
           internal_static_proto_MultipleChoiceAnswerProto_descriptor =
-            getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(3);
           internal_static_proto_MultipleChoiceAnswerProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_MultipleChoiceAnswerProto_descriptor,
@@ -2576,7 +3221,7 @@ public final class TriviaQuestionFormatProto {
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.class,
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceAnswerProto.Builder.class);
           internal_static_proto_PictureQuestionProto_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(4);
           internal_static_proto_PictureQuestionProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_PictureQuestionProto_descriptor,
