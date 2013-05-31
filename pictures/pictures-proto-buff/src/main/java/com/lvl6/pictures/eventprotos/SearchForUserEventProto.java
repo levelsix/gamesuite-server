@@ -534,9 +534,9 @@ public final class SearchForUserEventProto {
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto getRecipient();
     com.lvl6.pictures.noneventprotos.UserProto.BasicUserProtoOrBuilder getRecipientOrBuilder();
     
-    // optional int32 nameOfPersonId = 2;
+    // optional string nameOfPersonId = 2;
     boolean hasNameOfPersonId();
-    int getNameOfPersonId();
+    String getNameOfPersonId();
     
     // optional .proto.SearchForUserResponseProto.SearchForUserStatus status = 3;
     boolean hasStatus();
@@ -656,14 +656,36 @@ public final class SearchForUserEventProto {
       return recipient_;
     }
     
-    // optional int32 nameOfPersonId = 2;
+    // optional string nameOfPersonId = 2;
     public static final int NAMEOFPERSONID_FIELD_NUMBER = 2;
-    private int nameOfPersonId_;
+    private java.lang.Object nameOfPersonId_;
     public boolean hasNameOfPersonId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getNameOfPersonId() {
-      return nameOfPersonId_;
+    public String getNameOfPersonId() {
+      java.lang.Object ref = nameOfPersonId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          nameOfPersonId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameOfPersonIdBytes() {
+      java.lang.Object ref = nameOfPersonId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        nameOfPersonId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional .proto.SearchForUserResponseProto.SearchForUserStatus status = 3;
@@ -678,7 +700,7 @@ public final class SearchForUserEventProto {
     
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
-      nameOfPersonId_ = 0;
+      nameOfPersonId_ = "";
       status_ = com.lvl6.pictures.eventprotos.SearchForUserEventProto.SearchForUserResponseProto.SearchForUserStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
@@ -697,7 +719,7 @@ public final class SearchForUserEventProto {
         output.writeMessage(1, recipient_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, nameOfPersonId_);
+        output.writeBytes(2, getNameOfPersonIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(3, status_.getNumber());
@@ -717,7 +739,7 @@ public final class SearchForUserEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, nameOfPersonId_);
+          .computeBytesSize(2, getNameOfPersonIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -854,7 +876,7 @@ public final class SearchForUserEventProto {
           recipientBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        nameOfPersonId_ = 0;
+        nameOfPersonId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         status_ = com.lvl6.pictures.eventprotos.SearchForUserEventProto.SearchForUserResponseProto.SearchForUserStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -977,9 +999,9 @@ public final class SearchForUserEventProto {
               setRecipient(subBuilder.buildPartial());
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              nameOfPersonId_ = input.readInt32();
+              nameOfPersonId_ = input.readBytes();
               break;
             }
             case 24: {
@@ -1089,25 +1111,40 @@ public final class SearchForUserEventProto {
         return recipientBuilder_;
       }
       
-      // optional int32 nameOfPersonId = 2;
-      private int nameOfPersonId_ ;
+      // optional string nameOfPersonId = 2;
+      private java.lang.Object nameOfPersonId_ = "";
       public boolean hasNameOfPersonId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getNameOfPersonId() {
-        return nameOfPersonId_;
+      public String getNameOfPersonId() {
+        java.lang.Object ref = nameOfPersonId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          nameOfPersonId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setNameOfPersonId(int value) {
-        bitField0_ |= 0x00000002;
+      public Builder setNameOfPersonId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
         nameOfPersonId_ = value;
         onChanged();
         return this;
       }
       public Builder clearNameOfPersonId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        nameOfPersonId_ = 0;
+        nameOfPersonId_ = getDefaultInstance().getNameOfPersonId();
         onChanged();
         return this;
+      }
+      void setNameOfPersonId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        nameOfPersonId_ = value;
+        onChanged();
       }
       
       // optional .proto.SearchForUserResponseProto.SearchForUserStatus status = 3;
@@ -1169,7 +1206,7 @@ public final class SearchForUserEventProto {
       "nder\030\001 \001(\0132\025.proto.BasicUserProto\022\024\n\014nam" +
       "eOfPerson\030\002 \001(\t\"\364\001\n\032SearchForUserRespons" +
       "eProto\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicU" +
-      "serProto\022\026\n\016nameOfPersonId\030\002 \001(\005\022E\n\006stat" +
+      "serProto\022\026\n\016nameOfPersonId\030\002 \001(\t\022E\n\006stat" +
       "us\030\003 \001(\01625.proto.SearchForUserResponsePr" +
       "oto.SearchForUserStatus\"M\n\023SearchForUser" +
       "Status\022\013\n\007SUCCESS\020\001\022\031\n\025FAIL_PERSON_NOT_F" +
