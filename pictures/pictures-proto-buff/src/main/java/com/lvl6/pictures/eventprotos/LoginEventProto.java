@@ -950,9 +950,10 @@ public final class LoginEventProto {
       boolean hasDefaultMinutesPerRound();
       int getDefaultMinutesPerRound();
       
-      // optional int32 defaultQuestionsPerRound = 5;
-      boolean hasDefaultQuestionsPerRound();
-      int getDefaultQuestionsPerRound();
+      // optional .proto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants scoreTypes = 5;
+      boolean hasScoreTypes();
+      com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants getScoreTypes();
+      com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder getScoreTypesOrBuilder();
     }
     public static final class LoginConstants extends
         com.google.protobuf.GeneratedMessage
@@ -980,6 +981,515 @@ public final class LoginEventProto {
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable;
+      }
+      
+      public interface QuestionTypeScoringConstantsOrBuilder
+          extends com.google.protobuf.MessageOrBuilder {
+        
+        // optional int32 mcqCorrect = 1;
+        boolean hasMcqCorrect();
+        int getMcqCorrect();
+        
+        // optional int32 mcqIncorrect = 2;
+        boolean hasMcqIncorrect();
+        int getMcqIncorrect();
+        
+        // optional int32 acqCorrect = 3;
+        boolean hasAcqCorrect();
+        int getAcqCorrect();
+        
+        // optional int32 acqIncorrect = 4;
+        boolean hasAcqIncorrect();
+        int getAcqIncorrect();
+      }
+      public static final class QuestionTypeScoringConstants extends
+          com.google.protobuf.GeneratedMessage
+          implements QuestionTypeScoringConstantsOrBuilder {
+        // Use QuestionTypeScoringConstants.newBuilder() to construct.
+        private QuestionTypeScoringConstants(Builder builder) {
+          super(builder);
+        }
+        private QuestionTypeScoringConstants(boolean noInit) {}
+        
+        private static final QuestionTypeScoringConstants defaultInstance;
+        public static QuestionTypeScoringConstants getDefaultInstance() {
+          return defaultInstance;
+        }
+        
+        public QuestionTypeScoringConstants getDefaultInstanceForType() {
+          return defaultInstance;
+        }
+        
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_descriptor;
+        }
+        
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_fieldAccessorTable;
+        }
+        
+        private int bitField0_;
+        // optional int32 mcqCorrect = 1;
+        public static final int MCQCORRECT_FIELD_NUMBER = 1;
+        private int mcqCorrect_;
+        public boolean hasMcqCorrect() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        public int getMcqCorrect() {
+          return mcqCorrect_;
+        }
+        
+        // optional int32 mcqIncorrect = 2;
+        public static final int MCQINCORRECT_FIELD_NUMBER = 2;
+        private int mcqIncorrect_;
+        public boolean hasMcqIncorrect() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        public int getMcqIncorrect() {
+          return mcqIncorrect_;
+        }
+        
+        // optional int32 acqCorrect = 3;
+        public static final int ACQCORRECT_FIELD_NUMBER = 3;
+        private int acqCorrect_;
+        public boolean hasAcqCorrect() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        public int getAcqCorrect() {
+          return acqCorrect_;
+        }
+        
+        // optional int32 acqIncorrect = 4;
+        public static final int ACQINCORRECT_FIELD_NUMBER = 4;
+        private int acqIncorrect_;
+        public boolean hasAcqIncorrect() {
+          return ((bitField0_ & 0x00000008) == 0x00000008);
+        }
+        public int getAcqIncorrect() {
+          return acqIncorrect_;
+        }
+        
+        private void initFields() {
+          mcqCorrect_ = 0;
+          mcqIncorrect_ = 0;
+          acqCorrect_ = 0;
+          acqIncorrect_ = 0;
+        }
+        private byte memoizedIsInitialized = -1;
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized != -1) return isInitialized == 1;
+          
+          memoizedIsInitialized = 1;
+          return true;
+        }
+        
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          getSerializedSize();
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            output.writeInt32(1, mcqCorrect_);
+          }
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            output.writeInt32(2, mcqIncorrect_);
+          }
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            output.writeInt32(3, acqCorrect_);
+          }
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            output.writeInt32(4, acqIncorrect_);
+          }
+          getUnknownFields().writeTo(output);
+        }
+        
+        private int memoizedSerializedSize = -1;
+        public int getSerializedSize() {
+          int size = memoizedSerializedSize;
+          if (size != -1) return size;
+        
+          size = 0;
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(1, mcqCorrect_);
+          }
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(2, mcqIncorrect_);
+          }
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(3, acqCorrect_);
+          }
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(4, acqIncorrect_);
+          }
+          size += getUnknownFields().getSerializedSize();
+          memoizedSerializedSize = size;
+          return size;
+        }
+        
+        private static final long serialVersionUID = 0L;
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
+            throws java.io.ObjectStreamException {
+          return super.writeReplace();
+        }
+        
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return newBuilder().mergeFrom(data).buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return newBuilder().mergeFrom(data, extensionRegistry)
+                   .buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return newBuilder().mergeFrom(data).buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return newBuilder().mergeFrom(data, extensionRegistry)
+                   .buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return newBuilder().mergeFrom(input).buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return newBuilder().mergeFrom(input, extensionRegistry)
+                   .buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          Builder builder = newBuilder();
+          if (builder.mergeDelimitedFrom(input)) {
+            return builder.buildParsed();
+          } else {
+            return null;
+          }
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          Builder builder = newBuilder();
+          if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+            return builder.buildParsed();
+          } else {
+            return null;
+          }
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return newBuilder().mergeFrom(input).buildParsed();
+        }
+        public static com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return newBuilder().mergeFrom(input, extensionRegistry)
+                   .buildParsed();
+        }
+        
+        public static Builder newBuilder() { return Builder.create(); }
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants prototype) {
+          return newBuilder().mergeFrom(prototype);
+        }
+        public Builder toBuilder() { return newBuilder(this); }
+        
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessage.Builder<Builder>
+           implements com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_descriptor;
+          }
+          
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return com.lvl6.pictures.eventprotos.LoginEventProto.internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_fieldAccessorTable;
+          }
+          
+          // Construct using com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+          
+          private Builder(BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+            }
+          }
+          private static Builder create() {
+            return new Builder();
+          }
+          
+          public Builder clear() {
+            super.clear();
+            mcqCorrect_ = 0;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            mcqIncorrect_ = 0;
+            bitField0_ = (bitField0_ & ~0x00000002);
+            acqCorrect_ = 0;
+            bitField0_ = (bitField0_ & ~0x00000004);
+            acqIncorrect_ = 0;
+            bitField0_ = (bitField0_ & ~0x00000008);
+            return this;
+          }
+          
+          public Builder clone() {
+            return create().mergeFrom(buildPartial());
+          }
+          
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDescriptor();
+          }
+          
+          public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants getDefaultInstanceForType() {
+            return com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance();
+          }
+          
+          public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants build() {
+            com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+          
+          private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants buildParsed()
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(
+                result).asInvalidProtocolBufferException();
+            }
+            return result;
+          }
+          
+          public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants buildPartial() {
+            com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants result = new com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants(this);
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+              to_bitField0_ |= 0x00000001;
+            }
+            result.mcqCorrect_ = mcqCorrect_;
+            if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+              to_bitField0_ |= 0x00000002;
+            }
+            result.mcqIncorrect_ = mcqIncorrect_;
+            if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+              to_bitField0_ |= 0x00000004;
+            }
+            result.acqCorrect_ = acqCorrect_;
+            if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+              to_bitField0_ |= 0x00000008;
+            }
+            result.acqIncorrect_ = acqIncorrect_;
+            result.bitField0_ = to_bitField0_;
+            onBuilt();
+            return result;
+          }
+          
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants) {
+              return mergeFrom((com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+          
+          public Builder mergeFrom(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants other) {
+            if (other == com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance()) return this;
+            if (other.hasMcqCorrect()) {
+              setMcqCorrect(other.getMcqCorrect());
+            }
+            if (other.hasMcqIncorrect()) {
+              setMcqIncorrect(other.getMcqIncorrect());
+            }
+            if (other.hasAcqCorrect()) {
+              setAcqCorrect(other.getAcqCorrect());
+            }
+            if (other.hasAcqIncorrect()) {
+              setAcqIncorrect(other.getAcqIncorrect());
+            }
+            this.mergeUnknownFields(other.getUnknownFields());
+            return this;
+          }
+          
+          public final boolean isInitialized() {
+            return true;
+          }
+          
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder(
+                this.getUnknownFields());
+            while (true) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  this.setUnknownFields(unknownFields.build());
+                  onChanged();
+                  return this;
+                default: {
+                  if (!parseUnknownField(input, unknownFields,
+                                         extensionRegistry, tag)) {
+                    this.setUnknownFields(unknownFields.build());
+                    onChanged();
+                    return this;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  mcqCorrect_ = input.readInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  mcqIncorrect_ = input.readInt32();
+                  break;
+                }
+                case 24: {
+                  bitField0_ |= 0x00000004;
+                  acqCorrect_ = input.readInt32();
+                  break;
+                }
+                case 32: {
+                  bitField0_ |= 0x00000008;
+                  acqIncorrect_ = input.readInt32();
+                  break;
+                }
+              }
+            }
+          }
+          
+          private int bitField0_;
+          
+          // optional int32 mcqCorrect = 1;
+          private int mcqCorrect_ ;
+          public boolean hasMcqCorrect() {
+            return ((bitField0_ & 0x00000001) == 0x00000001);
+          }
+          public int getMcqCorrect() {
+            return mcqCorrect_;
+          }
+          public Builder setMcqCorrect(int value) {
+            bitField0_ |= 0x00000001;
+            mcqCorrect_ = value;
+            onChanged();
+            return this;
+          }
+          public Builder clearMcqCorrect() {
+            bitField0_ = (bitField0_ & ~0x00000001);
+            mcqCorrect_ = 0;
+            onChanged();
+            return this;
+          }
+          
+          // optional int32 mcqIncorrect = 2;
+          private int mcqIncorrect_ ;
+          public boolean hasMcqIncorrect() {
+            return ((bitField0_ & 0x00000002) == 0x00000002);
+          }
+          public int getMcqIncorrect() {
+            return mcqIncorrect_;
+          }
+          public Builder setMcqIncorrect(int value) {
+            bitField0_ |= 0x00000002;
+            mcqIncorrect_ = value;
+            onChanged();
+            return this;
+          }
+          public Builder clearMcqIncorrect() {
+            bitField0_ = (bitField0_ & ~0x00000002);
+            mcqIncorrect_ = 0;
+            onChanged();
+            return this;
+          }
+          
+          // optional int32 acqCorrect = 3;
+          private int acqCorrect_ ;
+          public boolean hasAcqCorrect() {
+            return ((bitField0_ & 0x00000004) == 0x00000004);
+          }
+          public int getAcqCorrect() {
+            return acqCorrect_;
+          }
+          public Builder setAcqCorrect(int value) {
+            bitField0_ |= 0x00000004;
+            acqCorrect_ = value;
+            onChanged();
+            return this;
+          }
+          public Builder clearAcqCorrect() {
+            bitField0_ = (bitField0_ & ~0x00000004);
+            acqCorrect_ = 0;
+            onChanged();
+            return this;
+          }
+          
+          // optional int32 acqIncorrect = 4;
+          private int acqIncorrect_ ;
+          public boolean hasAcqIncorrect() {
+            return ((bitField0_ & 0x00000008) == 0x00000008);
+          }
+          public int getAcqIncorrect() {
+            return acqIncorrect_;
+          }
+          public Builder setAcqIncorrect(int value) {
+            bitField0_ |= 0x00000008;
+            acqIncorrect_ = value;
+            onChanged();
+            return this;
+          }
+          public Builder clearAcqIncorrect() {
+            bitField0_ = (bitField0_ & ~0x00000008);
+            acqIncorrect_ = 0;
+            onChanged();
+            return this;
+          }
+          
+          // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants)
+        }
+        
+        static {
+          defaultInstance = new QuestionTypeScoringConstants(true);
+          defaultInstance.initFields();
+        }
+        
+        // @@protoc_insertion_point(class_scope:proto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants)
       }
       
       private int bitField0_;
@@ -1023,14 +1533,17 @@ public final class LoginEventProto {
         return defaultMinutesPerRound_;
       }
       
-      // optional int32 defaultQuestionsPerRound = 5;
-      public static final int DEFAULTQUESTIONSPERROUND_FIELD_NUMBER = 5;
-      private int defaultQuestionsPerRound_;
-      public boolean hasDefaultQuestionsPerRound() {
+      // optional .proto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants scoreTypes = 5;
+      public static final int SCORETYPES_FIELD_NUMBER = 5;
+      private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants scoreTypes_;
+      public boolean hasScoreTypes() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      public int getDefaultQuestionsPerRound() {
-        return defaultQuestionsPerRound_;
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants getScoreTypes() {
+        return scoreTypes_;
+      }
+      public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder getScoreTypesOrBuilder() {
+        return scoreTypes_;
       }
       
       private void initFields() {
@@ -1038,7 +1551,7 @@ public final class LoginEventProto {
         defaultInitialRubies_ = 0;
         defaultRoundsPerGame_ = 0;
         defaultMinutesPerRound_ = 0;
-        defaultQuestionsPerRound_ = 0;
+        scoreTypes_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance();
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
@@ -1065,7 +1578,7 @@ public final class LoginEventProto {
           output.writeInt32(4, defaultMinutesPerRound_);
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-          output.writeInt32(5, defaultQuestionsPerRound_);
+          output.writeMessage(5, scoreTypes_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -1094,7 +1607,7 @@ public final class LoginEventProto {
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(5, defaultQuestionsPerRound_);
+            .computeMessageSize(5, scoreTypes_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -1212,6 +1725,7 @@ public final class LoginEventProto {
         }
         private void maybeForceBuilderInitialization() {
           if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+            getScoreTypesFieldBuilder();
           }
         }
         private static Builder create() {
@@ -1228,7 +1742,11 @@ public final class LoginEventProto {
           bitField0_ = (bitField0_ & ~0x00000004);
           defaultMinutesPerRound_ = 0;
           bitField0_ = (bitField0_ & ~0x00000008);
-          defaultQuestionsPerRound_ = 0;
+          if (scoreTypesBuilder_ == null) {
+            scoreTypes_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance();
+          } else {
+            scoreTypesBuilder_.clear();
+          }
           bitField0_ = (bitField0_ & ~0x00000010);
           return this;
         }
@@ -1287,7 +1805,11 @@ public final class LoginEventProto {
           if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
             to_bitField0_ |= 0x00000010;
           }
-          result.defaultQuestionsPerRound_ = defaultQuestionsPerRound_;
+          if (scoreTypesBuilder_ == null) {
+            result.scoreTypes_ = scoreTypes_;
+          } else {
+            result.scoreTypes_ = scoreTypesBuilder_.build();
+          }
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -1316,8 +1838,8 @@ public final class LoginEventProto {
           if (other.hasDefaultMinutesPerRound()) {
             setDefaultMinutesPerRound(other.getDefaultMinutesPerRound());
           }
-          if (other.hasDefaultQuestionsPerRound()) {
-            setDefaultQuestionsPerRound(other.getDefaultQuestionsPerRound());
+          if (other.hasScoreTypes()) {
+            mergeScoreTypes(other.getScoreTypes());
           }
           this.mergeUnknownFields(other.getUnknownFields());
           return this;
@@ -1370,9 +1892,13 @@ public final class LoginEventProto {
                 defaultMinutesPerRound_ = input.readInt32();
                 break;
               }
-              case 40: {
-                bitField0_ |= 0x00000010;
-                defaultQuestionsPerRound_ = input.readInt32();
+              case 42: {
+                com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder subBuilder = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.newBuilder();
+                if (hasScoreTypes()) {
+                  subBuilder.mergeFrom(getScoreTypes());
+                }
+                input.readMessage(subBuilder, extensionRegistry);
+                setScoreTypes(subBuilder.buildPartial());
                 break;
               }
             }
@@ -1465,25 +1991,94 @@ public final class LoginEventProto {
           return this;
         }
         
-        // optional int32 defaultQuestionsPerRound = 5;
-        private int defaultQuestionsPerRound_ ;
-        public boolean hasDefaultQuestionsPerRound() {
+        // optional .proto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants scoreTypes = 5;
+        private com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants scoreTypes_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance();
+        private com.google.protobuf.SingleFieldBuilder<
+            com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder> scoreTypesBuilder_;
+        public boolean hasScoreTypes() {
           return ((bitField0_ & 0x00000010) == 0x00000010);
         }
-        public int getDefaultQuestionsPerRound() {
-          return defaultQuestionsPerRound_;
+        public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants getScoreTypes() {
+          if (scoreTypesBuilder_ == null) {
+            return scoreTypes_;
+          } else {
+            return scoreTypesBuilder_.getMessage();
+          }
         }
-        public Builder setDefaultQuestionsPerRound(int value) {
+        public Builder setScoreTypes(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants value) {
+          if (scoreTypesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            scoreTypes_ = value;
+            onChanged();
+          } else {
+            scoreTypesBuilder_.setMessage(value);
+          }
           bitField0_ |= 0x00000010;
-          defaultQuestionsPerRound_ = value;
-          onChanged();
           return this;
         }
-        public Builder clearDefaultQuestionsPerRound() {
-          bitField0_ = (bitField0_ & ~0x00000010);
-          defaultQuestionsPerRound_ = 0;
-          onChanged();
+        public Builder setScoreTypes(
+            com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder builderForValue) {
+          if (scoreTypesBuilder_ == null) {
+            scoreTypes_ = builderForValue.build();
+            onChanged();
+          } else {
+            scoreTypesBuilder_.setMessage(builderForValue.build());
+          }
+          bitField0_ |= 0x00000010;
           return this;
+        }
+        public Builder mergeScoreTypes(com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants value) {
+          if (scoreTypesBuilder_ == null) {
+            if (((bitField0_ & 0x00000010) == 0x00000010) &&
+                scoreTypes_ != com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance()) {
+              scoreTypes_ =
+                com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.newBuilder(scoreTypes_).mergeFrom(value).buildPartial();
+            } else {
+              scoreTypes_ = value;
+            }
+            onChanged();
+          } else {
+            scoreTypesBuilder_.mergeFrom(value);
+          }
+          bitField0_ |= 0x00000010;
+          return this;
+        }
+        public Builder clearScoreTypes() {
+          if (scoreTypesBuilder_ == null) {
+            scoreTypes_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.getDefaultInstance();
+            onChanged();
+          } else {
+            scoreTypesBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000010);
+          return this;
+        }
+        public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder getScoreTypesBuilder() {
+          bitField0_ |= 0x00000010;
+          onChanged();
+          return getScoreTypesFieldBuilder().getBuilder();
+        }
+        public com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder getScoreTypesOrBuilder() {
+          if (scoreTypesBuilder_ != null) {
+            return scoreTypesBuilder_.getMessageOrBuilder();
+          } else {
+            return scoreTypes_;
+          }
+        }
+        private com.google.protobuf.SingleFieldBuilder<
+            com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder> 
+            getScoreTypesFieldBuilder() {
+          if (scoreTypesBuilder_ == null) {
+            scoreTypesBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder, com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstantsOrBuilder>(
+                    scoreTypes_,
+                    getParentForChildren(),
+                    isClean());
+            scoreTypes_ = null;
+          }
+          return scoreTypesBuilder_;
         }
         
         // @@protoc_insertion_point(builder_scope:proto.LoginResponseProto.LoginConstants)
@@ -3521,6 +4116,11 @@ public final class LoginEventProto {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3538,7 +4138,7 @@ public final class LoginEventProto {
       "roto.LoginRequestProto.LoginType\022\031\n\021init" +
       "ializeAccount\030\004 \001(\010\"R\n\tLoginType\022\017\n\013LOGI" +
       "N_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL_PASSWOR" +
-      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\361\006\n\022LoginRespons" +
+      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\236\010\n\022LoginRespons" +
       "eProto\022+\n\trecipient\030\001 \001(\0132\030.proto.Comple",
       "teUserProto\022/\n\016completedGames\030\002 \003(\0132\027.pr" +
       "oto.GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.p" +
@@ -3550,18 +4150,23 @@ public final class LoginEventProto {
       "nts\030\007 \003(\0132\025.proto.BasicUserProto\022\024\n\014pict" +
       "ureNames\030\010 \003(\t\022@\n\016loginConstants\030\t \001(\0132(" +
       ".proto.LoginResponseProto.LoginConstants",
-      "\032\254\001\n\016LoginConstants\022\034\n\024defaultInitialTok" +
+      "\032\331\002\n\016LoginConstants\022\034\n\024defaultInitialTok" +
       "ens\030\001 \001(\005\022\034\n\024defaultInitialRubies\030\002 \001(\005\022" +
       "\034\n\024defaultRoundsPerGame\030\003 \001(\005\022\036\n\026default" +
-      "MinutesPerRound\030\004 \001(\005\022 \n\030defaultQuestion" +
-      "sPerRound\030\005 \001(\005\"\371\001\n\023LoginResponseStatus\022" +
-      "\027\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023SUCCESS_FACE" +
-      "BOOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_PASSWORD\020\003\022\032\n" +
-      "\026SUCCESS_NO_CREDENTIALS\020\004\022\027\n\023INVALID_LOG" +
-      "IN_TOKEN\020\005\022\027\n\023INVALID_FACEBOOK_ID\020\006\022\032\n\026I" +
-      "NVALID_EMAIL_PASSWORD\020\007\022\032\n\026INVALID_NO_CR",
-      "EDENTIALS\020\010\022\016\n\nFAIL_OTHER\020\tB0\n\035com.lvl6." +
-      "pictures.eventprotosB\017LoginEventProto"
+      "MinutesPerRound\030\004 \001(\005\022Y\n\nscoreTypes\030\005 \001(" +
+      "\0132E.proto.LoginResponseProto.LoginConsta" +
+      "nts.QuestionTypeScoringConstants\032r\n\034Ques" +
+      "tionTypeScoringConstants\022\022\n\nmcqCorrect\030\001" +
+      " \001(\005\022\024\n\014mcqIncorrect\030\002 \001(\005\022\022\n\nacqCorrect" +
+      "\030\003 \001(\005\022\024\n\014acqIncorrect\030\004 \001(\005\"\371\001\n\023LoginRe" +
+      "sponseStatus\022\027\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n",
+      "\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_" +
+      "PASSWORD\020\003\022\032\n\026SUCCESS_NO_CREDENTIALS\020\004\022\027" +
+      "\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023INVALID_FACEB" +
+      "OOK_ID\020\006\022\032\n\026INVALID_EMAIL_PASSWORD\020\007\022\032\n\026" +
+      "INVALID_NO_CREDENTIALS\020\010\022\016\n\nFAIL_OTHER\020\t" +
+      "B0\n\035com.lvl6.pictures.eventprotosB\017Login" +
+      "EventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3589,9 +4194,17 @@ public final class LoginEventProto {
           internal_static_proto_LoginResponseProto_LoginConstants_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoginResponseProto_LoginConstants_descriptor,
-              new java.lang.String[] { "DefaultInitialTokens", "DefaultInitialRubies", "DefaultRoundsPerGame", "DefaultMinutesPerRound", "DefaultQuestionsPerRound", },
+              new java.lang.String[] { "DefaultInitialTokens", "DefaultInitialRubies", "DefaultRoundsPerGame", "DefaultMinutesPerRound", "ScoreTypes", },
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.class,
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.Builder.class);
+          internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_descriptor =
+            internal_static_proto_LoginResponseProto_LoginConstants_descriptor.getNestedTypes().get(0);
+          internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_LoginResponseProto_LoginConstants_QuestionTypeScoringConstants_descriptor,
+              new java.lang.String[] { "McqCorrect", "McqIncorrect", "AcqCorrect", "AcqIncorrect", },
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.class,
+              com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants.Builder.class);
           return null;
         }
       };
