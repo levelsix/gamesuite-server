@@ -10,7 +10,7 @@ message BasicRoundResultsProto {
 	optional string id = 5;
 	optional int32 numQuestionsSeen = 1;
 	optional int32 numQuestionsAnsweredCorrectly = 2;
-	optional int32 score = 3;
+	optional sint32 score = 3;
 	optional int32 roundNumber = 4;
 
 }
@@ -19,9 +19,9 @@ message CompleteRoundResultsProto {
 	optional string id = 6;
 	optional int32 numQuestionsSeen = 1;
 	optional int32 numQuestionsAnsweredCorrectly = 2;
-	optional int32 score = 3;
+	optional sint32 score = 3;
 	optional int32 roundNumber = 4;
-	repeated QuestionProto questions = 5;
+	repeated QuestionAnsweredProto answers = 5;
 	optional int64 startTime = 7;
 	optional int64 endTime = 8;
 }
