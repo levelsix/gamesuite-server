@@ -62,9 +62,27 @@
 		<jdbc.statementsCacheSize>500</jdbc.statementsCacheSize>
 		<jdbc.releaseHelperThreads>3</jdbc.releaseHelperThreads>
 
+		<hazelcast.group>pictures</hazelcast.group>
+		<hazelcast.pass>lvl6</hazelcast.pass>
+		<hazelcast.config>dev</hazelcast.config>
+		<hazelcast.port>7701</hazelcast.port>
+		<hazelcast.dev.ips>5.9.28.212</hazelcast.dev.ips>
+
+		<lvl6.server.log.appender>R</lvl6.server.log.appender>
+		<lvl6.server.log.location>/var/log/tomcat7/pictures</lvl6.server.log.location>
+
+
+		<amqp.host>robot.lvl6.com</amqp.host>
+		<amqp.user>lvl6server</amqp.user>
+		<amqp.pass>devserver</amqp.pass>
+		<amqp.vhost>devpictures</amqp.vhost>
+		<amqp.exchange>gamemessages</amqp.exchange>
+		<amqp.chat.exchange>chatmessages</amqp.chat.exchange>
+		<amqp.client.messages.routing.key>messagesFromPlayers</amqp.client.messages.routing.key>
+
 		<maven.build.timestamp.format>yyyy-MM-dd-HH-mm-ss</maven.build.timestamp.format>
 		<wicket.mode>development</wicket.mode>
-		<spring.version>3.1.2.RELEASE</spring.version>
+		<spring.version>3.2.3.RELEASE</spring.version>
 		<spring.security.version>3.1.1.RELEASE</spring.security.version>
 		<!-- <amqp.host>robot.lvl6.com</amqp.host> <amqp.user>lvl6server</amqp.user> 
 			<amqp.pass>devserver</amqp.pass> <amqp.vhost>devgamesuite</amqp.vhost> <amqp.exchange>gamemessages</amqp.exchange> 
@@ -76,6 +94,11 @@
 			<id>kellylocal</id>
 			<properties>
 				<lvl6.server.log.location>/tmp/gamesuite</lvl6.server.log.location>
+				<hazelcast.group>kellypictures</hazelcast.group>
+				<hazelcast.pass>lvl6</hazelcast.pass>
+				<hazelcast.config>dev</hazelcast.config>
+				<hazelcast.port>7702</hazelcast.port>
+				<hazelcast.dev.ips>192.168.5.101</hazelcast.dev.ips>
 			</properties>
 		</profile>
 	</profiles>
@@ -333,7 +356,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.hazelcast</groupId>
-				<artifactId>hazelcast</artifactId>
+				<artifactId>hazelcast-all</artifactId>
 				<version>2.5</version>
 			</dependency>
 		</dependencies>
