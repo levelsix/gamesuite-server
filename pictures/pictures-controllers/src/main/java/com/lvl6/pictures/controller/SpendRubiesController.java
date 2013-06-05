@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.controller.EventController;
 import com.lvl6.gamesuite.common.events.RequestEvent;
@@ -24,6 +25,8 @@ import com.lvl6.pictures.noneventprotos.UserProto.UserCurrencyProto;
 import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.services.currency.CurrencyService;
 
+
+@Component
 public class SpendRubiesController extends EventController {
   
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

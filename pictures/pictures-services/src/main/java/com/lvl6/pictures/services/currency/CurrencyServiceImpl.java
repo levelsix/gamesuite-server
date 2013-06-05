@@ -6,16 +6,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.controller.utils.TimeUtils;
 import com.lvl6.pictures.dao.CurrencyDao;
 import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.properties.PicturesPoConstants;
 
+@Component
 public class CurrencyServiceImpl implements CurrencyService {
   
-  @Autowired
+  @Resource
   protected CurrencyDao currencyDao;
   
   @Autowired
@@ -109,11 +113,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     getCurrencyDao().save(c);
   }
   
-  @Override
   public CurrencyDao getCurrencyDao() {
     return currencyDao;
   }
-  @Override
   public void setCurrencyDao(CurrencyDao currencyDao) {
     this.currencyDao = currencyDao;
   }

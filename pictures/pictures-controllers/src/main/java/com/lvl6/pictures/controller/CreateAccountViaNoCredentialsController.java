@@ -24,7 +24,7 @@ import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 
-@Component @DependsOn("gameServer") public class CreateAccountViaNoCredentialsController extends EventController {
+@Component  public class CreateAccountViaNoCredentialsController extends EventController {
   
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-import com.lvl6.pictures.dao.CurrencyDao;
 import com.lvl6.pictures.po.Currency;
 
 public interface CurrencyService {
@@ -25,9 +24,7 @@ public interface CurrencyService {
   public abstract void spendTokenForUser(Currency c, Date startDate);
   
   public abstract void updateRubiesForUser(Currency c, int amountSpent);
-  
-  public abstract CurrencyDao getCurrencyDao();
-  
-  public abstract void setCurrencyDao(CurrencyDao currencyDao);
+ 
+
   
 }

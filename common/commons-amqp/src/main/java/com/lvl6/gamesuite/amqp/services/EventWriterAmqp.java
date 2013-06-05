@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.controller.utils.EventWriter;
 import com.lvl6.gamesuite.common.events.GameEvent;
@@ -16,7 +18,20 @@ import com.lvl6.gamesuite.common.events.ResponseEvent;
 import com.lvl6.gamesuite.common.properties.Globals;
 import com.lvl6.gamesuite.common.utils.NIOUtils;
 
+@Component
 public class EventWriterAmqp extends EventWriter {
+
+	
+	@Autowired
+	Globals globals;
+	
+	public Globals getGlobals() {
+		return globals;
+	}
+
+	public void setGlobals(Globals globals) {
+		this.globals = globals;
+	}
 
 	@Resource(name = "chatMessagesTemplate")
 	RabbitTemplate chatTemplate;
@@ -116,13 +131,13 @@ public class EventWriterAmqp extends EventWriter {
 	}
 
 	protected ByteBuffer getBytes(ResponseEvent event) {
-		ByteBuffer writeBuffer = ByteBuffer.allocateDirect(Globals.MAX_EVENT_SIZE);
+		ByteBuffer writeBuffer = ByteBuffer.allocateDirect(globals.MAX_EVENT_SIZE);
 		NIOUtils.prepBuffer(event, writeBuffer);
 		return writeBuffer;
 	}
 
 	protected byte[] getByteArray(ResponseEvent event) {
-		ByteBuffer writeBuffer = ByteBuffer.allocateDirect(Globals.MAX_EVENT_SIZE);
+		ByteBuffer writeBuffer = ByteBuffer.allocateDirect(globals.MAX_EVENT_SIZE);
 		NIOUtils.prepBuffer(event, writeBuffer);
 		int remaining = writeBuffer.remaining();
 		//log.info("Got byte[] of size: {}", remaining);

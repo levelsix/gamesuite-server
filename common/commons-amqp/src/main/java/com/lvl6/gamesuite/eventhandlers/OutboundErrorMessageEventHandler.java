@@ -1,6 +1,5 @@
 package com.lvl6.gamesuite.eventhandlers;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessagingException;
 import org.springframework.integration.core.MessageHandler;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.dto.ConnectedPlayer;
 
+@Component
 public class OutboundErrorMessageEventHandler implements MessageHandler {
 
 	
@@ -34,7 +35,7 @@ public class OutboundErrorMessageEventHandler implements MessageHandler {
 	}
 
 
-
+/*
 	@Resource(name="messagesForDisconnectedPlayers")
 	protected Map<Integer, List<Message<?>>> messagesForDisconnectedPlayers;
 
@@ -49,7 +50,7 @@ public class OutboundErrorMessageEventHandler implements MessageHandler {
 	public void setMessagesForDisconnectedPlayers(
 			Map<Integer, List<Message<?>>> messagesForDisconnectedPlayers) {
 		this.messagesForDisconnectedPlayers = messagesForDisconnectedPlayers;
-	}
+	}*/
 
 
 

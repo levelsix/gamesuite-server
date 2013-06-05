@@ -25,7 +25,7 @@ import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceServi
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 import com.lvl6.gamesuite.user.utils.EmailUtil;
 
-@Component @DependsOn("gameServer") public class CreateAccountViaEmailController extends EventController {
+@Component  public class CreateAccountViaEmailController extends EventController {
   
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 

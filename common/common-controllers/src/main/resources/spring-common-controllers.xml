@@ -15,6 +15,7 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	
+	<import resource="classpath:spring-db.xml" />
 
 	<context:component-scan base-package="com.lvl6" />
 <!-- 	<context:component-scan base-package="com.lvl6.retrieveutils" /> -->
@@ -28,25 +29,21 @@
 		rejection-policy="CALLER_RUNS" />
 	
 	
-	<bean id="apnsProperties" class="com.lvl6.properties.APNSProperties">
+	<bean id="apnsProperties" class="com.lvl6.gamesuite.common.properties.APNSProperties">
 		<property name="pathToCert" value="${apns.path.to.cert}"></property>
 		<property name="certPassword" value="${apns.cert.password}"></property>
 	</bean>
 	
-	<bean id="apnsWriter" class="com.lvl6.server.APNSWriter" />
+	<bean id="apnsWriter" class="com.lvl6.gamesuite.common.server.APNSWriter" />
 
-
-	<!-- bean id="eventWriter" class="com.lvl6.server.EventWriter" /-->
-	<bean id="eventWriter" class="com.lvl6.server.EventWriterAmqp" />
 	
-	<bean id="serverAdmin" class="com.lvl6.server.ServerAdmin" />
+	<bean id="serverAdmin" class="com.lvl6.gamesuite.common.server.ServerAdmin" />
 	
 	
-	<bean id="appGlobals" class="com.lvl6.properties.Globals" >
+	<bean id="appGlobals" class="com.lvl6.gamesuite.common.properties.Globals" >
 		<property name="sandbox" value="${globals.isSandbox}" />
 		<property name="iddictionOn" value="${globals.iddictionOn}" />
 		<property name="versionNumber" value="${lvl6.application.version}" />
-		<property name="healthCheckTimeoutSeconds" value="${lvl6.application.healthcheck.timeout.seconds}" />
 	</bean>
 	
 	

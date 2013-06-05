@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class TestPicturesApp {
 
 	
-	private static final Logger log = LoggerFactory.getLogger(TestPicturesApp.class);
+	private static final Logger log = LoggerFactory.getLogger(TestSpringContext.class);
 	
 	@Test
 	public void testSpringContext() {

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
@@ -40,6 +41,8 @@ import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundHistory;
 import com.lvl6.pictures.po.RoundPendingCompletion;
 
+
+@Component
 public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   
   @Autowired

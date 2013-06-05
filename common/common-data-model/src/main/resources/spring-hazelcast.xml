@@ -27,7 +27,7 @@
 	<hz:topic id="staticDataReloadDone" name="staticDataReloadDone" instance-ref="hazel"/>	
 		
 	
-	<bean id="serverMessageHandler" class="com.lvl6.eventhandlers.ServerEventHandler" lazy-init="false" scope="singleton" />
+	
 	
 	
 	

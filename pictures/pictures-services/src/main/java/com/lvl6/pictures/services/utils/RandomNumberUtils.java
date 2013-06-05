@@ -5,13 +5,12 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class RandomNumberUtils {
 
-  @Autowired
-  protected Random rand;
+  protected Random rand = new Random();
 
   public Collection<Integer> generateNRandomIntsBelowInt(
       int upperBound, int amount) {

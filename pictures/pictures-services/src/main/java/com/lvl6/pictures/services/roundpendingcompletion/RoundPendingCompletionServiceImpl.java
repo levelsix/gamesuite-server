@@ -8,14 +8,14 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.pictures.dao.RoundPendingCompletionDao;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundPendingCompletion;
 
+@Component
 public class RoundPendingCompletionServiceImpl implements RoundPendingCompletionService {
   
   //private static final Logger log = LoggerFactory.getLogger(RoundPendingCompletionServiceImpl.class);

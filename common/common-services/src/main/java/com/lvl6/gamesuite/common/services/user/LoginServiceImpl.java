@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
@@ -14,6 +15,7 @@ import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
+@Component
 public class LoginServiceImpl implements LoginService {
   
   

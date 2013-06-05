@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.controller.EventController;
 import com.lvl6.gamesuite.common.eventprotos.ForceLogoutProto.ForceLogoutResponseProto;
@@ -29,7 +30,6 @@ import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus;
-import com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus;
 import com.lvl6.pictures.events.request.LoginRequestEvent;
 import com.lvl6.pictures.events.response.LoginResponseEvent;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
@@ -46,6 +46,7 @@ import com.lvl6.pictures.services.currency.CurrencyService;
 import com.lvl6.pictures.services.gamehistory.GameHistoryService;
 import com.lvl6.pictures.services.questionbase.QuestionBaseService;
 
+@Component
 public class LoginController extends EventController {
 
   private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

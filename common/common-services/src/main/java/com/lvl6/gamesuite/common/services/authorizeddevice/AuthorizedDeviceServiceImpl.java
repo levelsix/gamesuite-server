@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.AuthorizedDeviceDao;
@@ -14,6 +15,8 @@ import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.properties.PoConstants;
 import com.lvl6.gamesuite.common.services.user.UserSignupServiceImpl;
 
+
+@Component
 public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
 
   private static final Logger log = LoggerFactory.getLogger(UserSignupServiceImpl.class);
