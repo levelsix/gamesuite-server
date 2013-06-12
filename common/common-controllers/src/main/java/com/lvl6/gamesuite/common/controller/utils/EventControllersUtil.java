@@ -31,8 +31,7 @@ public class EventControllersUtil implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
-
+		loadcommonEventControllers();
 	}
 
 	public EventController getEventControllerByEventType(Integer eventType) {
