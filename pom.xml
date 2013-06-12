@@ -78,8 +78,8 @@
 		<globals.appStoreUrl><![CDATA[itms-apps://itunes.com/apps/???]]></globals.appStoreUrl>
 		<globals.appleBundleId>com.lvl6.???</globals.appleBundleId>
 		<globals.reviewPageUrl><![CDATA[itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=???]]></globals.reviewPageUrl>
-		
-		
+
+
 		<lvl6.application.version>0.1f</lvl6.application.version>
 		<lvl6.application.healthcheck.timeout.seconds>6</lvl6.application.healthcheck.timeout.seconds>
 		<apns.path.to.cert>/usr/share/tomcat7/???</apns.path.to.cert>
@@ -212,6 +212,11 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
 				<version>4.2.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.data</groupId>
