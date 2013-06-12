@@ -405,6 +405,16 @@
 				<artifactId>hazelcast-all</artifactId>
 				<version>2.5</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>1.5.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-datetime</artifactId>
+				<version>1.5.7</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
