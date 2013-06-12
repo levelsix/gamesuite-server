@@ -33,12 +33,9 @@
 		<url>lvl6.com</url>
 	</organization>
 
-
 	<scm>
 		<url>https://github.com/levelsix/gamesuite-server.git</url>
 	</scm>
-
-
 
 	<repositories>
 		<repository>
@@ -88,7 +85,7 @@
 		<apns.path.to.cert>/usr/share/tomcat7/???</apns.path.to.cert>
 		<apns.cert.password>robashen123</apns.cert.password>
 		<lvl6.server.log.appender>R</lvl6.server.log.appender>
-		<lvl6.server.log.location>/var/log/tomcat7/kingdom</lvl6.server.log.location>
+		<lvl6.server.log.location>/var/log/tomcat7/pictures</lvl6.server.log.location>
 		<lvl6.cassandra.hosts>robot.lvl6.com</lvl6.cassandra.hosts>
 		<lvl6.cassandra.keyspace>PicturesLogs</lvl6.cassandra.keyspace>
 		<lvl6.cassandra.stats.keyspace>picturesstats</lvl6.cassandra.stats.keyspace>
