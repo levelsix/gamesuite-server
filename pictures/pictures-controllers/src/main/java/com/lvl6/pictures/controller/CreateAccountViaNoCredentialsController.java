@@ -67,9 +67,11 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
 
       if (validRequestArgs) {
         //didn't require client to send over a name
+        log.info("\t\t\t nameStrangersSee=" + nameStrangersSee);
         if (null == nameStrangersSee || nameStrangersSee.isEmpty()) {
           nameStrangersSee = userSignupService.generateRandomName(nameStrangersSee);
         }
+        log.info("\t\t\t nameStrangersSee=" + nameStrangersSee);
         validRequest = isValidRequest(responseBuilder, nameStrangersSee, udid, deviceId);
       }
 
