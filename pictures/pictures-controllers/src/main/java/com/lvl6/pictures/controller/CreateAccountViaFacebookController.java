@@ -141,14 +141,14 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
       String nameFriendsSee, String email, String udid, String deviceId) {
     boolean success = false;
     
-    String nameStrangersSeeNull = userSignupService.generateRandomName(nameFriendsSee);
+    String nameStrangersSee = userSignupService.generateRandomName(nameFriendsSee);
     String password = null;
     String userId = null;
     User newUser = null;
     AuthorizedDevice  ad = null;
     try {
       //create the new user
-      newUser = userSignupService.signup(nameStrangersSeeNull, nameFriendsSee, email, password, facebookId);
+      newUser = userSignupService.signup(nameStrangersSee, nameFriendsSee, email, password, facebookId);
       //need to record the device for the user
 
       userId = newUser.getId();

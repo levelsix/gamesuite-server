@@ -1,4 +1,4 @@
-package com.lvl6.gamesuite.common.server;
+package com.lvl6.gamesuite.common.controller.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,6 +30,17 @@ public class APNSWriter {
 	public void setGlobals(Globals globals) {
 		this.globals = globals;
 	}
+	
+	@Autowired
+  private EventWriter eventWriter;
+
+  public EventWriter getEventWriter() {
+    return eventWriter;
+  }
+
+  public void setEventWriter(EventWriter eventWriter) {
+    this.eventWriter = eventWriter;
+  }
 
 	public Map<Integer, ConnectedPlayer> getPlayersByPlayerId() {
 		return playersByPlayerId;

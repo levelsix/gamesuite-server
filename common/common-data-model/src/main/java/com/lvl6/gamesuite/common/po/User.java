@@ -33,7 +33,7 @@ public class User extends BasePersistentObject {
 	// @Size(min = 3)
 	@Column(unique = true)
 	@Index(name = "user_email_index")
-	protected String email = "";
+	protected String email = null;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
