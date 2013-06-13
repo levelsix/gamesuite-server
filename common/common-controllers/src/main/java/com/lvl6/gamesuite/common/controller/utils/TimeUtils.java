@@ -4,7 +4,9 @@ import java.util.Date;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TimeUtils {
   
   public static int NUM_MINUTES_LEEWAY_FOR_CLIENT_TIME = 10;

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
@@ -17,6 +18,7 @@ import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.properties.PoConstants;
 import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
+@Component
 public class UserSignupServiceImpl implements UserSignupService {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserSignupServiceImpl.class);
@@ -28,8 +30,7 @@ public class UserSignupServiceImpl implements UserSignupService {
 //	@Autowired
 //	protected PasswordUtil passwordUtil;
 	
-  @Autowired
-  protected Random rand;
+  protected Random rand = new Random();
 	
 
 

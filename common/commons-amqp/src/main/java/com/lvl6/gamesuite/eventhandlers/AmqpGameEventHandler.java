@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.hazelcast.core.IMap;
 import com.lvl6.gamesuite.common.controller.EventController;
@@ -21,6 +22,8 @@ import com.lvl6.gamesuite.common.events.PreDatabaseRequestEvent;
 import com.lvl6.gamesuite.common.events.RequestEvent;
 import com.lvl6.gamesuite.common.utils.Attachment;
 
+
+@Component
 public class AmqpGameEventHandler extends AbstractGameEventHandler implements MessageListener {
 
 	static Logger log = LoggerFactory.getLogger(AmqpGameEventHandler.class);

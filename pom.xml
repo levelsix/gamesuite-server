@@ -62,9 +62,48 @@
 		<jdbc.statementsCacheSize>500</jdbc.statementsCacheSize>
 		<jdbc.releaseHelperThreads>3</jdbc.releaseHelperThreads>
 
+		<hazelcast.group>pictures</hazelcast.group>
+		<hazelcast.pass>lvl6</hazelcast.pass>
+		<hazelcast.config>dev</hazelcast.config>
+		<hazelcast.port>7701</hazelcast.port>
+		<hazelcast.dev.ips>5.9.28.212</hazelcast.dev.ips>
+
+		<lvl6.server.log.appender>R</lvl6.server.log.appender>
+		<lvl6.server.log.location>/var/log/tomcat7/pictures</lvl6.server.log.location>
+
+
+		<globals.isSandbox>true</globals.isSandbox>
+		<globals.iddictionOn>false</globals.iddictionOn>
+		<globals.kabamEnabled>false</globals.kabamEnabled>
+		<globals.appStoreUrl><![CDATA[itms-apps://itunes.com/apps/???]]></globals.appStoreUrl>
+		<globals.appleBundleId>com.lvl6.???</globals.appleBundleId>
+		<globals.reviewPageUrl><![CDATA[itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=???]]></globals.reviewPageUrl>
+
+
+		<lvl6.application.version>0.1f</lvl6.application.version>
+		<lvl6.application.healthcheck.timeout.seconds>6</lvl6.application.healthcheck.timeout.seconds>
+		<apns.path.to.cert>/usr/share/tomcat7/???</apns.path.to.cert>
+		<apns.cert.password>robashen123</apns.cert.password>
+		<lvl6.server.log.appender>R</lvl6.server.log.appender>
+		<lvl6.server.log.location>/var/log/tomcat7/pictures</lvl6.server.log.location>
+		<lvl6.cassandra.hosts>robot.lvl6.com</lvl6.cassandra.hosts>
+		<lvl6.cassandra.keyspace>PicturesLogs</lvl6.cassandra.keyspace>
+		<lvl6.cassandra.stats.keyspace>picturesstats</lvl6.cassandra.stats.keyspace>
+		<lvl6.cassandra.column.family>DevLogs</lvl6.cassandra.column.family>
+		<lvl6.cassandra.cluster.name>Test Cluster</lvl6.cassandra.cluster.name>
+		<lvl6.cassandra.replication.factor>1</lvl6.cassandra.replication.factor>
+
+		<amqp.host>robot.lvl6.com</amqp.host>
+		<amqp.user>lvl6server</amqp.user>
+		<amqp.pass>devserver</amqp.pass>
+		<amqp.vhost>devpictures</amqp.vhost>
+		<amqp.exchange>gamemessages</amqp.exchange>
+		<amqp.chat.exchange>chatmessages</amqp.chat.exchange>
+		<amqp.client.messages.routing.key>messagesFromPlayers</amqp.client.messages.routing.key>
+
 		<maven.build.timestamp.format>yyyy-MM-dd-HH-mm-ss</maven.build.timestamp.format>
 		<wicket.mode>development</wicket.mode>
-		<spring.version>3.1.2.RELEASE</spring.version>
+		<spring.version>3.2.3.RELEASE</spring.version>
 		<spring.security.version>3.1.1.RELEASE</spring.security.version>
 		<!-- <amqp.host>robot.lvl6.com</amqp.host> <amqp.user>lvl6server</amqp.user> 
 			<amqp.pass>devserver</amqp.pass> <amqp.vhost>devgamesuite</amqp.vhost> <amqp.exchange>gamemessages</amqp.exchange> 
@@ -76,6 +115,11 @@
 			<id>kellylocal</id>
 			<properties>
 				<lvl6.server.log.location>/tmp/gamesuite</lvl6.server.log.location>
+				<hazelcast.group>kellypictures</hazelcast.group>
+				<hazelcast.pass>lvl6</hazelcast.pass>
+				<hazelcast.config>dev</hazelcast.config>
+				<hazelcast.port>7702</hazelcast.port>
+				<hazelcast.dev.ips>192.168.5.101</hazelcast.dev.ips>
 			</properties>
 		</profile>
 	</profiles>
@@ -84,6 +128,21 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.notnoop.apns</groupId>
+				<artifactId>apns</artifactId>
+				<version>0.1.6</version>
+			</dependency>
 			<dependency>
 				<groupId>com.lvl6</groupId>
 				<artifactId>common-data-model</artifactId>
@@ -165,6 +224,11 @@
 				<version>4.2.0.Final</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
 				<version>1.1.2.RELEASE</version>
@@ -204,6 +268,11 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -333,8 +402,18 @@
 			</dependency>
 			<dependency>
 				<groupId>com.hazelcast</groupId>
-				<artifactId>hazelcast</artifactId>
+				<artifactId>hazelcast-all</artifactId>
 				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>1.5.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-datetime</artifactId>
+				<version>1.5.7</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

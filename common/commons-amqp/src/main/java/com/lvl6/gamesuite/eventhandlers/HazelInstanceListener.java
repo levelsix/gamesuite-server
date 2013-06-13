@@ -12,6 +12,7 @@ import com.hazelcast.core.Instance;
 import com.hazelcast.core.InstanceEvent;
 import com.hazelcast.core.InstanceListener;
 
+//@Component
 public class HazelInstanceListener implements InstanceListener, InitializingBean {
 
 	Logger log = LoggerFactory.getLogger(getClass());

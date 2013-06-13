@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.pictures.dao.GameHistoryDao;
 import com.lvl6.pictures.po.GameHistory;
@@ -14,6 +15,7 @@ import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundHistory;
 import com.lvl6.pictures.po.RoundPendingCompletion;
 
+@Component
 public class GameHistoryServiceImpl implements GameHistoryService {
   
   @Autowired

@@ -5,12 +5,14 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
 
 import com.hazelcast.core.ITopic;
 import com.hazelcast.core.Message;
 import com.hazelcast.core.MessageListener;
 import com.lvl6.gamesuite.common.server.ServerMessage;
 
+@Component
 public class ServerEventHandler implements MessageListener<ServerMessage>, InitializingBean {
 	
 	

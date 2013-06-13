@@ -1,6 +1,6 @@
 package com.lvl6.gamesuite.common.controller.utils;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -27,12 +27,11 @@ public class EventControllersUtil implements InitializingBean {
 		this.eventControllerList = eventControllerList;
 	}
 
-	private Hashtable<Integer, EventController> eventControllers;
+	protected HashMap<Integer, EventController> eventControllers = new HashMap<Integer, EventController>();
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
-
+		loadcommonEventControllers();
 	}
 
 	public EventController getEventControllerByEventType(Integer eventType) {
