@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.controller.EventController;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.CreateAccountStatus;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto;
 import com.lvl6.gamesuite.common.events.RequestEvent;
 import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonEventProtocolRequest;
-import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
-import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.pictures.events.request.CreateAccountViaNoCredentialsRequestEvent;
-import com.lvl6.pictures.events.response.CreateAccountViaEmailResponseEvent;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
+import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.CreateAccountStatus;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountViaNoCredentialsRequestProto;
+import com.lvl6.pictures.events.request.CreateAccountViaNoCredentialsRequestEvent;
+import com.lvl6.pictures.events.response.CreateAccountViaNoCredentialsResponseEvent;
+import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 
 @Component  public class CreateAccountViaNoCredentialsController extends EventController {
   
@@ -84,7 +84,8 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
       }
 
       CreateAccountResponseProto resProto = responseBuilder.build();
-      CreateAccountViaEmailResponseEvent resEvent =  new CreateAccountViaEmailResponseEvent(udid);
+      CreateAccountViaNoCredentialsResponseEvent resEvent =
+          new CreateAccountViaNoCredentialsResponseEvent(udid);
       resEvent.setTag(event.getTag());
       resEvent.setCreateAccountResponseProto(resProto);
 
@@ -96,7 +97,8 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
       try {
         responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
         CreateAccountResponseProto resProto = responseBuilder.build();
-        CreateAccountViaEmailResponseEvent resEvent =  new CreateAccountViaEmailResponseEvent(udid);
+        CreateAccountViaNoCredentialsResponseEvent resEvent =
+            new CreateAccountViaNoCredentialsResponseEvent(udid);
         resEvent.setTag(event.getTag());
         resEvent.setCreateAccountResponseProto(resProto);
         getEventWriter().processPreDBResponseEvent(resEvent, udid);
