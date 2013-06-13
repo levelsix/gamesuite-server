@@ -60,31 +60,50 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     CreateAccountResponseProto.Builder responseBuilder = CreateAccountResponseProto.newBuilder();
     responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
     
-    boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto, nameStrangersSee, udid);
-    boolean validRequest = false;
-    boolean success = false;
-    
-    
-    if (validRequestArgs) {
-      validRequest = isValidRequest(responseBuilder, nameStrangersSee, udid, deviceId);
+    try {
+      boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto, nameStrangersSee, udid);
+      boolean validRequest = false;
+      boolean success = false;
+
+
+      if (validRequestArgs) {
+        //didn't require client to send over a name
+        if (null == nameStrangersSee || nameStrangersSee.isEmpty()) {
+          nameStrangersSee = userSignupService.generateRandomName(nameStrangersSee);
+        }
+        validRequest = isValidRequest(responseBuilder, nameStrangersSee, udid, deviceId);
+      }
+
+      if(validRequest) {
+        success = writeChangesToDb(responseBuilder, nameStrangersSee, udid, deviceId);
+      }
+
+      if(success) {
+        responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
+      }
+
+      CreateAccountResponseProto resProto = responseBuilder.build();
+      CreateAccountViaEmailResponseEvent resEvent =  new CreateAccountViaEmailResponseEvent(udid);
+      resEvent.setTag(event.getTag());
+      resEvent.setCreateAccountResponseProto(resProto);
+
+      log.info("Writing event: " + resEvent);
+      getEventWriter().processPreDBResponseEvent(resEvent, udid);
+    } catch (Exception e) {
+      log.error("exception in CreateAccountViaNoCredentialsController" +
+      		" processEvent", e);
+      try {
+        responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+        CreateAccountResponseProto resProto = responseBuilder.build();
+        CreateAccountViaEmailResponseEvent resEvent =  new CreateAccountViaEmailResponseEvent(udid);
+        resEvent.setTag(event.getTag());
+        resEvent.setCreateAccountResponseProto(resProto);
+        getEventWriter().processPreDBResponseEvent(resEvent, udid);
+      } catch (Exception e2) {
+        log.error("exception in CreateAccountViaNoCredentialsController" +
+            " processEvent", e2);
+      }
     }
-    
-    if(validRequest) {
-      success = writeChangesToDb(responseBuilder, nameStrangersSee, udid, deviceId);
-    }
-    
-    if(success) {
-      responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
-    }
-    
-    CreateAccountResponseProto resProto = responseBuilder.build();
-    //autowire or use new()...
-    CreateAccountViaEmailResponseEvent resEvent =  new CreateAccountViaEmailResponseEvent(udid);
-    resEvent.setTag(event.getTag());
-    resEvent.setCreateAccountResponseProto(resProto);
-    
-    log.info("Writing event: " + resEvent);
-    getEventWriter().processPreDBResponseEvent(resEvent, udid);
   }
 
   private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaNoCredentialsRequestProto request,
@@ -107,10 +126,6 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   
   private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee,
       String udid, String deviceId) {
-    //didn't require client to send over a name
-    if (null == nameStrangersSee || nameStrangersSee.isEmpty()) {
-      nameStrangersSee = userSignupService.generateRandomName(nameStrangersSee);
-    }
     
     String facebookIdNull = null;
     String emailNull = null;

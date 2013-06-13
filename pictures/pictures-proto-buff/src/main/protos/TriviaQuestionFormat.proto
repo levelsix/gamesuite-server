@@ -6,7 +6,7 @@ option java_outer_classname = "TriviaQuestionFormatProto";
 message QuestionAnsweredProto {
 	//id of the question that was answered
 	optional string questionId = 1;
-	optional AnswerType type = 2;
+	optional AnswerType answerType = 2;
 	
 	//used to determine the order the user saw the questions
 	optional int32 questionNumber = 3;

@@ -5,6 +5,8 @@ public class PoConstants {
   //user
   public static int USER__DEFAULT_ATTEMPTS_TO_GENERATE_RANDOM_NAME = 4;
   public static String USER__DEFAULT_NAME_STRANGERS_SEE = "user";
+  public static int USER__MIN_NAME_STRANGERS_SEE_LENGTH = 3;
+  public static int USER__MAX_NAME_STRANGERS_SEE_LENGTH = 30;
   
   //authorized device
   public static int AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS = 30;

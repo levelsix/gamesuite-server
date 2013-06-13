@@ -101,6 +101,8 @@ public class UserSignupServiceImpl implements UserSignupService {
 
   
   public String generateRandomName(String name) {
+    String returnName = null;
+    
     String facebookIdNull = null;
     String emailNull = null;
     String udidNull = null;
@@ -110,14 +112,23 @@ public class UserSignupServiceImpl implements UserSignupService {
     int limit = PoConstants.USER__DEFAULT_ATTEMPTS_TO_GENERATE_RANDOM_NAME;
     for (int i = 0; i < limit; i++) {
       long randNum = rand.nextLong();
-      String nameAndNum = name + randNum;
-      List<User> existing = checkForExistingUser(facebookIdNull, nameAndNum, emailNull, udidNull);
+      StringBuffer nameAndNum = new StringBuffer();
+      nameAndNum.append(name);
+      nameAndNum.append(randNum);
+      List<User> existing = checkForExistingUser(facebookIdNull,
+          nameAndNum.toString(), emailNull, udidNull);
 
       if (null == existing || existing.isEmpty()) {
-        return nameAndNum;
+        returnName = nameAndNum.toString();
+        break;
       } 
     }
-    return null;
+    if (null != returnName) {
+      int indexOfLastChar = PoConstants.USER__MAX_NAME_STRANGERS_SEE_LENGTH;
+      indexOfLastChar = Math.min(indexOfLastChar, returnName.length());
+      return returnName.substring(0, indexOfLastChar);
+    }
+    return returnName;
   }
   
   @Override

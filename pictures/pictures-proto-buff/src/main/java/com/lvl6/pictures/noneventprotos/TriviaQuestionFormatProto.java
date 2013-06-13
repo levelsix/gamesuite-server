@@ -15,9 +15,9 @@ public final class TriviaQuestionFormatProto {
     boolean hasQuestionId();
     String getQuestionId();
     
-    // optional .proto.QuestionAnsweredProto.AnswerType type = 2;
-    boolean hasType();
-    com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getType();
+    // optional .proto.QuestionAnsweredProto.AnswerType answerType = 2;
+    boolean hasAnswerType();
+    com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getAnswerType();
     
     // optional int32 questionNumber = 3;
     boolean hasQuestionNumber();
@@ -160,14 +160,14 @@ public final class TriviaQuestionFormatProto {
       }
     }
     
-    // optional .proto.QuestionAnsweredProto.AnswerType type = 2;
-    public static final int TYPE_FIELD_NUMBER = 2;
-    private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType type_;
-    public boolean hasType() {
+    // optional .proto.QuestionAnsweredProto.AnswerType answerType = 2;
+    public static final int ANSWERTYPE_FIELD_NUMBER = 2;
+    private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType answerType_;
+    public boolean hasAnswerType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getType() {
-      return type_;
+    public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getAnswerType() {
+      return answerType_;
     }
     
     // optional int32 questionNumber = 3;
@@ -192,7 +192,7 @@ public final class TriviaQuestionFormatProto {
     
     private void initFields() {
       questionId_ = "";
-      type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+      answerType_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
       questionNumber_ = 0;
       timeAnswered_ = 0L;
     }
@@ -212,7 +212,7 @@ public final class TriviaQuestionFormatProto {
         output.writeBytes(1, getQuestionIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, type_.getNumber());
+        output.writeEnum(2, answerType_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt32(3, questionNumber_);
@@ -235,7 +235,7 @@ public final class TriviaQuestionFormatProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, type_.getNumber());
+          .computeEnumSize(2, answerType_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -371,7 +371,7 @@ public final class TriviaQuestionFormatProto {
         super.clear();
         questionId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+        answerType_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
         bitField0_ = (bitField0_ & ~0x00000002);
         questionNumber_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -422,7 +422,7 @@ public final class TriviaQuestionFormatProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.type_ = type_;
+        result.answerType_ = answerType_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -450,8 +450,8 @@ public final class TriviaQuestionFormatProto {
         if (other.hasQuestionId()) {
           setQuestionId(other.getQuestionId());
         }
-        if (other.hasType()) {
-          setType(other.getType());
+        if (other.hasAnswerType()) {
+          setAnswerType(other.getAnswerType());
         }
         if (other.hasQuestionNumber()) {
           setQuestionNumber(other.getQuestionNumber());
@@ -502,7 +502,7 @@ public final class TriviaQuestionFormatProto {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
                 bitField0_ |= 0x00000002;
-                type_ = value;
+                answerType_ = value;
               }
               break;
             }
@@ -558,26 +558,26 @@ public final class TriviaQuestionFormatProto {
         onChanged();
       }
       
-      // optional .proto.QuestionAnsweredProto.AnswerType type = 2;
-      private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
-      public boolean hasType() {
+      // optional .proto.QuestionAnsweredProto.AnswerType answerType = 2;
+      private com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType answerType_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+      public boolean hasAnswerType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getType() {
-        return type_;
+      public com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType getAnswerType() {
+        return answerType_;
       }
-      public Builder setType(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType value) {
+      public Builder setAnswerType(com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType value) {
         if (value == null) {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000002;
-        type_ = value;
+        answerType_ = value;
         onChanged();
         return this;
       }
-      public Builder clearType() {
+      public Builder clearAnswerType() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        type_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
+        answerType_ = com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.AnswerType.CORRECT;
         onChanged();
         return this;
       }
@@ -3162,26 +3162,26 @@ public final class TriviaQuestionFormatProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032TriviaQuestionFormat.proto\022\005proto\"\307\001\n\025" +
+      "\n\032TriviaQuestionFormat.proto\022\005proto\"\315\001\n\025" +
       "QuestionAnsweredProto\022\022\n\nquestionId\030\001 \001(" +
-      "\t\0225\n\004type\030\002 \001(\0162\'.proto.QuestionAnswered" +
-      "Proto.AnswerType\022\026\n\016questionNumber\030\003 \001(\005" +
-      "\022\024\n\014timeAnswered\030\004 \001(\003\"5\n\nAnswerType\022\013\n\007" +
-      "CORRECT\020\001\022\r\n\tINCORRECT\020\002\022\013\n\007SKIPPED\020\003\"\206\001" +
-      "\n\rQuestionProto\022\n\n\002id\030\001 \001(\t\022:\n\016multipleC" +
-      "hoice\030\002 \001(\0132\".proto.MultipleChoiceQuesti" +
-      "onProto\022-\n\010pictures\030\003 \001(\0132\033.proto.Pictur" +
-      "eQuestionProto\"t\n\033MultipleChoiceQuestion",
-      "Proto\022\020\n\010question\030\001 \001(\t\022\020\n\010answerId\030\002 \001(" +
-      "\t\0221\n\007answers\030\003 \003(\0132 .proto.MultipleChoic" +
-      "eAnswerProto\"\227\001\n\031MultipleChoiceAnswerPro" +
-      "to\022\n\n\002id\030\001 \001(\t\022\016\n\006answer\030\002 \001(\t\0229\n\004type\030\003" +
-      " \001(\0162+.proto.MultipleChoiceAnswerProto.A" +
-      "nswerType\"#\n\nAnswerType\022\010\n\004TEXT\020\001\022\013\n\007PIC" +
-      "TURE\020\002\":\n\024PictureQuestionProto\022\022\n\nimageN" +
-      "ames\030\001 \003(\t\022\016\n\006answer\030\002 \001(\tB=\n com.lvl6.p" +
-      "ictures.noneventprotosB\031TriviaQuestionFo" +
-      "rmatProto"
+      "\t\022;\n\nanswerType\030\002 \001(\0162\'.proto.QuestionAn" +
+      "sweredProto.AnswerType\022\026\n\016questionNumber" +
+      "\030\003 \001(\005\022\024\n\014timeAnswered\030\004 \001(\003\"5\n\nAnswerTy" +
+      "pe\022\013\n\007CORRECT\020\001\022\r\n\tINCORRECT\020\002\022\013\n\007SKIPPE" +
+      "D\020\003\"\206\001\n\rQuestionProto\022\n\n\002id\030\001 \001(\t\022:\n\016mul" +
+      "tipleChoice\030\002 \001(\0132\".proto.MultipleChoice" +
+      "QuestionProto\022-\n\010pictures\030\003 \001(\0132\033.proto." +
+      "PictureQuestionProto\"t\n\033MultipleChoiceQu",
+      "estionProto\022\020\n\010question\030\001 \001(\t\022\020\n\010answerI" +
+      "d\030\002 \001(\t\0221\n\007answers\030\003 \003(\0132 .proto.Multipl" +
+      "eChoiceAnswerProto\"\227\001\n\031MultipleChoiceAns" +
+      "werProto\022\n\n\002id\030\001 \001(\t\022\016\n\006answer\030\002 \001(\t\0229\n\004" +
+      "type\030\003 \001(\0162+.proto.MultipleChoiceAnswerP" +
+      "roto.AnswerType\"#\n\nAnswerType\022\010\n\004TEXT\020\001\022" +
+      "\013\n\007PICTURE\020\002\":\n\024PictureQuestionProto\022\022\n\n" +
+      "imageNames\030\001 \003(\t\022\016\n\006answer\030\002 \001(\tB=\n com." +
+      "lvl6.pictures.noneventprotosB\031TriviaQues" +
+      "tionFormatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3193,7 +3193,7 @@ public final class TriviaQuestionFormatProto {
           internal_static_proto_QuestionAnsweredProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_QuestionAnsweredProto_descriptor,
-              new java.lang.String[] { "QuestionId", "Type", "QuestionNumber", "TimeAnswered", },
+              new java.lang.String[] { "QuestionId", "AnswerType", "QuestionNumber", "TimeAnswered", },
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.class,
               com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionAnsweredProto.Builder.class);
           internal_static_proto_QuestionProto_descriptor =

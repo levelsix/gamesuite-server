@@ -19,6 +19,13 @@ public class PicturesPoConstants {
   public static int ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND = 2;
   
   //question base
-  public static int QUESTION_BASE__DEFAULT_QUESTIONS_PER_ROUND = 25;
   public static int QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET = 100;
+  
+  //multiple choice question
+  public static int MCQ__POINTS_FOR_CORRECT_ANSWER = 3;
+  public static int MCQ__POINTS_FOR_INCORRECT_ANSWER = 2;
+  
+  //pictures question
+  public static int PQ__POINTS_FOR_CORRECT_ANSWER = 4;
+  public static int PQ__POINTS_FOR_INCORRECT_ANSWER = 1;
 }

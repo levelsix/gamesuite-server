@@ -164,6 +164,7 @@ public class TestPicturesJpa {
 	  int questionNumber2 = 2;
 	  Date answeredDate = new Date();
 	  String answeredByUser = "me";
+	  int answerType = 1;
 	  
     QuestionAnswered qa = new QuestionAnswered();
     qa.setRoundNumber(roundNumber);
@@ -171,6 +172,7 @@ public class TestPicturesJpa {
     qa.setAnsweredDate(answeredDate);
     qa.setAnsweredByUser(answeredByUser);
     qa.setQuestion(pqwta);
+    qa.setAnswerType(answerType);
     
     QuestionAnswered qa2 = new QuestionAnswered();
     qa2.setRoundNumber(roundNumber);
@@ -178,6 +180,7 @@ public class TestPicturesJpa {
     qa2.setAnsweredDate(answeredDate);
     qa2.setAnsweredByUser(answeredByUser);
     qa2.setQuestion(mcq);
+    qa2.setAnswerType(answerType);
     
     List<QuestionAnswered> qaList = new ArrayList<QuestionAnswered>();
     qaList.add(qa);

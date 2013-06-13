@@ -48,9 +48,6 @@ public class RoundHistory extends BasePersistentObject {
 	protected int score;
 	
 
-	//to prevent recalculating correct answers from individual
-	//QuestionAnswered everytime RoundHistory is fetched
-	protected int correctAnswers;
   
 	@NotNull
 	@Index(name = "user_id_index")
@@ -119,16 +116,6 @@ public class RoundHistory extends BasePersistentObject {
 
 	public void setScore(int score) {
 	  this.score = score;
-	}
-
-
-	public int getCorrectAnswers() {
-	  return correctAnswers;
-	}
-
-
-	public void setCorrectAnswers(int correctAnswers) {
-	  this.correctAnswers = correctAnswers;
 	}
   
 

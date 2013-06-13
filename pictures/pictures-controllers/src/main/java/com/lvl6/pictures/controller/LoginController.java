@@ -29,7 +29,6 @@ import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus;
-import com.lvl6.pictures.eventprotos.RetrieveNewQuestionsEventProto.RetrieveNewQuestionsResponseProto.RetrieveNewQuestionsStatus;
 import com.lvl6.pictures.events.request.LoginRequestEvent;
 import com.lvl6.pictures.events.response.LoginResponseEvent;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
@@ -141,6 +140,7 @@ public class LoginController extends EventController {
         // CONSTRUCT THE NEW TRIVIA QUESTIONS
         setNewQuestions(responseBuilder, userId, allPictureNames);
 
+        //TODO: CONSTRUCT THE LOGIN CONSTANTS
 
         responseBuilder.addAllPictureNames(allPictureNames);
 

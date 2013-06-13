@@ -361,14 +361,14 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   public BasicRoundResultsProto createBasicRoundResultsProto(RoundHistory rh) {
     BasicRoundResultsProto.Builder brrpb = BasicRoundResultsProto.newBuilder();
     String id = rh.getId();
-    int numQuestionsSeen = rh.getQuestionsAnswered().size();
-    int numQuestionsAnsweredCorrectly = rh.getCorrectAnswers();
+    //int numQuestionsSeen = rh.getQuestionsAnswered().size();
+    //int numQuestionsAnsweredCorrectly = rh.getCorrectAnswers();
     int score = rh.getScore();
     int roundNumber = rh.getRoundNumber();
     
     brrpb.setId(id);
-    brrpb.setNumQuestionsSeen(numQuestionsSeen);
-    brrpb.setNumQuestionsAnsweredCorrectly(numQuestionsAnsweredCorrectly);
+    //brrpb.setNumQuestionsSeen(numQuestionsSeen);
+    //brrpb.setNumQuestionsAnsweredCorrectly(numQuestionsAnsweredCorrectly);
     brrpb.setScore(score);
     brrpb.setRoundNumber(roundNumber);
     
@@ -378,8 +378,8 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   public BasicRoundResultsProto createBasicRoundResultsProto(CompleteRoundResultsProto crrp) {
     BasicRoundResultsProto.Builder brpb = BasicRoundResultsProto.newBuilder();
     brpb.setId(crrp.getId());
-    brpb.setNumQuestionsSeen(crrp.getNumQuestionsSeen());
-    brpb.setNumQuestionsAnsweredCorrectly(crrp.getNumQuestionsAnsweredCorrectly());
+    //brpb.setNumQuestionsSeen(crrp.getNumQuestionsSeen());
+    //brpb.setNumQuestionsAnsweredCorrectly(crrp.getNumQuestionsAnsweredCorrectly());
     brpb.setScore(crrp.getScore());
     brpb.setRoundNumber(crrp.getRoundNumber());
     return brpb.build();

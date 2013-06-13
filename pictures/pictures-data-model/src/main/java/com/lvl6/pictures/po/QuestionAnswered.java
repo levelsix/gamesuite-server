@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
+import org.hibernate.validator.constraints.Range;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
@@ -48,8 +49,8 @@ public class QuestionAnswered extends BasePersistentObject {
 	protected QuestionBase question;
 	
 	
-	@NotNull
-	protected boolean correct;
+	@Range(min=1, max= 3)
+	protected int answerType;
 
 	
 	public Set<String> getPictureNames() {
@@ -107,16 +108,17 @@ public class QuestionAnswered extends BasePersistentObject {
 	}
 
 
-	public boolean isCorrect() {
-		return correct;
-	}
+	public int getAnswerType() {
+    return answerType;
+  }
 
 
-	public void setCorrect(boolean correct) {
-		this.correct = correct;
-	}
-	
-	@Override
+  public void setAnswerType(int answerType) {
+    this.answerType = answerType;
+  }
+
+
+  @Override
   public String toString() {
     return ToStringBuilder.reflectionToString(this);
   }
