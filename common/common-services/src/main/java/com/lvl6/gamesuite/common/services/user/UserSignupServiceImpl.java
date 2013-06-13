@@ -102,6 +102,9 @@ public class UserSignupServiceImpl implements UserSignupService {
 
   
   public String generateRandomName(String name) {
+    if (null != name) {
+      return name;
+    }
     String returnName = null;
     
     String facebookIdNull = null;
