@@ -185,7 +185,7 @@ public class APNSWriter {
 			if (certFile.exists() && certFile.canRead()) {
 				ApnsServiceBuilder builder = APNS.newService()
 						.withCert(apnsProperties.pathToCert, apnsProperties.certPassword).asNonBlocking();
-				if (globals.IS_SANDBOX()) {
+				if (globals.getSandbox()) {
 					log.info("Building apns with sandbox=true");
 					builder.withSandboxDestination();
 				} else {

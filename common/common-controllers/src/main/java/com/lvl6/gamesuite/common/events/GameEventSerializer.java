@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.ip.tcp.serializer.AbstractByteArraySerializer;
 import org.springframework.integration.ip.tcp.serializer.SoftEndOfStreamException;
 
@@ -19,6 +20,18 @@ import com.lvl6.gamesuite.common.utils.Attachment;
 
 public class GameEventSerializer extends AbstractByteArraySerializer {
 	
+  @Autowired
+  Globals globals;
+  
+  public Globals getGlobals() {
+    return globals;
+  }
+
+  public void setGlobals(Globals globals) {
+    this.globals = globals;
+  }
+  
+  
 	
 	private static final Logger log = LoggerFactory.getLogger(GameEventSerializer.class);
 	/**
@@ -41,7 +54,7 @@ public class GameEventSerializer extends AbstractByteArraySerializer {
 	
 	
 	public byte[] deserialize(InputStream inputStream) throws IOException {
-		int maxMessageSize = Globals.MAX_EVENT_SIZE + Attachment.HEADER_SIZE;
+		int maxMessageSize = globals.MAX_EVENT_SIZE + Attachment.HEADER_SIZE;
 		List<Byte> bytes = new ArrayList<Byte>();
 		int n = 0;
 		int bite;

@@ -6,6 +6,7 @@ import java.nio.ByteOrder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.gamesuite.common.properties.Globals;
 
@@ -18,6 +19,20 @@ import com.lvl6.gamesuite.common.properties.Globals;
  * of the header and payload.
  */
 public class Attachment {
+
+  @Autowired
+  Globals globals;
+  
+  public Globals getGlobals() {
+    return globals;
+  }
+
+  public void setGlobals(Globals globals) {
+    this.globals = globals;
+  }
+  
+  
+  
   /** number of bytes in the network event header */
   public static final int HEADER_SIZE = 12; 
 
@@ -54,8 +69,8 @@ public class Attachment {
    * constructor. initializes the payload array and the read buffer 
    */
   public Attachment () {
-    payload = new byte[Globals.MAX_EVENT_SIZE];
-    readBuff = ByteBuffer.allocateDirect(Globals.NET_BUFFER_SIZE);
+    payload = new byte[globals.MAX_EVENT_SIZE];
+    readBuff = ByteBuffer.allocateDirect(globals.NET_BUFFER_SIZE);
     readBuff.order(getByteOrder());
   }
 
@@ -92,10 +107,10 @@ public class Attachment {
       log.debug("Read event type: "+eventType+" and size: "+payloadSize);
 
       // check bounds on the payload
-      if (payloadSize > Globals.MAX_EVENT_SIZE) 
+      if (payloadSize > globals.MAX_EVENT_SIZE) 
         throw new IllegalArgumentException("Header specifies payload size (" + 
             payloadSize + ") greater than MAX_EVENT_SIZE(" + 
-            Globals.MAX_EVENT_SIZE + ")");
+            globals.MAX_EVENT_SIZE + ")");
       gotHeader = true;
       return true;
     }

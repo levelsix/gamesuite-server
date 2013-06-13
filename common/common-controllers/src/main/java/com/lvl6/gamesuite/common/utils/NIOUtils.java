@@ -6,6 +6,7 @@ import java.nio.channels.SocketChannel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.gamesuite.common.events.ResponseEvent;
 import com.lvl6.gamesuite.common.properties.Globals;
@@ -17,6 +18,18 @@ import com.lvl6.gamesuite.common.properties.Globals;
  */
 public class NIOUtils {
 
+  @Autowired
+  Globals globals;
+  
+  public Globals getGlobals() {
+    return globals;
+  }
+
+  public void setGlobals(Globals globals) {
+    this.globals = globals;
+  }
+  
+  
   
 	private static final Logger log = LoggerFactory.getLogger(NIOUtils.class);
 	/** 
@@ -72,7 +85,7 @@ public class NIOUtils {
 				nbytes += channel.write(writeBuffer);
 
 				try {
-					Thread.sleep(Globals.CHANNEL_WRITE_SLEEP);
+					Thread.sleep(globals.CHANNEL_WRITE_SLEEP);
 				}
 				catch (InterruptedException e) {
 		      log.error("error in writing to channel " + channel + " for player " + playerId, e);

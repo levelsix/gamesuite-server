@@ -104,31 +104,16 @@ public class Globals implements ApplicationContextAware {
     /** default number of workers for GameControllers */
     public final int DEFAULT_CONTROLLER_WORKERS = 2;
 
-    public final boolean IS_SANDBOX(){return appContext.getBean(Globals.class).getSandbox();};
-    
-    public final boolean KABAM_ENABLED() {return appContext.getBean(Globals.class).isKabamEnabled();};
-
     public final int NUM_MINUTES_DIFFERENCE_LEEWAY_FOR_CLIENT_TIME = 10;
     
-    public final String APP_STORE_URL() {return appContext.getBean(Globals.class).getAppStoreUrl();};//"itms-apps://itunes.com/apps/ageofchaos";
-    public final String REVIEW_PAGE_URL() {return appContext.getBean(Globals.class).getReviewPageUrl();};//= "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=548520325&pageNumber=0&sortOrdering=1&type=Purple+Software";
     public final String REVIEW_PAGE_CONFIRMATION_MESSAGE = "Awesome! Rate us 5 Stars in the App Store to keep the updates coming!";
     
     //public final Level LOG_LEVEL = Level.INFO;
     
     public final int NUM_SECONDS_FOR_CONTROLLER_PROCESS_EVENT_LONGTIME_LOG_WARNING = 1;
     
-    public final String APPLE_BUNDLE_ID(){return appContext.getBean(Globals.class).getAppleBundleId();};// = "com.lvl6.kingdom";
-
-    public final float VERSION_NUMBER(){return appContext.getBean(Globals.class).getVersionNumber();};
-
-    public int HEALTH_CHECK_TIMEOUT() {return appContext.getBean(Globals.class).getHealthCheckTimeoutSeconds();};
-    
-    
 
 
-
-    public final boolean IDDICTION_ON(){return appContext.getBean(Globals.class).isIddictionOn();}
 
     protected ApplicationContext appContext;
 	@Override
