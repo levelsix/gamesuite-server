@@ -102,6 +102,7 @@ public class UserSignupServiceImpl implements UserSignupService {
 
   
   public String generateRandomName(String name) {
+    log.info("\t\t\t name passed into generateRandomName=" + name);
     if (null != name) {
       return name;
     }
@@ -114,6 +115,9 @@ public class UserSignupServiceImpl implements UserSignupService {
       name = PoConstants.USER__DEFAULT_NAME_STRANGERS_SEE;
     }
     int limit = PoConstants.USER__DEFAULT_ATTEMPTS_TO_GENERATE_RANDOM_NAME;
+    
+    //generate a random number append it to the default prefix, check if 
+    //it is in use. If not return it, else repeat
     for (int i = 0; i < limit; i++) {
       long randNum = rand.nextLong();
       StringBuffer nameAndNum = new StringBuffer();
@@ -132,6 +136,7 @@ public class UserSignupServiceImpl implements UserSignupService {
       indexOfLastChar = Math.min(indexOfLastChar, returnName.length());
       return returnName.substring(0, indexOfLastChar);
     }
+    log.info("\t\t\t randomName=" + returnName);
     return returnName;
   }
   
