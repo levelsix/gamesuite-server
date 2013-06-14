@@ -51,6 +51,7 @@ import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
   protected void processRequestEvent(RequestEvent event) throws Exception {
     CreateAccountViaNoCredentialsRequestProto reqProto = 
         ((CreateAccountViaNoCredentialsRequestEvent) event).getCreateAccountViaNoCredentialsRequestProto();
+    log.info("reqProto=" + reqProto);
     String nameStrangersSee = reqProto.getNameStrangersSee();
     String udid = reqProto.getUdid();
     String deviceId = reqProto.getDeviceId();

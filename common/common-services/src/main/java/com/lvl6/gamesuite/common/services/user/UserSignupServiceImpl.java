@@ -103,7 +103,7 @@ public class UserSignupServiceImpl implements UserSignupService {
   
   public String generateRandomName(String name) {
     log.info("\t\t\t name passed into generateRandomName=" + name);
-    if (null != name) {
+    if (null != name & !name.isEmpty()) {
       return name;
     }
     String returnName = null;

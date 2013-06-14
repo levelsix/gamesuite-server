@@ -5,25 +5,24 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.controller.EventController;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.CreateAccountStatus;
-import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto;
 import com.lvl6.gamesuite.common.events.RequestEvent;
 import com.lvl6.gamesuite.common.noneventprotos.CommonEventProtocolProto.CommonEventProtocolRequest;
-import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
-import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.pictures.events.request.CreateAccountViaEmailRequestEvent;
-import com.lvl6.pictures.events.response.CreateAccountViaEmailResponseEvent;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
 import com.lvl6.gamesuite.user.utils.EmailUtil;
+import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.Builder;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountResponseProto.CreateAccountStatus;
+import com.lvl6.pictures.eventprotos.CreateAccountEventProto.CreateAccountViaEmailRequestProto;
+import com.lvl6.pictures.events.request.CreateAccountViaEmailRequestEvent;
+import com.lvl6.pictures.events.response.CreateAccountViaEmailResponseEvent;
+import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 
 @Component  public class CreateAccountViaEmailController extends EventController {
   
@@ -54,6 +53,8 @@ import com.lvl6.gamesuite.user.utils.EmailUtil;
   protected void processRequestEvent(RequestEvent event) throws Exception {
     CreateAccountViaEmailRequestProto reqProto = 
         ((CreateAccountViaEmailRequestEvent) event).getCreateAccountViaEmailRequestProto();
+    log.info("reqProto=" + reqProto);
+    
     String nameStrangersSee = reqProto.getNameStrangersSee();
     String email = reqProto.getEmail();
     String password = reqProto.getPassword();
