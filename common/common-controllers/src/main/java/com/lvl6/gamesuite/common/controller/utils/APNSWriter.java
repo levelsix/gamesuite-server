@@ -2,6 +2,7 @@ package com.lvl6.gamesuite.common.controller.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,8 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.gamesuite.common.dto.ConnectedPlayer;
+import com.lvl6.gamesuite.common.events.GameEvent;
+import com.lvl6.gamesuite.common.events.NormalResponseEvent;
+import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.properties.APNSProperties;
 import com.lvl6.gamesuite.common.properties.Globals;
+import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
 import com.notnoop.apns.ApnsServiceBuilder;
@@ -76,7 +81,10 @@ public class APNSWriter {
 		this.apnsProperties = apnsProperties;
 	}
 
-	/**
+	@Autowired
+  protected AuthorizedDeviceService authorizedDeviceService;
+	
+  /**
 	 * constructor.
 	 */
 	public APNSWriter() {
@@ -93,60 +101,75 @@ public class APNSWriter {
 	}
 
 	/** unused */
-/*	protected void processEvent(GameEvent event) {
+	protected void processEvent(GameEvent event) {
 		if (event instanceof NormalResponseEvent) {
 			processResponseEvent((NormalResponseEvent) event);
 		}
-	}*/
+	}
 
 	/**
 	 * our own version of processEvent that takes the additional parameter of
 	 * the writeBuffer
 	 */
-	/*	protected void processResponseEvent(NormalResponseEvent event) {
+	protected void processResponseEvent(NormalResponseEvent event) {
 		String playerId = event.getPlayerId();
 		ConnectedPlayer connectedPlayer = playersByPlayerId.get(playerId);
 		if (connectedPlayer != null) {
-			log.info("wrote a response event to connected player with id " + playerId+ " instead of sending APNS message");
-			server.writeEvent(event);
+			log.info("wrote a response event to connected player with id " +
+			    playerId + " instead of sending APNS message");
+			getEventWriter().handleEvent(event);
 		} else {
 			log.info("received APNS notification to send to player with id " + playerId);
-			User user = RetrieveUtils.userRetrieveUtils().getUserById(playerId);
-			if (user != null && user.getDeviceToken() != null && user.getDeviceToken().length() > 0) {
-				try {
-					ApnsService service = getApnsService();
-					if (service != null) {
-						// service.start();
-						Date now = new Date();
-						if (LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME.getTime() + 60000
-								* MINUTES_BETWEEN_INACTIVE_DEVICE_TOKEN_FLUSH < now.getTime()) {
-							LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME = now;
-							Map<String, Date> inactiveDevices = service.getInactiveDevices();
-							UpdateUtils.get().updateNullifyDeviceTokens(inactiveDevices.keySet());
-						}
+			
+			AuthorizedDevice exempt = null;
+			List<AuthorizedDevice> devices = getAuthorizedDeviceService()
+			    .devicesSharingUserAccount(playerId, exempt);
+			
+			if (null == devices || devices.isEmpty()) {
+			  log.warn("could not send push notification because userId " +
+			      playerId + " has no devices registered to send apns to.");
+			  return;
+			}
+			
+			for (AuthorizedDevice ad : devices) {
 
-						
-						// if
-						// (ReferralCodeUsedResponseEvent.class.isInstance(event))
-						// {
-						// handleReferralCodeUsedNotification(service,
-						// (ReferralCodeUsedResponseEvent)event, user,
-						// user.getDeviceToken());
-						// }
+//			  if (user != null && user.getDeviceToken() != null && user.getDeviceToken().length() > 0) {
+//			    try {
+//			      ApnsService service = getApnsService();
+//			      if (service != null) {
+//			        // service.start();
+//			        Date now = new Date();
+//			        if (LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME.getTime() + 60000
+//			            * MINUTES_BETWEEN_INACTIVE_DEVICE_TOKEN_FLUSH < now.getTime()) {
+//			          LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME = now;
+//			          Map<String, Date> inactiveDevices = service.getInactiveDevices();
+//			          UpdateUtils.get().updateNullifyDeviceTokens(inactiveDevices.keySet());
+//			        }
 
-						// service.stop();
-					}else {
-						log.warn("Apns service is null");
-					}
-					
-				} catch (FileNotFoundException e) {
-					log.error("File not found", e);
-				}
-			} else {
-				log.warn("could not send push notification because user " + user + " has no device token");
+
+			        // if
+			        // (ReferralCodeUsedResponseEvent.class.isInstance(event))
+			        // {
+			        // handleReferralCodeUsedNotification(service,
+			        // (ReferralCodeUsedResponseEvent)event, user,
+			        // user.getDeviceToken());
+			        // }
+
+			        // service.stop();
+//			      }else {
+//			        log.warn("Apns service is null");
+//			      }
+//
+//			    } catch (FileNotFoundException e) {
+//			      log.error("File not found", e);
+//			    }
+//			  } else {
+//			    log.warn("could not send push notification because userId " +
+//			        playerId + " has no device token");
+//			  }
 			}
 		}
-	}*/
+	}
 
 	protected ApnsService service;
 
@@ -428,5 +451,15 @@ public class APNSWriter {
 			}
 		}
 	}*/
+	
+  public AuthorizedDeviceService getAuthorizedDeviceService() {
+    return authorizedDeviceService;
+  }
+
+  public void setAuthorizedDeviceService(
+      AuthorizedDeviceService authorizedDeviceService) {
+    this.authorizedDeviceService = authorizedDeviceService;
+  }
+
 
 }// APNSWriter

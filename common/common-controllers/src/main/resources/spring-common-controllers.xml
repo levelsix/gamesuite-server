@@ -34,7 +34,7 @@
 		<property name="certPassword" value="${apns.cert.password}"></property>
 	</bean>
 	
-	<bean id="apnsWriter" class="com.lvl6.gamesuite.common.server.APNSWriter" />
+	<bean id="apnsWriter" class="com.lvl6.gamesuite.common.controller.utils.APNSWriter" />
 
 	
 	<bean id="serverAdmin" class="com.lvl6.gamesuite.common.server.ServerAdmin" />
