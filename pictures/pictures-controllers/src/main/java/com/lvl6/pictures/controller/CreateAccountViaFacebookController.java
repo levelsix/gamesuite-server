@@ -52,9 +52,15 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
   protected void processRequestEvent(RequestEvent event) throws Exception {
     CreateAccountViaFacebookRequestProto reqProto = 
         ((CreateAccountViaFacebookRequestEvent) event).getCreateAccountViaFacebookRequestProto();
+    
+    log.info("reqProto=" + reqProto);
+    
     String facebookId = reqProto.getFacebookId();
     String nameFriendsSee = reqProto.getNameFriendsSee();
-    String email = reqProto.getEmail();
+    String email = null;
+    if (reqProto.hasEmail()) {
+      email = reqProto.getEmail();
+    }
     String udid = reqProto.getUdid();
     String deviceId = reqProto.getDeviceId();
 
@@ -142,6 +148,8 @@ import com.lvl6.gamesuite.common.services.user.UserSignupService;
     boolean success = false;
     
     String nameStrangersSee = userSignupService.generateRandomName(nameFriendsSee);
+    log.info("\t\t\t\t\t nameStrangersSee=" + nameStrangersSee);
+    
     String password = null;
     String userId = null;
     User newUser = null;
