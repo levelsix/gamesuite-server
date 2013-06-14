@@ -122,6 +122,17 @@
 				<hazelcast.dev.ips>192.168.5.101</hazelcast.dev.ips>
 			</properties>
 		</profile>
+		<profile>
+			<id>arturolocal</id>
+			<properties>
+				<lvl6.server.log.location>/Users/coopermor/gamesuite-server/log</lvl6.server.log.location>
+				<hazelcast.group>artpictures</hazelcast.group>
+				<hazelcast.pass>lvl6</hazelcast.pass>
+				<hazelcast.config>dev</hazelcast.config>
+				<hazelcast.port>7702</hazelcast.port>
+				<hazelcast.dev.ips>127.0.0.1</hazelcast.dev.ips>
+			</properties>
+		</profile>
 	</profiles>
 
 
