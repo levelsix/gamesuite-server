@@ -416,7 +416,7 @@ public class LoginController extends EventController {
   
   private void kickOffOtherDevicesSharingAccount(String userId, AuthorizedDevice ad) {
     List<AuthorizedDevice> otherDevices = 
-        getAuthorizedDeviceService().otherDevicesSharingUserAccount(userId, ad);
+        getAuthorizedDeviceService().devicesSharingUserAccount(userId, ad);
     
     //send responses to clients telling them to log out immediately
     //TODO: IMPROVE THIS IF POSSIBLE (userId for client to make sure this event is intended for them)

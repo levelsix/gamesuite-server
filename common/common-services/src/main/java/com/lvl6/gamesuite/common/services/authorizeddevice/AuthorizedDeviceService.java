@@ -15,7 +15,7 @@ public interface AuthorizedDeviceService {
   
   public abstract boolean isValidUdid(String udid);
 
-  public abstract List<AuthorizedDevice> otherDevicesSharingUserAccount(String userId, AuthorizedDevice exempt);
+  public abstract List<AuthorizedDevice> devicesSharingUserAccount(String userId, AuthorizedDevice exempt);
 
   public abstract AuthorizedDeviceDao getAuthorizedDeviceDao();
   
