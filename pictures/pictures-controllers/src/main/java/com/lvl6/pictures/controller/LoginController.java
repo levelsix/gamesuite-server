@@ -481,8 +481,13 @@ public class LoginController extends EventController {
     List<GameHistory> pendingGamesNotMyTurn = new ArrayList<GameHistory>();
     Set<String> allUserIds = new HashSet<String>();
     
-    getGameHistoryService().groupOngoingGamesForUser(userId, myTurn, notMyTurn,
-        pendingGamesMyTurn, pendingGamesNotMyTurn, allUserIds);
+    boolean anyOngoingGames = getGameHistoryService().groupOngoingGamesForUser(
+        userId, myTurn, notMyTurn, pendingGamesMyTurn,
+        pendingGamesNotMyTurn, allUserIds);
+    
+    if (!anyOngoingGames) {
+      return;
+    }
     
     //need to set in responseBuilder the collection of picture names
     Set<String> picNames = getGameHistoryService().getPictureNamesFromOngoingGames(

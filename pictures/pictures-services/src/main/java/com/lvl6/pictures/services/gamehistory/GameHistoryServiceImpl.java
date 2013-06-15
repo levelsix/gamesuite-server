@@ -51,8 +51,9 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     return returnVal;
   }
   
+  //returns false if there are no ongoing games
   @Override
-  public void groupOngoingGamesForUser(String userId, List<GameHistory> myTurn,
+  public boolean groupOngoingGamesForUser(String userId, List<GameHistory> myTurn,
       List<GameHistory> notMyTurn, List<GameHistory> pendingGamesMyTurn,
       List<GameHistory> pendingGamesNotMyTurn, Set<String> allUserIds) {
     boolean nonCompletedGamesOnly = true;
@@ -65,6 +66,10 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     List<GameHistory> ongoingGames = getGameHistoryForUser(
         userId, nonCompletedGamesOnly, completedGamesOnly, 
         completedAfterThisTime, specificGameHistoryIds);
+    
+    if (null == ongoingGames || ongoingGames.isEmpty()) {
+      return false;
+    }
 
     //for each game sort it into one of the above lists
     for(GameHistory gh : ongoingGames) {
@@ -81,6 +86,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
       //store gh in either myTurn or notMyTurn
       determineTurnForGame(userId, gh, myTurn, notMyTurn);
     }
+    return true;
   }
   
   //pendingGamesMyTurn or pendingGamesNotMyTurn will contain the return value

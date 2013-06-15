@@ -12,7 +12,7 @@ public interface GameHistoryService {
   public abstract List<GameHistory> getGameHistoryForUser(String userId, boolean nonCompletedGamesOnly,
       boolean completedGamesOnly, Date completedAfterThisTime, List<String> specificGameHistoryIds);
   
-  public abstract void groupOngoingGamesForUser(String userId, List<GameHistory> myTurn,
+  public abstract boolean groupOngoingGamesForUser(String userId, List<GameHistory> myTurn,
       List<GameHistory> notMyTurn, List<GameHistory> pendingGamesMyTurn,
       List<GameHistory> pendingGamesNotMyTurn, Set<String> allUserIds);
   
