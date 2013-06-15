@@ -68,7 +68,7 @@ public class AmqpGameEventHandler extends AbstractGameEventHandler implements Me
 		try {
 		if (msg != null) {
 			log.debug("Received message", msg.getMessageProperties().getMessageId());
-			Attachment attachment = new Attachment();
+			Attachment attachment = context.getBean(Attachment.class);
 			byte[] payload = (byte[]) msg.getBody();
 			attachment.readBuff = ByteBuffer.wrap(payload);
 			while (attachment.eventReady()) {

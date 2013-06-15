@@ -47,4 +47,6 @@
 	</bean>
 	
 	
+	<bean id="attachment" class="com.lvl6.gamesuite.common.utils.Attachment" scope="prototype"/>
+	
 </beans>

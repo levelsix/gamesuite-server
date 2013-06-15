@@ -5,7 +5,10 @@ import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessagingException;
 import org.springframework.integration.core.MessageHandler;
@@ -16,7 +19,7 @@ import com.lvl6.gamesuite.common.dto.ApplicationMode;
 import com.lvl6.gamesuite.common.events.RequestEvent;
 import com.lvl6.gamesuite.common.utils.Attachment;
 
-public abstract class AbstractGameEventHandler implements MessageHandler {
+public abstract class AbstractGameEventHandler implements MessageHandler, ApplicationContextAware {
 
 	protected static Logger log = LoggerFactory.getLogger(AbstractGameEventHandler.class);
 
@@ -46,8 +49,13 @@ public abstract class AbstractGameEventHandler implements MessageHandler {
 	}
 
 
+	ApplicationContext context;
 
 
+	@Override
+	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
+		context = arg0;
+	}
 
 	@Override
 	public void handleMessage(Message<?> msg) throws MessagingException {
@@ -56,7 +64,7 @@ public abstract class AbstractGameEventHandler implements MessageHandler {
 			log.debug(key + ": " + msg.getHeaders().get(key));
 		}
 		// log.info("Payload: "+msg.getPayload());
-		Attachment attachment = new Attachment();
+		Attachment attachment = context.getBean(Attachment.class);
 		byte[] payload = (byte[]) msg.getPayload();
 		attachment.readBuff = ByteBuffer.wrap(payload);
 		while (attachment.eventReady()) {
