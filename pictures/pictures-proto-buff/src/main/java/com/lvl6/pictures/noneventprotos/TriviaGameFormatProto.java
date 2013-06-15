@@ -16,10 +16,10 @@ public final class TriviaGameFormatProto {
     com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto getGameSoFar();
     com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProtoOrBuilder getGameSoFarOrBuilder();
     
-    // optional .proto.BasicRoundProto myNewRound = 2;
+    // optional .proto.UnfinishedRoundProto myNewRound = 2;
     boolean hasMyNewRound();
-    com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getMyNewRound();
-    com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder getMyNewRoundOrBuilder();
+    com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto getMyNewRound();
+    com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder getMyNewRoundOrBuilder();
   }
   public static final class OngoingGameProto extends
       com.google.protobuf.GeneratedMessage
@@ -63,22 +63,22 @@ public final class TriviaGameFormatProto {
       return gameSoFar_;
     }
     
-    // optional .proto.BasicRoundProto myNewRound = 2;
+    // optional .proto.UnfinishedRoundProto myNewRound = 2;
     public static final int MYNEWROUND_FIELD_NUMBER = 2;
-    private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto myNewRound_;
+    private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto myNewRound_;
     public boolean hasMyNewRound() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getMyNewRound() {
+    public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto getMyNewRound() {
       return myNewRound_;
     }
-    public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder getMyNewRoundOrBuilder() {
+    public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder getMyNewRoundOrBuilder() {
       return myNewRound_;
     }
     
     private void initFields() {
       gameSoFar_ = com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto.getDefaultInstance();
-      myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
+      myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -248,7 +248,7 @@ public final class TriviaGameFormatProto {
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (myNewRoundBuilder_ == null) {
-          myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
+          myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance();
         } else {
           myNewRoundBuilder_.clear();
         }
@@ -370,7 +370,7 @@ public final class TriviaGameFormatProto {
               break;
             }
             case 18: {
-              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.newBuilder();
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.newBuilder();
               if (hasMyNewRound()) {
                 subBuilder.mergeFrom(getMyNewRound());
               }
@@ -474,21 +474,21 @@ public final class TriviaGameFormatProto {
         return gameSoFarBuilder_;
       }
       
-      // optional .proto.BasicRoundProto myNewRound = 2;
-      private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
+      // optional .proto.UnfinishedRoundProto myNewRound = 2;
+      private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder> myNewRoundBuilder_;
+          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder> myNewRoundBuilder_;
       public boolean hasMyNewRound() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getMyNewRound() {
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto getMyNewRound() {
         if (myNewRoundBuilder_ == null) {
           return myNewRound_;
         } else {
           return myNewRoundBuilder_.getMessage();
         }
       }
-      public Builder setMyNewRound(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto value) {
+      public Builder setMyNewRound(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto value) {
         if (myNewRoundBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -502,7 +502,7 @@ public final class TriviaGameFormatProto {
         return this;
       }
       public Builder setMyNewRound(
-          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder builderForValue) {
+          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder builderForValue) {
         if (myNewRoundBuilder_ == null) {
           myNewRound_ = builderForValue.build();
           onChanged();
@@ -512,12 +512,12 @@ public final class TriviaGameFormatProto {
         bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder mergeMyNewRound(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto value) {
+      public Builder mergeMyNewRound(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto value) {
         if (myNewRoundBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              myNewRound_ != com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance()) {
+              myNewRound_ != com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance()) {
             myNewRound_ =
-              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.newBuilder(myNewRound_).mergeFrom(value).buildPartial();
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.newBuilder(myNewRound_).mergeFrom(value).buildPartial();
           } else {
             myNewRound_ = value;
           }
@@ -530,7 +530,7 @@ public final class TriviaGameFormatProto {
       }
       public Builder clearMyNewRound() {
         if (myNewRoundBuilder_ == null) {
-          myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
+          myNewRound_ = com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance();
           onChanged();
         } else {
           myNewRoundBuilder_.clear();
@@ -538,12 +538,12 @@ public final class TriviaGameFormatProto {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder getMyNewRoundBuilder() {
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder getMyNewRoundBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getMyNewRoundFieldBuilder().getBuilder();
       }
-      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder getMyNewRoundOrBuilder() {
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder getMyNewRoundOrBuilder() {
         if (myNewRoundBuilder_ != null) {
           return myNewRoundBuilder_.getMessageOrBuilder();
         } else {
@@ -551,11 +551,11 @@ public final class TriviaGameFormatProto {
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder> 
+          com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder> 
           getMyNewRoundFieldBuilder() {
         if (myNewRoundBuilder_ == null) {
           myNewRoundBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder>(
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder, com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder>(
                   myNewRound_,
                   getParentForChildren(),
                   isClean());
@@ -1959,18 +1959,18 @@ public final class TriviaGameFormatProto {
     java.lang.String[] descriptorData = {
       "\n\026TriviaGameFormat.proto\022\005proto\032\027TriviaR" +
       "oundFormat.proto\032\032TriviaQuestionFormat.p" +
-      "roto\032\nUser.proto\"j\n\020OngoingGameProto\022*\n\t" +
+      "roto\032\nUser.proto\"o\n\020OngoingGameProto\022*\n\t" +
       "gameSoFar\030\001 \001(\0132\027.proto.GameResultsProto" +
-      "\022*\n\nmyNewRound\030\002 \001(\0132\026.proto.BasicRoundP" +
-      "roto\"\213\001\n\020GameResultsProto\022\016\n\006gameId\030\003 \001(" +
-      "\t\0222\n\013firstPlayer\030\001 \001(\0132\035.proto.PlayerGam" +
-      "eResultsProto\0223\n\014secondPlayer\030\002 \001(\0132\035.pr" +
-      "oto.PlayerGameResultsProto\"x\n\026PlayerGame" +
-      "ResultsProto\022\"\n\003bup\030\001 \001(\0132\025.proto.BasicU",
-      "serProto\022:\n\023previousRoundsStats\030\002 \003(\0132\035." +
-      "proto.BasicRoundResultsProtoB9\n com.lvl6" +
-      ".pictures.noneventprotosB\025TriviaGameForm" +
-      "atProto"
+      "\022/\n\nmyNewRound\030\002 \001(\0132\033.proto.UnfinishedR" +
+      "oundProto\"\213\001\n\020GameResultsProto\022\016\n\006gameId" +
+      "\030\003 \001(\t\0222\n\013firstPlayer\030\001 \001(\0132\035.proto.Play" +
+      "erGameResultsProto\0223\n\014secondPlayer\030\002 \001(\013" +
+      "2\035.proto.PlayerGameResultsProto\"x\n\026Playe" +
+      "rGameResultsProto\022\"\n\003bup\030\001 \001(\0132\025.proto.B",
+      "asicUserProto\022:\n\023previousRoundsStats\030\002 \003" +
+      "(\0132\035.proto.BasicRoundResultsProtoB9\n com" +
+      ".lvl6.pictures.noneventprotosB\025TriviaGam" +
+      "eFormatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

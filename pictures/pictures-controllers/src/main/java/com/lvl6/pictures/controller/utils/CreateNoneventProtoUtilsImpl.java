@@ -22,9 +22,9 @@ import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoice
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceQuestionProto;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto;
-import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto;
 import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto;
 import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto;
+import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto.Builder;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
@@ -228,7 +228,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
       if(null != rpc && rpc.getUserId().equals(userId)) {
 
         //user must have exited app when answering a round's questions or something
-        BasicRoundProto brp = createBasicRoundProto(rpc);
+        UnfinishedRoundProto brp = createUnfinishedRoundProto(rpc);
         ogpb.setMyNewRound(brp);
         
       } else if (gh.getPlayerTwoId().equals(userId)) {
@@ -238,7 +238,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
         //if player two has RoundPendingCompletion then this is a duplicate
         RoundHistory opponentsLastRound = gh.getLastRoundHistoryForUser(playerOneId);
-        BasicRoundProto brp = createBasicRoundProto(opponentsLastRound);
+        UnfinishedRoundProto brp = createUnfinishedRoundProto(opponentsLastRound);
 
         ogpb.setMyNewRound(brp);
       }
@@ -320,8 +320,8 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   }
   
   @Override
-  public BasicRoundProto createBasicRoundProto(RoundPendingCompletion rpc) {
-    BasicRoundProto.Builder brpb = BasicRoundProto.newBuilder();
+  public UnfinishedRoundProto createUnfinishedRoundProto(RoundPendingCompletion rpc) {
+    UnfinishedRoundProto.Builder brpb = UnfinishedRoundProto.newBuilder();
     
     int roundNumber = rpc.getRoundNumber();
     //to be filled up with the question bases contained in rpc
@@ -339,8 +339,8 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
   }
   
   @Override
-  public BasicRoundProto createBasicRoundProto(RoundHistory rh) {
-    BasicRoundProto.Builder brpb = BasicRoundProto.newBuilder();
+  public UnfinishedRoundProto createUnfinishedRoundProto(RoundHistory rh) {
+    UnfinishedRoundProto.Builder brpb = UnfinishedRoundProto.newBuilder();
     
     String roundHistoryId = rh.getId();
     int roundNumber = rh.getRoundNumber();

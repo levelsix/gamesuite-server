@@ -1373,7 +1373,7 @@ public final class TriviaRoundFormatProto {
     // @@protoc_insertion_point(class_scope:proto.CompleteRoundResultsProto)
   }
   
-  public interface BasicRoundProtoOrBuilder
+  public interface UnfinishedRoundProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
     // optional string id = 1;
@@ -1393,33 +1393,45 @@ public final class TriviaRoundFormatProto {
     // optional int32 roundNumber = 3;
     boolean hasRoundNumber();
     int getRoundNumber();
+    
+    // optional int32 secondsRemaning = 4;
+    boolean hasSecondsRemaning();
+    int getSecondsRemaning();
+    
+    // optional int32 currentQuestionNumber = 5;
+    boolean hasCurrentQuestionNumber();
+    int getCurrentQuestionNumber();
+    
+    // optional int32 currentScore = 6;
+    boolean hasCurrentScore();
+    int getCurrentScore();
   }
-  public static final class BasicRoundProto extends
+  public static final class UnfinishedRoundProto extends
       com.google.protobuf.GeneratedMessage
-      implements BasicRoundProtoOrBuilder {
-    // Use BasicRoundProto.newBuilder() to construct.
-    private BasicRoundProto(Builder builder) {
+      implements UnfinishedRoundProtoOrBuilder {
+    // Use UnfinishedRoundProto.newBuilder() to construct.
+    private UnfinishedRoundProto(Builder builder) {
       super(builder);
     }
-    private BasicRoundProto(boolean noInit) {}
+    private UnfinishedRoundProto(boolean noInit) {}
     
-    private static final BasicRoundProto defaultInstance;
-    public static BasicRoundProto getDefaultInstance() {
+    private static final UnfinishedRoundProto defaultInstance;
+    public static UnfinishedRoundProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public BasicRoundProto getDefaultInstanceForType() {
+    public UnfinishedRoundProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_BasicRoundProto_descriptor;
+      return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_UnfinishedRoundProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_BasicRoundProto_fieldAccessorTable;
+      return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_UnfinishedRoundProto_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -1486,10 +1498,43 @@ public final class TriviaRoundFormatProto {
       return roundNumber_;
     }
     
+    // optional int32 secondsRemaning = 4;
+    public static final int SECONDSREMANING_FIELD_NUMBER = 4;
+    private int secondsRemaning_;
+    public boolean hasSecondsRemaning() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getSecondsRemaning() {
+      return secondsRemaning_;
+    }
+    
+    // optional int32 currentQuestionNumber = 5;
+    public static final int CURRENTQUESTIONNUMBER_FIELD_NUMBER = 5;
+    private int currentQuestionNumber_;
+    public boolean hasCurrentQuestionNumber() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public int getCurrentQuestionNumber() {
+      return currentQuestionNumber_;
+    }
+    
+    // optional int32 currentScore = 6;
+    public static final int CURRENTSCORE_FIELD_NUMBER = 6;
+    private int currentScore_;
+    public boolean hasCurrentScore() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public int getCurrentScore() {
+      return currentScore_;
+    }
+    
     private void initFields() {
       id_ = "";
       questions_ = java.util.Collections.emptyList();
       roundNumber_ = 0;
+      secondsRemaning_ = 0;
+      currentQuestionNumber_ = 0;
+      currentScore_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1512,6 +1557,15 @@ public final class TriviaRoundFormatProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(3, roundNumber_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(4, secondsRemaning_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(5, currentQuestionNumber_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt32(6, currentScore_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -1533,6 +1587,18 @@ public final class TriviaRoundFormatProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, roundNumber_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, secondsRemaning_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, currentQuestionNumber_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, currentScore_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
@@ -1545,41 +1611,41 @@ public final class TriviaRoundFormatProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(byte[] data)
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(java.io.InputStream input)
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1588,7 +1654,7 @@ public final class TriviaRoundFormatProto {
         return null;
       }
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseDelimitedFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1599,12 +1665,12 @@ public final class TriviaRoundFormatProto {
         return null;
       }
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto parseFrom(
+    public static com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1614,7 +1680,7 @@ public final class TriviaRoundFormatProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto prototype) {
+    public static Builder newBuilder(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1627,18 +1693,18 @@ public final class TriviaRoundFormatProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProtoOrBuilder {
+       implements com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_BasicRoundProto_descriptor;
+        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_UnfinishedRoundProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_BasicRoundProto_fieldAccessorTable;
+        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.internal_static_proto_UnfinishedRoundProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.newBuilder()
+      // Construct using com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1668,6 +1734,12 @@ public final class TriviaRoundFormatProto {
         }
         roundNumber_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
+        secondsRemaning_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        currentQuestionNumber_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        currentScore_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -1677,24 +1749,24 @@ public final class TriviaRoundFormatProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDescriptor();
+        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDescriptor();
       }
       
-      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto getDefaultInstanceForType() {
-        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance();
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto getDefaultInstanceForType() {
+        return com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance();
       }
       
-      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto build() {
-        com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto result = buildPartial();
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto build() {
+        com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto buildParsed()
+      private com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto result = buildPartial();
+        com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -1702,8 +1774,8 @@ public final class TriviaRoundFormatProto {
         return result;
       }
       
-      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto buildPartial() {
-        com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto result = new com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto(this);
+      public com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto buildPartial() {
+        com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto result = new com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1723,22 +1795,34 @@ public final class TriviaRoundFormatProto {
           to_bitField0_ |= 0x00000002;
         }
         result.roundNumber_ = roundNumber_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.secondsRemaning_ = secondsRemaning_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.currentQuestionNumber_ = currentQuestionNumber_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.currentScore_ = currentScore_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto) {
-          return mergeFrom((com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto)other);
+        if (other instanceof com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto) {
+          return mergeFrom((com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto other) {
-        if (other == com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto other) {
+        if (other == com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -1770,6 +1854,15 @@ public final class TriviaRoundFormatProto {
         }
         if (other.hasRoundNumber()) {
           setRoundNumber(other.getRoundNumber());
+        }
+        if (other.hasSecondsRemaning()) {
+          setSecondsRemaning(other.getSecondsRemaning());
+        }
+        if (other.hasCurrentQuestionNumber()) {
+          setCurrentQuestionNumber(other.getCurrentQuestionNumber());
+        }
+        if (other.hasCurrentScore()) {
+          setCurrentScore(other.getCurrentScore());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1816,6 +1909,21 @@ public final class TriviaRoundFormatProto {
             case 24: {
               bitField0_ |= 0x00000004;
               roundNumber_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              secondsRemaning_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              currentQuestionNumber_ = input.readInt32();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              currentScore_ = input.readInt32();
               break;
             }
           }
@@ -2067,15 +2175,78 @@ public final class TriviaRoundFormatProto {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.BasicRoundProto)
+      // optional int32 secondsRemaning = 4;
+      private int secondsRemaning_ ;
+      public boolean hasSecondsRemaning() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getSecondsRemaning() {
+        return secondsRemaning_;
+      }
+      public Builder setSecondsRemaning(int value) {
+        bitField0_ |= 0x00000008;
+        secondsRemaning_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearSecondsRemaning() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        secondsRemaning_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 currentQuestionNumber = 5;
+      private int currentQuestionNumber_ ;
+      public boolean hasCurrentQuestionNumber() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public int getCurrentQuestionNumber() {
+        return currentQuestionNumber_;
+      }
+      public Builder setCurrentQuestionNumber(int value) {
+        bitField0_ |= 0x00000010;
+        currentQuestionNumber_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCurrentQuestionNumber() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        currentQuestionNumber_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 currentScore = 6;
+      private int currentScore_ ;
+      public boolean hasCurrentScore() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public int getCurrentScore() {
+        return currentScore_;
+      }
+      public Builder setCurrentScore(int value) {
+        bitField0_ |= 0x00000020;
+        currentScore_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCurrentScore() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        currentScore_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.UnfinishedRoundProto)
     }
     
     static {
-      defaultInstance = new BasicRoundProto(true);
+      defaultInstance = new UnfinishedRoundProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.BasicRoundProto)
+    // @@protoc_insertion_point(class_scope:proto.UnfinishedRoundProto)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
@@ -2089,10 +2260,10 @@ public final class TriviaRoundFormatProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_CompleteRoundResultsProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_BasicRoundProto_descriptor;
+    internal_static_proto_UnfinishedRoundProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_BasicRoundProto_fieldAccessorTable;
+      internal_static_proto_UnfinishedRoundProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2109,11 +2280,13 @@ public final class TriviaRoundFormatProto {
       "roto\022\n\n\002id\030\001 \001(\t\022\r\n\005score\030\002 \001(\021\022\023\n\013round" +
       "Number\030\003 \001(\005\022-\n\007answers\030\004 \003(\0132\034.proto.Qu" +
       "estionAnsweredProto\022\021\n\tstartTime\030\005 \001(\003\022\017" +
-      "\n\007endTime\030\006 \001(\003\"[\n\017BasicRoundProto\022\n\n\002id" +
-      "\030\001 \001(\t\022\'\n\tquestions\030\002 \003(\0132\024.proto.Questi" +
-      "onProto\022\023\n\013roundNumber\030\003 \001(\005B:\n com.lvl6",
-      ".pictures.noneventprotosB\026TriviaRoundFor" +
-      "matProto"
+      "\n\007endTime\030\006 \001(\003\"\256\001\n\024UnfinishedRoundProto" +
+      "\022\n\n\002id\030\001 \001(\t\022\'\n\tquestions\030\002 \003(\0132\024.proto." +
+      "QuestionProto\022\023\n\013roundNumber\030\003 \001(\005\022\027\n\017se",
+      "condsRemaning\030\004 \001(\005\022\035\n\025currentQuestionNu" +
+      "mber\030\005 \001(\005\022\024\n\014currentScore\030\006 \001(\005B:\n com." +
+      "lvl6.pictures.noneventprotosB\026TriviaRoun" +
+      "dFormatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2136,14 +2309,14 @@ public final class TriviaRoundFormatProto {
               new java.lang.String[] { "Id", "Score", "RoundNumber", "Answers", "StartTime", "EndTime", },
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto.class,
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto.Builder.class);
-          internal_static_proto_BasicRoundProto_descriptor =
+          internal_static_proto_UnfinishedRoundProto_descriptor =
             getDescriptor().getMessageTypes().get(2);
-          internal_static_proto_BasicRoundProto_fieldAccessorTable = new
+          internal_static_proto_UnfinishedRoundProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_BasicRoundProto_descriptor,
-              new java.lang.String[] { "Id", "Questions", "RoundNumber", },
-              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.class,
-              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto.Builder.class);
+              internal_static_proto_UnfinishedRoundProto_descriptor,
+              new java.lang.String[] { "Id", "Questions", "RoundNumber", "SecondsRemaning", "CurrentQuestionNumber", "CurrentScore", },
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.class,
+              com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder.class);
           return null;
         }
       };

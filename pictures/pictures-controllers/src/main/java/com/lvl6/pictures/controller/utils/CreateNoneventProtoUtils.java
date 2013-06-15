@@ -14,9 +14,9 @@ import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoice
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.MultipleChoiceQuestionProto;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.PictureQuestionProto;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto;
-import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundProto;
 import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto;
 import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto;
+import com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
@@ -78,9 +78,9 @@ public interface CreateNoneventProtoUtils {
   public abstract PlayerGameResultsProto createPlayerGameResultsProto(Collection<RoundHistory> rhCollection,
       BasicUserProto bup);
   
-  public abstract BasicRoundProto createBasicRoundProto(RoundPendingCompletion rpc);
+  public abstract UnfinishedRoundProto createUnfinishedRoundProto(RoundPendingCompletion rpc);
   
-  public abstract BasicRoundProto createBasicRoundProto(RoundHistory rh);
+  public abstract UnfinishedRoundProto createUnfinishedRoundProto(RoundHistory rh);
   
   public abstract BasicRoundResultsProto createBasicRoundResultsProto(RoundHistory rh);
   
