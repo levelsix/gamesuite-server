@@ -6,6 +6,7 @@ import java.nio.ByteOrder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.gamesuite.common.properties.Globals;
@@ -18,7 +19,7 @@ import com.lvl6.gamesuite.common.properties.Globals;
  * It holds the temporary incoming data and checks the completeness 
  * of the header and payload.
  */
-public class Attachment {
+public class Attachment implements InitializingBean {
 
   @Autowired
   Globals globals;
@@ -69,9 +70,7 @@ public class Attachment {
    * constructor. initializes the payload array and the read buffer 
    */
   public Attachment () {
-    payload = new byte[globals.MAX_EVENT_SIZE];
-    readBuff = ByteBuffer.allocateDirect(globals.NET_BUFFER_SIZE);
-    readBuff.order(getByteOrder());
+
   }
 
   /** 
@@ -136,4 +135,11 @@ public class Attachment {
       return false;
     }
   }
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+	    payload = new byte[globals.MAX_EVENT_SIZE];
+	    readBuff = ByteBuffer.allocateDirect(globals.NET_BUFFER_SIZE);
+	    readBuff.order(getByteOrder());	
+	}
 }// Attachment
