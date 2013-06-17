@@ -64,33 +64,46 @@ import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
     //response to send back to client
     CreateAccountResponseProto.Builder responseBuilder = CreateAccountResponseProto.newBuilder();
     responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
-    
-    boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto,
-        nameStrangersSee, email, password, udid);
-    boolean validRequest = false;
-    boolean success = false;
-    
-    
-    if (validRequestArgs) {
-      validRequest = isValidRequest(responseBuilder, nameStrangersSee, email, udid, deviceId);
-    }
-    
-    if(validRequest) {
-      success = writeChangesToDb(responseBuilder, nameStrangersSee, email, password, udid, deviceId);
-    }
-    
-    if(success) {
-      responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
-    }
-    
-    CreateAccountResponseProto resProto = responseBuilder.build();
-    //autowire or use new()...
     CreateAccountViaEmailResponseEvent resEvent =  new CreateAccountViaEmailResponseEvent(udid);
     resEvent.setTag(event.getTag());
-    resEvent.setCreateAccountResponseProto(resProto);
     
-    log.info("Writing event: " + resEvent);
-    getEventWriter().processPreDBResponseEvent(resEvent, udid);
+    try {
+      boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto,
+          nameStrangersSee, email, password, udid);
+      boolean validRequest = false;
+      boolean success = false;
+
+
+      if (validRequestArgs) {
+        validRequest = isValidRequest(responseBuilder, nameStrangersSee, email, udid, deviceId);
+      }
+
+      if(validRequest) {
+        success = writeChangesToDb(responseBuilder, nameStrangersSee, email, password, udid, deviceId);
+      }
+
+      if(success) {
+        responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
+      }
+
+      CreateAccountResponseProto resProto = responseBuilder.build();
+      //autowire or use new()...
+      resEvent.setCreateAccountResponseProto(resProto);
+
+      log.info("Writing event: " + resEvent);
+      getEventWriter().processPreDBResponseEvent(resEvent, udid);
+    } catch (Exception e) {
+      log.error("exception2 in CreateAccountViaEmailController processRequestEvent", e);
+      
+      try {
+        //try to tell client that something failed
+        responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+        resEvent.setCreateAccountResponseProto(responseBuilder.build());
+        getEventWriter().processPreDBResponseEvent(resEvent, udid);
+      } catch (Exception e2) {
+        log.error("exception in CreateAccountViaEmailController processRequestEvent", e2);
+      }
+    }
   }
 
   private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaEmailRequestProto request,
@@ -164,7 +177,8 @@ import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
       userId = newUser.getId();
       ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId);
      
-      BasicUserProto bp = noneventProtoUtils.createBasicUserProto(newUser, ad);
+      BasicUserProto bp =
+          noneventProtoUtils.createBasicUserProto(newUser, ad, password);
       responseBuilder.setRecipient(bp);
       
       success = true;
