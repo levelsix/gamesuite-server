@@ -1,6 +1,7 @@
 package com.lvl6.pictures.po;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,10 +18,11 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 //@MappedSuperclass
 @Entity
-abstract public class QuestionBase extends BasePersistentObject {
+abstract public class QuestionBase extends BasePersistentObject implements Serializable{
 	
-	
-	@Temporal(TemporalType.TIMESTAMP)
+  private static final long serialVersionUID = -4681717482297820858L;
+
+  @Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
 	@NotNull
 	@Index(name="question_created_date_index")
