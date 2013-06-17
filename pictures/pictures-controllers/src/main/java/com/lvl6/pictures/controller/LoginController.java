@@ -177,10 +177,10 @@ public class LoginController extends EventController {
         //try to tell client that something failed
         responseBuilder.setStatus(LoginResponseStatus.FAIL_OTHER);
         resEvent.setLoginResponseProto(responseBuilder.build());
-        getEventWriter().handleEvent(resEvent);
+        getEventWriter().processPreDBResponseEvent(resEvent, udid);
         
       } catch (Exception e2) {
-        log.error("exception in RetrieveNewQuestionsController processRequestEvent", e2);
+        log.error("exception2 in RetrieveNewQuestionsController processRequestEvent", e2);
       }
     }
   }
@@ -387,7 +387,7 @@ public class LoginController extends EventController {
       // CONSTRUCT THE USER (CURRENCY AND ALL)
       monies = getCurrencyService().getCurrencyForUser(userId);
     }
-    if (null != monies) {
+    if (null == monies) {
       //every user should have currency!
       log.error("user does not have currency. userProto=" + sender);
     }
@@ -439,7 +439,7 @@ public class LoginController extends EventController {
     //construct the protos for the users
     for (User u : uList) {
       AuthorizedDevice adNull = null;
-      BasicUserProto bup = getNoneventProtoUtils().createBasicUserProto(u, adNull);
+      BasicUserProto bup = getNoneventProtoUtils().createBasicUserProto(u, adNull, null);
       bupList.add(bup);
     }
     
@@ -540,13 +540,13 @@ public class LoginController extends EventController {
         PicturesPoConstants.QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET;
     List<QuestionBase> questions =
         getQuestionBaseService().getRandomQuestions(amount, allPictureNames);
-    
-    for(QuestionBase qb : questions) {
-      QuestionProto proto =
-          getNoneventProtoUtils().createQuestionProto(qb);
-      newQuestions.add(proto);
+    if (null != questions) {
+      for(QuestionBase qb : questions) {
+        QuestionProto proto =
+            getNoneventProtoUtils().createQuestionProto(qb);
+        newQuestions.add(proto);
+      }
     }
-    
     //set responseBuilder
     responseBuilder.addAllNewQuestions(newQuestions);
   }
