@@ -65,10 +65,11 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     Map<String, User> idsToUsers = getUserDao().findByIdIn(idSet);
     
     AuthorizedDevice adNull = null;
+    String passwordNull = null; 
     for (String id : idsToUsers.keySet()) {
       User u = idsToUsers.get(id);
       
-      BasicUserProto bup = createBasicUserProto(u, adNull);
+      BasicUserProto bup = createBasicUserProto(u, adNull, passwordNull);
       idsToBups.put(id, bup);
     }
     
@@ -81,16 +82,18 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     
     Map<String, User> idsToUsers = getUserDao().findByIdIn(userIds);
     AuthorizedDevice adNull = null;
+    String passwordNull = null;
     for (String userId : idsToUsers.keySet()) {
       User u = idsToUsers.get(userId);
-      BasicUserProto bup = createBasicUserProto(u, adNull);
+      BasicUserProto bup = createBasicUserProto(u, adNull, passwordNull);
       idsToBups.put(userId, bup);
     }
     return idsToBups;
   }
   
   @Override
-  public BasicUserProto createBasicUserProto (User aUser, AuthorizedDevice ad) {
+  public BasicUserProto createBasicUserProto (User aUser, AuthorizedDevice ad,
+      String password) {
     BasicUserProto.Builder bpb = BasicUserProto.newBuilder();
     String userId = aUser.getId();
     String nameStrangersSee = aUser.getNameStrangersSee();
@@ -115,6 +118,10 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     if (null != ad) {
       BasicAuthorizedDeviceProto badp = createBasicAuthorizedDeviceProto(ad, userId); 
       bpb.setBadp(badp);
+    }
+    
+    if (null != password && !password.isEmpty()) {
+      bpb.setPassword(password);
     }
     
     return bpb.build();
@@ -276,14 +283,14 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     //get player one basic user proto
     if (!userIdToBasicUserProto.containsKey(playerOneId)) {
       User playerOne = getUserDao().findById(playerOneId);
-      bupPlayerOne = createBasicUserProto(playerOne, null);
+      bupPlayerOne = createBasicUserProto(playerOne, null, null);
     } else {
       bupPlayerOne = userIdToBasicUserProto.get(playerOneId);
     }
     //get player two basic user proto
     if (!userIdToBasicUserProto.containsKey(playerTwoId)) {
       User playerTwo = getUserDao().findById(playerTwoId);
-      bupPlayerTwo = createBasicUserProto(playerTwo, null);
+      bupPlayerTwo = createBasicUserProto(playerTwo, null, null);
     } else {
       bupPlayerTwo = userIdToBasicUserProto.get(playerTwoId);
     }

@@ -37,7 +37,7 @@ public interface CreateNoneventProtoUtils {
   
   public abstract Map<String, BasicUserProto> createIdsToBasicUserProtos(Collection<String> userIds);
   
-  public abstract BasicUserProto createBasicUserProto(User aUser, AuthorizedDevice ad);
+  public abstract BasicUserProto createBasicUserProto(User aUser, AuthorizedDevice ad, String password);
   
   public abstract CompleteUserProto createCompleteUserProto(User aUser, AuthorizedDevice ad,
       Currency monies);
