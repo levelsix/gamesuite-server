@@ -36,4 +36,11 @@ public class BasePersistentObject {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
+
+	@Override
+	public String toString() {
+		return "BasePersistentObject [id=" + id + ", version=" + version + "]";
+	}
+	
+	
 }
