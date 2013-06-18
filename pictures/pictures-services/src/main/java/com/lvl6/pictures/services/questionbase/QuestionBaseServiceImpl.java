@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -41,6 +42,7 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
       log.error("id=" + qb.getId());
       log.error("question=" + qb);
     }
+    log.error("\t\t all questions= " + getQuestionIdsToQuestions());
     
     //max number of questions to get
     int upperBound = getQuestionIdsToQuestions().size();
