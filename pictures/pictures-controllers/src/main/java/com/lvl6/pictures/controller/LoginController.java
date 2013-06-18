@@ -546,6 +546,8 @@ public class LoginController extends EventController {
     log.error("\t\t generating new questions");
     List<QuestionBase> questions =
         getQuestionBaseService().getRandomQuestions(amount, allPictureNames);
+    log.error("\t\t questions=" + questions);
+    
     if (null != questions && !questions.isEmpty()) {
       for(QuestionBase qb : questions) {
         QuestionProto proto =

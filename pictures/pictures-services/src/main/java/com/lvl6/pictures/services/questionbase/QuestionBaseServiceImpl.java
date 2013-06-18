@@ -49,6 +49,7 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
     QuestionBase[] questions = new QuestionBase[upperBound]; 
     questions = getQuestionIdsToQuestions().values().toArray(questions);
     
+    log.error("\t\t randIndexNums=" + randIndexNums);
     for(int index : randIndexNums) {
       QuestionBase qb = questions[index];
       
