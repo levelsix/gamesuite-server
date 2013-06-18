@@ -46,8 +46,8 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
     log.error("n=" + n);
     Collection<Integer> randIndexNums =
         getRandNumUtils().generateNRandomIntsBelowInt(upperBound, n);
-    
-    QuestionBase[] questions = (QuestionBase[]) getQuestionIdsToQuestions().values().toArray();
+    QuestionBase[] questions = new QuestionBase[upperBound]; 
+    questions = getQuestionIdsToQuestions().values().toArray(questions);
     
     for(int index : randIndexNums) {
       QuestionBase qb = questions[index];
