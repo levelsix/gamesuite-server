@@ -438,8 +438,10 @@ public class LoginController extends EventController {
 
     private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
 	List<BasicUserProto> bupList = new ArrayList<BasicUserProto>();
-
+	log.info("RETRIEVING FACEBOOK FRIEND IDS=" + facebookFriendIds);
+	
 	List<User> uList = getLoginService().getFacebookUsers(facebookFriendIds);
+	log.info("\t\t FACEBOOK USERS=" + uList);
 	//construct the protos for the users
 	for (User u : uList) {
 	    AuthorizedDevice adNull = null;
