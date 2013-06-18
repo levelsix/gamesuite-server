@@ -64,4 +64,16 @@ public class MultipleChoiceAnswer extends BasePersistentObject {
 	  this.answerType = answerType;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "MultipleChoiceAnswer [isCorrect=" + isCorrect + ", answer=" + answer + ", answerType="
+				+ answerType + ", id=" + id + ", version=" + version + "]";
+	}
+
+
+	
+	
+
 }

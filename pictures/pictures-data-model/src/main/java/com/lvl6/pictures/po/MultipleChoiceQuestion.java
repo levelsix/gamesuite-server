@@ -54,6 +54,14 @@ public class MultipleChoiceQuestion extends QuestionBase {
 	public void setAnswers(Set<MultipleChoiceAnswer> answers) {
 		this.answers = answers;
 	}
+
+	@Override
+	public String toString() {
+		return "MultipleChoiceQuestion [question=" + question + ", answers=" + answers + ", createdDate="
+				+ createdDate + ", createdBy=" + createdBy + ", id=" + id + ", version=" + version + "]";
+	}
+
+
 	
 	
 }

@@ -15,10 +15,10 @@ public class BasePersistentObject {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "id", unique = true)
-	private String id;
+	protected String id;
 
 	@Version
-	private Integer version;
+	protected Integer version;
 	
 
 	public String getId() {

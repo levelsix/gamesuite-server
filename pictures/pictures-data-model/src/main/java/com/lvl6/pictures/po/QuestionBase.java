@@ -49,4 +49,15 @@ abstract public class QuestionBase extends BasePersistentObject {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+
+	@Override
+	public String toString() {
+		return "QuestionBase [createdDate=" + createdDate + ", createdBy=" + createdBy + ", id=" + id
+				+ ", version=" + version + "]";
+	}
+
+
+
+	
+	
 }
