@@ -125,7 +125,7 @@ public class TestPicturesJpa {
 		
 		List<PicturesQuestionWithTextAnswer> pqwtaList  = getPictureDao().findAll();
 		assertTrue("Expected: not null. Actual: " + pqwtaList.size(),
-		    null != pqwtaList && (pqwtaList.size() - 1) > 0);
+		    null != pqwtaList && (pqwtaList.size() - 1) >= 0);
 	}
 	
 	@Transactional
@@ -190,7 +190,7 @@ public class TestPicturesJpa {
     
     List<QuestionAnswered> inDb = getQaDao().findAll();
     
-    assertTrue("Expected: qaList. Actually: " + inDb, inDb.size() - 2 > 0);
+    assertTrue("Expected: qaList. Actually: " + inDb, (inDb.size() - 2) >= 0);
     assertTrue("Expected: not null. Actually: " + qa, null != qa.getId() && !(qa.getId().isEmpty()));
     assertTrue("Expected: not null. Actually: " + mcq, null != mcq.getId() && !(mcq.getId().isEmpty()));
     
