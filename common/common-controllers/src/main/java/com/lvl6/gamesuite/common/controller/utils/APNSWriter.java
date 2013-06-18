@@ -21,47 +21,48 @@ import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceServi
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
 import com.notnoop.apns.ApnsServiceBuilder;
+import com.notnoop.apns.PayloadBuilder;
 
 public class APNSWriter {
 
-	
-	@Autowired
-	Globals globals;
-	
-	public Globals getGlobals() {
-		return globals;
-	}
 
-	public void setGlobals(Globals globals) {
-		this.globals = globals;
-	}
-	
-	@Autowired
-  private EventWriter eventWriter;
+    @Autowired
+    Globals globals;
 
-  public EventWriter getEventWriter() {
-    return eventWriter;
-  }
+    public Globals getGlobals() {
+	return globals;
+    }
 
-  public void setEventWriter(EventWriter eventWriter) {
-    this.eventWriter = eventWriter;
-  }
+    public void setGlobals(Globals globals) {
+	this.globals = globals;
+    }
 
-	public Map<Integer, ConnectedPlayer> getPlayersByPlayerId() {
-		return playersByPlayerId;
-	}
-	
-	public void setPlayersByPlayerId(Map<Integer, ConnectedPlayer> playersByPlayerId) {
-		this.playersByPlayerId = playersByPlayerId;
-	}
+    @Autowired
+    private EventWriter eventWriter;
 
-	@Resource(name="playersByPlayerId")
-	protected Map<Integer, ConnectedPlayer> playersByPlayerId;
+    public EventWriter getEventWriter() {
+	return eventWriter;
+    }
+
+    public void setEventWriter(EventWriter eventWriter) {
+	this.eventWriter = eventWriter;
+    }
+
+    public Map<Integer, ConnectedPlayer> getPlayersByPlayerId() {
+	return playersByPlayerId;
+    }
+
+    public void setPlayersByPlayerId(Map<Integer, ConnectedPlayer> playersByPlayerId) {
+	this.playersByPlayerId = playersByPlayerId;
+    }
+
+    @Resource(name="playersByPlayerId")
+    protected Map<Integer, ConnectedPlayer> playersByPlayerId;
 
 
-	private static Logger log = LoggerFactory.getLogger(APNSWriter.class);
+    private static Logger log = LoggerFactory.getLogger(APNSWriter.class);
 
-/*	private static final int SOFT_MAX_NOTIFICATION_BADGES = 20;
+    /*	private static final int SOFT_MAX_NOTIFICATION_BADGES = 20;
 
 	private static final int MIN_MINUTES_BETWEEN_BATTLE_NOTIFICATIONS = 180; // 3
 																				// hours
@@ -74,121 +75,121 @@ public class APNSWriter {
 	private static final long MINUTES_BETWEEN_INACTIVE_DEVICE_TOKEN_FLUSH = 60 * 24 * 3;
 	private static Date LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME = new Date();*/
 
-	@Autowired
-	protected APNSProperties apnsProperties;
+    @Autowired
+    protected APNSProperties apnsProperties;
 
-	public void setApnsProperties(APNSProperties apnsProperties) {
-		this.apnsProperties = apnsProperties;
+    public void setApnsProperties(APNSProperties apnsProperties) {
+	this.apnsProperties = apnsProperties;
+    }
+
+    @Autowired
+    protected AuthorizedDeviceService authorizedDeviceService;
+
+    /**
+     * constructor.
+     */
+    public APNSWriter() {
+
+    }
+
+
+    /**
+     * note we override the Wrap's run method here doing essentially the same
+     * thing, but first we allocate a ByteBuffer for this thread to use
+     */
+    public void run() {
+
+    }
+
+    /** unused */
+    protected void processEvent(GameEvent event, String actionKey,
+	    String alertBody) {
+	if (event instanceof NormalResponseEvent) {
+	    processResponseEvent((NormalResponseEvent) event, actionKey,
+		    alertBody);
+	}
+    }
+
+    /**
+     * our own version of processEvent that takes the additional parameter of
+     * the writeBuffer
+     */
+    protected void processResponseEvent(NormalResponseEvent event,
+	    String actionKey, String alertBody) {
+	String playerId = event.getPlayerId();
+	ConnectedPlayer connectedPlayer = playersByPlayerId.get(playerId);
+	if (connectedPlayer != null) {
+	    log.info("wrote a response event to connected player with id " +
+		    playerId + " instead of sending APNS message");
+	    getEventWriter().handleEvent(event);
+	}
+	log.info("received APNS notification to send to player with id " + playerId);
+
+	ApnsService service = null;
+	try {
+	    service = getApnsService();
+	    if (null == service) {
+		log.warn("Apns service is null, not writing APNS:" +
+			" actionKey=" + actionKey + "\t alertBody=" + alertBody);
+		return;
+	    }
+	} catch (FileNotFoundException e) {
+	    log.error("File not found", e);
 	}
 
-	@Autowired
-  protected AuthorizedDeviceService authorizedDeviceService;
-	
-  /**
-	 * constructor.
-	 */
-	public APNSWriter() {
+	createAndSendMessage(playerId, actionKey, alertBody);
+    }
+    
+    private void createAndSendMessage(String playerId, String actionKey,
+	    String alertBody) {
+	AuthorizedDevice exempt = null;
+	List<AuthorizedDevice> devices = getAuthorizedDeviceService()
+		.devicesSharingUserAccount(playerId, exempt);
 
-	}
-
-
-	/**
-	 * note we override the Wrap's run method here doing essentially the same
-	 * thing, but first we allocate a ByteBuffer for this thread to use
-	 */
-	public void run() {
-
-	}
-
-	/** unused */
-	protected void processEvent(GameEvent event) {
-		if (event instanceof NormalResponseEvent) {
-			processResponseEvent((NormalResponseEvent) event);
-		}
-	}
-
-	/**
-	 * our own version of processEvent that takes the additional parameter of
-	 * the writeBuffer
-	 */
-	protected void processResponseEvent(NormalResponseEvent event) {
-		String playerId = event.getPlayerId();
-		ConnectedPlayer connectedPlayer = playersByPlayerId.get(playerId);
-		if (connectedPlayer != null) {
-			log.info("wrote a response event to connected player with id " +
-			    playerId + " instead of sending APNS message");
-			getEventWriter().handleEvent(event);
-		} else {
-			log.info("received APNS notification to send to player with id " + playerId);
-			
-			AuthorizedDevice exempt = null;
-			List<AuthorizedDevice> devices = getAuthorizedDeviceService()
-			    .devicesSharingUserAccount(playerId, exempt);
-			
-			if (null == devices || devices.isEmpty()) {
-			  log.warn("could not send push notification because userId " +
-			      playerId + " has no devices registered to send apns to.");
-			  return;
-			}
-			
-			for (AuthorizedDevice ad : devices) {
-
-//			  if (user != null && user.getDeviceToken() != null && user.getDeviceToken().length() > 0) {
-//			    try {
-//			      ApnsService service = getApnsService();
-//			      if (service != null) {
-//			        // service.start();
-//			        Date now = new Date();
-//			        if (LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME.getTime() + 60000
-//			            * MINUTES_BETWEEN_INACTIVE_DEVICE_TOKEN_FLUSH < now.getTime()) {
-//			          LAST_NULLIFY_INACTIVE_DEVICE_TOKEN_TIME = now;
-//			          Map<String, Date> inactiveDevices = service.getInactiveDevices();
-//			          UpdateUtils.get().updateNullifyDeviceTokens(inactiveDevices.keySet());
-//			        }
-
-
-			        // if
-			        // (ReferralCodeUsedResponseEvent.class.isInstance(event))
-			        // {
-			        // handleReferralCodeUsedNotification(service,
-			        // (ReferralCodeUsedResponseEvent)event, user,
-			        // user.getDeviceToken());
-			        // }
-
-			        // service.stop();
-//			      }else {
-//			        log.warn("Apns service is null");
-//			      }
-//
-//			    } catch (FileNotFoundException e) {
-//			      log.error("File not found", e);
-//			    }
-//			  } else {
-//			    log.warn("could not send push notification because userId " +
-//			        playerId + " has no device token");
-//			  }
-			}
-		}
-	}
-
-	protected ApnsService service;
-
-	public ApnsService getApnsService() throws FileNotFoundException {
-		if (service == null) {
-			log.info("Apns Service null... building new");
-			buildService();
-		}
-		try {
-			log.info("Testing APNS connection");
-			service.testConnection();
-		} catch (Throwable e) {
-			log.info("ApnsService connection test failed... building again");
-		}
-		return service;
+	if (null == devices || devices.isEmpty()) {
+	    log.warn("could not send push notification because userId " +
+		    playerId + " has no devices registered to send apns to.");
+	    return;
 	}
 	
-	
-/*	@Scheduled(fixedRate=1000*60*60)
+	//for every user's authorized device notify it
+	for (AuthorizedDevice ad : devices) {
+	    String deviceId = ad.getDeviceId();
+	    if (null == deviceId || deviceId.isEmpty()) {
+		log.warn("could not send push notification because authorized " +
+			"device:" + ad + " has no device token");
+	    }
+	    PayloadBuilder pb = APNS.newPayload().actionKey(actionKey).badge(1);
+	    pb.alertBody(alertBody);
+	    if (!pb.isTooLong()) {
+		log.info("sending message. actionKey=" + actionKey +
+			"\t alertBody=" + alertBody);
+		service.push(deviceId, pb.build());
+	    } else {
+		log.error("PayloadBuilder isTooLong to send apns message." +
+			" alertBody=" + alertBody);
+	    }
+	}
+    }
+
+    protected ApnsService service;
+
+    public ApnsService getApnsService() throws FileNotFoundException {
+	if (service == null) {
+	    log.info("Apns Service null... building new");
+	    buildService();
+	}
+	try {
+	    log.info("Testing APNS connection");
+	    service.testConnection();
+	} catch (Throwable e) {
+	    log.info("ApnsService connection test failed... building again");
+	}
+	return service;
+    }
+
+
+    /*	@Scheduled(fixedRate=1000*60*60)
 	public void resetApnsService() {
 		log.info("Rebuilding APNSService");
 		service.stop();
@@ -200,39 +201,39 @@ public class APNSWriter {
 		}
 	}*/
 
-	protected void buildService() throws FileNotFoundException {
-		log.info("Building ApnsService");
-		File certFile = new File(apnsProperties.pathToCert);
-		log.info(certFile.getAbsolutePath());
-		try {
-			if (certFile.exists() && certFile.canRead()) {
-				ApnsServiceBuilder builder = APNS.newService()
-						.withCert(apnsProperties.pathToCert, apnsProperties.certPassword).asNonBlocking();
-				if (globals.getSandbox()) {
-					log.info("Building apns with sandbox=true");
-					builder.withSandboxDestination();
-				} else {
-					builder.withProductionDestination();
-				}
-				service = builder.build();
-				service.start();
-			} else {
-				log.error("Apns Certificate exists: {}  can read: {}", certFile.exists(), certFile.canRead());
-			}
-		} catch (Exception e) {
-			log.error("Error getting apns cert.. Invalid SSL Config Exception", e);
+    protected void buildService() throws FileNotFoundException {
+	log.info("Building ApnsService");
+	File certFile = new File(apnsProperties.pathToCert);
+	log.info(certFile.getAbsolutePath());
+	try {
+	    if (certFile.exists() && certFile.canRead()) {
+		ApnsServiceBuilder builder = APNS.newService()
+			.withCert(apnsProperties.pathToCert, apnsProperties.certPassword).asNonBlocking();
+		if (globals.getSandbox()) {
+		    log.info("Building apns with sandbox=true");
+		    builder.withSandboxDestination();
+		} else {
+		    builder.withProductionDestination();
 		}
+		service = builder.build();
+		service.start();
+	    } else {
+		log.error("Apns Certificate exists: {}  can read: {}", certFile.exists(), certFile.canRead());
+	    }
+	} catch (Exception e) {
+	    log.error("Error getting apns cert.. Invalid SSL Config Exception", e);
 	}
-/*
+    }
+    /*
 	private void handleGeneralNotification(ApnsService service, GeneralNotificationResponseEvent event,  User user, String token) {
 	  if(user.getNumBadges() < SOFT_MAX_NOTIFICATION_BADGES) {
 	    PayloadBuilder pb = APNS.newPayload().actionKey("View Now").badge(1);
-	    
+
 	    log.info("GeneralNotification for user: " + user.getId());
 	    GeneralNotificationResponseProto resProto = event.getGeneralNotificationResponseProto();
 	    String title = resProto.getTitle();
 	    String subtitle = resProto.getSubtitle();
-	    
+
 	    String alertBody = title + " " + subtitle;
 	    pb.alertBody(alertBody);
 	    if (!pb.isTooLong()) {
@@ -243,9 +244,9 @@ public class APNSWriter {
 	    }
 	  }
 	}*/
-	
 
-/*
+
+    /*
 	private void determineEvent(ResponseEvent event, User user, String deviceToken) {
 		try {
 			ApnsService service = getApnsService();
@@ -254,22 +255,22 @@ public class APNSWriter {
 			}else {
 				log.warn("Apns service is null");
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			log.error("File not found", e);
 		}
 	}*/
 
-	/**
-	 * sends to offline people
-	 * @param event
-	 * @param playerId - person to send event to
-	 */
-	/*	protected void sendApnsNotificationToPlayer(ResponseEvent event, int playerId) {
+    /**
+     * sends to offline people
+     * @param event
+     * @param playerId - person to send event to
+     */
+    /*	protected void sendApnsNotificationToPlayer(ResponseEvent event, int playerId) {
 		ConnectedPlayer player = playersByPlayerId.get(playerId);
 		if(player == null){ 
 			log.info("sending apns with type=" + event.getEventType()+ " to player with id " + playerId + ", event=" + event);
-			
+
 			User user = RetrieveUtils.userRetrieveUtils().getUserById(playerId);
 			String deviceToken = user.getDeviceToken();
 			if (user != null && deviceToken != null && deviceToken.length() > 0) {
@@ -279,9 +280,9 @@ public class APNSWriter {
 			}
 		}
 	}*/
-	
-	// copied from EventWriter.processClanResponseEvent
-	/*public void processClanResponseEvent(ResponseEvent event, int clanId) {
+
+    // copied from EventWriter.processClanResponseEvent
+    /*public void processClanResponseEvent(ResponseEvent event, int clanId) {
 		log.debug("apnsWriter received clan event=" + event);
 		ResponseEvent e = (ResponseEvent) event;
 		List<UserClan> playersInClan = userClanRetrieveUtil.getUserClanMembersInClan(clanId);
@@ -290,7 +291,7 @@ public class APNSWriter {
 			sendApnsNotificationToPlayer(e, uc.getUserId());
 		}
 	}
-	
+
 	 private void handlePrivateChatPostNotification(ApnsService service,
 	     PrivateChatPostResponseEvent event, User user, String token) {
 	    if (user.getNumBadges() < SOFT_MAX_NOTIFICATION_BADGES) {
@@ -320,7 +321,7 @@ public class APNSWriter {
 	      }
 	    }
 	  }
-	
+
 	private void handlePostOnPlayerWallNotification(ApnsService service, PostOnPlayerWallResponseEvent event,
 			User user, String token) {
 		Date lastWallPostNotificationTime = user.getLastWallPostNotificationTime();
@@ -451,15 +452,15 @@ public class APNSWriter {
 			}
 		}
 	}*/
-	
-  public AuthorizedDeviceService getAuthorizedDeviceService() {
-    return authorizedDeviceService;
-  }
 
-  public void setAuthorizedDeviceService(
-      AuthorizedDeviceService authorizedDeviceService) {
-    this.authorizedDeviceService = authorizedDeviceService;
-  }
+    public AuthorizedDeviceService getAuthorizedDeviceService() {
+	return authorizedDeviceService;
+    }
+
+    public void setAuthorizedDeviceService(
+	    AuthorizedDeviceService authorizedDeviceService) {
+	this.authorizedDeviceService = authorizedDeviceService;
+    }
 
 
 }// APNSWriter
