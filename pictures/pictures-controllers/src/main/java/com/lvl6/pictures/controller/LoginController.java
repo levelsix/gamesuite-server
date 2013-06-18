@@ -158,12 +158,12 @@ public class LoginController extends EventController {
 		}
 		if (LoginType.FACEBOOK == lt) {
 		    // CONSTRUCT THE BASIC USER PROTOS FOR THIS USER'S FACEBOOK FRIENDS
-		    setFacebookFriends(responseBuilder, facebookFriendIds);
 		    responseBuilder.setStatus(LoginResponseStatus.SUCCESS_FACEBOOK_ID);
 		}
 		if (LoginType.NO_CREDENTIALS == lt) {
 		    responseBuilder.setStatus(LoginResponseStatus.SUCCESS_NO_CREDENTIALS);
 		}
+		setFacebookFriends(responseBuilder, facebookFriendIds);
 	    }
 
 
@@ -439,6 +439,9 @@ public class LoginController extends EventController {
     }
 
     private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
+	if (null == facebookFriendIds || facebookFriendIds.isEmpty()) {
+	    return;
+	}
 	List<BasicUserProto> bupList = new ArrayList<BasicUserProto>();
 	log.info("RETRIEVING FACEBOOK FRIEND IDS=" + facebookFriendIds);
 	
