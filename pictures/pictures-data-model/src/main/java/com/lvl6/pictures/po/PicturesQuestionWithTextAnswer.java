@@ -14,8 +14,9 @@ import javax.validation.constraints.Size;
 @Table( name = "pictures_question_with_text_answer" )
 public class PicturesQuestionWithTextAnswer extends QuestionBase {
 	
-	
-	@ElementCollection
+  private static final long serialVersionUID = 4088077101766047456L;
+
+  @ElementCollection
 	@CollectionTable(name="pictures_question_with_text_answer_images")
 	@Size(min=1, max=4)
 	protected Set<String> images; 

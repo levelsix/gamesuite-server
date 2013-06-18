@@ -1,11 +1,14 @@
 package com.lvl6.pictures.po;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
@@ -13,9 +16,11 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 @Entity
 @Table( name = "multiple_choice_answer" )
-public class MultipleChoiceAnswer extends BasePersistentObject {
-	
-	protected boolean isCorrect;
+public class MultipleChoiceAnswer extends BasePersistentObject implements Serializable {
+  
+  private static final long serialVersionUID = -671451609994013459L;
+
+  protected boolean isCorrect;
 	
 	@NotNull
 	protected String answer;
@@ -63,6 +68,11 @@ public class MultipleChoiceAnswer extends BasePersistentObject {
 	public void setAnswerType(AnswerType answerType) {
 	  this.answerType = answerType;
 	}
+	
+	@Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 
 
 

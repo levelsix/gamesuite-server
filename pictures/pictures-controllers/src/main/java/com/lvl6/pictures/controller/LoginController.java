@@ -120,8 +120,10 @@ public class LoginController extends EventController {
             isValidRequest(responseBuilder, sender, lt, now, userIdList, userList);
       }
 
+      log.error("\t\t pre write changes to db");
       if (validRequest) {
         u = getUser(userIdList, userList);
+        log.error("\t\t writing things to the database");
         successful = writeChangesToDb(responseBuilder, sender, lt,
             initializeAccount, now, u);
       }
@@ -135,17 +137,20 @@ public class LoginController extends EventController {
 
         String userId = responseBuilder.getRecipient().getUserId(); 
         // GET ALL THE COMPLETED GAMES THAT FINISHED SOME TIME AGO, OR MIN DEFAULT NUMBER OF GAMES
+        log.error("\t\t setting completed games");
         setCompletedGames(responseBuilder, userId);
 
         // GET ALL THE GAMES THAT ARE THE USER'S TURN
         // GET ALL THE GAMES THAT ARE THE OPPONENT'S TURN
+        log.error("\t\t setting ongoing games");
         setOngoingGames(responseBuilder, userId, allPictureNames);
 
         // CONSTRUCT THE NEW TRIVIA QUESTIONS
+        log.error("\t\t setting new questions");
         setNewQuestions(responseBuilder, userId, allPictureNames);
 
         //TODO: CONSTRUCT THE LOGIN CONSTANTS
-
+        log.error("\t\t setting all picture names");
         responseBuilder.addAllPictureNames(allPictureNames);
 
         if (LoginType.LOGIN_TOKEN == lt) {
@@ -538,17 +543,21 @@ public class LoginController extends EventController {
     
     int amount =
         PicturesPoConstants.QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET;
+    log.error("\t\t generating new questions");
     List<QuestionBase> questions =
         getQuestionBaseService().getRandomQuestions(amount, allPictureNames);
-    if (null != questions) {
+    
+    if (null != questions && !questions.isEmpty()) {
       for(QuestionBase qb : questions) {
+        log.error("\t\t question=" + qb);
         QuestionProto proto =
             getNoneventProtoUtils().createQuestionProto(qb);
         newQuestions.add(proto);
       }
+      //set responseBuilder
+      log.error("\t\t adding new questions");
+      responseBuilder.addAllNewQuestions(newQuestions);
     }
-    //set responseBuilder
-    responseBuilder.addAllNewQuestions(newQuestions);
   }
   
   public UserSignupService getUserSignupService() {

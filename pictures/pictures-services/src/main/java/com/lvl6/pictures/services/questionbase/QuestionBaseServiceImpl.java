@@ -31,25 +31,32 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
   public List<QuestionBase> getRandomQuestions(int amount,
       Set<String> allPictureNames) {
     List<QuestionBase> qbList = new ArrayList<QuestionBase>();
-    
+    log.error("in getRandomQuestions");
     if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
       log.error("db error: There are no questions to retrieve from the database.");
       return null;
     }
     
+    //max number of questions to get
     int upperBound = getQuestionIdsToQuestions().size();
-    int limit = amount;
+    log.error("numQuestions=" + upperBound);
+    //number of random questions to get equals
+    //the Min of number existing questions and the limit passed in 
+    int n = Math.min(amount, upperBound);
+    log.error("n=" + n);
     Collection<Integer> randIndexNums =
-        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, limit);
+        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, n);
+    QuestionBase[] questions = new QuestionBase[upperBound]; 
+    questions = getQuestionIdsToQuestions().values().toArray(questions);
     
-    QuestionBase[] questions = (QuestionBase[]) getQuestionIdsToQuestions().values().toArray();
-    
+    log.error("\t\t randIndexNums=" + randIndexNums);
     for(int index : randIndexNums) {
       QuestionBase qb = questions[index];
       
       Set<String> picNames = qb.getPictureNames();
       allPictureNames.addAll(picNames);
       
+      qbList.add(qb);
     }
     
     return qbList;

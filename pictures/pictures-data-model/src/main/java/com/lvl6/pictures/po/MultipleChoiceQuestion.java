@@ -11,12 +11,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 
 @Entity
 @Table( name = "multiple_choice_question" )
 public class MultipleChoiceQuestion extends QuestionBase {
 	
-	@NotNull
+  private static final long serialVersionUID = 45782438787935651L;
+
+  @NotNull
 	protected String question;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
@@ -63,5 +67,9 @@ public class MultipleChoiceQuestion extends QuestionBase {
 
 
 	
+	@Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 	
 }
