@@ -32,5 +32,6 @@
 		<module>pictures-controllers</module>
 		<module>pictures-webapp</module>
 		<module>pictures-services</module>
+		<module>pictures-admin-application</module>
 	</modules>
 </project>
