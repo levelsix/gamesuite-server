@@ -56,6 +56,7 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
       Set<String> picNames = qb.getPictureNames();
       allPictureNames.addAll(picNames);
       
+      qbList.add(qb);
     }
     
     return qbList;
