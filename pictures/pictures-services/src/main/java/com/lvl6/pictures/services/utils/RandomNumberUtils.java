@@ -13,11 +13,11 @@ public class RandomNumberUtils {
   protected Random rand = new Random();
 
   public Collection<Integer> generateNRandomIntsBelowInt(
-      int upperBound, int amount) {
+      int upperBound, int n) {
     Set<Integer> randomInts = new HashSet<Integer>();
     
-    //loop until we the number of ints = amount
-    while (amount > randomInts.size()) {
+    //loop until we have number of ints = amount
+    while (n > randomInts.size()) {
       int randInt = rand.nextInt(upperBound);
       randomInts.add(randInt);
     }

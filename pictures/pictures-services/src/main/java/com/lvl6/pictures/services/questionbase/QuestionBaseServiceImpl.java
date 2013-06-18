@@ -37,12 +37,15 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
       return null;
     }
     
-    
+    //max number of questions to get
     int upperBound = getQuestionIdsToQuestions().size();
     log.error("numQuestions=" + upperBound);
-    int limit = amount;
+    //number of random questions to get equals
+    //the Min of number existing questions and the limit passed in 
+    int n = Math.min(amount, upperBound);
+    log.error("n=" + n);
     Collection<Integer> randIndexNums =
-        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, limit);
+        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, n);
     
     QuestionBase[] questions = (QuestionBase[]) getQuestionIdsToQuestions().values().toArray();
     
