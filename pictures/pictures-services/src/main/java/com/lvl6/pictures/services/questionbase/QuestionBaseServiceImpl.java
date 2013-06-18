@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -29,34 +28,31 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
   protected RandomNumberUtils randNumUtils;
   
   @Override
-  public List<QuestionBase> getRandomQuestions(int amount,
-      Set<String> allPictureNames) {
+  public List<QuestionBase> getRandomQuestions(int amount,   Set<String> allPictureNames) {
     List<QuestionBase> qbList = new ArrayList<QuestionBase>();
-    log.error("in getRandomQuestions");
+    log.info("in getRandomQuestions");
     if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
       log.error("db error: There are no questions to retrieve from the database.");
       return null;
     }
     
     for (QuestionBase qb : getQuestionIdsToQuestions().values()) {
-      log.error("id=" + qb.getId());
-      log.error("question=" + qb);
+      log.info("question: {}", qb);
     }
-    log.error("\t\t all questions= " + getQuestionIdsToQuestions());
+    log.info("\t\t all questions= {}", getQuestionIdsToQuestions());
     
     //max number of questions to get
     int upperBound = getQuestionIdsToQuestions().size();
-    log.error("numQuestions=" + upperBound);
+    log.info("numQuestions={}", upperBound);
     //number of random questions to get equals
     //the Min of number existing questions and the limit passed in 
     int n = Math.min(amount, upperBound);
-    log.error("n=" + n);
-    Collection<Integer> randIndexNums =
-        getRandNumUtils().generateNRandomIntsBelowInt(upperBound, n);
+    log.info("n={}", n);
+    Collection<Integer> randIndexNums =  getRandNumUtils().generateNRandomIntsBelowInt(upperBound, n);
     QuestionBase[] questions = new QuestionBase[upperBound]; 
     questions = getQuestionIdsToQuestions().values().toArray(questions);
     
-    log.error("\t\t randIndexNums=" + randIndexNums);
+    log.info("\t\t randIndexNums={}", randIndexNums);
     for(int index : randIndexNums) {
       QuestionBase qb = questions[index];
       
