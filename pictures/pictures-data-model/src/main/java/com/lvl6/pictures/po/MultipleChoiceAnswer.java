@@ -8,7 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
@@ -69,9 +68,16 @@ public class MultipleChoiceAnswer extends BasePersistentObject implements Serial
 	  this.answerType = answerType;
 	}
 	
+
+
 	@Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this);
-  }
+	public String toString() {
+		return "MultipleChoiceAnswer [isCorrect=" + isCorrect + ", answer=" + answer + ", answerType="
+				+ answerType + ", id=" + id + ", version=" + version + "]";
+	}
+
+
+	
+	
 
 }

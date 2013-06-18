@@ -22,7 +22,7 @@ abstract public class QuestionBase extends BasePersistentObject implements Seria
 	
   private static final long serialVersionUID = -4681717482297820858L;
 
-  @Temporal(TemporalType.TIMESTAMP)
+  	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
 	@NotNull
 	@Index(name="question_created_date_index")
@@ -51,4 +51,15 @@ abstract public class QuestionBase extends BasePersistentObject implements Seria
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+
+	@Override
+	public String toString() {
+		return "QuestionBase [createdDate=" + createdDate + ", createdBy=" + createdBy + ", id=" + id
+				+ ", version=" + version + "]";
+	}
+
+
+
+	
+	
 }

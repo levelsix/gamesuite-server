@@ -15,10 +15,10 @@ public class BasePersistentObject {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "id", unique = true)
-	private String id;
+	protected String id;
 
 	@Version
-	private Integer version;
+	protected Integer version;
 	
 
 	public String getId() {
@@ -36,4 +36,11 @@ public class BasePersistentObject {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
+
+	@Override
+	public String toString() {
+		return "BasePersistentObject [id=" + id + ", version=" + version + "]";
+	}
+	
+	
 }
