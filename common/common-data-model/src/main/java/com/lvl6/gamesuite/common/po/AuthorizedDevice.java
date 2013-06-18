@@ -18,6 +18,12 @@ import org.hibernate.annotations.Index;
 @Table( name = "authorized_devices" )
 public class AuthorizedDevice extends BasePersistentObject {
 
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 5881408831551873312L;
+
+
 	@NotNull
 	@Index(name = "authorized_device_token_expires_index")
 	protected String userId;
