@@ -33,7 +33,7 @@ public class InitializationUtils implements InitializingBean {
     
     for (QuestionBase qb : allQuestions) {
       String id = qb.getId();
-      log.info("Adding question to questionsByQuestionId -- id:{}, type:{}", qb.getId(), qb.getClass().getCanonicalName());
+      //log.info("Adding question to questionsByQuestionId -- id:{}, type:{}", qb.getId(), qb.getClass().getCanonicalName());
       questionIdsToQuestions.put(id, qb);
     }
   }
