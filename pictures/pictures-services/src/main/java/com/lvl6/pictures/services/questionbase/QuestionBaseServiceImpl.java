@@ -37,6 +37,11 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
       return null;
     }
     
+    for (QuestionBase qb : getQuestionIdsToQuestions().values()) {
+      log.error("id=" + qb.getId());
+      log.error("question=" + qb);
+    }
+    
     //max number of questions to get
     int upperBound = getQuestionIdsToQuestions().size();
     log.error("numQuestions=" + upperBound);
