@@ -39,7 +39,7 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
 
 	//max number of questions to get
 	int upperBound = getQuestionIdsToQuestions().size();
-	
+
 	//number of random questions to get equals
 	//the Min of number existing questions and the limit passed in 
 	int n = Math.min(amount, upperBound);
