@@ -1,5 +1,7 @@
 package com.lvl6.gamesuite.common.po;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +11,9 @@ import javax.persistence.Version;
 import org.hibernate.annotations.GenericGenerator;
 
 @MappedSuperclass
-public class BasePersistentObject {
+public class BasePersistentObject implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(generator = "uuid")
