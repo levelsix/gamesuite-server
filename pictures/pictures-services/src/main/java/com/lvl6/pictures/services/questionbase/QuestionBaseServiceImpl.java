@@ -31,13 +31,15 @@ public class QuestionBaseServiceImpl implements QuestionBaseService {
   public List<QuestionBase> getRandomQuestions(int amount,
       Set<String> allPictureNames) {
     List<QuestionBase> qbList = new ArrayList<QuestionBase>();
-    
+    log.error("in getRandomQuestions");
     if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
       log.error("db error: There are no questions to retrieve from the database.");
       return null;
     }
     
+    
     int upperBound = getQuestionIdsToQuestions().size();
+    log.error("numQuestions=" + upperBound);
     int limit = amount;
     Collection<Integer> randIndexNums =
         getRandNumUtils().generateNRandomIntsBelowInt(upperBound, limit);

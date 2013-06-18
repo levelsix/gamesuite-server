@@ -543,6 +543,7 @@ public class LoginController extends EventController {
     
     int amount =
         PicturesPoConstants.QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET;
+    log.error("\t\t generating new questions");
     List<QuestionBase> questions =
         getQuestionBaseService().getRandomQuestions(amount, allPictureNames);
     if (null != questions) {
@@ -551,9 +552,10 @@ public class LoginController extends EventController {
             getNoneventProtoUtils().createQuestionProto(qb);
         newQuestions.add(proto);
       }
+      //set responseBuilder
+      log.error("\t\t adding new questions");
+      responseBuilder.addAllNewQuestions(newQuestions);
     }
-    //set responseBuilder
-    responseBuilder.addAllNewQuestions(newQuestions);
   }
   
   public UserSignupService getUserSignupService() {
