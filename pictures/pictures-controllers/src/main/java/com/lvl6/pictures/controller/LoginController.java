@@ -85,8 +85,6 @@ public class LoginController extends EventController {
     @Override
     protected void processRequestEvent(RequestEvent event) throws Exception {
 	LoginRequestProto reqProto = ((LoginRequestEvent) event).getLoginRequestProto();
-	log.info("\t\t reqProto=" + reqProto);
-	
 	BasicUserProto sender = reqProto.getSender(); //sender might not have userId
 	LoginType lt = reqProto.getLoginType();
 	List<String> facebookFriendIds = reqProto.getFacebookFriendIdsList();
