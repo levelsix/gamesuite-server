@@ -207,7 +207,8 @@ public class LoginController extends EventController {
 		    !badp.hasExpirationDate() || expiry.isBefore(now.getMillis()) ) {
 		log.error("user error: login-token login is invalid." +
 			  "\t badpUserId=" + badpUserId + "\t userId=" + userId +
-			  "\t loginToken=" + loginToken + "\t expiry=" + expiry);
+			  "\t loginToken=" + loginToken + "\t expiry=" + expiry.toDate() +
+			  "\t now=" + now.toDate());
 		log.info("badp=" + badp);
 		responseBuilder.setStatus(LoginResponseStatus.INVALID_LOGIN_TOKEN);
 		return false;
