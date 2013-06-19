@@ -206,7 +206,7 @@ public class LoginController extends EventController {
 		log.error("user error: login-token login is invalid." +
 			  "\t badpUserId=" + badpUserId + "\t userId=" + userId +
 			  "\t loginToken=" + loginToken + "\t expiry=" + expiry.toDate() +
-			  "\t now=" + now.toDate());
+			  "\t now=" + now.toDate() + "\t expiryMillis" + expiry.toDate().getTime());
 		log.info("badp=" + badp);
 		responseBuilder.setStatus(LoginResponseStatus.INVALID_LOGIN_TOKEN);
 		return false;
