@@ -1,6 +1,7 @@
 package com.lvl6.gamesuite.common.services.authorizeddevice;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -28,15 +29,18 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
   @Override
   @Transactional
   public AuthorizedDevice registerNewAuthorizedDevice(String userId, String udid,
-      String deviceId) {
+      String deviceId, Date now) {
     AuthorizedDevice ad = null;
     if (isValidUdid(udid)) {
       ad = new AuthorizedDevice();
       ad.setUserId(userId);
       ad.setUdid(udid);
       ad.setDeviceId(deviceId);
+      if (null != now) {
+	  ad.setCreated(now);
+      }
       
-      DateTime expiry = new DateTime();
+      DateTime expiry = new DateTime(ad.getCreated().getTime());
       log.info("\t\t\t expiry=" + expiry.toDate());
       
       expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
@@ -52,14 +56,15 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
     return ad;
   }
 
-  public void updateExpirationForAuthorizedDevice(AuthorizedDevice ad) {
+  public void updateExpirationForAuthorizedDevice(AuthorizedDevice ad,
+	  Date fromNow) {
     if (null == ad) {
       return;
     }
     
     //now + default life expectancy of a token
-    DateTime expiry = new DateTime();
-    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
+    DateTime expiry = new DateTime(fromNow.getTime());
+    expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
     ad.setExpires(expiry.toDate());
     authorizedDeviceDao.save(ad);
   }

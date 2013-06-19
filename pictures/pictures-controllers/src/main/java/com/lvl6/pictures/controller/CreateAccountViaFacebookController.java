@@ -1,5 +1,6 @@
 package com.lvl6.pictures.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -160,7 +161,8 @@ import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
       //need to record the device for the user
 
       userId = newUser.getId();
-      ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId);
+      Date now = new Date();
+      ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId, now);
      
       BasicUserProto bp = noneventProtoUtils.createBasicUserProto(newUser, ad, null);
       responseBuilder.setRecipient(bp);
