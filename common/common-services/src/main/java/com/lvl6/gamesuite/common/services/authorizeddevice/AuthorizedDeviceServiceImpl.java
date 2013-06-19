@@ -36,9 +36,12 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
       ad.setUserId(userId);
       ad.setUdid(udid);
       ad.setDeviceId(deviceId);
+      log.info("\t\t\t created=" + ad.getCreated());
+      
       if (null != now) {
 	  ad.setCreated(now);
       }
+      log.info("\t\t\t created=" + ad.getCreated());
       
       DateTime expiry = new DateTime(ad.getCreated().getTime());
       log.info("\t\t\t expiry=" + expiry.toDate());
