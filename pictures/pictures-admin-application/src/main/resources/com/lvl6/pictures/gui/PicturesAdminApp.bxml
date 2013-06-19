@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window title="Lvl6 Pictures Admin" xmlns:bxml="http://pivot.apache.org/bxml" xmlns="org.apache.pivot.wtk" maximized="true">
+	<Label text="Hello BXML!"	styles="{font:'Arial bold 24', color:'#ff0000',  horizontalAlignment:'center', verticalAlignment:'center'}" />
+</Window>
