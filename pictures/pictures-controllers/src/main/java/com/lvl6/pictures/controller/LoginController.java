@@ -112,11 +112,8 @@ public class LoginController extends EventController {
 	    boolean successful = false;
 
 	    if (validRequestArgs) {
-		//if valid the completeUserProto (cup) within responseBuilder is set
-		//but only the cup.userId is set
-		validRequest =
-			isValidRequest(responseBuilder, sender, lt, now,
-				userIdList, userList);
+		validRequest = isValidRequest(responseBuilder,
+			sender, lt, now, userIdList, userList);
 	    }
 
 	    if (validRequest) {
@@ -185,6 +182,7 @@ public class LoginController extends EventController {
 	}
     }
 
+    //only status in responseBuilder is set if at all
     private boolean isValidRequestArguments(Builder responseBuilder, 
 	    BasicUserProto sender, LoginType lt, DateTime now) {
 	if (null == lt) {
@@ -253,8 +251,7 @@ public class LoginController extends EventController {
 	return false;
     }
 
-    //if valid the completeUserProto (cup) within responseBuilder is set
-    //but only the cup.userId is set
+    //only status in responseBuilder is set if at all
     private boolean isValidRequest(Builder responseBuilder, BasicUserProto sender,
 	    LoginType lt, DateTime now, List<String> userIdList, List<User> userList) {
 	if (LoginType.LOGIN_TOKEN == lt) {
@@ -408,6 +405,8 @@ public class LoginController extends EventController {
 		getNoneventProtoUtils().createCompleteUserProto(u, ad, monies);
 	//set the recipient
 	responseBuilder.setRecipient(cupb);
+	
+	log.info("\t\t completeUserProto=" + cupb);
 
 	return true;
     }
