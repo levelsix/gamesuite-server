@@ -85,6 +85,8 @@ public class LoginController extends EventController {
     @Override
     protected void processRequestEvent(RequestEvent event) throws Exception {
 	LoginRequestProto reqProto = ((LoginRequestEvent) event).getLoginRequestProto();
+	log.info("\t\t reqProto=" + reqProto);
+	
 	BasicUserProto sender = reqProto.getSender(); //sender might not have userId
 	LoginType lt = reqProto.getLoginType();
 	List<String> facebookFriendIds = reqProto.getFacebookFriendIdsList();
@@ -204,7 +206,9 @@ public class LoginController extends EventController {
 		    null == loginToken || loginToken.isEmpty() || 
 		    !badp.hasExpirationDate() || expiry.isBefore(now.getMillis()) ) {
 		log.error("user error: login-token login is invalid." +
-			  " basicAuthorizedDeviceProto=" + badp);
+			  "\t badpUserId=" + badpUserId + "\t userId=" + userId +
+			  "\t loginToken=" + loginToken + "\t expiry=" + expiry);
+		log.info("badp=" + badp);
 		responseBuilder.setStatus(LoginResponseStatus.INVALID_LOGIN_TOKEN);
 		return false;
 	    } else {
