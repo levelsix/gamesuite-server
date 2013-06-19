@@ -165,6 +165,8 @@ import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
       ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId, now);
      
       BasicUserProto bp = noneventProtoUtils.createBasicUserProto(newUser, ad, null);
+      
+      log.info("\t\t basicUserProto=" + bp); 
       responseBuilder.setRecipient(bp);
       
       success = true;
