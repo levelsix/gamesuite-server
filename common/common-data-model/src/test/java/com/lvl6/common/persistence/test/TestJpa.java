@@ -97,28 +97,35 @@ public class TestJpa {
     assertNotNull("No create date", ad.getCreated());
     assertNotNull("No login token", ad.getToken());
     
-    long thirtyDayMillis = days * 24 * 60 * 60 * 1000;
+    long thirtyDayMillis = new Long(days) * 24L * 60L * 60L * 1000L;
     
     Date expiration = ad.getExpires();
     Date created = ad.getCreated();
     
     //GET DATE AUTHORIZED TOKEN CREATED ADD 30 DAYS AND SEE IF IT MATCHES
     //EXPIRATION DATE
-    //DOES NOT WORK
     DateTime begin = new DateTime(created.getTime());
     DateTime expectedEnd = new DateTime(begin.toDate().getTime() + thirtyDayMillis);
     log.info("expectedEnd=" + expectedEnd + "\t millis=" + expectedEnd.toDate().getTime());
     log.info("thirtyDayMillis=" + thirtyDayMillis);
-
-    //WORKS
-    DateTime expectedEndTwo = begin.plusDays(days);
-    log.info("expectedEndTwo=" + expectedEndTwo + "\t millis=" + expectedEndTwo.toDate().getTime());
     
-    Date expectedEndDate = expectedEndTwo.toDate();
+    Date expectedEndDate = expectedEnd.toDate();
     assertTrue("saving expiration time is off. Expected:" + expectedEndDate +
 	    " millis=" + expectedEndDate.getTime() + "\t Actual:" +
 	    expiration + " millis=" + expiration.getTime(),
 	    expectedEndDate.getTime() == expiration.getTime());
+    
+    
+    //GET DATE AUTHORIZED TOKEN CREATED ADD 30 DAYS (via DateTime function)
+    //AND SEE IF IT MATCHES EXPIRATION DATE 
+    DateTime expectedEndTwo = begin.plusDays(days);
+    log.info("expectedEndTwo=" + expectedEndTwo + "\t millis=" + expectedEndTwo.toDate().getTime());
+    
+    Date expectedEndDateTwo = expectedEndTwo.toDate();
+    assertTrue("saving expiration time is off. Expected:" + expectedEndDateTwo +
+	    " millis=" + expectedEndDateTwo.getTime() + "\t Actual:" +
+	    expiration + " millis=" + expiration.getTime(),
+	    expectedEndDateTwo.getTime() == expiration.getTime());
     
   }
 
