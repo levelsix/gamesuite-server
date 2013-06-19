@@ -122,7 +122,7 @@ public class TestPicturesJpa {
 
 		List<PicturesQuestionWithTextAnswer> pqwtaList = getPictureDao().findAll();
 		assertTrue("Expected: not null. Actual: " + pqwtaList.size(), null != pqwtaList
-				&& (pqwtaList.size() - 1) >= 0);
+				&& pqwtaList.size() >= 1);
 	}
 
 	@Transactional
@@ -139,7 +139,7 @@ public class TestPicturesJpa {
 		List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
 
 		assertTrue("multiple choice questions. Expected: " + mcqList.size() + ". Actually: " + inDb.size(),
-				inDb.size() - 2 > 0);
+				inDb.size() >= 2);
 
 		MultipleChoiceQuestion mcq1 = inDb.get(0);
 		MultipleChoiceQuestion mcq2 = inDb.get(1);
@@ -189,7 +189,7 @@ public class TestPicturesJpa {
 
 		List<QuestionAnswered> inDb = getQaDao().findAll();
 
-		assertTrue("Expected: qaList. Actually: " + inDb, (inDb.size() - 2) >= 0);
+		assertTrue("Expected: qaList. Actually: " + inDb, inDb.size() >= 2);
 		assertTrue("Expected: not null. Actually: " + qa, null != qa.getId() && !(qa.getId().isEmpty()));
 		assertTrue("Expected: not null. Actually: " + mcq, null != mcq.getId() && !(mcq.getId().isEmpty()));
 
