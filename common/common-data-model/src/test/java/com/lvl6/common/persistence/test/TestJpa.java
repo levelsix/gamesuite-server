@@ -84,15 +84,42 @@ public class TestJpa {
     ad.setUserId(userId);
     ad.setUdid(udid);
     ad.setDeviceId(deviceId);
-    DateTime expiry = new DateTime();
-    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
-    ad.setExpires(expiry.toDate());
+    DateTime expiry = new DateTime(ad.getCreated().getTime());
+    
+    int days = PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS;
+    DateTime expiry2 = expiry.plusDays(days);
+    
+    ad.setExpires(expiry2.toDate());
     ad = getAuthorizedDeviceDao().save(ad);
     
     assertNotNull("AuthorizedDevice was just set, though...", ad);
     assertNotNull("No expiry date", ad.getExpires());
     assertNotNull("No create date", ad.getCreated());
     assertNotNull("No login token", ad.getToken());
+    
+    long thirtyDayMillis = days * 24 * 60 * 60 * 1000;
+    
+    Date expiration = ad.getExpires();
+    Date created = ad.getCreated();
+    
+    //GET DATE AUTHORIZED TOKEN CREATED ADD 30 DAYS AND SEE IF IT MATCHES
+    //EXPIRATION DATE
+    //DOES NOT WORK
+    DateTime begin = new DateTime(created.getTime());
+    DateTime expectedEnd = new DateTime(begin.toDate().getTime() + thirtyDayMillis);
+    log.info("expectedEnd=" + expectedEnd + "\t millis=" + expectedEnd.toDate().getTime());
+    log.info("thirtyDayMillis=" + thirtyDayMillis);
+
+    //WORKS
+    DateTime expectedEndTwo = begin.plusDays(days);
+    log.info("expectedEndTwo=" + expectedEndTwo + "\t millis=" + expectedEndTwo.toDate().getTime());
+    
+    Date expectedEndDate = expectedEndTwo.toDate();
+    assertTrue("saving expiration time is off. Expected:" + expectedEndDate +
+	    " millis=" + expectedEndDate.getTime() + "\t Actual:" +
+	    expiration + " millis=" + expiration.getTime(),
+	    expectedEndDate.getTime() == expiration.getTime());
+    
   }
 
 	@Transactional
