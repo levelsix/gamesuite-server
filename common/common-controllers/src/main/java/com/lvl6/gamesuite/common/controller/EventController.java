@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.lvl6.gamesuite.common.controller.utils.APNSWriter;
 import com.lvl6.gamesuite.common.controller.utils.EventWriter;
 import com.lvl6.gamesuite.common.events.GameEvent;
 import com.lvl6.gamesuite.common.events.RequestEvent;
@@ -20,6 +21,18 @@ public abstract class EventController {
 	public void setEventWriter(EventWriter eventWriter) {
 		this.eventWriter = eventWriter;
 	}
+	
+	@Autowired
+	private APNSWriter apnsWriter;
+
+	public APNSWriter getApnsWriter() {
+	    return apnsWriter;
+	}
+
+	public void setApnsWriter(APNSWriter apnsWriter) {
+	    this.apnsWriter = apnsWriter;
+	}
+	
 
 	private static Logger log = LoggerFactory.getLogger(new Object() {
 	}.getClass().getEnclosingClass());
