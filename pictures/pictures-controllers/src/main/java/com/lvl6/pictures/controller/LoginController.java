@@ -438,6 +438,7 @@ public class LoginController extends EventController {
     }
 
     private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
+	log.info("\t\t facebookFriendIds=" + facebookFriendIds);
 	if (null == facebookFriendIds || facebookFriendIds.isEmpty()) {
 	    return;
 	}
@@ -451,6 +452,7 @@ public class LoginController extends EventController {
 	    bupList.add(bup);
 	}
 
+	log.info("\t\t facebookFriends=" + uList);
 	responseBuilder.addAllFacebookFriendsWithAccounts(bupList);
     }
 
