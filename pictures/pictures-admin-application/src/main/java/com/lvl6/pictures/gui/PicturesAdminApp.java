@@ -1,22 +1,25 @@
 package com.lvl6.pictures.gui;
 
+import java.net.URL;
+
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.BXMLSerializer;
+import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
+import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
+import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.Window;
-import java.awt.Color;
-import java.awt.Font;
 
-import org.apache.pivot.wtk.HorizontalAlignment;
-import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.VerticalAlignment;
-
-public class PicturesAdminApp implements Application {
+public class PicturesAdminApp implements Application, Bindable {
 
 	
 	protected Window window = null;
+	
+	@BXML 
+	ListView questionsList;
 	
 	
 	public void resume() throws Exception {
@@ -60,6 +63,12 @@ public class PicturesAdminApp implements Application {
 	
 	public static void main(String[] args) {
 	    DesktopApplicationContext.main(PicturesAdminApp.class, args);
+	}
+
+	@Override
+	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
