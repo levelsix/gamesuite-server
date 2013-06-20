@@ -84,6 +84,12 @@ public class LoginServiceImpl implements LoginService {
     return userDao.findByIdIn(userIds);
   }
   
+  @Override
+  public void updateUserLastLogout(User inDb, DateTime now) {
+      inDb.setLastLogout(now.toDate());
+      userDao.save(inDb);
+  }
+  
   
   
   @Override
