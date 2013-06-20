@@ -16,6 +16,7 @@ public final class PicturesEventProtocolProto {
     C_START_ROUND_EVENT(3, 1003),
     C_SPEND_RUBIES_EVENT(4, 1004),
     C_SEARCH_FOR_USER_EVENT(5, 1005),
+    C_SAVE_ROUND_PGROGRESS_EVENT(6, 1006),
     ;
     
     public static final int C_REFILL_TOKENS_BY_WAITING_EVENT_VALUE = 1000;
@@ -24,6 +25,7 @@ public final class PicturesEventProtocolProto {
     public static final int C_START_ROUND_EVENT_VALUE = 1003;
     public static final int C_SPEND_RUBIES_EVENT_VALUE = 1004;
     public static final int C_SEARCH_FOR_USER_EVENT_VALUE = 1005;
+    public static final int C_SAVE_ROUND_PGROGRESS_EVENT_VALUE = 1006;
     
     
     public final int getNumber() { return value; }
@@ -36,6 +38,7 @@ public final class PicturesEventProtocolProto {
         case 1003: return C_START_ROUND_EVENT;
         case 1004: return C_SPEND_RUBIES_EVENT;
         case 1005: return C_SEARCH_FOR_USER_EVENT;
+        case 1006: return C_SAVE_ROUND_PGROGRESS_EVENT;
         default: return null;
       }
     }
@@ -66,7 +69,7 @@ public final class PicturesEventProtocolProto {
     }
     
     private static final PicturesEventProtocolRequest[] VALUES = {
-      C_REFILL_TOKENS_BY_WAITING_EVENT, C_COMPLETED_ROUND_EVENT, C_RETRIEVE_NEW_QUESTIONS_EVENT, C_START_ROUND_EVENT, C_SPEND_RUBIES_EVENT, C_SEARCH_FOR_USER_EVENT, 
+      C_REFILL_TOKENS_BY_WAITING_EVENT, C_COMPLETED_ROUND_EVENT, C_RETRIEVE_NEW_QUESTIONS_EVENT, C_START_ROUND_EVENT, C_SPEND_RUBIES_EVENT, C_SEARCH_FOR_USER_EVENT, C_SAVE_ROUND_PGROGRESS_EVENT, 
     };
     
     public static PicturesEventProtocolRequest valueOf(
@@ -97,6 +100,7 @@ public final class PicturesEventProtocolProto {
     S_START_ROUND_EVENT(3, 1003),
     S_SPEND_RUBIES_EVENT(4, 1004),
     S_SEARCH_FOR_USER_EVENT(5, 1005),
+    S_SAVE_ROUND_PGROGRESS_EVENT(6, 1006),
     ;
     
     public static final int S_REFILL_TOKENS_BY_WAITING_EVENT_VALUE = 1000;
@@ -105,6 +109,7 @@ public final class PicturesEventProtocolProto {
     public static final int S_START_ROUND_EVENT_VALUE = 1003;
     public static final int S_SPEND_RUBIES_EVENT_VALUE = 1004;
     public static final int S_SEARCH_FOR_USER_EVENT_VALUE = 1005;
+    public static final int S_SAVE_ROUND_PGROGRESS_EVENT_VALUE = 1006;
     
     
     public final int getNumber() { return value; }
@@ -117,6 +122,7 @@ public final class PicturesEventProtocolProto {
         case 1003: return S_START_ROUND_EVENT;
         case 1004: return S_SPEND_RUBIES_EVENT;
         case 1005: return S_SEARCH_FOR_USER_EVENT;
+        case 1006: return S_SAVE_ROUND_PGROGRESS_EVENT;
         default: return null;
       }
     }
@@ -147,7 +153,7 @@ public final class PicturesEventProtocolProto {
     }
     
     private static final PicturesEventProtocolResponse[] VALUES = {
-      S_REFILL_TOKENS_BY_WAITING_EVENT, S_COMPLETED_ROUND_EVENT, S_RETRIEVE_NEW_QUESTIONS_EVENT, S_START_ROUND_EVENT, S_SPEND_RUBIES_EVENT, S_SEARCH_FOR_USER_EVENT, 
+      S_REFILL_TOKENS_BY_WAITING_EVENT, S_COMPLETED_ROUND_EVENT, S_RETRIEVE_NEW_QUESTIONS_EVENT, S_START_ROUND_EVENT, S_SPEND_RUBIES_EVENT, S_SEARCH_FOR_USER_EVENT, S_SAVE_ROUND_PGROGRESS_EVENT, 
     };
     
     public static PicturesEventProtocolResponse valueOf(
@@ -179,20 +185,22 @@ public final class PicturesEventProtocolProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033PicturesEventProtocol.proto\022\005proto*\333\001\n" +
+      "\n\033PicturesEventProtocol.proto\022\005proto*\376\001\n" +
       "\034PicturesEventProtocolRequest\022%\n C_REFIL" +
       "L_TOKENS_BY_WAITING_EVENT\020\350\007\022\034\n\027C_COMPLE" +
       "TED_ROUND_EVENT\020\351\007\022#\n\036C_RETRIEVE_NEW_QUE" +
       "STIONS_EVENT\020\352\007\022\030\n\023C_START_ROUND_EVENT\020\353" +
       "\007\022\031\n\024C_SPEND_RUBIES_EVENT\020\354\007\022\034\n\027C_SEARCH" +
-      "_FOR_USER_EVENT\020\355\007*\334\001\n\035PicturesEventProt" +
-      "ocolResponse\022%\n S_REFILL_TOKENS_BY_WAITI" +
-      "NG_EVENT\020\350\007\022\034\n\027S_COMPLETED_ROUND_EVENT\020\351" +
-      "\007\022#\n\036S_RETRIEVE_NEW_QUESTIONS_EVENT\020\352\007\022\030",
-      "\n\023S_START_ROUND_EVENT\020\353\007\022\031\n\024S_SPEND_RUBI" +
-      "ES_EVENT\020\354\007\022\034\n\027S_SEARCH_FOR_USER_EVENT\020\355" +
-      "\007B>\n com.lvl6.pictures.noneventprotosB\032P" +
-      "icturesEventProtocolProto"
+      "_FOR_USER_EVENT\020\355\007\022!\n\034C_SAVE_ROUND_PGROG" +
+      "RESS_EVENT\020\356\007*\377\001\n\035PicturesEventProtocolR" +
+      "esponse\022%\n S_REFILL_TOKENS_BY_WAITING_EV" +
+      "ENT\020\350\007\022\034\n\027S_COMPLETED_ROUND_EVENT\020\351\007\022#\n\036",
+      "S_RETRIEVE_NEW_QUESTIONS_EVENT\020\352\007\022\030\n\023S_S" +
+      "TART_ROUND_EVENT\020\353\007\022\031\n\024S_SPEND_RUBIES_EV" +
+      "ENT\020\354\007\022\034\n\027S_SEARCH_FOR_USER_EVENT\020\355\007\022!\n\034" +
+      "S_SAVE_ROUND_PGROGRESS_EVENT\020\356\007B>\n com.l" +
+      "vl6.pictures.noneventprotosB\032PicturesEve" +
+      "ntProtocolProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
