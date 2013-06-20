@@ -36,11 +36,12 @@ public class LoginServiceImpl implements LoginService {
     
     //return login token inside of the authorized device
     String userId = inDb.getId();
+    Date nowDate = now.toDate();
     AuthorizedDevice ad = getAuthorizedDeviceService().checkForExistingAuthorizedDevice(userId, udid);
     if (null == ad) {
-      ad = getAuthorizedDeviceService().registerNewAuthorizedDevice(userId, udid, deviceId);
+      ad = getAuthorizedDeviceService().registerNewAuthorizedDevice(userId, udid, deviceId, nowDate);
     }
-    getAuthorizedDeviceService().updateExpirationForAuthorizedDevice(ad);
+    getAuthorizedDeviceService().updateExpirationForAuthorizedDevice(ad, nowDate);
     return ad;
   }
   

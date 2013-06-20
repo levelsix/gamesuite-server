@@ -101,8 +101,7 @@ public class APNSWriter {
 
     }
 
-    /** unused */
-    protected void processEvent(GameEvent event, String actionKey,
+    public void handleEvent(GameEvent event, String actionKey,
 	    String alertBody) {
 	if (event instanceof NormalResponseEvent) {
 	    processResponseEvent((NormalResponseEvent) event, actionKey,

@@ -112,11 +112,8 @@ public class LoginController extends EventController {
 	    boolean successful = false;
 
 	    if (validRequestArgs) {
-		//if valid the completeUserProto (cup) within responseBuilder is set
-		//but only the cup.userId is set
-		validRequest =
-			isValidRequest(responseBuilder, sender, lt, now,
-				userIdList, userList);
+		validRequest = isValidRequest(responseBuilder,
+			sender, lt, now, userIdList, userList);
 	    }
 
 	    if (validRequest) {
@@ -185,6 +182,7 @@ public class LoginController extends EventController {
 	}
     }
 
+    //only status in responseBuilder is set if at all
     private boolean isValidRequestArguments(Builder responseBuilder, 
 	    BasicUserProto sender, LoginType lt, DateTime now) {
 	if (null == lt) {
@@ -206,7 +204,7 @@ public class LoginController extends EventController {
 		log.error("user error: login-token login is invalid." +
 			  "\t badpUserId=" + badpUserId + "\t userId=" + userId +
 			  "\t loginToken=" + loginToken + "\t expiry=" + expiry.toDate() +
-			  "\t now=" + now.toDate());
+			  "\t now=" + now.toDate() + "\t expiryMillis" + expiry.toDate().getTime());
 		log.info("badp=" + badp);
 		responseBuilder.setStatus(LoginResponseStatus.INVALID_LOGIN_TOKEN);
 		return false;
@@ -253,8 +251,7 @@ public class LoginController extends EventController {
 	return false;
     }
 
-    //if valid the completeUserProto (cup) within responseBuilder is set
-    //but only the cup.userId is set
+    //only status in responseBuilder is set if at all
     private boolean isValidRequest(Builder responseBuilder, BasicUserProto sender,
 	    LoginType lt, DateTime now, List<String> userIdList, List<User> userList) {
 	if (LoginType.LOGIN_TOKEN == lt) {
@@ -408,6 +405,8 @@ public class LoginController extends EventController {
 		getNoneventProtoUtils().createCompleteUserProto(u, ad, monies);
 	//set the recipient
 	responseBuilder.setRecipient(cupb);
+	
+	log.info("\t\t completeUserProto=" + cupb);
 
 	return true;
     }
@@ -439,6 +438,7 @@ public class LoginController extends EventController {
     }
 
     private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
+	log.info("\t\t facebookFriendIds=" + facebookFriendIds);
 	if (null == facebookFriendIds || facebookFriendIds.isEmpty()) {
 	    return;
 	}
@@ -452,6 +452,7 @@ public class LoginController extends EventController {
 	    bupList.add(bup);
 	}
 
+	log.info("\t\t facebookFriends=" + uList);
 	responseBuilder.addAllFacebookFriendsWithAccounts(bupList);
     }
 

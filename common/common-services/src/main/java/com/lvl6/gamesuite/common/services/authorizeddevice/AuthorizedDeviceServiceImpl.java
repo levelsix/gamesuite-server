@@ -1,6 +1,7 @@
 package com.lvl6.gamesuite.common.services.authorizeddevice;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -27,38 +28,43 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
   
   @Override
   @Transactional
-  public AuthorizedDevice registerNewAuthorizedDevice(String userId, String udid,  String deviceId) {
+  public AuthorizedDevice registerNewAuthorizedDevice(String userId, String udid,  String deviceId, Date now) {
     AuthorizedDevice ad = null;
     if (isValidUdid(udid)) {
       ad = new AuthorizedDevice();
       ad.setUserId(userId);
       ad.setUdid(udid);
       ad.setDeviceId(deviceId);
+      if (null != now) {
+	  ad.setCreated(now);
+      }
+      log.info("\t\t\t created=" + ad.getCreated() + "\t millis=" +
+	      ad.getCreated().getTime());
       
-      DateTime expiry = new DateTime();
-      log.info("\t\t\t expiry={}", expiry.toDate());
-      
+      DateTime expiry = new DateTime(ad.getCreated().getTime());
       expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
       ad.setExpires(expiry.toDate());
       
       ad = authorizedDeviceDao.save(ad);
 
       log.info("\t\t\t get expiry after setting expiry={}", ad.getExpires());
-      
-      log.info("\t\t\t expiry={}", expiry.toDate());
+
+      log.info("\t\t\t expiry=" + expiry.toDate() + "\t millis=" +
+	      expiry.toDate().getTime());
     }
     
     return ad;
   }
 
-  public void updateExpirationForAuthorizedDevice(AuthorizedDevice ad) {
+  public void updateExpirationForAuthorizedDevice(AuthorizedDevice ad,
+	  Date fromNow) {
     if (null == ad) {
       return;
     }
     
     //now + default life expectancy of a token
-    DateTime expiry = new DateTime();
-    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
+    DateTime expiry = new DateTime(fromNow.getTime());
+    expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
     ad.setExpires(expiry.toDate());
     authorizedDeviceDao.save(ad);
   }
