@@ -9,7 +9,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
 
@@ -123,10 +122,15 @@ public class AuthorizedDevice extends BasePersistentObject {
 	public void setDeviceId(String deviceId) {
 	  this.deviceId = deviceId;
 	}
-	
+
+
 	@Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this);
-  }
+	public String toString() {
+		return "AuthorizedDevice [userId=" + userId + ", udid=" + udid + ", token=" + token + ", expires="
+				+ expires + ", created=" + created + ", deviceId=" + deviceId + ", id=" + id + ", version="
+				+ version + "]";
+	}
+	
+
 	
 }
