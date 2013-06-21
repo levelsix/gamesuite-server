@@ -277,7 +277,7 @@ public class StartRoundController extends EventController {
     List<String> questionIds = new ArrayList<String>();
     
     for (QuestionProto qp : questions) {
-      String qpId = qp.getId();
+      String qpId = qp.getQuestionId();
       questionIds.add(qpId);
     }
     
