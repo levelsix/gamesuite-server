@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
+import com.lvl6.pictures.properties.PicturesPoConstants;
 
 
 @Entity
@@ -22,20 +23,26 @@ public class RoundPendingCompletion extends BasePersistentObject {
     private static final long serialVersionUID = 4947214752070572503L;
 
     @NotNull
-    int roundNumber;
+    protected int roundNumber;
 
     //The questions that will be displayed in this round
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
     protected Set<QuestionBase> questions;
 
     @NotNull
-    String userId;
+    protected String userId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     @Index(name="started_round_date_index")
     protected Date startDate = new Date();
 
+    protected int secondsRemaining = 60 *
+	    PicturesPoConstants.ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND;
+
+    protected int currentQuestionNumber = 1;
+
+    protected int currentScore = 0;
 
 
     public int getRoundNumber() {
@@ -68,6 +75,30 @@ public class RoundPendingCompletion extends BasePersistentObject {
 
     public void setStartDate(Date startDate) {
 	this.startDate = startDate;
+    }
+
+    public int getSecondsRemaining() {
+	return secondsRemaining;
+    }
+
+    public void setSecondsRemaining(int secondsRemaining) {
+	this.secondsRemaining = secondsRemaining;
+    }
+
+    public int getCurrentQuestionNumber() {
+	return currentQuestionNumber;
+    }
+
+    public void setCurrentQuestionNumber(int currentQuestionNumber) {
+	this.currentQuestionNumber = currentQuestionNumber;
+    }
+
+    public int getCurrentScore() {
+	return currentScore;
+    }
+
+    public void setCurrentScore(int currentScore) {
+	this.currentScore = currentScore;
     }
 
 }
