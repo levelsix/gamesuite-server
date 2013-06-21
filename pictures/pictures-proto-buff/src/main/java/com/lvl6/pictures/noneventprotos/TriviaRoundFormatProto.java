@@ -11,9 +11,9 @@ public final class TriviaRoundFormatProto {
   public interface BasicRoundResultsProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string id = 1;
-    boolean hasId();
-    String getId();
+    // optional string roundId = 1;
+    boolean hasRoundId();
+    String getRoundId();
     
     // optional sint32 score = 2;
     boolean hasScore();
@@ -52,14 +52,14 @@ public final class TriviaRoundFormatProto {
     }
     
     private int bitField0_;
-    // optional string id = 1;
-    public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    public boolean hasId() {
+    // optional string roundId = 1;
+    public static final int ROUNDID_FIELD_NUMBER = 1;
+    private java.lang.Object roundId_;
+    public boolean hasRoundId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getId() {
-      java.lang.Object ref = id_;
+    public String getRoundId() {
+      java.lang.Object ref = roundId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -67,17 +67,17 @@ public final class TriviaRoundFormatProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          id_ = s;
+          roundId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getIdBytes() {
-      java.lang.Object ref = id_;
+    private com.google.protobuf.ByteString getRoundIdBytes() {
+      java.lang.Object ref = roundId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        id_ = b;
+        roundId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -105,7 +105,7 @@ public final class TriviaRoundFormatProto {
     }
     
     private void initFields() {
-      id_ = "";
+      roundId_ = "";
       score_ = 0;
       roundNumber_ = 0;
     }
@@ -122,7 +122,7 @@ public final class TriviaRoundFormatProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+        output.writeBytes(1, getRoundIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeSInt32(2, score_);
@@ -141,7 +141,7 @@ public final class TriviaRoundFormatProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+          .computeBytesSize(1, getRoundIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -275,7 +275,7 @@ public final class TriviaRoundFormatProto {
       
       public Builder clear() {
         super.clear();
-        id_ = "";
+        roundId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         score_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -322,7 +322,7 @@ public final class TriviaRoundFormatProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.id_ = id_;
+        result.roundId_ = roundId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -347,8 +347,8 @@ public final class TriviaRoundFormatProto {
       
       public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto other) {
         if (other == com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+        if (other.hasRoundId()) {
+          setRoundId(other.getRoundId());
         }
         if (other.hasScore()) {
           setScore(other.getScore());
@@ -389,7 +389,7 @@ public final class TriviaRoundFormatProto {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              id_ = input.readBytes();
+              roundId_ = input.readBytes();
               break;
             }
             case 16: {
@@ -408,39 +408,39 @@ public final class TriviaRoundFormatProto {
       
       private int bitField0_;
       
-      // optional string id = 1;
-      private java.lang.Object id_ = "";
-      public boolean hasId() {
+      // optional string roundId = 1;
+      private java.lang.Object roundId_ = "";
+      public boolean hasRoundId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getId() {
-        java.lang.Object ref = id_;
+      public String getRoundId() {
+        java.lang.Object ref = roundId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          id_ = s;
+          roundId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setId(String value) {
+      public Builder setRoundId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        id_ = value;
+        roundId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearId() {
+      public Builder clearRoundId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = getDefaultInstance().getId();
+        roundId_ = getDefaultInstance().getRoundId();
         onChanged();
         return this;
       }
-      void setId(com.google.protobuf.ByteString value) {
+      void setRoundId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        id_ = value;
+        roundId_ = value;
         onChanged();
       }
       
@@ -500,9 +500,9 @@ public final class TriviaRoundFormatProto {
   public interface CompleteRoundResultsProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string id = 1;
-    boolean hasId();
-    String getId();
+    // optional string roundId = 1;
+    boolean hasRoundId();
+    String getRoundId();
     
     // optional sint32 score = 2;
     boolean hasScore();
@@ -559,14 +559,14 @@ public final class TriviaRoundFormatProto {
     }
     
     private int bitField0_;
-    // optional string id = 1;
-    public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    public boolean hasId() {
+    // optional string roundId = 1;
+    public static final int ROUNDID_FIELD_NUMBER = 1;
+    private java.lang.Object roundId_;
+    public boolean hasRoundId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getId() {
-      java.lang.Object ref = id_;
+    public String getRoundId() {
+      java.lang.Object ref = roundId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -574,17 +574,17 @@ public final class TriviaRoundFormatProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          id_ = s;
+          roundId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getIdBytes() {
-      java.lang.Object ref = id_;
+    private com.google.protobuf.ByteString getRoundIdBytes() {
+      java.lang.Object ref = roundId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        id_ = b;
+        roundId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -653,7 +653,7 @@ public final class TriviaRoundFormatProto {
     }
     
     private void initFields() {
-      id_ = "";
+      roundId_ = "";
       score_ = 0;
       roundNumber_ = 0;
       answers_ = java.util.Collections.emptyList();
@@ -673,7 +673,7 @@ public final class TriviaRoundFormatProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+        output.writeBytes(1, getRoundIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeSInt32(2, score_);
@@ -701,7 +701,7 @@ public final class TriviaRoundFormatProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+          .computeBytesSize(1, getRoundIdBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -848,7 +848,7 @@ public final class TriviaRoundFormatProto {
       
       public Builder clear() {
         super.clear();
-        id_ = "";
+        roundId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         score_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -905,7 +905,7 @@ public final class TriviaRoundFormatProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.id_ = id_;
+        result.roundId_ = roundId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -947,8 +947,8 @@ public final class TriviaRoundFormatProto {
       
       public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto other) {
         if (other == com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+        if (other.hasRoundId()) {
+          setRoundId(other.getRoundId());
         }
         if (other.hasScore()) {
           setScore(other.getScore());
@@ -1021,7 +1021,7 @@ public final class TriviaRoundFormatProto {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              id_ = input.readBytes();
+              roundId_ = input.readBytes();
               break;
             }
             case 16: {
@@ -1056,39 +1056,39 @@ public final class TriviaRoundFormatProto {
       
       private int bitField0_;
       
-      // optional string id = 1;
-      private java.lang.Object id_ = "";
-      public boolean hasId() {
+      // optional string roundId = 1;
+      private java.lang.Object roundId_ = "";
+      public boolean hasRoundId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getId() {
-        java.lang.Object ref = id_;
+      public String getRoundId() {
+        java.lang.Object ref = roundId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          id_ = s;
+          roundId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setId(String value) {
+      public Builder setRoundId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        id_ = value;
+        roundId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearId() {
+      public Builder clearRoundId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = getDefaultInstance().getId();
+        roundId_ = getDefaultInstance().getRoundId();
         onChanged();
         return this;
       }
-      void setId(com.google.protobuf.ByteString value) {
+      void setRoundId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        id_ = value;
+        roundId_ = value;
         onChanged();
       }
       
@@ -1376,9 +1376,9 @@ public final class TriviaRoundFormatProto {
   public interface UnfinishedRoundProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string id = 1;
-    boolean hasId();
-    String getId();
+    // optional string roundId = 1;
+    boolean hasRoundId();
+    String getRoundId();
     
     // repeated .proto.QuestionProto questions = 2;
     java.util.List<com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto> 
@@ -1435,14 +1435,14 @@ public final class TriviaRoundFormatProto {
     }
     
     private int bitField0_;
-    // optional string id = 1;
-    public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    public boolean hasId() {
+    // optional string roundId = 1;
+    public static final int ROUNDID_FIELD_NUMBER = 1;
+    private java.lang.Object roundId_;
+    public boolean hasRoundId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getId() {
-      java.lang.Object ref = id_;
+    public String getRoundId() {
+      java.lang.Object ref = roundId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -1450,17 +1450,17 @@ public final class TriviaRoundFormatProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          id_ = s;
+          roundId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getIdBytes() {
-      java.lang.Object ref = id_;
+    private com.google.protobuf.ByteString getRoundIdBytes() {
+      java.lang.Object ref = roundId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        id_ = b;
+        roundId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1529,7 +1529,7 @@ public final class TriviaRoundFormatProto {
     }
     
     private void initFields() {
-      id_ = "";
+      roundId_ = "";
       questions_ = java.util.Collections.emptyList();
       roundNumber_ = 0;
       secondsRemaning_ = 0;
@@ -1549,7 +1549,7 @@ public final class TriviaRoundFormatProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+        output.writeBytes(1, getRoundIdBytes());
       }
       for (int i = 0; i < questions_.size(); i++) {
         output.writeMessage(2, questions_.get(i));
@@ -1577,7 +1577,7 @@ public final class TriviaRoundFormatProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+          .computeBytesSize(1, getRoundIdBytes());
       }
       for (int i = 0; i < questions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -1724,7 +1724,7 @@ public final class TriviaRoundFormatProto {
       
       public Builder clear() {
         super.clear();
-        id_ = "";
+        roundId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         if (questionsBuilder_ == null) {
           questions_ = java.util.Collections.emptyList();
@@ -1781,7 +1781,7 @@ public final class TriviaRoundFormatProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.id_ = id_;
+        result.roundId_ = roundId_;
         if (questionsBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
             questions_ = java.util.Collections.unmodifiableList(questions_);
@@ -1823,8 +1823,8 @@ public final class TriviaRoundFormatProto {
       
       public Builder mergeFrom(com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto other) {
         if (other == com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+        if (other.hasRoundId()) {
+          setRoundId(other.getRoundId());
         }
         if (questionsBuilder_ == null) {
           if (!other.questions_.isEmpty()) {
@@ -1897,7 +1897,7 @@ public final class TriviaRoundFormatProto {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              id_ = input.readBytes();
+              roundId_ = input.readBytes();
               break;
             }
             case 18: {
@@ -1932,39 +1932,39 @@ public final class TriviaRoundFormatProto {
       
       private int bitField0_;
       
-      // optional string id = 1;
-      private java.lang.Object id_ = "";
-      public boolean hasId() {
+      // optional string roundId = 1;
+      private java.lang.Object roundId_ = "";
+      public boolean hasRoundId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getId() {
-        java.lang.Object ref = id_;
+      public String getRoundId() {
+        java.lang.Object ref = roundId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          id_ = s;
+          roundId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setId(String value) {
+      public Builder setRoundId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        id_ = value;
+        roundId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearId() {
+      public Builder clearRoundId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = getDefaultInstance().getId();
+        roundId_ = getDefaultInstance().getRoundId();
         onChanged();
         return this;
       }
-      void setId(com.google.protobuf.ByteString value) {
+      void setRoundId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        id_ = value;
+        roundId_ = value;
         onChanged();
       }
       
@@ -2274,19 +2274,19 @@ public final class TriviaRoundFormatProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\027TriviaRoundFormat.proto\022\005proto\032\032Trivia" +
-      "QuestionFormat.proto\"H\n\026BasicRoundResult" +
-      "sProto\022\n\n\002id\030\001 \001(\t\022\r\n\005score\030\002 \001(\021\022\023\n\013rou" +
-      "ndNumber\030\003 \001(\005\"\236\001\n\031CompleteRoundResultsP" +
-      "roto\022\n\n\002id\030\001 \001(\t\022\r\n\005score\030\002 \001(\021\022\023\n\013round" +
-      "Number\030\003 \001(\005\022-\n\007answers\030\004 \003(\0132\034.proto.Qu" +
-      "estionAnsweredProto\022\021\n\tstartTime\030\005 \001(\003\022\017" +
-      "\n\007endTime\030\006 \001(\003\"\256\001\n\024UnfinishedRoundProto" +
-      "\022\n\n\002id\030\001 \001(\t\022\'\n\tquestions\030\002 \003(\0132\024.proto." +
-      "QuestionProto\022\023\n\013roundNumber\030\003 \001(\005\022\027\n\017se",
-      "condsRemaning\030\004 \001(\005\022\035\n\025currentQuestionNu" +
-      "mber\030\005 \001(\005\022\024\n\014currentScore\030\006 \001(\005B:\n com." +
-      "lvl6.pictures.noneventprotosB\026TriviaRoun" +
-      "dFormatProto"
+      "QuestionFormat.proto\"M\n\026BasicRoundResult" +
+      "sProto\022\017\n\007roundId\030\001 \001(\t\022\r\n\005score\030\002 \001(\021\022\023" +
+      "\n\013roundNumber\030\003 \001(\005\"\243\001\n\031CompleteRoundRes" +
+      "ultsProto\022\017\n\007roundId\030\001 \001(\t\022\r\n\005score\030\002 \001(" +
+      "\021\022\023\n\013roundNumber\030\003 \001(\005\022-\n\007answers\030\004 \003(\0132" +
+      "\034.proto.QuestionAnsweredProto\022\021\n\tstartTi" +
+      "me\030\005 \001(\003\022\017\n\007endTime\030\006 \001(\003\"\263\001\n\024Unfinished" +
+      "RoundProto\022\017\n\007roundId\030\001 \001(\t\022\'\n\tquestions" +
+      "\030\002 \003(\0132\024.proto.QuestionProto\022\023\n\013roundNum",
+      "ber\030\003 \001(\005\022\027\n\017secondsRemaning\030\004 \001(\005\022\035\n\025cu" +
+      "rrentQuestionNumber\030\005 \001(\005\022\024\n\014currentScor" +
+      "e\030\006 \001(\005B:\n com.lvl6.pictures.noneventpro" +
+      "tosB\026TriviaRoundFormatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2298,7 +2298,7 @@ public final class TriviaRoundFormatProto {
           internal_static_proto_BasicRoundResultsProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BasicRoundResultsProto_descriptor,
-              new java.lang.String[] { "Id", "Score", "RoundNumber", },
+              new java.lang.String[] { "RoundId", "Score", "RoundNumber", },
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto.class,
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.BasicRoundResultsProto.Builder.class);
           internal_static_proto_CompleteRoundResultsProto_descriptor =
@@ -2306,7 +2306,7 @@ public final class TriviaRoundFormatProto {
           internal_static_proto_CompleteRoundResultsProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CompleteRoundResultsProto_descriptor,
-              new java.lang.String[] { "Id", "Score", "RoundNumber", "Answers", "StartTime", "EndTime", },
+              new java.lang.String[] { "RoundId", "Score", "RoundNumber", "Answers", "StartTime", "EndTime", },
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto.class,
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.CompleteRoundResultsProto.Builder.class);
           internal_static_proto_UnfinishedRoundProto_descriptor =
@@ -2314,7 +2314,7 @@ public final class TriviaRoundFormatProto {
           internal_static_proto_UnfinishedRoundProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UnfinishedRoundProto_descriptor,
-              new java.lang.String[] { "Id", "Questions", "RoundNumber", "SecondsRemaning", "CurrentQuestionNumber", "CurrentScore", },
+              new java.lang.String[] { "RoundId", "Questions", "RoundNumber", "SecondsRemaning", "CurrentQuestionNumber", "CurrentScore", },
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.class,
               com.lvl6.pictures.noneventprotos.TriviaRoundFormatProto.UnfinishedRoundProto.Builder.class);
           return null;
