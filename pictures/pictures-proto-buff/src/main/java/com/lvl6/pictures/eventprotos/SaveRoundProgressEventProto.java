@@ -681,9 +681,9 @@ public final class SaveRoundProgressEventProto {
     boolean hasGameId();
     String getGameId();
     
-    // optional .proto.SaveRoundProgressResponseProto.SaveRoundStatus status = 3;
+    // optional .proto.SaveRoundProgressResponseProto.SaveRoundProgressStatus status = 3;
     boolean hasStatus();
-    com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus getStatus();
+    com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus getStatus();
   }
   public static final class SaveRoundProgressResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -713,7 +713,7 @@ public final class SaveRoundProgressEventProto {
       return com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.internal_static_proto_SaveRoundProgressResponseProto_fieldAccessorTable;
     }
     
-    public enum SaveRoundStatus
+    public enum SaveRoundProgressStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
       FAIL_OTHER(1, 2),
@@ -725,7 +725,7 @@ public final class SaveRoundProgressEventProto {
       
       public final int getNumber() { return value; }
       
-      public static SaveRoundStatus valueOf(int value) {
+      public static SaveRoundProgressStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
           case 2: return FAIL_OTHER;
@@ -733,15 +733,15 @@ public final class SaveRoundProgressEventProto {
         }
       }
       
-      public static com.google.protobuf.Internal.EnumLiteMap<SaveRoundStatus>
+      public static com.google.protobuf.Internal.EnumLiteMap<SaveRoundProgressStatus>
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static com.google.protobuf.Internal.EnumLiteMap<SaveRoundStatus>
+      private static com.google.protobuf.Internal.EnumLiteMap<SaveRoundProgressStatus>
           internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<SaveRoundStatus>() {
-              public SaveRoundStatus findValueByNumber(int number) {
-                return SaveRoundStatus.valueOf(number);
+            new com.google.protobuf.Internal.EnumLiteMap<SaveRoundProgressStatus>() {
+              public SaveRoundProgressStatus findValueByNumber(int number) {
+                return SaveRoundProgressStatus.valueOf(number);
               }
             };
       
@@ -758,11 +758,11 @@ public final class SaveRoundProgressEventProto {
         return com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.getDescriptor().getEnumTypes().get(0);
       }
       
-      private static final SaveRoundStatus[] VALUES = {
+      private static final SaveRoundProgressStatus[] VALUES = {
         SUCCESS, FAIL_OTHER, 
       };
       
-      public static SaveRoundStatus valueOf(
+      public static SaveRoundProgressStatus valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
@@ -774,12 +774,12 @@ public final class SaveRoundProgressEventProto {
       private final int index;
       private final int value;
       
-      private SaveRoundStatus(int index, int value) {
+      private SaveRoundProgressStatus(int index, int value) {
         this.index = index;
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:proto.SaveRoundProgressResponseProto.SaveRoundStatus)
+      // @@protoc_insertion_point(enum_scope:proto.SaveRoundProgressResponseProto.SaveRoundProgressStatus)
     }
     
     private int bitField0_;
@@ -828,20 +828,20 @@ public final class SaveRoundProgressEventProto {
       }
     }
     
-    // optional .proto.SaveRoundProgressResponseProto.SaveRoundStatus status = 3;
+    // optional .proto.SaveRoundProgressResponseProto.SaveRoundProgressStatus status = 3;
     public static final int STATUS_FIELD_NUMBER = 3;
-    private com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus status_;
+    private com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus status_;
     public boolean hasStatus() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus getStatus() {
+    public com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus getStatus() {
       return status_;
     }
     
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       gameId_ = "";
-      status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus.SUCCESS;
+      status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1018,7 +1018,7 @@ public final class SaveRoundProgressEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         gameId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus.SUCCESS;
+        status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -1146,7 +1146,7 @@ public final class SaveRoundProgressEventProto {
             }
             case 24: {
               int rawValue = input.readEnum();
-              com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus value = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus.valueOf(rawValue);
+              com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus value = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(3, rawValue);
               } else {
@@ -1287,15 +1287,15 @@ public final class SaveRoundProgressEventProto {
         onChanged();
       }
       
-      // optional .proto.SaveRoundProgressResponseProto.SaveRoundStatus status = 3;
-      private com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus.SUCCESS;
+      // optional .proto.SaveRoundProgressResponseProto.SaveRoundProgressStatus status = 3;
+      private com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus.SUCCESS;
       public boolean hasStatus() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus getStatus() {
+      public com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus getStatus() {
         return status_;
       }
-      public Builder setStatus(com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus value) {
+      public Builder setStatus(com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1306,7 +1306,7 @@ public final class SaveRoundProgressEventProto {
       }
       public Builder clearStatus() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundStatus.SUCCESS;
+        status_ = com.lvl6.pictures.eventprotos.SaveRoundProgressEventProto.SaveRoundProgressResponseProto.SaveRoundProgressStatus.SUCCESS;
         onChanged();
         return this;
       }
@@ -1346,14 +1346,15 @@ public final class SaveRoundProgressEventProto {
       "rmat.proto\032\nUser.proto\"\202\001\n\035SaveRoundProg" +
       "ressRequestProto\022%\n\006sender\030\001 \001(\0132\025.proto" +
       ".BasicUserProto\022\016\n\006gameId\030\002 \001(\t\022*\n\005round" +
-      "\030\003 \001(\0132\033.proto.UnfinishedRoundProto\"\321\001\n\036" +
+      "\030\003 \001(\0132\033.proto.UnfinishedRoundProto\"\341\001\n\036" +
       "SaveRoundProgressResponseProto\022(\n\trecipi" +
       "ent\030\001 \001(\0132\025.proto.BasicUserProto\022\016\n\006game" +
-      "Id\030\002 \001(\t\022E\n\006status\030\003 \001(\01625.proto.SaveRou" +
-      "ndProgressResponseProto.SaveRoundStatus\"",
-      ".\n\017SaveRoundStatus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_" +
-      "OTHER\020\002B<\n\035com.lvl6.pictures.eventprotos" +
-      "B\033SaveRoundProgressEventProto"
+      "Id\030\002 \001(\t\022M\n\006status\030\003 \001(\0162=.proto.SaveRou" +
+      "ndProgressResponseProto.SaveRoundProgres",
+      "sStatus\"6\n\027SaveRoundProgressStatus\022\013\n\007SU" +
+      "CCESS\020\001\022\016\n\nFAIL_OTHER\020\002B<\n\035com.lvl6.pict" +
+      "ures.eventprotosB\033SaveRoundProgressEvent" +
+      "Proto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
