@@ -339,8 +339,11 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    QuestionProto qp = createQuestionProto(qb);
 	    qpList.add(qp);
 	}
-
+	
 	brpb.setRoundNumber(roundNumber);
+	brpb.setSecondsRemaning(rpc.getSecondsRemaining());
+	brpb.setCurrentQuestionNumber(rpc.getCurrentQuestionNumber());
+	brpb.setCurrentScore(rpc.getCurrentScore());
 	brpb.addAllQuestions(qpList);
 	return brpb.build();
     }
@@ -360,7 +363,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpList.add(qp);
 	}
 
-	brpb.setId(roundHistoryId);
+	brpb.setRoundId(roundHistoryId);
 	brpb.setRoundNumber(roundNumber);
 	brpb.addAllQuestions(qpList);
 
@@ -376,7 +379,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	int score = rh.getScore();
 	int roundNumber = rh.getRoundNumber();
 
-	brrpb.setId(id);
+	brrpb.setRoundId(id);
 	//brrpb.setNumQuestionsSeen(numQuestionsSeen);
 	//brrpb.setNumQuestionsAnsweredCorrectly(numQuestionsAnsweredCorrectly);
 	brrpb.setScore(score);
@@ -387,7 +390,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
     public BasicRoundResultsProto createBasicRoundResultsProto(CompleteRoundResultsProto crrp) {
 	BasicRoundResultsProto.Builder brpb = BasicRoundResultsProto.newBuilder();
-	brpb.setId(crrp.getId());
+	brpb.setRoundId(crrp.getRoundId());
 	//brpb.setNumQuestionsSeen(crrp.getNumQuestionsSeen());
 	//brpb.setNumQuestionsAnsweredCorrectly(crrp.getNumQuestionsAnsweredCorrectly());
 	brpb.setScore(crrp.getScore());
@@ -429,7 +432,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpb.setMultipleChoice(mcqp);
 	}
 
-	qpb.setId(id);
+	qpb.setQuestionId(id);
 	return qpb.build();
     }
 
@@ -458,7 +461,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	String answer = mca.getAnswer();
 	AnswerType type = mca.getAnswerType();
 
-	mcapb.setId(id);
+	mcapb.setMultipleChoiceAnswerId(id);
 	mcapb.setAnswer(answer);
 	if (AnswerType.PICTURE == type){
 	    mcapb.setType(MultipleChoiceAnswerProto.AnswerType.PICTURE);
