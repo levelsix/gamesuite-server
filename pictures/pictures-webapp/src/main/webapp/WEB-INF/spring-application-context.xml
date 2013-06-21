@@ -27,4 +27,6 @@
 	<import resource="classpath:spring-security.xml" />
 	<import resource="classpath:spring-pictures-services.xml" />
 	
+	<bean id="contextApplicationContextProvider" class="com.lvl6.spring.ApplicationContextProvider" />
+	
 </beans>
