@@ -18,56 +18,56 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 @Entity
 public class RoundPendingCompletion extends BasePersistentObject {
-  
+
     private static final long serialVersionUID = 4947214752070572503L;
 
-@NotNull
-  int roundNumber;
+    @NotNull
+    int roundNumber;
 
-  //The questions that will be displayed in this round
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
-  protected Set<QuestionBase> questions;
-  
-  @NotNull
-  String userId;
+    //The questions that will be displayed in this round
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
+    protected Set<QuestionBase> questions;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @NotNull
-  @Index(name="started_round_date_index")
-  protected Date startDate = new Date();
-  
-  
-  
-  public int getRoundNumber() {
-    return roundNumber;
-  }
+    @NotNull
+    String userId;
 
-  public void setRoundNumber(int roundNumber) {
-    this.roundNumber = roundNumber;
-  }
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    @Index(name="started_round_date_index")
+    protected Date startDate = new Date();
 
-  public Set<QuestionBase> getQuestions() {
-    return questions;
-  }
 
-  public void setQuestions(Set<QuestionBase> questions) {
-    this.questions = questions;
-  }
 
-  public String getUserId() {
-    return userId;
-  }
+    public int getRoundNumber() {
+	return roundNumber;
+    }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
+    public void setRoundNumber(int roundNumber) {
+	this.roundNumber = roundNumber;
+    }
 
-  public Date getStartDate() {
-    return startDate;
-  }
+    public Set<QuestionBase> getQuestions() {
+	return questions;
+    }
 
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
-  
+    public void setQuestions(Set<QuestionBase> questions) {
+	this.questions = questions;
+    }
+
+    public String getUserId() {
+	return userId;
+    }
+
+    public void setUserId(String userId) {
+	this.userId = userId;
+    }
+
+    public Date getStartDate() {
+	return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+	this.startDate = startDate;
+    }
+
 }
