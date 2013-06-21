@@ -19,7 +19,9 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 @Entity
 public class RoundPendingCompletion extends BasePersistentObject {
   
-  @NotNull
+    private static final long serialVersionUID = 4947214752070572503L;
+
+@NotNull
   int roundNumber;
 
   //The questions that will be displayed in this round
