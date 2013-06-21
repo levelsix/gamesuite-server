@@ -12,6 +12,10 @@ import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.Window;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
 
 public class PicturesAdminApp implements Application, Bindable {
 
@@ -20,6 +24,10 @@ public class PicturesAdminApp implements Application, Bindable {
 	
 	@BXML 
 	ListView questionsList;
+	
+	ApplicationContext spring;
+	
+	MultipleChoiceQuestionDao mcqDao;
 	
 	
 	public void resume() throws Exception {
@@ -35,10 +43,12 @@ public class PicturesAdminApp implements Application, Bindable {
 	}
 
 	public void startup(Display display, Map<String, String> props) throws Exception {
+		spring = new ClassPathXmlApplicationContext("spring-application-context.xml");
+		mcqDao = spring.getBean(MultipleChoiceQuestionDao.class);
 		BXMLSerializer bxmlSerializer = new BXMLSerializer();
         window = (Window)bxmlSerializer.readObject(PicturesAdminApp.class, "PicturesAdminApp.bxml");
         window.open(display);
-		
+		//questionsList.setListData((List<?>) mcqDao.findAll());
 /*		window = new Window();
 
         Label label = new Label();

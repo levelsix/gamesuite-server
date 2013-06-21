@@ -14,7 +14,7 @@
 		">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.lvl6" />
+	<context:component-scan base-package="com.lvl6.gamesuite.common.po" />
 	
 	<bean id="applicationMode" class="com.lvl6.gamesuite.common.dto.ApplicationMode" scope="singleton" />
 

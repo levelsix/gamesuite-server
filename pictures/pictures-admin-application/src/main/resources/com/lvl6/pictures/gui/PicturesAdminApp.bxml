@@ -6,9 +6,10 @@
 		splitRatio="0.5" xmlns:bxml="http://pivot.apache.org/bxml"
 		xmlns:tools="org.apache.pivot.tutorials.explorer.tools" xmlns="org.apache.pivot.wtk">
 		<left>
-			<ListView  bxml:id="questionsList" selectMode="single"
-				listData="['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten']"
-				xmlns:bxml="http://pivot.apache.org/bxml" xmlns="org.apache.pivot.wtk" />
+			<ListView  bxml:id="questionsList" 
+				selectMode="single"			
+				xmlns:bxml="http://pivot.apache.org/bxml" 
+				xmlns="org.apache.pivot.wtk" />
 		</left>
 		<right>
                 <Border styles="{padding:6}">
@@ -20,9 +21,27 @@
                         <TablePane.Row height="1*">
                             <Form>
                                 <Form.Section>
-                                    <BoxPane bxml:id="nameBoxPane" Form.label="Name">
-                                        <TextInput bxml:id="lastNameTextInput" prompt="Last"/>
-                                        <TextInput bxml:id="firstNameTextInput" prompt="First"/>
+                                    <BoxPane bxml:id="nameBoxPane" Form.label="Multiple Choice Question">
+                                        <TextInput bxml:id="questionTextInput" prompt="Question"/>
+                                        <bxml:define>
+                            				<ButtonGroup bxml:id="numbers"/>
+                        				</bxml:define>
+                                        <BoxPane orientation="horizontal">
+                                        	<Checkbox buttonData=""  />
+                                        	<TextInput prompt="Answer 1"></TextInput>
+                                        </BoxPane>
+                                        <BoxPane orientation="horizontal">
+                                        	<Checkbox buttonData=""  />
+                                        	<TextInput prompt="Answer 1"></TextInput>
+                                        </BoxPane>
+                                        <BoxPane orientation="horizontal">
+                                        	<Checkbox buttonData=""  />
+                                        	<TextInput prompt="Answer 1"></TextInput>
+                                        </BoxPane>
+                                        <BoxPane orientation="horizontal">
+                                        	<Checkbox buttonData=""  />
+                                        	<TextInput prompt="Answer 1"></TextInput>
+                                        </BoxPane>
                                     </BoxPane>
                                 </Form.Section>
 

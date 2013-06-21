@@ -26,6 +26,11 @@
 			<groupId>org.apache.pivot</groupId>
 			<artifactId>pivot-wtk-terra</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.jolira</groupId>
+			<artifactId>onejar-maven-plugin</artifactId>
+			<version>1.4.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -51,24 +56,32 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
 						<manifest>
 							<mainClass>com.lvl6.pictures.gui.PicturesAdminApp</mainClass>
 						</manifest>
 					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
 				</configuration>
-
+			</plugin>
+			<plugin>
+				<groupId>com.jolira</groupId>
+				<artifactId>onejar-maven-plugin</artifactId>
+				<version>1.4.4</version>
 				<executions>
 					<execution>
-						<id>make-assembly</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
+						<configuration>
+							<!-- Optional -->
+							<onejarVersion>0.97</onejarVersion>
+							<!-- Optional, default is false -->
+							<attachToBuild>true</attachToBuild>
+							<!-- Optional, default is "onejar" -->
+							<classifier>onejar</classifier>
+						</configuration>
 						<goals>
-							<goal>single</goal>
+							<goal>one-jar</goal>
 						</goals>
 					</execution>
 				</executions>
