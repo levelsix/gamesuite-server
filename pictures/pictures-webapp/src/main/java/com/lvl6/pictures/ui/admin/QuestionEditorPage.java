@@ -1,8 +1,11 @@
 package com.lvl6.pictures.ui.admin;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.lvl6.pictures.dao.QuestionBaseDao;
 import com.lvl6.pictures.po.QuestionBase;
@@ -29,7 +32,11 @@ public class QuestionEditorPage extends TemplatePage {
 		ListView<QuestionBase> listview = new ListView<QuestionBase>("questionsList", qbDao.findAll()) {
 			private static final long serialVersionUID = 1L;
 			protected void populateItem(ListItem<QuestionBase> item) {
-		        item.add(new Label("label", item.getModel()));
+				PageParameters params = new PageParameters();
+				Link<QuestionEditorPage> qLink = new BookmarkablePageLink<QuestionEditorPage>("questionLink", QuestionEditorPage.class, params);
+				Label qt = new Label("questionText", item.getModel().getObject().getId());
+		        item.add(qLink);
+		        qLink.add(qt);
 		    }
 		};
 		add(listview);

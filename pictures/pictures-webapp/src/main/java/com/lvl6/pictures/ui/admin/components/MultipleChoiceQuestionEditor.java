@@ -20,6 +20,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	
 	public MultipleChoiceQuestionEditor(String id) {
 		super(id);
+		setupForm();
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +39,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	TextArea<String> mcQuestionText = new TextArea<>("mcQuestionText");
 	
 	protected void setupForm() {
-		add(new FeedbackPanel("feedbackPanel"));
+		form.add(new FeedbackPanel("feedbackPanel"));
 		form.add(cb1);
 		form.add(cb2);
 		form.add(cb3);
@@ -52,7 +53,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	}
 	
 	
-	Form<MultipleChoiceQuestion> form = new Form<MultipleChoiceQuestion>("") {
+	Form<MultipleChoiceQuestion> form = new Form<MultipleChoiceQuestion>("mcAnswersForm") {
 		private static final long serialVersionUID = -2476376077544895775L;
 		
 		@Override
