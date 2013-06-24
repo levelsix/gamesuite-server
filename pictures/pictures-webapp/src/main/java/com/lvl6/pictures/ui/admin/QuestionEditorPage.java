@@ -36,7 +36,7 @@ public class QuestionEditorPage extends TemplatePage {
 		StringValue question = getPageParameters().get("q");
 		QuestionBase q;
 		if(question != null && !question.equals("")) {
-			 q = qbDao.findOne(question.toString());
+			 q = qbDao.findOne(question.toOptionalString());
 		}else {
 			q = new MultipleChoiceQuestion();
 		}
