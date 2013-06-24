@@ -23,7 +23,7 @@ public class MultipleChoiceQuestion extends QuestionBase {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
 	@Size(min=2, max=6)
-	protected Set<MultipleChoiceAnswer> answers;
+	protected Set<MultipleChoiceAnswer> answers = new HashSet<MultipleChoiceAnswer>();
 
 	public String getQuestion() {
 		return question;

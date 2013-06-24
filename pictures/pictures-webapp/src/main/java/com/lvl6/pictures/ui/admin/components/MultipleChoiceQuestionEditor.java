@@ -52,12 +52,13 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	
 	protected void setupForm() {
 		int index = 1;
+		if(question.getAnswers() != null) {
 		for(MultipleChoiceAnswer ans : question.getAnswers()) {
 			TextField<String> tf = answers.get(index);
 			CheckBox cb = cbs.get(index);
 			tf.setDefaultModel(new Model<String>(ans.getAnswer()));
 			cb.setModelObject(ans.isCorrect());
-		}
+		}}
 		form.add(new FeedbackPanel("feedbackPanel"));
 		form.add(cb1);
 		form.add(cb2);
