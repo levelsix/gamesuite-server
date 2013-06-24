@@ -52,6 +52,9 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	
 	protected void setupForm() {
 		int index = 1;
+		if(!question.getQuestion().equals("")) {
+			mcQuestionText.setDefaultModelObject(question.getQuestion());
+		}
 		if(question.getAnswers() != null) {
 		for(MultipleChoiceAnswer ans : question.getAnswers()) {
 			TextField<String> tf = answers.get(index);

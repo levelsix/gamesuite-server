@@ -16,10 +16,10 @@ import javax.validation.constraints.Size;
 @Table( name = "multiple_choice_question" )
 public class MultipleChoiceQuestion extends QuestionBase {
 	
-  private static final long serialVersionUID = 45782438787935651L;
+	private static final long serialVersionUID = 45782438787935651L;
 
-  @NotNull
-	protected String question;
+  	@NotNull
+	protected String question = "";
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
 	@Size(min=2, max=6)
