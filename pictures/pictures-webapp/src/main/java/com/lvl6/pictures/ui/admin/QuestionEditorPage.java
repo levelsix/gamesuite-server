@@ -6,8 +6,10 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.util.string.StringValue;
 
 import com.lvl6.pictures.dao.QuestionBaseDao;
+import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.ui.admin.components.MultipleChoiceQuestionEditor;
 import com.lvl6.pictures.ui.admin.components.MultipleChoiceQuestionViewer;
@@ -18,21 +20,36 @@ public class QuestionEditorPage extends TemplatePage {
 
 	private static final long serialVersionUID = -1728365297134290240L;
 	
-	protected QuestionBaseDao qbDao;
+	
 
 	public QuestionEditorPage() {
 		super();
-		qbDao = AppContext.getApplicationContext().getBean(QuestionBaseDao.class);
+		QuestionBase q = getQuestion();
 		setupQuestionList();
-		setupQuestionViewer();
-		setupQuestionEditor();
+		setupQuestionViewer(q);
+		setupQuestionEditor(q);
+	}
+	
+	
+	protected QuestionBase getQuestion() {
+		QuestionBaseDao qbDao = AppContext.getApplicationContext().getBean(QuestionBaseDao.class);
+		StringValue question = getPageParameters().get("q");
+		QuestionBase q;
+		if(question != null && !question.equals("")) {
+			 q = qbDao.findOne(question.toString());
+		}else {
+			q = new MultipleChoiceQuestion();
+		}
+		return q;
 	}
 	
 	protected void setupQuestionList() {
+		QuestionBaseDao qbDao = AppContext.getApplicationContext().getBean(QuestionBaseDao.class);
 		ListView<QuestionBase> listview = new ListView<QuestionBase>("questionsList", qbDao.findAll()) {
 			private static final long serialVersionUID = 1L;
 			protected void populateItem(ListItem<QuestionBase> item) {
 				PageParameters params = new PageParameters();
+				params.add("q", item.getModel().getObject().getId());
 				Link<QuestionEditorPage> qLink = new BookmarkablePageLink<QuestionEditorPage>("questionLink", QuestionEditorPage.class, params);
 				Label qt = new Label("questionText", item.getModel().getObject().getId());
 		        item.add(qLink);
@@ -42,13 +59,13 @@ public class QuestionEditorPage extends TemplatePage {
 		add(listview);
 	}
 	
-	protected void setupQuestionViewer() {
+	protected void setupQuestionViewer(QuestionBase qb) {
 		MultipleChoiceQuestionViewer qv = new MultipleChoiceQuestionViewer("questionViewer");
 		add(qv);
 	}
 	
-	protected void setupQuestionEditor() {
-		MultipleChoiceQuestionEditor qe = new MultipleChoiceQuestionEditor("questionEditor");
+	protected void setupQuestionEditor(QuestionBase qb) {
+		MultipleChoiceQuestionEditor qe = new MultipleChoiceQuestionEditor("questionEditor", qb);
 		add(qe);
 	}
 	
