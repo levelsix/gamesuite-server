@@ -6,6 +6,8 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.lvl6.pictures.dao.QuestionBaseDao;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
@@ -19,6 +21,7 @@ public class QuestionEditorPage extends TemplatePage {
 
 	private static final long serialVersionUID = -1728365297134290240L;
 	
+	private static final Logger log = LoggerFactory.getLogger(QuestionEditorPage.class);
 	
 
 	public QuestionEditorPage() {
@@ -34,6 +37,7 @@ public class QuestionEditorPage extends TemplatePage {
 		QuestionBaseDao qbDao = AppContext.getApplicationContext().getBean(QuestionBaseDao.class);
 		String question = getPageParameters().get("q").toOptionalString();
 		QuestionBase q;
+		log.info("Loading question {}, {}", getPageParameters().get("q"), question);
 		if(question != null && !question.equals("")) {
 			 q = qbDao.findOne(question);
 		}else {
