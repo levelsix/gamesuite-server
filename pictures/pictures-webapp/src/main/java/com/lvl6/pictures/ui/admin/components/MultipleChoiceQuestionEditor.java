@@ -25,7 +25,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 
 	private static final long serialVersionUID = 1L;
 	
-	MultipleChoiceQuestion question;
+	MultipleChoiceQuestion question = new MultipleChoiceQuestion();
 	CheckBox cb1 = new CheckBox("cb1");
 	CheckBox cb2 = new CheckBox("cb2");
 	CheckBox cb3 = new CheckBox("cb3");
