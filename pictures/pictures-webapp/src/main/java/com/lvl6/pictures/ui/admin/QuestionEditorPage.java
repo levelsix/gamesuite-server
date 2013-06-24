@@ -24,12 +24,25 @@ public class QuestionEditorPage extends TemplatePage {
 	private static final Logger log = LoggerFactory.getLogger(QuestionEditorPage.class);
 	
 
+	
+	public QuestionEditorPage(PageParameters parameters) {
+		super(parameters);
+		setup();
+	}
+
+
 	public QuestionEditorPage() {
 		super();
+		setup();
+	}
+	
+	
+	protected void setup() {
 		QuestionBase q = getQuestion();
 		setupQuestionList();
 		setupQuestionViewer(q);
 		setupQuestionEditor(q);
+		
 	}
 	
 	
