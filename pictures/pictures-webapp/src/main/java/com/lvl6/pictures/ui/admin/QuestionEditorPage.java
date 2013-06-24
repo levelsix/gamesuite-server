@@ -6,7 +6,6 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.string.StringValue;
 
 import com.lvl6.pictures.dao.QuestionBaseDao;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
@@ -33,10 +32,10 @@ public class QuestionEditorPage extends TemplatePage {
 	
 	protected QuestionBase getQuestion() {
 		QuestionBaseDao qbDao = AppContext.getApplicationContext().getBean(QuestionBaseDao.class);
-		StringValue question = getPageParameters().get("q");
+		String question = getPageParameters().get("q").toOptionalString();
 		QuestionBase q;
 		if(question != null && !question.equals("")) {
-			 q = qbDao.findOne(question.toOptionalString());
+			 q = qbDao.findOne(question);
 		}else {
 			q = new MultipleChoiceQuestion();
 		}
