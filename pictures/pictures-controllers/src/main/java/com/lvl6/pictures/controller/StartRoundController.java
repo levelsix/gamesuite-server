@@ -76,6 +76,9 @@ public class StartRoundController extends EventController {
 	//stuff client sent
 	StartRoundRequestProto reqProto = 
 		((StartRoundRequestEvent) event).getStartRoundRequestProto();
+	
+	log.info("client sent request proto=" + reqProto);
+	
 	BasicUserProto sender = reqProto.getSender();
 	String userId = sender.getUserId();
 	boolean isRandomPlayer = reqProto.getIsRandomPlayer();
