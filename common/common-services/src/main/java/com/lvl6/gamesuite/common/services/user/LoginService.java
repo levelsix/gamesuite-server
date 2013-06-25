@@ -14,32 +14,32 @@ import com.lvl6.gamesuite.user.utils.PasswordUtil;
 
 public interface LoginService {
 
-  /**
-   * Return the login token (via an AuthorizedDevice object) so the user doesn't have to
-   * keep providing personal information.
-   */
-  public abstract AuthorizedDevice updateUserLastLogin(User inDb, DateTime now, String udid, String deviceId);
-  
-  public abstract boolean validCredentials(User inDb, String nameStrangersSee, String email, String password);
+    /**
+     * Return the login token (via an AuthorizedDevice object) so the user doesn't have to
+     * keep providing personal information.
+     */
+    public abstract AuthorizedDevice updateUserLastLogin(User inDb, DateTime now, String udid, String deviceId);
 
-  public abstract List<User> getFacebookUsers(List<String> facebookIds);
-  
-  public abstract User getUserById(String userId);
-  
-  public abstract Map<String, User> getUsersByIds(Set<String> userId);
-  
-  public abstract void updateUserLastLogout(User inDb, DateTime now);
-  
-  public abstract PasswordUtil getPasswordUtil();
+    public abstract boolean validCredentials(User inDb, String nameStrangersSee, String email, String password);
 
-  public abstract void setPasswordUtil(PasswordUtil passwordUtil);
-  
-  public abstract UserDao getUserDao();
+    public abstract List<User> getFacebookUsers(List<String> facebookIds);
 
-  public abstract void setUserDao(UserDao userDao);
-  
-  public AuthorizedDeviceService getAuthorizedDeviceService();
-  
-  public void setAuthorizedDeviceService(AuthorizedDeviceService authorizedDeviceService);
-  
+    public abstract User getUserById(String userId);
+
+    public abstract Map<String, User> getUserIdsToUsers(Set<String> userIds);
+
+    public abstract void updateUserLastLogout(User inDb, DateTime now);
+
+    public abstract PasswordUtil getPasswordUtil();
+
+    public abstract void setPasswordUtil(PasswordUtil passwordUtil);
+
+    public abstract UserDao getUserDao();
+
+    public abstract void setUserDao(UserDao userDao);
+
+    public AuthorizedDeviceService getAuthorizedDeviceService();
+
+    public void setAuthorizedDeviceService(AuthorizedDeviceService authorizedDeviceService);
+
 }

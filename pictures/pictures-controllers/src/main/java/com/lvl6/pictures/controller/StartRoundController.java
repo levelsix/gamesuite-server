@@ -2,6 +2,7 @@ package com.lvl6.pictures.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -103,7 +104,7 @@ public class StartRoundController extends EventController {
     
     try {
       //read from db
-      Map<String, User> usersByIds = getLoginService().getUsersByIds(userIds);
+      Map<String, User> usersByIds = getLoginService().getUserIdsToUsers(userIds);
       GameHistory gh = null;
       if (null != gameId && !gameId.isEmpty()) {
         gh = getGameHistoryService().getGameHistoryById(gameId);
