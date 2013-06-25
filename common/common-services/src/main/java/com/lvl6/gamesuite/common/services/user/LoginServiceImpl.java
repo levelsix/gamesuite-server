@@ -1,6 +1,7 @@
 package com.lvl6.gamesuite.common.services.user;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -80,8 +81,14 @@ public class LoginServiceImpl implements LoginService {
   }
   
   @Override
-  public Map<String, User> getUsersByIds(Set<String> userIds) {
-    return userDao.findByIdIn(userIds);
+  public Map<String, User> getUserIdsToUsers(Set<String> userIds) {
+      Map<String, User> idsToUsers = new HashMap<String, User>();
+      List<User> users = userDao.findByIdIn(userIds);
+      for (User u : users) {
+	  String id = u.getId();
+	  idsToUsers.put(id, u);
+      }
+      return idsToUsers;
   }
   
   @Override

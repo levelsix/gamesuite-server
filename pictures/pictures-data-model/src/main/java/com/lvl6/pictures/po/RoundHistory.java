@@ -20,112 +20,114 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 @Entity
 public class RoundHistory extends BasePersistentObject {
 
-	
-	@NotNull
-	@Index(name = "round_number_index")
-	protected int roundNumber;
-	
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@Index(name = "round_started_index")
-	protected Date roundStarted;
-	
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@Index(name = "round_ended_index")
-	protected Date roundEnded;
-	
-	
-	//Fetching lazily because fetching GameHistory fetches 
-	//RoundHistory and some might be completed, in which case
-	//score and correctAnswers will suffice for QuestionAnswered
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
-	protected Set<QuestionAnswered> questionsAnswered;
+
+    private static final long serialVersionUID = -135745209067188193L;
+
+    @NotNull
+    @Index(name = "round_number_index")
+    protected int roundNumber;
+
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Index(name = "round_started_index")
+    protected Date roundStarted;
+
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Index(name = "round_ended_index")
+    protected Date roundEnded;
 
 
-	//to prevent recalculating scores from individual QuestionAnswered
-	//everytime RoundHistory is fetched
-	protected int score;
-	
+    //Fetching lazily because fetching GameHistory fetches 
+    //RoundHistory and some might be completed, in which case
+    //score and correctAnswers will suffice for QuestionAnswered
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
+    protected Set<QuestionAnswered> questionsAnswered;
 
-  
-	@NotNull
-	@Index(name = "user_id_index")
-	protected String userId;
-	
-	public Set<String> getPictureNames() {
-	  Set<String> allPicNames = new HashSet<String>();
-	  for (QuestionAnswered qa : questionsAnswered) {
+
+    //to prevent recalculating scores from individual QuestionAnswered
+    //everytime RoundHistory is fetched
+    protected int score;
+
+
+
+    @NotNull
+    @Index(name = "user_id_index")
+    protected String userId;
+
+    public Set<String> getPictureNames() {
+	Set<String> allPicNames = new HashSet<String>();
+	for (QuestionAnswered qa : questionsAnswered) {
 	    Set<String> picNames = qa.getPictureNames();
 	    allPicNames.addAll(picNames);
-	  }
-	  return allPicNames;
 	}
-	
-
-//	public List<PicturesQuestionWithTextAnswer> getPicturesQuestionWithTextAnswer() {
-//	  List<PicturesQuestionWithTextAnswer> pqwtaList =
-//	      
-//	}
+	return allPicNames;
+    }
 
 
-  public int getRoundNumber() {
-		return roundNumber;
-	}
+    //	public List<PicturesQuestionWithTextAnswer> getPicturesQuestionWithTextAnswer() {
+    //	  List<PicturesQuestionWithTextAnswer> pqwtaList =
+    //	      
+    //	}
 
 
-	public void setRoundNumber(int roundNumber) {
-		this.roundNumber = roundNumber;
-	}
+    public int getRoundNumber() {
+	return roundNumber;
+    }
 
 
-	public Date getRoundStarted() {
-		return roundStarted;
-	}
+    public void setRoundNumber(int roundNumber) {
+	this.roundNumber = roundNumber;
+    }
 
 
-	public void setRoundStarted(Date roundStarted) {
-		this.roundStarted = roundStarted;
-	}
+    public Date getRoundStarted() {
+	return roundStarted;
+    }
 
 
-	public Date getRoundEnded() {
-		return roundEnded;
-	}
+    public void setRoundStarted(Date roundStarted) {
+	this.roundStarted = roundStarted;
+    }
 
 
-	public void setRoundEnded(Date roundEnded) {
-		this.roundEnded = roundEnded;
-	}
+    public Date getRoundEnded() {
+	return roundEnded;
+    }
 
 
-	public Set<QuestionAnswered> getQuestionsAnswered() {
-		return questionsAnswered;
-	}
+    public void setRoundEnded(Date roundEnded) {
+	this.roundEnded = roundEnded;
+    }
 
 
-	public void setQuestionsAnswered(Set<QuestionAnswered> questionsAnswered) {
-		this.questionsAnswered = questionsAnswered;
-	}
+    public Set<QuestionAnswered> getQuestionsAnswered() {
+	return questionsAnswered;
+    }
 
 
-	public int getScore() {
-	  return score;
-	}
+    public void setQuestionsAnswered(Set<QuestionAnswered> questionsAnswered) {
+	this.questionsAnswered = questionsAnswered;
+    }
 
 
-	public void setScore(int score) {
-	  this.score = score;
-	}
-  
-
-  public String getUserId() {
-    return userId;
-  }
+    public int getScore() {
+	return score;
+    }
 
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
+    public void setScore(int score) {
+	this.score = score;
+    }
+
+
+    public String getUserId() {
+	return userId;
+    }
+
+
+    public void setUserId(String userId) {
+	this.userId = userId;
+    }
 
 }

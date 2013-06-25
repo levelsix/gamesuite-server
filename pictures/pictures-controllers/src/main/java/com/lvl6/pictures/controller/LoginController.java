@@ -85,6 +85,8 @@ public class LoginController extends EventController {
     @Override
     protected void processRequestEvent(RequestEvent event) throws Exception {
 	LoginRequestProto reqProto = ((LoginRequestEvent) event).getLoginRequestProto();
+	//log.info("reqProto=" + reqProto);
+
 	BasicUserProto sender = reqProto.getSender(); //sender might not have userId
 	LoginType lt = reqProto.getLoginType();
 	List<String> facebookFriendIds = reqProto.getFacebookFriendIdsList();
@@ -205,7 +207,7 @@ public class LoginController extends EventController {
 			  "\t badpUserId=" + badpUserId + "\t userId=" + userId +
 			  "\t loginToken=" + loginToken + "\t expiry=" + expiry.toDate() +
 			  "\t now=" + now.toDate() + "\t expiryMillis" + expiry.toDate().getTime());
-		log.info("badp=" + badp);
+		//log.info("badp=" + badp);
 		responseBuilder.setStatus(LoginResponseStatus.INVALID_LOGIN_TOKEN);
 		return false;
 	    } else {
@@ -406,7 +408,7 @@ public class LoginController extends EventController {
 	//set the recipient
 	responseBuilder.setRecipient(cupb);
 	
-	log.info("\t\t completeUserProto=" + cupb);
+	//log.info("\t\t completeUserProto=" + cupb);
 
 	return true;
     }
@@ -438,7 +440,7 @@ public class LoginController extends EventController {
     }
 
     private void setFacebookFriends(Builder responseBuilder, List<String> facebookFriendIds) {
-	log.info("\t\t facebookFriendIds=" + facebookFriendIds);
+	//log.info("\t\t facebookFriendIds=" + facebookFriendIds);
 	if (null == facebookFriendIds || facebookFriendIds.isEmpty()) {
 	    return;
 	}
@@ -452,7 +454,7 @@ public class LoginController extends EventController {
 	    bupList.add(bup);
 	}
 
-	log.info("\t\t facebookFriends=" + uList);
+	//log.info("\t\t facebookFriends=" + uList);
 	responseBuilder.addAllFacebookFriendsWithAccounts(bupList);
     }
 
@@ -557,6 +559,7 @@ public class LoginController extends EventController {
 			getNoneventProtoUtils().createQuestionProto(qb);
 		newQuestions.add(proto);
 	    }
+	    //log.info("newQuestions=" + newQuestions);
 	    //set responseBuilder
 	    responseBuilder.addAllNewQuestions(newQuestions);
 	}

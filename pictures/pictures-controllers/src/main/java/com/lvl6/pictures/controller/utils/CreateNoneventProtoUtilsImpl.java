@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.gamesuite.common.services.user.LoginService;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto;
@@ -48,6 +49,8 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     @Autowired
     protected UserDao userDao; 
 
+    @Autowired
+    protected LoginService loginService;
 
 
     @Override
@@ -62,7 +65,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    idSet.add(playerOneId);
 	    idSet.add(playerTwoId);
 	}
-	Map<String, User> idsToUsers = getUserDao().findByIdIn(idSet);
+	Map<String, User> idsToUsers = getLoginService().getUserIdsToUsers(idSet);
 
 	AuthorizedDevice adNull = null;
 	String passwordNull = null; 
@@ -79,8 +82,8 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     @Override
     public Map<String, BasicUserProto> createIdsToBasicUserProtos(Collection<String> userIds) {
 	Map<String, BasicUserProto> idsToBups = new HashMap<String, BasicUserProto>();
-
-	Map<String, User> idsToUsers = getUserDao().findByIdIn(userIds);
+	Set<String> userIdsSet = new HashSet<String>(userIds);
+	Map<String, User> idsToUsers = getLoginService().getUserIdsToUsers(userIdsSet);
 	AuthorizedDevice adNull = null;
 	String passwordNull = null;
 	for (String userId : idsToUsers.keySet()) {
@@ -339,8 +342,11 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    QuestionProto qp = createQuestionProto(qb);
 	    qpList.add(qp);
 	}
-
+	
 	brpb.setRoundNumber(roundNumber);
+	brpb.setSecondsRemaning(rpc.getSecondsRemaining());
+	brpb.setCurrentQuestionNumber(rpc.getCurrentQuestionNumber());
+	brpb.setCurrentScore(rpc.getCurrentScore());
 	brpb.addAllQuestions(qpList);
 	return brpb.build();
     }
@@ -360,7 +366,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpList.add(qp);
 	}
 
-	brpb.setId(roundHistoryId);
+	brpb.setRoundId(roundHistoryId);
 	brpb.setRoundNumber(roundNumber);
 	brpb.addAllQuestions(qpList);
 
@@ -376,7 +382,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	int score = rh.getScore();
 	int roundNumber = rh.getRoundNumber();
 
-	brrpb.setId(id);
+	brrpb.setRoundId(id);
 	//brrpb.setNumQuestionsSeen(numQuestionsSeen);
 	//brrpb.setNumQuestionsAnsweredCorrectly(numQuestionsAnsweredCorrectly);
 	brrpb.setScore(score);
@@ -387,7 +393,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
     public BasicRoundResultsProto createBasicRoundResultsProto(CompleteRoundResultsProto crrp) {
 	BasicRoundResultsProto.Builder brpb = BasicRoundResultsProto.newBuilder();
-	brpb.setId(crrp.getId());
+	brpb.setRoundId(crrp.getRoundId());
 	//brpb.setNumQuestionsSeen(crrp.getNumQuestionsSeen());
 	//brpb.setNumQuestionsAnsweredCorrectly(crrp.getNumQuestionsAnsweredCorrectly());
 	brpb.setScore(crrp.getScore());
@@ -399,6 +405,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     public QuestionProto createQuestionProto(QuestionBase qb) {
 	QuestionProto.Builder qpb = QuestionProto.newBuilder();
 
+	String id = qb.getId();
 	if (qb instanceof PicturesQuestionWithTextAnswer) {
 	    PictureQuestionProto pqp = createPictureQuestionProto(
 		    (PicturesQuestionWithTextAnswer) qb);
@@ -409,6 +416,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpb.setMultipleChoice(mcqp);
 	}
 
+	qpb.setQuestionId(id);
 	return qpb.build();
     }
 
@@ -429,7 +437,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpb.setMultipleChoice(mcqp);
 	}
 
-	qpb.setId(id);
+	qpb.setQuestionId(id);
 	return qpb.build();
     }
 
@@ -458,7 +466,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	String answer = mca.getAnswer();
 	AnswerType type = mca.getAnswerType();
 
-	mcapb.setId(id);
+	mcapb.setMultipleChoiceAnswerId(id);
 	mcapb.setAnswer(answer);
 	if (AnswerType.PICTURE == type){
 	    mcapb.setType(MultipleChoiceAnswerProto.AnswerType.PICTURE);
@@ -475,7 +483,6 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
 	Set<String> images = pqwta.getImages();
 	String answer = pqwta.getAnswer();
-
 
 	//images could be null
 	for (String img : images) {
@@ -495,6 +502,14 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     @Override
     public void setUserDao(UserDao userDao) {
 	this.userDao = userDao;
+    }
+
+    public LoginService getLoginService() {
+        return loginService;
+    }
+
+    public void setLoginService(LoginService loginService) {
+        this.loginService = loginService;
     }
 
 }
