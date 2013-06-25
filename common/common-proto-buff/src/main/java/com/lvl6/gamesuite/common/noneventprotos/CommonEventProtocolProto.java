@@ -14,12 +14,14 @@ public final class CommonEventProtocolProto {
     C_CREATE_ACCOUNT_VIA_EMAIL_EVENT(1, 2),
     C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT(2, 3),
     C_LOGIN_EVENT(3, 4),
+    C_LOGOUT_EVENT(4, 51),
     ;
     
     public static final int C_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT_VALUE = 1;
     public static final int C_CREATE_ACCOUNT_VIA_EMAIL_EVENT_VALUE = 2;
     public static final int C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT_VALUE = 3;
     public static final int C_LOGIN_EVENT_VALUE = 4;
+    public static final int C_LOGOUT_EVENT_VALUE = 51;
     
     
     public final int getNumber() { return value; }
@@ -30,6 +32,7 @@ public final class CommonEventProtocolProto {
         case 2: return C_CREATE_ACCOUNT_VIA_EMAIL_EVENT;
         case 3: return C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT;
         case 4: return C_LOGIN_EVENT;
+        case 51: return C_LOGOUT_EVENT;
         default: return null;
       }
     }
@@ -60,7 +63,7 @@ public final class CommonEventProtocolProto {
     }
     
     private static final CommonEventProtocolRequest[] VALUES = {
-      C_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT, C_CREATE_ACCOUNT_VIA_EMAIL_EVENT, C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT, C_LOGIN_EVENT, 
+      C_CREATE_ACCOUNT_VIA_FACEBOOK_EVENT, C_CREATE_ACCOUNT_VIA_EMAIL_EVENT, C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT, C_LOGIN_EVENT, C_LOGOUT_EVENT, 
     };
     
     public static CommonEventProtocolRequest valueOf(
@@ -170,19 +173,19 @@ public final class CommonEventProtocolProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\031CommonEventProtocol.proto\022\005proto*\255\001\n\032C" +
+      "\n\031CommonEventProtocol.proto\022\005proto*\301\001\n\032C" +
       "ommonEventProtocolRequest\022\'\n#C_CREATE_AC" +
       "COUNT_VIA_FACEBOOK_EVENT\020\001\022$\n C_CREATE_A" +
       "CCOUNT_VIA_EMAIL_EVENT\020\002\022-\n)C_CREATE_ACC" +
       "OUNT_VIA_NO_CREDENTIALS_EVENT\020\003\022\021\n\rC_LOG" +
-      "IN_EVENT\020\004*\310\001\n\033CommonEventProtocolRespon" +
-      "se\022\'\n#S_CREATE_ACCOUNT_VIA_FACEBOOK_EVEN" +
-      "T\020\001\022$\n S_CREATE_ACCOUNT_VIA_EMAIL_EVENT\020" +
-      "\002\022-\n)S_CREATE_ACCOUNT_VIA_NO_CREDENTIALS" +
-      "_EVENT\020\003\022\021\n\rS_LOGIN_EVENT\020\004\022\030\n\024S_FORCE_L",
-      "OGOUT_EVENT\0202BD\n(com.lvl6.gamesuite.comm" +
-      "on.noneventprotosB\030CommonEventProtocolPr" +
-      "oto"
+      "IN_EVENT\020\004\022\022\n\016C_LOGOUT_EVENT\0203*\310\001\n\033Commo" +
+      "nEventProtocolResponse\022\'\n#S_CREATE_ACCOU" +
+      "NT_VIA_FACEBOOK_EVENT\020\001\022$\n S_CREATE_ACCO" +
+      "UNT_VIA_EMAIL_EVENT\020\002\022-\n)S_CREATE_ACCOUN" +
+      "T_VIA_NO_CREDENTIALS_EVENT\020\003\022\021\n\rS_LOGIN_",
+      "EVENT\020\004\022\030\n\024S_FORCE_LOGOUT_EVENT\0202BD\n(com" +
+      ".lvl6.gamesuite.common.noneventprotosB\030C" +
+      "ommonEventProtocolProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

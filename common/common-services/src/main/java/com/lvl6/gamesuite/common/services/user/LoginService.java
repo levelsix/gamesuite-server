@@ -28,6 +28,8 @@ public interface LoginService {
   
   public abstract Map<String, User> getUsersByIds(Set<String> userId);
   
+  public abstract void updateUserLastLogout(User inDb, DateTime now);
+  
   public abstract PasswordUtil getPasswordUtil();
 
   public abstract void setPasswordUtil(PasswordUtil passwordUtil);

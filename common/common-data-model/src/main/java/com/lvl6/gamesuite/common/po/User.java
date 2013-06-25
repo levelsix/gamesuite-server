@@ -17,6 +17,8 @@ import org.hibernate.annotations.Index;
 @Table(name = "users")
 public class User extends BasePersistentObject {
 
+    private static final long serialVersionUID = -8208090490423314575L;
+
 	@NotNull
 	@Size(min = 3, max = 30)
 	@Column(unique = true)
@@ -40,6 +42,11 @@ public class User extends BasePersistentObject {
 	@Index(name = "user_last_login_index")
 	protected Date lastLogin = new Date();
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	@Index(name = "user_last_logout_index")
+	protected Date lastLogout = new Date();
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Index(name = "user_signup_date_index")
@@ -102,7 +109,16 @@ public class User extends BasePersistentObject {
 	public void setFacebookId(String facebookId) {
 		this.facebookId = facebookId;
 	}
+	
+	public Date getLastLogout() {
+	    return lastLogout;
+	}
 
+	public void setLastLogout(Date lastLogout) {
+	    this.lastLogout = lastLogout;
+	}
+
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
