@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ import com.lvl6.pictures.po.RoundPendingCompletion;
 @Component
 public class RoundPendingCompletionServiceImpl implements RoundPendingCompletionService {
 
-    //private static final Logger log = LoggerFactory.getLogger(RoundPendingCompletionServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(RoundPendingCompletionServiceImpl.class);
 
     @Resource(name = "questionIdsToQuestions")
     protected Map<String, QuestionBase> questionIdsToQuestions;
@@ -30,6 +32,7 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
     @Override
     public RoundPendingCompletion createUnfinishedRound(String userId,
 	    int roundNumber, List<String> questionBaseIds) {
+	log.info("questionBaseIds=" + questionBaseIds);
 	Set<QuestionBase> qbList = new HashSet<QuestionBase>();
 
 	RoundPendingCompletion rpc = new RoundPendingCompletion();
@@ -42,8 +45,11 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	    qbList.add(qb);
 	}
 
+	log.info("questionBaseList=" + qbList);
 	rpc.setQuestions(qbList);
+	log.info("pre roundPendingCompletion=" + rpc);
 	roundPendingCompletionDao.save(rpc);
+	log.info("post roundPendingCompletion=" + rpc);
 
 	return rpc;
     }
