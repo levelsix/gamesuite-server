@@ -101,4 +101,14 @@ public class RoundPendingCompletion extends BasePersistentObject {
 	this.currentScore = currentScore;
     }
 
+    @Override
+    public String toString() {
+	return "RoundPendingCompletion [roundNumber=" + roundNumber
+		+ ", questions=" + questions + ", userId=" + userId
+		+ ", startDate=" + startDate + ", secondsRemaining="
+		+ secondsRemaining + ", currentQuestionNumber="
+		+ currentQuestionNumber + ", currentScore=" + currentScore
+		+ "]";
+    }
+    
 }

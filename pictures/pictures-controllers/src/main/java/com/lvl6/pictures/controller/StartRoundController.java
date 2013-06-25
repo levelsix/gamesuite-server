@@ -89,7 +89,6 @@ public class StartRoundController extends EventController {
 	Date startDate = new Date(startTime);
 	List<QuestionProto> questions = reqProto.getQuestionsList();
 
-
 	//response to send back to client
 	Builder responseBuilder = StartRoundResponseProto.newBuilder();
 	responseBuilder.setStatus(StartRoundStatus.FAIL_OTHER);
@@ -329,7 +328,7 @@ public class StartRoundController extends EventController {
 	    }
 	    return true;
 	} catch (Exception e) {
-	    log.error("unexpected error: problem with saving to db.");
+	    log.error("unexpected error: problem with saving to db.", e);
 	}
 	return false;
     }
