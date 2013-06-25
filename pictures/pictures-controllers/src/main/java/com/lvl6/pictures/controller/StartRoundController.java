@@ -2,7 +2,6 @@ package com.lvl6.pictures.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -86,8 +85,14 @@ public class StartRoundController extends EventController {
 	String gameId = reqProto.getGameId();
 	int roundNumber = reqProto.getRoundNumber();
 	boolean isPlayerOne = reqProto.getIsPlayerOne();
+	log.info("clientStartTimeMillis=" + reqProto.getStartTime());
 	long startTime = reqProto.getStartTime();
+	log.info("serverStartTimeMillis=" + startTime);
 	Date startDate = new Date(startTime);
+	log.info("startDateMillis=" + startDate.getTime());
+	log.info("nowishMillis=" + (new Date()).getTime());
+	log.info("startDate=" + startDate);
+	log.info("nowish=" + new Date());
 	List<QuestionProto> questions = reqProto.getQuestionsList();
 
 
