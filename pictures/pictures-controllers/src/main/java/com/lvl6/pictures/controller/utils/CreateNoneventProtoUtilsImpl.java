@@ -405,6 +405,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     public QuestionProto createQuestionProto(QuestionBase qb) {
 	QuestionProto.Builder qpb = QuestionProto.newBuilder();
 
+	String id = qb.getId();
 	if (qb instanceof PicturesQuestionWithTextAnswer) {
 	    PictureQuestionProto pqp = createPictureQuestionProto(
 		    (PicturesQuestionWithTextAnswer) qb);
@@ -415,6 +416,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpb.setMultipleChoice(mcqp);
 	}
 
+	qpb.setQuestionId(id);
 	return qpb.build();
     }
 
@@ -481,7 +483,6 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
 	Set<String> images = pqwta.getImages();
 	String answer = pqwta.getAnswer();
-
 
 	//images could be null
 	for (String img : images) {
