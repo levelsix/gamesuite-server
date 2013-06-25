@@ -559,6 +559,7 @@ public class LoginController extends EventController {
 			getNoneventProtoUtils().createQuestionProto(qb);
 		newQuestions.add(proto);
 	    }
+	    log.info("newQuestions=" + newQuestions);
 	    //set responseBuilder
 	    responseBuilder.addAllNewQuestions(newQuestions);
 	}
