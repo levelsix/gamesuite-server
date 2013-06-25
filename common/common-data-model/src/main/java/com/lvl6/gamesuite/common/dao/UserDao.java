@@ -23,7 +23,7 @@ public interface UserDao extends JpaRepository<User, String> {
 
     public User findById(String id);
 
-    //test this (spring doesn't play well with Map<>
+    //test this (spring doesn't play well with Map<>)
     //public Map<String, User> findByIdIn(Collection<String> idList);
     public List<User> findByIdIn(Collection<String> idList);
 
