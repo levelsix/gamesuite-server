@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.pictures.dao.QuestionBaseDao;
 import com.lvl6.pictures.dao.RoundPendingCompletionDao;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundPendingCompletion;
@@ -27,9 +28,20 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 
     @Autowired
     protected RoundPendingCompletionDao roundPendingCompletionDao;
+    
+    @Autowired
+    protected QuestionBaseDao qbDao;
 
 
-    @Override
+    public QuestionBaseDao getQbDao() {
+		return qbDao;
+	}
+
+	public void setQbDao(QuestionBaseDao qbDao) {
+		this.qbDao = qbDao;
+	}
+
+	@Override
     public RoundPendingCompletion createUnfinishedRound(String userId,
 	    int roundNumber, List<String> questionBaseIds) {
 	log.info("questionBaseIds=" + questionBaseIds);
@@ -41,7 +53,7 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 
 	//get the questionbase from questionIdsToQuestions
 	for (String questionBaseId : questionBaseIds) {
-	    QuestionBase qb = questionIdsToQuestions.get(questionBaseId);
+	    QuestionBase qb = qbDao.findOne(questionBaseId);//questionIdsToQuestions.get(questionBaseId);
 	    qbList.add(qb);
 	}
 
