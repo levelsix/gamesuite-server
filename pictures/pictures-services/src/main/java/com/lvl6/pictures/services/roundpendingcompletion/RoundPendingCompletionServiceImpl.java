@@ -2,6 +2,7 @@ package com.lvl6.pictures.services.roundpendingcompletion;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -50,11 +51,12 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	RoundPendingCompletion rpc = new RoundPendingCompletion();
 	rpc.setUserId(userId);
 	rpc.setRoundNumber(roundNumber);
-
+	
+	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
 	//get the questionbase from questionIdsToQuestions
-	for (String questionBaseId : questionBaseIds) {
-	    QuestionBase qb = qbDao.findOne(questionBaseId);//questionIdsToQuestions.get(questionBaseId);
-	    qbList.add(qb);
+	Iterator<QuestionBase> it = questions.iterator();
+	while(it.hasNext()) {
+	    qbList.add(it.next());
 	}
 
 	log.info("questionBaseList=" + qbList);
