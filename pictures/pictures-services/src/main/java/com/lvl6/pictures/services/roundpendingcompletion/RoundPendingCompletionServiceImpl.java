@@ -51,20 +51,21 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	RoundPendingCompletion rpc = new RoundPendingCompletion();
 	rpc.setUserId(userId);
 	rpc.setRoundNumber(roundNumber);
-	rpc = roundPendingCompletionDao.save(rpc);
-	
+	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
 	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
 	//get the questionbase from questionIdsToQuestions
 	Iterator<QuestionBase> it = questions.iterator();
 	while(it.hasNext()) {
-	    qbList.add(it.next());
+	    QuestionBase qb = it.next();
+	    log.info("questionBase=" + qb);
+	    qbList.add(qb);
 	}
 
-	log.info("questionBaseList=" + qbList);
+	//log.info("questionBaseList=" + qbList);
 	rpc.setQuestions(qbList);
-	log.info("pre roundPendingCompletion=" + rpc);
-	roundPendingCompletionDao.save(rpc);
-	log.info("post roundPendingCompletion=" + rpc);
+	//log.info("pre roundPendingCompletion=" + rpc);
+	roundPendingCompletionDao.saveAndFlush(rpc);
+	//log.info("post roundPendingCompletion=" + rpc);
 
 	return rpc;
     }

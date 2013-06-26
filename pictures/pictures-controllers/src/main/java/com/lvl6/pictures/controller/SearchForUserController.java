@@ -54,6 +54,9 @@ public class SearchForUserController extends EventController {
     //stuff client sent
     SearchForUserRequestProto reqProto = 
         ((SearchForUserRequestEvent) event).getSearchForUserRequestProto();
+    
+    log.info("client sent reqProto=" + reqProto);
+    
     BasicUserProto sender = reqProto.getSender();
     String userId = sender.getUserId();
     String nameOfPerson = reqProto.getNameOfPerson();
@@ -72,6 +75,7 @@ public class SearchForUserController extends EventController {
           nameOfPerson, inDbList);
       
       if (validRequest) {
+	log.info("searching for a user. userList=" + inDbList);
         User inDb = inDbList.get(0);
         responseBuilder.setNameOfPersonId(inDb.getId());
         responseBuilder.setStatus(SearchForUserStatus.SUCCESS);
@@ -119,7 +123,7 @@ public class SearchForUserController extends EventController {
       log.error("unexpected error: duplicate users. inDbList=" + inDbList);
       return false;
     }
-    
+    log.info("valid search for user request arguments");
     results.addAll(inDbList);
     return true;
   }
