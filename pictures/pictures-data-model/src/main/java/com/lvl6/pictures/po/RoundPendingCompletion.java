@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -26,7 +26,7 @@ public class RoundPendingCompletion extends BasePersistentObject {
     protected int roundNumber;
 
     //The questions that will be displayed in this round
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST) 
     protected Set<QuestionBase> questions;
 
     @NotNull
