@@ -40,6 +40,7 @@ public class QuestionEditorPage extends TemplatePage {
 	protected void setup() {
 		QuestionBase q = getQuestion();
 		setupQuestionList();
+		setupNewLinks();
 		setupQuestionViewer(q);
 		setupQuestionEditor(q);
 		
@@ -73,6 +74,15 @@ public class QuestionEditorPage extends TemplatePage {
 		    }
 		};
 		add(listview);
+	}
+	
+	
+	protected void setupNewLinks() {
+		PageParameters params = new PageParameters();
+		params.add("type", "mc");
+		//params.add("q", -1);
+		Link<QuestionEditorPage> nmc = new BookmarkablePageLink<>("newMultipleChoice", QuestionEditorPage.class, params);
+		add(nmc);
 	}
 	
 	protected void setupQuestionViewer(QuestionBase qb) {
