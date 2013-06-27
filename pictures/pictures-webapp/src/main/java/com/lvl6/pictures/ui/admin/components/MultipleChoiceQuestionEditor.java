@@ -49,7 +49,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	HiddenField<String> h3 = new HiddenField<String>("h3", new Model<String>(""));
 	HiddenField<String> h4 = new HiddenField<String>("h4", new Model<String>(""));
 	
-	HiddenField<Boolean> isNew = new HiddenField<Boolean>("isNew");
+	HiddenField<Boolean> isNew = new HiddenField<Boolean>("isNew", new Model<Boolean>(true));
 	
 	
 	List<CheckBox> cbs = Arrays.asList(cb1, cb2, cb3, cb4);
@@ -64,7 +64,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	
 	List<TextField<String>> answers = Arrays.asList(answer1, answer2, answer3, answer4);
 	
-	TextArea<String> mcQuestionText = new TextArea<>("mcQuestionText");
+	TextArea<String> mcQuestionText = new TextArea<>("mcQuestionText", new Model<String>(""));
 	
 	
 	protected void setupForm() {
