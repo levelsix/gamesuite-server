@@ -66,20 +66,23 @@ public class CompletedRoundController extends EventController {
     CompletedRoundRequestProto reqProto = 
         ((CompletedRoundRequestEvent) event).getCompletedRoundRequestProto();
     BasicUserProto sender = reqProto.getSender();
+    BasicUserProto opponent = reqProto.getOpponent();
     String userId = sender.getUserId();
+    String opponentId = opponent.getUserId();
     String gameId = reqProto.getGameId();
     CompleteRoundResultsProto crrp = reqProto.getResults();
     
     //response to send back to client
     Builder responseBuilder = CompletedRoundResponseProto.newBuilder();
     responseBuilder.setStatus(CompletedRoundStatus.FAIL_OTHER);
-    responseBuilder.setRecipient(sender);
+    responseBuilder.setSender(sender);
+    responseBuilder.setOpponent(opponent);
     CompletedRoundResponseEvent resEvent = new CompletedRoundResponseEvent(userId);
     resEvent.setTag(event.getTag());
     
     
     try {
-      //read from db
+      //read from db, highly doubt gameId is null
       GameHistory gh = null;
       if (null != gameId && !gameId.isEmpty()) {
         gh = getGameHistoryService().getGameHistoryById(gameId);
@@ -92,6 +95,7 @@ public class CompletedRoundController extends EventController {
       List<RoundHistory> rhList = new ArrayList<RoundHistory>();
       boolean successful = false;
       if (validRequest) {
+	  //gameHistory object is updated
         successful = writeChangesToDb(userId, gh, crrp, rhList);
       }
 
@@ -111,8 +115,9 @@ public class CompletedRoundController extends EventController {
       
       //notify opponent what happened
       if (successful) {
-        String opponentId = gh.getOpponentId(userId);
         //TODO: FIGURE OUT HOW TO SEND AN APNS 
+        notifyOpponent(responseBuilder, sender, userId, opponent,
+        	opponentId, gh);
       }
       
     } catch (Exception e) {
@@ -169,15 +174,16 @@ public class CompletedRoundController extends EventController {
       
       //create the just finished round
       int roundNumber = crrp.getRoundNumber();
+      //save the questions answered by the user
       Set<QuestionAnswered> qaSet = constructQuestionAnswered(userId, 
           roundNumber, crrp.getAnswersList());
       RoundHistory finishedRound = createRoundHistory(userId, roundNumber,
           qaSet, crrp);
-      
+      //record the finished round
       gh.getRoundHistory().add(finishedRound);
       
       //save the game history, set the end date if the game history is over
-      int currentRound = gh.getCurrentRoundNumber();
+      int currentRound = gh.getCurrentRoundNumber(); //accounts for finished round
       int maxRounds = PicturesPoConstants.ROUND_HISTORY__DEFAULT_ROUNDS_PER_PLAYER_PER_GAME;
       if (currentRound > maxRounds) {
         log.info("Another game has been completed!!!");
@@ -199,6 +205,7 @@ public class CompletedRoundController extends EventController {
     //link question ids to unfinished question answered objects
     Map<String, QuestionAnswered> questionIdsToQuestionAnswered =
         new HashMap<String, QuestionAnswered>();
+    //construct all the questions the user answered 
     for (QuestionAnsweredProto qap : questions) {
       String questionId = qap.getQuestionId();
       int questionNumber = qap.getQuestionNumber();
@@ -246,6 +253,49 @@ public class CompletedRoundController extends EventController {
     BasicRoundResultsProto brrp =
         getCreateNoneventProtoUtils().createBasicRoundResultsProto(rh);
     responseBuilder.setResults(brrp);
+  }
+  
+  //different kinds of action keys and alert bodies based on
+  //whether the game started or ended
+  private void notifyOpponent(Builder responseBuilder, BasicUserProto sender,
+	  String userId, BasicUserProto opponent, String opponentId,
+	  GameHistory gh) {
+      CompletedRoundResponseEvent resEvent = new CompletedRoundResponseEvent(opponentId);
+      
+      String actionKey = null;
+      String alertBody = null;
+      String playerOneId = null;
+      int currentRound = 1;
+      int maxRounds = PicturesPoConstants.ROUND_HISTORY__DEFAULT_ROUNDS_PER_PLAYER_PER_GAME;
+      if (null == gh) {
+	  //game started
+	  playerOneId = userId;
+      } else {
+	  playerOneId = gh.getPlayerOneId();
+	  currentRound = gh.getCurrentRoundNumber();
+      }
+      
+      //notification for unfinished game
+      if (currentRound <= maxRounds && playerOneId.equals(userId)) {
+	  //notification for player two
+	  actionKey = "View now";
+	  alertBody = "Your rival, " + sender.getNameStrangersSee() +
+		  ", finished a round. Check the pitiful score and do better!";
+      } else if (currentRound <= maxRounds && !playerOneId.equals(userId)) {
+	  //notification for player one
+	  actionKey = "Continue";
+	  alertBody = "Your foe, " + sender.getNameStrangersSee() +
+		  ", finished a round. See the dismal score. " +
+		  "Maintain your supremacy!";
+      } else {
+	  //round finished, notify player one
+	  actionKey = "View now";
+	  alertBody = "The game is over! See the victor!";
+      }
+      
+      CompletedRoundResponseProto responseProto = responseBuilder.build();
+      resEvent.setCompletedRoundResponseProto(responseProto);
+      getApnsWriter().handleEvent(resEvent, actionKey, alertBody);
   }
   
   

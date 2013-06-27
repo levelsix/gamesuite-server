@@ -20,7 +20,12 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 @Entity
 public class QuestionAnswered extends BasePersistentObject {
 
-	@NotNull
+	/**
+   * 
+   */
+  private static final long serialVersionUID = -6302447186371023897L;
+
+  @NotNull
 	@Column(name = "round_number")
 	@Index(name="question_answered_round_number_index")
 	protected int roundNumber;

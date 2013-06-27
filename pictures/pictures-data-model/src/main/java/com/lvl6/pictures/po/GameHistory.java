@@ -26,7 +26,9 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 @Entity
 public class GameHistory extends BasePersistentObject {
   
-  @NotNull
+    private static final long serialVersionUID = -6098036693773081768L;
+
+@NotNull
   @Index(name = "player_one_id_index")
   protected String playerOneId;
 

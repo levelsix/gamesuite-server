@@ -84,15 +84,49 @@ public class TestJpa {
     ad.setUserId(userId);
     ad.setUdid(udid);
     ad.setDeviceId(deviceId);
-    DateTime expiry = new DateTime();
-    expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
-    ad.setExpires(expiry.toDate());
+    DateTime expiry = new DateTime(ad.getCreated().getTime());
+    
+    int days = PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS;
+    DateTime expiry2 = expiry.plusDays(days);
+    
+    ad.setExpires(expiry2.toDate());
     ad = getAuthorizedDeviceDao().save(ad);
     
     assertNotNull("AuthorizedDevice was just set, though...", ad);
     assertNotNull("No expiry date", ad.getExpires());
     assertNotNull("No create date", ad.getCreated());
     assertNotNull("No login token", ad.getToken());
+    
+    long thirtyDayMillis = new Long(days) * 24L * 60L * 60L * 1000L;
+    
+    Date expiration = ad.getExpires();
+    Date created = ad.getCreated();
+    
+    //GET DATE AUTHORIZED TOKEN CREATED ADD 30 DAYS AND SEE IF IT MATCHES
+    //EXPIRATION DATE
+    DateTime begin = new DateTime(created.getTime());
+    DateTime expectedEnd = new DateTime(begin.toDate().getTime() + thirtyDayMillis);
+    log.info("expectedEnd=" + expectedEnd + "\t millis=" + expectedEnd.toDate().getTime());
+    log.info("thirtyDayMillis=" + thirtyDayMillis);
+    
+    Date expectedEndDate = expectedEnd.toDate();
+    assertTrue("saving expiration time is off. Expected:" + expectedEndDate +
+	    " millis=" + expectedEndDate.getTime() + "\t Actual:" +
+	    expiration + " millis=" + expiration.getTime(),
+	    expectedEndDate.getTime() == expiration.getTime());
+    
+    
+    //GET DATE AUTHORIZED TOKEN CREATED ADD 30 DAYS (via DateTime function)
+    //AND SEE IF IT MATCHES EXPIRATION DATE 
+    DateTime expectedEndTwo = begin.plusDays(days);
+    log.info("expectedEndTwo=" + expectedEndTwo + "\t millis=" + expectedEndTwo.toDate().getTime());
+    
+    Date expectedEndDateTwo = expectedEndTwo.toDate();
+    assertTrue("saving expiration time is off. Expected:" + expectedEndDateTwo +
+	    " millis=" + expectedEndDateTwo.getTime() + "\t Actual:" +
+	    expiration + " millis=" + expiration.getTime(),
+	    expectedEndDateTwo.getTime() == expiration.getTime());
+    
   }
 
 	@Transactional

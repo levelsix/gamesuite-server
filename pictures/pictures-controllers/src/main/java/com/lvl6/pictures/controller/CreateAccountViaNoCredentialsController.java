@@ -1,5 +1,6 @@
 package com.lvl6.pictures.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,183 +25,186 @@ import com.lvl6.pictures.events.response.CreateAccountViaNoCredentialsResponseEv
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
 
 @Component  public class CreateAccountViaNoCredentialsController extends EventController {
-  
-  private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-  @Autowired
-  protected UserSignupService userSignupService;
-  
-  @Autowired
-  protected AuthorizedDeviceService authorizedDeviceService;
-  
-  @Autowired
-  protected CreateNoneventProtoUtils noneventProtoUtils;
+    private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
+    @Autowired
+    protected UserSignupService userSignupService;
 
-  @Override
-  public RequestEvent createRequestEvent() {
-    return new CreateAccountViaNoCredentialsRequestEvent();
-  }
+    @Autowired
+    protected AuthorizedDeviceService authorizedDeviceService;
 
-  @Override
-  public int getEventType() {
-    return CommonEventProtocolRequest.C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT_VALUE;
-  }
-
-  @Override
-  protected void processRequestEvent(RequestEvent event) throws Exception {
-    CreateAccountViaNoCredentialsRequestProto reqProto = 
-        ((CreateAccountViaNoCredentialsRequestEvent) event).getCreateAccountViaNoCredentialsRequestProto();
-    log.info("reqProto=" + reqProto);
-    String nameStrangersSee = reqProto.getNameStrangersSee();
-    String udid = reqProto.getUdid();
-    String deviceId = reqProto.getDeviceId();
-
-    //response to send back to client
-    CreateAccountResponseProto.Builder responseBuilder = CreateAccountResponseProto.newBuilder();
-    responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
-    
-    try {
-      boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto, nameStrangersSee, udid);
-      boolean validRequest = false;
-      boolean success = false;
+    @Autowired
+    protected CreateNoneventProtoUtils noneventProtoUtils;
 
 
-      if (validRequestArgs) {
-        //didn't require client to send over a name
-        log.info("\t\t\t nameStrangersSee=" + nameStrangersSee);
-        if (null == nameStrangersSee || nameStrangersSee.isEmpty()) {
-          nameStrangersSee = userSignupService.generateRandomName(nameStrangersSee);
-        }
-        log.info("\t\t\t nameStrangersSee=" + nameStrangersSee);
-        validRequest = isValidRequest(responseBuilder, nameStrangersSee, udid, deviceId);
-      }
-
-      if(validRequest) {
-        success = writeChangesToDb(responseBuilder, nameStrangersSee, udid, deviceId);
-      }
-
-      if(success) {
-        responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
-      }
-
-      CreateAccountResponseProto resProto = responseBuilder.build();
-      CreateAccountViaNoCredentialsResponseEvent resEvent =
-          new CreateAccountViaNoCredentialsResponseEvent(udid);
-      resEvent.setTag(event.getTag());
-      resEvent.setCreateAccountResponseProto(resProto);
-
-      log.info("Writing event: " + resEvent);
-      getEventWriter().processPreDBResponseEvent(resEvent, udid);
-    } catch (Exception e) {
-      log.error("exception in CreateAccountViaNoCredentialsController" +
-      		" processEvent", e);
-      try {
-        responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
-        CreateAccountResponseProto resProto = responseBuilder.build();
-        CreateAccountViaNoCredentialsResponseEvent resEvent =
-            new CreateAccountViaNoCredentialsResponseEvent(udid);
-        resEvent.setTag(event.getTag());
-        resEvent.setCreateAccountResponseProto(resProto);
-        getEventWriter().processPreDBResponseEvent(resEvent, udid);
-      } catch (Exception e2) {
-        log.error("exception in CreateAccountViaNoCredentialsController" +
-            " processEvent", e2);
-      }
+    @Override
+    public RequestEvent createRequestEvent() {
+	return new CreateAccountViaNoCredentialsRequestEvent();
     }
-  }
 
-  private boolean isValidRequestArguments(Builder responseBuilder, CreateAccountViaNoCredentialsRequestProto request,
-      String nameStrangersSee, String udid) {
-    //not requiring client to generate a name
-//    if (!(request.hasNameStrangersSee()) || nameStrangersSee.isEmpty()) {
-//      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
-//      log.error("unexpected error: no nameStrangersSee provided. nameStrangersSee:" + nameStrangersSee +
-//          ", udid:" + udid);
-//      return false;
-//    }
-    if (!authorizedDeviceService.isValidUdid(udid)) {
-      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_UDID);
-      log.error("unexpected error: invalid udid provided. udid=" + udid);
-      return false;
+    @Override
+    public int getEventType() {
+	return CommonEventProtocolRequest.C_CREATE_ACCOUNT_VIA_NO_CREDENTIALS_EVENT_VALUE;
     }
-    
-    return true;
-  }
-  
-  private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee,
-      String udid, String deviceId) {
-    
-    String facebookIdNull = null;
-    String emailNull = null;
-    String udidNull = null;
-    List<User> existing = userSignupService.checkForExistingUser(facebookIdNull, nameStrangersSee, emailNull, udidNull);
-    
-    if (null != existing && !existing.isEmpty()) {
-      for (User u: existing) {
-        if (nameStrangersSee.equalsIgnoreCase(u.getNameStrangersSee())) { //ignore case for now
-          responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_NAME);
-          log.error("user error: Either name in use nameStrangersSee or user already has " +
-              "account with us. user=" + existing);
-          return false;
-        } else {
-          //maybe just ignore instead and not treat this as a fail...
-          log.error("unexpected error: user returned does not have same nameStrangersSee, nor email. user=" + u +
-              " args=[nameStrangersSee=" + nameStrangersSee + ", udid=" + udid + ", deviceId=" + deviceId);
-          responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
-          return false;
-        }
-      }
-    }
-    
-    return true;
-  }
-  
-  private boolean writeChangesToDb(Builder responseBuilder, String nameStrangersSee,
-      String udid, String deviceId) {
-    boolean success = false;
-    
-    String nameFriendsSeeNull = null;
-    String emailNull = null;
-    String passwordNull = null;
-    String facebookId = null;
-    String userId = null;
-    User newUser = null;
-    AuthorizedDevice  ad = null;
-    try {
-      //create the new user
-      newUser = userSignupService.signup(nameStrangersSee, nameFriendsSeeNull, emailNull, passwordNull, facebookId);
-      //maybe some error checking here...
-      
-      //need to record the device for the user
-      userId = newUser.getId();
-      ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId);
-     
-      BasicUserProto bp = noneventProtoUtils.createBasicUserProto(newUser, ad, null);
-      responseBuilder.setRecipient(bp);
-      
-      success = true;
-    } catch (Exception e) {
-      success = false;
-      log.error("failed to create user or device. user=" + newUser + ", authorizedDevice="+ ad, e);
-    }
-    return success;
-  }
-  
-  public UserSignupService getService() {
-    return userSignupService;
-  }
-  
-  public void setService(UserSignupService service) {
-    this.userSignupService = service;
-  }
-  
-  public CreateNoneventProtoUtils getNoneventProtoUtils() {
-    return noneventProtoUtils;
-  }
 
-  public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
-    this.noneventProtoUtils = noneventProtoUtils;
-  }
+    @Override
+    protected void processRequestEvent(RequestEvent event) throws Exception {
+	CreateAccountViaNoCredentialsRequestProto reqProto = 
+		((CreateAccountViaNoCredentialsRequestEvent) event).getCreateAccountViaNoCredentialsRequestProto();
+	String nameStrangersSee = reqProto.getNameStrangersSee();
+	String udid = reqProto.getUdid();
+	String deviceId = reqProto.getDeviceId();
+
+	//response to send back to client
+	CreateAccountResponseProto.Builder responseBuilder = CreateAccountResponseProto.newBuilder();
+	responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+
+	try {
+	    boolean validRequestArgs = isValidRequestArguments(responseBuilder, reqProto, nameStrangersSee, udid);
+	    boolean validRequest = false;
+	    boolean success = false;
+
+
+	    if (validRequestArgs) {
+		//didn't require client to send over a name
+		if (null == nameStrangersSee || nameStrangersSee.isEmpty()) {
+		    nameStrangersSee = userSignupService.generateRandomName(nameStrangersSee);
+		}
+		validRequest = isValidRequest(responseBuilder, nameStrangersSee, udid, deviceId);
+	    }
+
+	    if(validRequest) {
+		success = writeChangesToDb(responseBuilder, nameStrangersSee, udid, deviceId);
+	    }
+
+	    if(success) {
+		responseBuilder.setStatus(CreateAccountStatus.SUCCESS_ACCOUNT_CREATED);
+	    }
+
+	    CreateAccountResponseProto resProto = responseBuilder.build();
+	    CreateAccountViaNoCredentialsResponseEvent resEvent =
+		    new CreateAccountViaNoCredentialsResponseEvent(udid);
+	    resEvent.setTag(event.getTag());
+	    resEvent.setCreateAccountResponseProto(resProto);
+
+	    log.info("Writing event: " + resEvent);
+	    getEventWriter().processPreDBResponseEvent(resEvent, udid);
+	} catch (Exception e) {
+	    log.error("exception in CreateAccountViaNoCredentialsController" +
+		    " processEvent", e);
+	    try {
+		responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+		CreateAccountResponseProto resProto = responseBuilder.build();
+		CreateAccountViaNoCredentialsResponseEvent resEvent =
+			new CreateAccountViaNoCredentialsResponseEvent(udid);
+		resEvent.setTag(event.getTag());
+		resEvent.setCreateAccountResponseProto(resProto);
+		getEventWriter().processPreDBResponseEvent(resEvent, udid);
+	    } catch (Exception e2) {
+		log.error("exception in CreateAccountViaNoCredentialsController" +
+			" processEvent", e2);
+	    }
+	}
+    }
+
+    private boolean isValidRequestArguments(Builder responseBuilder,
+	    CreateAccountViaNoCredentialsRequestProto request,
+	    String nameStrangersSee, String udid) {
+	//not requiring client to generate a name
+	//    if (!(request.hasNameStrangersSee()) || nameStrangersSee.isEmpty()) {
+	//      responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_NAME);
+	//      log.error("unexpected error: no nameStrangersSee provided. nameStrangersSee:" + nameStrangersSee +
+	//          ", udid:" + udid);
+	//      return false;
+	//    }
+	if (!authorizedDeviceService.isValidUdid(udid)) {
+	    responseBuilder.setStatus(CreateAccountStatus.FAIL_INVALID_UDID);
+	    log.error("unexpected error: invalid udid provided. udid=" + udid);
+	    return false;
+	}
+
+	return true;
+    }
+
+    private boolean isValidRequest(Builder responseBuilder, String nameStrangersSee,
+	    String udid, String deviceId) {
+
+	String facebookIdNull = null;
+	String emailNull = null;
+	String udidNull = null;
+	List<User> existing = userSignupService.checkForExistingUser(
+	    facebookIdNull, nameStrangersSee, emailNull, udidNull);
+
+	if (null != existing && !existing.isEmpty()) {
+	    for (User u: existing) {
+		if (nameStrangersSee.equalsIgnoreCase(u.getNameStrangersSee())) { //ignore case for now
+		    responseBuilder.setStatus(CreateAccountStatus.FAIL_DUPLICATE_NAME);
+		    log.error("user error: Either name in use nameStrangersSee or user already has " +
+			    "account with us. user=" + existing);
+		    return false;
+		} else {
+		    //maybe just ignore instead and not treat this as a fail...
+		    log.error("unexpected error: user returned does not have " +
+		    	"same nameStrangersSee, nor email. user=" + u +
+		    	" args=[nameStrangersSee=" + nameStrangersSee +
+		    	", udid=" + udid + ", deviceId=" + deviceId);
+		    responseBuilder.setStatus(CreateAccountStatus.FAIL_OTHER);
+		    return false;
+		}
+	    }
+	}
+
+	return true;
+    }
+
+    private boolean writeChangesToDb(Builder responseBuilder, String nameStrangersSee,
+	    String udid, String deviceId) {
+	boolean success = false;
+
+	String nameFriendsSeeNull = null;
+	String emailNull = null;
+	String passwordNull = null;
+	String facebookId = null;
+	String userId = null;
+	User newUser = null;
+	AuthorizedDevice  ad = null;
+	try {
+	    //create the new user
+	    newUser = userSignupService.signup(nameStrangersSee, nameFriendsSeeNull, emailNull, passwordNull, facebookId);
+	    //maybe some error checking here...
+
+	    //need to record the device for the user
+	    userId = newUser.getId();
+	    Date now = new Date();
+	    ad = authorizedDeviceService.registerNewAuthorizedDevice(userId, udid, deviceId, now);
+
+	    BasicUserProto bp = noneventProtoUtils.createBasicUserProto(newUser, ad, null);
+	    responseBuilder.setRecipient(bp);
+
+	    success = true;
+	} catch (Exception e) {
+	    success = false;
+	    log.error("unexpected error: failed to create user or device." +
+	    	" user=" + newUser + ", authorizedDevice="+ ad, e);
+	}
+	return success;
+    }
+
+    public UserSignupService getService() {
+	return userSignupService;
+    }
+
+    public void setService(UserSignupService service) {
+	this.userSignupService = service;
+    }
+
+    public CreateNoneventProtoUtils getNoneventProtoUtils() {
+	return noneventProtoUtils;
+    }
+
+    public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
+	this.noneventProtoUtils = noneventProtoUtils;
+    }
 
 }

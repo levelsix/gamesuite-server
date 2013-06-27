@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -14,58 +14,101 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Index;
 
 import com.lvl6.gamesuite.common.po.BasePersistentObject;
+import com.lvl6.pictures.properties.PicturesPoConstants;
 
 
 @Entity
 public class RoundPendingCompletion extends BasePersistentObject {
-  
-  @NotNull
-  int roundNumber;
 
-  //The questions that will be displayed in this round
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
-  protected Set<QuestionBase> questions;
-  
-  @NotNull
-  String userId;
+    private static final long serialVersionUID = 4947214752070572503L;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @NotNull
-  @Index(name="started_round_date_index")
-  protected Date startDate = new Date();
-  
-  
-  
-  public int getRoundNumber() {
-    return roundNumber;
-  }
+    @NotNull
+    protected int roundNumber;
 
-  public void setRoundNumber(int roundNumber) {
-    this.roundNumber = roundNumber;
-  }
+    //The questions that will be displayed in this round
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST) 
+    protected Set<QuestionBase> questions;
 
-  public Set<QuestionBase> getQuestions() {
-    return questions;
-  }
+    @NotNull
+    protected String userId;
 
-  public void setQuestions(Set<QuestionBase> questions) {
-    this.questions = questions;
-  }
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    @Index(name="started_round_date_index")
+    protected Date startDate = new Date();
 
-  public String getUserId() {
-    return userId;
-  }
+    protected int secondsRemaining = 60 *
+	    PicturesPoConstants.ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND;
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
+    protected int currentQuestionNumber = 1;
 
-  public Date getStartDate() {
-    return startDate;
-  }
+    protected int currentScore = 0;
 
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
-  
+
+    public int getRoundNumber() {
+	return roundNumber;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+	this.roundNumber = roundNumber;
+    }
+
+    public Set<QuestionBase> getQuestions() {
+	return questions;
+    }
+
+    public void setQuestions(Set<QuestionBase> questions) {
+	this.questions = questions;
+    }
+
+    public String getUserId() {
+	return userId;
+    }
+
+    public void setUserId(String userId) {
+	this.userId = userId;
+    }
+
+    public Date getStartDate() {
+	return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+	this.startDate = startDate;
+    }
+
+    public int getSecondsRemaining() {
+	return secondsRemaining;
+    }
+
+    public void setSecondsRemaining(int secondsRemaining) {
+	this.secondsRemaining = secondsRemaining;
+    }
+
+    public int getCurrentQuestionNumber() {
+	return currentQuestionNumber;
+    }
+
+    public void setCurrentQuestionNumber(int currentQuestionNumber) {
+	this.currentQuestionNumber = currentQuestionNumber;
+    }
+
+    public int getCurrentScore() {
+	return currentScore;
+    }
+
+    public void setCurrentScore(int currentScore) {
+	this.currentScore = currentScore;
+    }
+
+    @Override
+    public String toString() {
+	return "RoundPendingCompletion [roundNumber=" + roundNumber
+		+ ", questions=" + questions + ", userId=" + userId
+		+ ", startDate=" + startDate + ", secondsRemaining="
+		+ secondsRemaining + ", currentQuestionNumber="
+		+ currentQuestionNumber + ", currentScore=" + currentScore
+		+ "]";
+    }
+    
 }

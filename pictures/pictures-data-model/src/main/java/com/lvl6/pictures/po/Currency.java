@@ -10,53 +10,55 @@ import com.lvl6.gamesuite.common.po.BasePersistentObject;
 
 @Entity
 public class Currency extends BasePersistentObject {
-  
-  //used to play games against opponents
-  protected int tokens;
-  
-  protected Date lastTokenRefillTime;
-  
-  //used to purchase power ups
-  protected int rubies;
 
-  protected String userId;
-  
-  
+    private static final long serialVersionUID = -3736629418064204471L;
 
-  public int getTokens() {
-    return tokens;
-  }
+    //used to play games against opponents
+    protected int tokens;
 
-  public void setTokens(int tokens) {
-    this.tokens = tokens;
-  }
+    protected Date lastTokenRefillTime;
 
-  public Date getLastTokenRefillTime() {
-    return lastTokenRefillTime;
-  }
+    //used to purchase power ups
+    protected int rubies;
 
-  public void setLastTokenRefillTime(Date lastTokenRefillTime) {
-    this.lastTokenRefillTime = lastTokenRefillTime;
-  }
+    protected String userId;
 
-  public int getRubies() {
-    return rubies;
-  }
 
-  public void setRubies(int rubies) {
-    this.rubies = rubies;
-  }
- 
-  public String getUserId() {
-    return userId;
-  }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
-  
-  @Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this);
-  }
+    public int getTokens() {
+	return tokens;
+    }
+
+    public void setTokens(int tokens) {
+	this.tokens = tokens;
+    }
+
+    public Date getLastTokenRefillTime() {
+	return lastTokenRefillTime;
+    }
+
+    public void setLastTokenRefillTime(Date lastTokenRefillTime) {
+	this.lastTokenRefillTime = lastTokenRefillTime;
+    }
+
+    public int getRubies() {
+	return rubies;
+    }
+
+    public void setRubies(int rubies) {
+	this.rubies = rubies;
+    }
+
+    public String getUserId() {
+	return userId;
+    }
+
+    public void setUserId(String userId) {
+	this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+	return ToStringBuilder.reflectionToString(this);
+    }
 }

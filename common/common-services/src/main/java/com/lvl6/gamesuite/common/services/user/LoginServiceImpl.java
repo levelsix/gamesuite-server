@@ -1,6 +1,7 @@
 package com.lvl6.gamesuite.common.services.user;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,11 +37,12 @@ public class LoginServiceImpl implements LoginService {
     
     //return login token inside of the authorized device
     String userId = inDb.getId();
+    Date nowDate = now.toDate();
     AuthorizedDevice ad = getAuthorizedDeviceService().checkForExistingAuthorizedDevice(userId, udid);
     if (null == ad) {
-      ad = getAuthorizedDeviceService().registerNewAuthorizedDevice(userId, udid, deviceId);
+      ad = getAuthorizedDeviceService().registerNewAuthorizedDevice(userId, udid, deviceId, nowDate);
     }
-    getAuthorizedDeviceService().updateExpirationForAuthorizedDevice(ad);
+    getAuthorizedDeviceService().updateExpirationForAuthorizedDevice(ad, nowDate);
     return ad;
   }
   
@@ -79,8 +81,20 @@ public class LoginServiceImpl implements LoginService {
   }
   
   @Override
-  public Map<String, User> getUsersByIds(Set<String> userIds) {
-    return userDao.findByIdIn(userIds);
+  public Map<String, User> getUserIdsToUsers(Set<String> userIds) {
+      Map<String, User> idsToUsers = new HashMap<String, User>();
+      List<User> users = userDao.findByIdIn(userIds);
+      for (User u : users) {
+	  String id = u.getId();
+	  idsToUsers.put(id, u);
+      }
+      return idsToUsers;
+  }
+  
+  @Override
+  public void updateUserLastLogout(User inDb, DateTime now) {
+      inDb.setLastLogout(now.toDate());
+      userDao.save(inDb);
   }
   
   

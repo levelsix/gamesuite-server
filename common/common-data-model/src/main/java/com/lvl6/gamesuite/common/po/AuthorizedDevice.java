@@ -9,7 +9,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Index;
 
 
@@ -17,6 +16,12 @@ import org.hibernate.annotations.Index;
 @Entity
 @Table( name = "authorized_devices" )
 public class AuthorizedDevice extends BasePersistentObject {
+
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 5881408831551873312L;
+
 
 	@NotNull
 	@Index(name = "authorized_device_token_expires_index")
@@ -117,10 +122,15 @@ public class AuthorizedDevice extends BasePersistentObject {
 	public void setDeviceId(String deviceId) {
 	  this.deviceId = deviceId;
 	}
-	
+
+
 	@Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this);
-  }
+	public String toString() {
+		return "AuthorizedDevice [userId=" + userId + ", udid=" + udid + ", token=" + token + ", expires="
+				+ expires + ", created=" + created + ", deviceId=" + deviceId + ", id=" + id + ", version="
+				+ version + "]";
+	}
+	
+
 	
 }
