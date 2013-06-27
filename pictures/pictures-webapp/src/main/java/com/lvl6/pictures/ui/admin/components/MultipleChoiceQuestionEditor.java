@@ -73,7 +73,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 			isNew.setModel(new Model<Boolean>(false));
 			log.info("Editing multiple choice question {}", question.getId());
 		}
-		int index = 1;
+		int index = 0;
 		if(!question.getQuestion().equals("")) {
 			mcQuestionText.setDefaultModel(new Model<String>(question.getQuestion()));
 		}
@@ -85,7 +85,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 			tf.setDefaultModel(new Model<String>(ans.getAnswer()));
 			cb.setDefaultModel(new Model<Boolean>(ans.isCorrect()));
 			h.setModel(new Model<String>(ans.getId()));
-			
+			index++;
 		}}
 		form.add(new FeedbackPanel("feedbackPanel"));
 		form.add(cb1);
@@ -111,7 +111,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 		
 		@Override
 		protected void onSubmit() {
-			int index = 1;
+			int index = 0;
 			for(TextField<String> tf : answers) {
 				MultipleChoiceAnswer ans;
 				if(isNew.getModelObject()) {
@@ -125,6 +125,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 				ans.setAnswer(tf.getModelObject());
 				ans.setCorrect(cbs.get(index).getModelObject());
 				log.info("Set answer isCorrect {} : {}", ans.isCorrect(), ans.getAnswer());
+				index++;
 			}
 			question.setQuestion(mcQuestionText.getModelObject());
 			log.info("Saving question: \n{}", question);
