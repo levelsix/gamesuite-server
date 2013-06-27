@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
+import com.lvl6.pictures.po.AnswerType;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.QuestionBase;
@@ -127,6 +128,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 				MultipleChoiceAnswer ans;
 				if(isNew()) {
 					ans = new MultipleChoiceAnswer();
+					ans.setAnswerType(AnswerType.TEXT);
 					question.getAnswers().add(ans);
 					log.info("Creating new answer");
 				}else {
