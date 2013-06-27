@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,7 @@ import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.QuestionBase;
+import com.lvl6.pictures.ui.admin.QuestionEditorPage;
 import com.lvl6.spring.AppContext;
 
 public class MultipleChoiceQuestionEditor extends Panel implements QuestionEditor<MultipleChoiceQuestion> {
@@ -37,15 +39,15 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	private static final long serialVersionUID = 1L;
 	
 	MultipleChoiceQuestion question = new MultipleChoiceQuestion();
-	CheckBox cb1 = new CheckBox("cb1");
-	CheckBox cb2 = new CheckBox("cb2");
-	CheckBox cb3 = new CheckBox("cb3");
-	CheckBox cb4 = new CheckBox("cb4");
+	CheckBox cb1 = new CheckBox("cb1", new Model<Boolean>(false));
+	CheckBox cb2 = new CheckBox("cb2", new Model<Boolean>(false));
+	CheckBox cb3 = new CheckBox("cb3", new Model<Boolean>(false));
+	CheckBox cb4 = new CheckBox("cb4", new Model<Boolean>(false));
 	
-	HiddenField<String> h1 = new HiddenField<String>("h1");
-	HiddenField<String> h2 = new HiddenField<String>("h2");
-	HiddenField<String> h3 = new HiddenField<String>("h3");
-	HiddenField<String> h4 = new HiddenField<String>("h4");
+	HiddenField<String> h1 = new HiddenField<String>("h1", new Model<String>(""));
+	HiddenField<String> h2 = new HiddenField<String>("h2", new Model<String>(""));
+	HiddenField<String> h3 = new HiddenField<String>("h3", new Model<String>(""));
+	HiddenField<String> h4 = new HiddenField<String>("h4", new Model<String>(""));
 	
 	HiddenField<Boolean> isNew = new HiddenField<Boolean>("isNew");
 	
@@ -55,10 +57,10 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	List<HiddenField<String>> hfs = Arrays.asList(h1, h2, h3, h4);
 	
 	
-	TextField<String> answer1 = new TextField<String>("answer1");
-	TextField<String> answer2 = new TextField<String>("answer2");
-	TextField<String> answer3 = new TextField<String>("answer3");
-	TextField<String> answer4 = new TextField<String>("answer4");
+	TextField<String> answer1 = new TextField<String>("answer1", new Model<String>(""));
+	TextField<String> answer2 = new TextField<String>("answer2", new Model<String>(""));
+	TextField<String> answer3 = new TextField<String>("answer3", new Model<String>(""));
+	TextField<String> answer4 = new TextField<String>("answer4", new Model<String>(""));
 	
 	List<TextField<String>> answers = Arrays.asList(answer1, answer2, answer3, answer4);
 	
@@ -129,7 +131,10 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 			}
 			question.setQuestion(mcQuestionText.getModelObject());
 			log.info("Saving question: \n{}", question);
-			AppContext.getApplicationContext().getBean(MultipleChoiceQuestionDao.class).save(question);
+			question = AppContext.getApplicationContext().getBean(MultipleChoiceQuestionDao.class).save(question);
+			PageParameters params = new PageParameters();
+			params.add("q", question.getId());
+			setResponsePage(QuestionEditorPage.class, params);
 		}
 		
 	};
