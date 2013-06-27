@@ -15,9 +15,11 @@ import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.lvl6.pictures.dao.MultipleChoiceQuestionDao;
 import com.lvl6.pictures.po.MultipleChoiceAnswer;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.QuestionBase;
+import com.lvl6.spring.AppContext;
 
 public class MultipleChoiceQuestionEditor extends Panel implements QuestionEditor<MultipleChoiceQuestion> {
 
@@ -108,14 +110,37 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 		
 		@Override
 		protected void onSubmit() {
-			
+			int index = 1;
+			for(TextField<String> tf : answers) {
+				MultipleChoiceAnswer ans;
+				if(isNew.getModelObject()) {
+					ans = new MultipleChoiceAnswer();
+					question.getAnswers().add(ans);
+					log.info("Creating new answer");
+				}else {
+					ans = getAnswer(hfs.get(index).getModelObject());
+					log.info("Updating answer");
+				}
+				ans.setAnswer(tf.getModelObject());
+				ans.setCorrect(cbs.get(index).getModelObject());
+				log.info("Set answer isCorrect {} : {}", ans.isCorrect(), ans.getAnswer());
+			}
+			log.info("Saving question: \n{}", question);
+			AppContext.getApplicationContext().getBean(MultipleChoiceQuestionDao.class).save(question);
 		}
 		
 	};
 	
 	
 	
-	
+	protected MultipleChoiceAnswer getAnswer(String id) {
+		for(MultipleChoiceAnswer mcqa : question.getAnswers()) {
+			if(mcqa.getId().equals(id)) {
+				return mcqa;
+			}
+		}
+		return null;
+	}
 	
 	
 	
