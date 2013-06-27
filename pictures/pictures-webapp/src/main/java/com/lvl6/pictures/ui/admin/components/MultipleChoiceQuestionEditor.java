@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.HiddenField;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -38,7 +39,18 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	CheckBox cb3 = new CheckBox("cb3");
 	CheckBox cb4 = new CheckBox("cb4");
 	
+	HiddenField<String> h1 = new HiddenField<String>("h1");
+	HiddenField<String> h2 = new HiddenField<String>("h2");
+	HiddenField<String> h3 = new HiddenField<String>("h3");
+	HiddenField<String> h4 = new HiddenField<String>("h4");
+	
+	HiddenField<Boolean> isNew = new HiddenField<Boolean>("isNew");
+	
+	
 	List<CheckBox> cbs = Arrays.asList(cb1, cb2, cb3, cb4);
+	
+	List<HiddenField<String>> hfs = Arrays.asList(h1, h2, h3, h4);
+	
 	
 	TextField<String> answer1 = new TextField<String>("answer1");
 	TextField<String> answer2 = new TextField<String>("answer2");
@@ -51,6 +63,13 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	
 	
 	protected void setupForm() {
+		if(question.getId() == null || question.getId().equals("")) {
+			isNew.setModel(new Model<Boolean>(true));
+			log.info("Adding new multiple choice question");
+		}else {
+			isNew.setModel(new Model<Boolean>(false));
+			log.info("Editing multiple choice question {}", question.getId());
+		}
 		int index = 1;
 		if(!question.getQuestion().equals("")) {
 			mcQuestionText.setDefaultModelObject(question.getQuestion());
@@ -59,8 +78,11 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 		for(MultipleChoiceAnswer ans : question.getAnswers()) {
 			TextField<String> tf = answers.get(index);
 			CheckBox cb = cbs.get(index);
+			HiddenField<String> h = hfs.get(index);
 			tf.setDefaultModel(new Model<String>(ans.getAnswer()));
-			cb.setModelObject(ans.isCorrect());
+			cb.setDefaultModel(new Model<Boolean>(ans.isCorrect()));
+			h.setModel(new Model<String>(ans.getId()));
+			
 		}}
 		form.add(new FeedbackPanel("feedbackPanel"));
 		form.add(cb1);
@@ -71,6 +93,11 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 		form.add(answer2);
 		form.add(answer3);
 		form.add(answer4);
+		form.add(h1);
+		form.add(h2);
+		form.add(h3);
+		form.add(h4);
+		form.add(isNew);
 		form.add(mcQuestionText);
 		add(form);
 	}
