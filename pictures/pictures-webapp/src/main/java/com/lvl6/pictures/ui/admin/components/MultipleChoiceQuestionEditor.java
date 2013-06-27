@@ -74,7 +74,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 		}
 		int index = 1;
 		if(!question.getQuestion().equals("")) {
-			mcQuestionText.setDefaultModelObject(question.getQuestion());
+			mcQuestionText.setDefaultModel(new Model<String>(question.getQuestion()));
 		}
 		if(question.getAnswers() != null) {
 		for(MultipleChoiceAnswer ans : question.getAnswers()) {
@@ -125,6 +125,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 				ans.setCorrect(cbs.get(index).getModelObject());
 				log.info("Set answer isCorrect {} : {}", ans.isCorrect(), ans.getAnswer());
 			}
+			question.setQuestion(mcQuestionText.getModelObject());
 			log.info("Saving question: \n{}", question);
 			AppContext.getApplicationContext().getBean(MultipleChoiceQuestionDao.class).save(question);
 		}
