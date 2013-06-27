@@ -81,7 +81,7 @@ public class QuestionEditorPage extends TemplatePage {
 		PageParameters params = new PageParameters();
 		params.add("type", "mc");
 		//params.add("q", -1);
-		Link<QuestionEditorPage> nmc = new BookmarkablePageLink<>("newMultipleChoice", QuestionEditorPage.class, params);
+		Link<QuestionEditorPage> nmc = new BookmarkablePageLink<>("newMultipleChoiceLink", QuestionEditorPage.class, params);
 		add(nmc);
 	}
 	
