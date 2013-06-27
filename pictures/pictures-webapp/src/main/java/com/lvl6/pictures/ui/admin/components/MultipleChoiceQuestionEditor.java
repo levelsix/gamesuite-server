@@ -125,19 +125,21 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 		protected void onSubmit() {
 			int index = 0;
 			for(TextField<String> tf : answers) {
-				MultipleChoiceAnswer ans;
-				if(isNew()) {
-					ans = new MultipleChoiceAnswer();
-					ans.setAnswerType(AnswerType.TEXT);
-					question.getAnswers().add(ans);
-					log.info("Creating new answer");
-				}else {
-					ans = getAnswer(hfs.get(index).getModelObject());
-					log.info("Updating answer");
+				if(tf.getModelObject() != null && !tf.getModelObject().equals("")) {
+					MultipleChoiceAnswer ans;
+					if(isNew()) {
+						ans = new MultipleChoiceAnswer();
+						ans.setAnswerType(AnswerType.TEXT);
+						question.getAnswers().add(ans);
+						log.info("Creating new answer");
+					}else {
+						ans = getAnswer(hfs.get(index).getModelObject());
+						log.info("Updating answer");
+					}
+					ans.setAnswer(tf.getModelObject());
+					ans.setCorrect(cbs.get(index).getModelObject());
+					log.info("Set answer isCorrect {} : {}", ans.isCorrect(), ans.getAnswer());
 				}
-				ans.setAnswer(tf.getModelObject());
-				ans.setCorrect(cbs.get(index).getModelObject());
-				log.info("Set answer isCorrect {} : {}", ans.isCorrect(), ans.getAnswer());
 				index++;
 			}
 			question.setQuestion(mcQuestionText.getModelObject());
