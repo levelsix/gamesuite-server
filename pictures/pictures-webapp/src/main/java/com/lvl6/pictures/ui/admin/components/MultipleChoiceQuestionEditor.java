@@ -29,6 +29,7 @@ public class MultipleChoiceQuestionEditor extends Panel implements QuestionEdito
 	
 	public MultipleChoiceQuestionEditor(String id, QuestionBase qb) {
 		super(id);
+		log.info("Editing question: \n{}", qb);
 		setQuestion((MultipleChoiceQuestion) qb);
 		setupForm();
 	}
