@@ -65,7 +65,7 @@ public class TestPicturesJpa {
 		images.add("image4");
 		q.setImages(images);
 		q.setCreatedBy("JUnit");
-		pictureDao.save(q);
+		pictureDao.saveAndFlush(q);
 
 		return q;
 	}
@@ -107,7 +107,12 @@ public class TestPicturesJpa {
 		answers.add(mcaD);
 		mcq.setAnswers(answers);
 
-		multipleChoiceQuestionDao.save(mcq);
+		int size = mcq.getAnswers().size(); 
+		assertTrue("size is not >= 2 and <= 6...?!?! size=" + size +
+			"\t answers=" + mcq.getAnswers(),
+			size >=2 && size <= 6);
+		
+		multipleChoiceQuestionDao.saveAndFlush(mcq);
 		return mcq;
 	}
 
