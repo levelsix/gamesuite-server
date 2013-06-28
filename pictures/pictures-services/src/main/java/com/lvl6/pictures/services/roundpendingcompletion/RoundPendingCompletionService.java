@@ -16,6 +16,9 @@ public interface RoundPendingCompletionService {
   public abstract void restartRoundPendingCompletion(Date startDate,
       RoundPendingCompletion rpc);
   
+  public abstract void updateRoundPendingCompletion(RoundPendingCompletion rpc,
+	  int secondsRemaining, int currentQuestionNumber, int currentScore);
+  
   public Map<String, QuestionBase> getQuestionIdsToQuestions();
   public void setQuestionIdsToQuestions(
       Map<String, QuestionBase> questionIdsToQuestions);

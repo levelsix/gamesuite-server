@@ -13,7 +13,7 @@ public class SaveRoundProgressResponseEvent extends NormalResponseEvent {
   
   public SaveRoundProgressResponseEvent(String playerId) {
     super(playerId);
-    eventType = PicturesEventProtocolResponse.S_SAVE_ROUND_PGROGRESS_EVENT_VALUE;
+    eventType = PicturesEventProtocolResponse.S_SAVE_ROUND_PROGRESS_EVENT_VALUE;
   }
   
   @Override

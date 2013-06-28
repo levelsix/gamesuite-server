@@ -343,6 +343,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    qpList.add(qp);
 	}
 	
+	brpb.setRoundId(rpc.getId());
 	brpb.setRoundNumber(roundNumber);
 	brpb.setSecondsRemaning(rpc.getSecondsRemaining());
 	brpb.setCurrentQuestionNumber(rpc.getCurrentQuestionNumber());

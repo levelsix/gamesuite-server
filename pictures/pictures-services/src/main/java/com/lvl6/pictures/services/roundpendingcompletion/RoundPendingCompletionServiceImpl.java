@@ -74,9 +74,21 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
     public void restartRoundPendingCompletion(Date startDate,
 	    RoundPendingCompletion rpc) {
 	rpc.setStartDate(startDate);
-	roundPendingCompletionDao.save(rpc);
+	roundPendingCompletionDao.saveAndFlush(rpc);
     }
 
+    @Override
+    public void updateRoundPendingCompletion(RoundPendingCompletion rpc,
+	    int secondsRemaining, int currentQuestionNumber,
+	    int currentScore) {
+	rpc.setSecondsRemaining(secondsRemaining);
+	rpc.setCurrentQuestionNumber(currentQuestionNumber);
+	rpc.setCurrentScore(currentScore);
+	
+	roundPendingCompletionDao.saveAndFlush(rpc);
+    }
+    
+    
     @Override
     public Map<String, QuestionBase> getQuestionIdsToQuestions() {
 	return questionIdsToQuestions;
