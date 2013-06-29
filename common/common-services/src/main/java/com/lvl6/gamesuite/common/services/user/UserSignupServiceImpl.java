@@ -65,6 +65,8 @@ public class UserSignupServiceImpl implements UserSignupService {
 	  if (null != password) {
 	    newUser.setPassword(PasswordUtil.encryptPassword(password, getSalt(newUser.getSignupDate())));
 	  }
+	  newUser.setAccountInitialized(false);
+	  
 	  log.debug("Saving new user. user=" + newUser);
 	  newUser = userDao.save(newUser);
 	  return newUser;
