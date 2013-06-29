@@ -5,8 +5,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import com.lvl6.pictures.po.QuestionBase;
 public class InitializationUtils implements InitializingBean {
 
 
-    //private static final Logger log = LoggerFactory.getLogger(InitializationUtils.class);
+    private static final Logger log = LoggerFactory.getLogger(InitializationUtils.class);
 
     @Resource(name = "questionIdsToQuestions")
     protected Map<String, QuestionBase> questionIdsToQuestions;
@@ -33,7 +33,7 @@ public class InitializationUtils implements InitializingBean {
 
 	for (QuestionBase qb : allQuestions) {
 	    String id = qb.getId();
-	    //log.info("Adding question to questionsByQuestionId -- id:{}, type:{}", qb.getId(), qb.getClass().getCanonicalName());
+	    log.info("Adding question to questionsByQuestionId -- id:{}, type:{}", qb.getId(), qb.getClass().getCanonicalName());
 	    questionIdsToQuestions.put(id, qb);
 	}
     }
