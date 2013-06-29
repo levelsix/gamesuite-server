@@ -54,6 +54,7 @@ public class User extends BasePersistentObject {
 
 	protected String facebookId;
 	
+	@NotNull
 	protected boolean accountInitialized = false;
 	
 	
