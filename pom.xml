@@ -71,7 +71,7 @@
 		<lvl6.server.log.appender>R</lvl6.server.log.appender>
 		<lvl6.server.log.location>/var/log/tomcat7/pictures</lvl6.server.log.location>
 		
-		<hibernate.hdb2ddl.auto>create</hibernate.hdb2ddl.auto>
+		<hibernate.hdb2ddl.auto>update</hibernate.hdb2ddl.auto>
 
 
 		<globals.isSandbox>true</globals.isSandbox>
