@@ -90,7 +90,7 @@ public class LoginController extends EventController {
 	BasicUserProto sender = reqProto.getSender(); //sender might not have userId
 	LoginType lt = reqProto.getLoginType();
 	List<String> facebookFriendIds = reqProto.getFacebookFriendIdsList();
-	boolean initializeAccount = reqProto.getInitializeAccount();
+	//boolean initializeAccount = reqProto.getInitializeAccount();
 	DateTime now = new DateTime();
 	//this is what the login request event .java file does...
 	String udid = reqProto.getSender().getBadp().getUdid();
@@ -121,7 +121,7 @@ public class LoginController extends EventController {
 	    if (validRequest) {
 		u = getUser(userIdList, userList);
 		successful = writeChangesToDb(responseBuilder, sender, lt,
-			initializeAccount, now, u);
+			now, u);
 	    }
 
 	    if (successful) {
@@ -379,24 +379,26 @@ public class LoginController extends EventController {
     }
 
     private boolean writeChangesToDb(Builder responseBuilder, BasicUserProto sender, LoginType lt,
-	    boolean initializeAccount, DateTime now, User u) {
+	    DateTime now, User u) {
 
 	String userId = u.getId();
+	boolean accountInitialized = u.isAccountInitialized();
 	Currency monies = null;
-	if (initializeAccount) {
-	    //give the user all the coins and stuff
-	    monies = getCurrencyService().initializeUserCurrency(userId, now.toDate());
+	if (accountInitialized) {
+	    // construct the user (with his existing currency and all)
+	    monies = getCurrencyService().getCurrencyForUser(userId);
 
 	} else {
-	    // CONSTRUCT THE USER (CURRENCY AND ALL)
-	    monies = getCurrencyService().getCurrencyForUser(userId);
+	    //give the user the initial coins and stuff, record that he got it
+	    monies = getCurrencyService().initializeUserCurrency(userId, now.toDate());
+	    u.setAccountInitialized(true);
 	}
 	if (null == monies) {
 	    //every user should have currency!
 	    log.error("unexpected error: user does not have currency. userProto=" + sender);
 	}
 
-	// RECORD THE USER LOGGING IN
+	// RECORD THE USER LOGGING IN (UPDATING THE USER TABLE)
 	AuthorizedDevice ad = updateUserLogin(sender, u, now);
 
 	//KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT

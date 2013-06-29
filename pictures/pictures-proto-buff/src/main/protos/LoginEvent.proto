@@ -16,10 +16,6 @@ message LoginRequestProto {
 	
 	optional LoginType loginType = 3;
 	
-	//this tells the server if this user's account needs to be initialized
-	//should be set to true only after user has just completed the tutorial
-	optional bool initializeAccount = 4;
-	
 	enum LoginType {
 		LOGIN_TOKEN = 1;
 		FACEBOOK = 2;

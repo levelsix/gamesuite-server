@@ -53,6 +53,10 @@ public class User extends BasePersistentObject {
 	protected Date signupDate = new Date();
 
 	protected String facebookId;
+	
+	protected boolean accountInitialized = false;
+	
+	
 
 	public String getNameStrangersSee() {
 		return nameStrangersSee;
@@ -118,7 +122,16 @@ public class User extends BasePersistentObject {
 	    this.lastLogout = lastLogout;
 	}
 
+	public boolean isAccountInitialized() {
+	    return accountInitialized;
+	}
+
+	public void setAccountInitialized(boolean accountInitialized) {
+	    this.accountInitialized = accountInitialized;
+	}
 	
+	
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);

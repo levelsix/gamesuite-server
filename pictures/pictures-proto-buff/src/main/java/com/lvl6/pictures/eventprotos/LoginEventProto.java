@@ -24,10 +24,6 @@ public final class LoginEventProto {
     // optional .proto.LoginRequestProto.LoginType loginType = 3;
     boolean hasLoginType();
     com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType getLoginType();
-    
-    // optional bool initializeAccount = 4;
-    boolean hasInitializeAccount();
-    boolean getInitializeAccount();
   }
   public static final class LoginRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -170,21 +166,10 @@ public final class LoginEventProto {
       return loginType_;
     }
     
-    // optional bool initializeAccount = 4;
-    public static final int INITIALIZEACCOUNT_FIELD_NUMBER = 4;
-    private boolean initializeAccount_;
-    public boolean hasInitializeAccount() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public boolean getInitializeAccount() {
-      return initializeAccount_;
-    }
-    
     private void initFields() {
       sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       facebookFriendIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
-      initializeAccount_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -206,9 +191,6 @@ public final class LoginEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeEnum(3, loginType_.getNumber());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(4, initializeAccount_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -235,10 +217,6 @@ public final class LoginEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, loginType_.getNumber());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, initializeAccount_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -375,8 +353,6 @@ public final class LoginEventProto {
         bitField0_ = (bitField0_ & ~0x00000002);
         loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
         bitField0_ = (bitField0_ & ~0x00000004);
-        initializeAccount_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -433,10 +409,6 @@ public final class LoginEventProto {
           to_bitField0_ |= 0x00000002;
         }
         result.loginType_ = loginType_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.initializeAccount_ = initializeAccount_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -468,9 +440,6 @@ public final class LoginEventProto {
         }
         if (other.hasLoginType()) {
           setLoginType(other.getLoginType());
-        }
-        if (other.hasInitializeAccount()) {
-          setInitializeAccount(other.getInitializeAccount());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -526,11 +495,6 @@ public final class LoginEventProto {
                 bitField0_ |= 0x00000004;
                 loginType_ = value;
               }
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              initializeAccount_ = input.readBool();
               break;
             }
           }
@@ -705,27 +669,6 @@ public final class LoginEventProto {
       public Builder clearLoginType() {
         bitField0_ = (bitField0_ & ~0x00000004);
         loginType_ = com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType.LOGIN_TOKEN;
-        onChanged();
-        return this;
-      }
-      
-      // optional bool initializeAccount = 4;
-      private boolean initializeAccount_ ;
-      public boolean hasInitializeAccount() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      public boolean getInitializeAccount() {
-        return initializeAccount_;
-      }
-      public Builder setInitializeAccount(boolean value) {
-        bitField0_ |= 0x00000008;
-        initializeAccount_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearInitializeAccount() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        initializeAccount_ = false;
         onChanged();
         return this;
       }
@@ -5047,47 +4990,46 @@ public final class LoginEventProto {
     java.lang.String[] descriptorData = {
       "\n\020LoginEvent.proto\022\005proto\032\026TriviaGameFor" +
       "mat.proto\032\032TriviaQuestionFormat.proto\032\nU" +
-      "ser.proto\"\373\001\n\021LoginRequestProto\022%\n\006sende" +
+      "ser.proto\"\340\001\n\021LoginRequestProto\022%\n\006sende" +
       "r\030\001 \001(\0132\025.proto.BasicUserProto\022\031\n\021facebo" +
       "okFriendIds\030\002 \003(\t\0225\n\tloginType\030\003 \001(\0162\".p" +
-      "roto.LoginRequestProto.LoginType\022\031\n\021init" +
-      "ializeAccount\030\004 \001(\010\"R\n\tLoginType\022\017\n\013LOGI" +
-      "N_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016EMAIL_PASSWOR" +
-      "D\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\214\n\n\022LoginRespons" +
-      "eProto\022+\n\trecipient\030\001 \001(\0132\030.proto.Comple",
-      "teUserProto\022/\n\016completedGames\030\002 \003(\0132\027.pr" +
-      "oto.GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.p" +
-      "roto.OngoingGameProto\022*\n\tnotMyTurn\030\004 \003(\013" +
-      "2\027.proto.OngoingGameProto\022*\n\014newQuestion" +
-      "s\030\005 \003(\0132\024.proto.QuestionProto\022=\n\006status\030" +
-      "\006 \001(\0162-.proto.LoginResponseProto.LoginRe" +
-      "sponseStatus\022:\n\033facebookFriendsWithAccou" +
-      "nts\030\007 \003(\0132\025.proto.BasicUserProto\022\024\n\014pict" +
-      "ureNames\030\010 \003(\t\022@\n\016loginConstants\030\t \001(\0132(" +
-      ".proto.LoginResponseProto.LoginConstants",
-      "\032\307\004\n\016LoginConstants\022U\n\021currencyConstants" +
-      "\030\001 \001(\0132:.proto.LoginResponseProto.LoginC" +
-      "onstants.CurrencyConstants\022O\n\016roundConst" +
-      "ants\030\002 \001(\01327.proto.LoginResponseProto.Lo" +
-      "ginConstants.RoundConstants\022Y\n\nscoreType" +
-      "s\030\003 \001(\0132E.proto.LoginResponseProto.Login" +
-      "Constants.QuestionTypeScoringConstants\032n" +
-      "\n\021CurrencyConstants\022\034\n\024defaultInitialRub" +
-      "ies\030\001 \001(\005\022\034\n\024defaultInitialTokens\030\002 \001(\005\022" +
-      "\035\n\025numSecondsUntilRefill\030\003 \001(\005\032N\n\016RoundC",
-      "onstants\022\034\n\024defaultRoundsPerGame\030\001 \001(\005\022\036" +
-      "\n\026defaultMinutesPerRound\030\002 \001(\005\032r\n\034Questi" +
-      "onTypeScoringConstants\022\022\n\nmcqCorrect\030\001 \001" +
-      "(\005\022\024\n\014mcqIncorrect\030\002 \001(\005\022\022\n\nacqCorrect\030\003" +
-      " \001(\005\022\024\n\014acqIncorrect\030\004 \001(\005\"\371\001\n\023LoginResp" +
-      "onseStatus\022\027\n\023SUCCESS_LOGIN_TOKEN\020\001\022\027\n\023S" +
-      "UCCESS_FACEBOOK_ID\020\002\022\032\n\026SUCCESS_EMAIL_PA" +
-      "SSWORD\020\003\022\032\n\026SUCCESS_NO_CREDENTIALS\020\004\022\027\n\023" +
-      "INVALID_LOGIN_TOKEN\020\005\022\027\n\023INVALID_FACEBOO" +
-      "K_ID\020\006\022\032\n\026INVALID_EMAIL_PASSWORD\020\007\022\032\n\026IN",
-      "VALID_NO_CREDENTIALS\020\010\022\016\n\nFAIL_OTHER\020\tB0" +
-      "\n\035com.lvl6.pictures.eventprotosB\017LoginEv" +
-      "entProto"
+      "roto.LoginRequestProto.LoginType\"R\n\tLogi" +
+      "nType\022\017\n\013LOGIN_TOKEN\020\001\022\014\n\010FACEBOOK\020\002\022\022\n\016" +
+      "EMAIL_PASSWORD\020\003\022\022\n\016NO_CREDENTIALS\020\004\"\214\n\n" +
+      "\022LoginResponseProto\022+\n\trecipient\030\001 \001(\0132\030" +
+      ".proto.CompleteUserProto\022/\n\016completedGam",
+      "es\030\002 \003(\0132\027.proto.GameResultsProto\022\'\n\006myT" +
+      "urn\030\003 \003(\0132\027.proto.OngoingGameProto\022*\n\tno" +
+      "tMyTurn\030\004 \003(\0132\027.proto.OngoingGameProto\022*" +
+      "\n\014newQuestions\030\005 \003(\0132\024.proto.QuestionPro" +
+      "to\022=\n\006status\030\006 \001(\0162-.proto.LoginResponse" +
+      "Proto.LoginResponseStatus\022:\n\033facebookFri" +
+      "endsWithAccounts\030\007 \003(\0132\025.proto.BasicUser" +
+      "Proto\022\024\n\014pictureNames\030\010 \003(\t\022@\n\016loginCons" +
+      "tants\030\t \001(\0132(.proto.LoginResponseProto.L" +
+      "oginConstants\032\307\004\n\016LoginConstants\022U\n\021curr",
+      "encyConstants\030\001 \001(\0132:.proto.LoginRespons" +
+      "eProto.LoginConstants.CurrencyConstants\022" +
+      "O\n\016roundConstants\030\002 \001(\01327.proto.LoginRes" +
+      "ponseProto.LoginConstants.RoundConstants" +
+      "\022Y\n\nscoreTypes\030\003 \001(\0132E.proto.LoginRespon" +
+      "seProto.LoginConstants.QuestionTypeScori" +
+      "ngConstants\032n\n\021CurrencyConstants\022\034\n\024defa" +
+      "ultInitialRubies\030\001 \001(\005\022\034\n\024defaultInitial" +
+      "Tokens\030\002 \001(\005\022\035\n\025numSecondsUntilRefill\030\003 " +
+      "\001(\005\032N\n\016RoundConstants\022\034\n\024defaultRoundsPe",
+      "rGame\030\001 \001(\005\022\036\n\026defaultMinutesPerRound\030\002 " +
+      "\001(\005\032r\n\034QuestionTypeScoringConstants\022\022\n\nm" +
+      "cqCorrect\030\001 \001(\005\022\024\n\014mcqIncorrect\030\002 \001(\005\022\022\n" +
+      "\nacqCorrect\030\003 \001(\005\022\024\n\014acqIncorrect\030\004 \001(\005\"" +
+      "\371\001\n\023LoginResponseStatus\022\027\n\023SUCCESS_LOGIN" +
+      "_TOKEN\020\001\022\027\n\023SUCCESS_FACEBOOK_ID\020\002\022\032\n\026SUC" +
+      "CESS_EMAIL_PASSWORD\020\003\022\032\n\026SUCCESS_NO_CRED" +
+      "ENTIALS\020\004\022\027\n\023INVALID_LOGIN_TOKEN\020\005\022\027\n\023IN" +
+      "VALID_FACEBOOK_ID\020\006\022\032\n\026INVALID_EMAIL_PAS" +
+      "SWORD\020\007\022\032\n\026INVALID_NO_CREDENTIALS\020\010\022\016\n\nF",
+      "AIL_OTHER\020\tB0\n\035com.lvl6.pictures.eventpr" +
+      "otosB\017LoginEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5099,7 +5041,7 @@ public final class LoginEventProto {
           internal_static_proto_LoginRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoginRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "FacebookFriendIds", "LoginType", "InitializeAccount", },
+              new java.lang.String[] { "Sender", "FacebookFriendIds", "LoginType", },
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.class,
               com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.Builder.class);
           internal_static_proto_LoginResponseProto_descriptor =
