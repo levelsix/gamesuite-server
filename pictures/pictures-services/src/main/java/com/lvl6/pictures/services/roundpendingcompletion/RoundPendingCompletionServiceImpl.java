@@ -45,19 +45,21 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	@Override
     public RoundPendingCompletion createUnfinishedRound(String userId,
 	    int roundNumber, List<String> questionBaseIds) {
-	log.info("questionBaseIds=" + questionBaseIds);
+	//log.info("questionBaseIds=" + questionBaseIds);
 	Set<QuestionBase> qbList = new HashSet<QuestionBase>();
 
 	RoundPendingCompletion rpc = new RoundPendingCompletion();
 	rpc.setUserId(userId);
 	rpc.setRoundNumber(roundNumber);
-	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
+	
+	//rpc = roundPendingCompletionDao.saveAndFlush(rpc);
+	log.info("\t\t\t did not save round created. rpc=" + rpc);
 	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
 	//get the questionbase from questionIdsToQuestions
 	Iterator<QuestionBase> it = questions.iterator();
 	while(it.hasNext()) {
 	    QuestionBase qb = it.next();
-	    log.info("questionBase=" + qb);
+	    //log.info("questionBase=" + qb);
 	    qbList.add(qb);
 	}
 
