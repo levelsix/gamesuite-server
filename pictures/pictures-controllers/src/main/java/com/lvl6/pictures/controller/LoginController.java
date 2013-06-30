@@ -456,7 +456,7 @@ public class LoginController extends EventController {
 	    bupList.add(bup);
 	}
 
-	//log.info("\t\t facebookFriends=" + uList);
+	log.info("\t\t sent facebookFriends=" + uList);
 	responseBuilder.addAllFacebookFriendsWithAccounts(bupList);
     }
 
