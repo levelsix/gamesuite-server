@@ -192,7 +192,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
   
   @Override
   public void saveGameHistory(GameHistory gh) {
-    gameHistoryDao.save(gh);
+    gameHistoryDao.saveAndFlush(gh);
   }
   
   @Override
