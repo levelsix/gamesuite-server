@@ -583,6 +583,8 @@ public class LoginController extends EventController {
 	lcb.setCurrencyConstants(cc);
 	lcb.setRoundConstants(rc);
 	lcb.setScoreTypes(qtsc);
+	
+	responseBuilder.setLoginConstants(lcb.build());
     }
     
     private CurrencyConstants getCurrencyConstants() {

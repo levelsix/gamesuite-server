@@ -63,8 +63,7 @@ public class LoginServiceImpl implements LoginService {
       log.info("userInDb=" + inDb + "\t nameStrangersSee=" + nameStrangersSee +
 	      "\t email=" + email);
       
-      if(isPasswordValid && inDb.getNameStrangersSee().equals(nameStrangersSee) 
-          && inDb.getEmail().equals(email)) {
+      if(isPasswordValid && inDb.getEmail().equals(email)) {
         success = true; 
       }else {
         success = false;
