@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,7 @@ import com.lvl6.gamesuite.user.utils.PasswordUtil;
 @Component
 public class LoginServiceImpl implements LoginService {
   
+    private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
   
   @Autowired
   protected PasswordUtil passwordUtil;
@@ -53,6 +56,13 @@ public class LoginServiceImpl implements LoginService {
       byte[] salt = getSalt(inDb.getSignupDate());
       String encodedPassword = passwordUtil.encodePassword(password, salt);
       boolean isPasswordValid = passwordUtil.isPasswordValid(encodedPassword, password, salt);
+      boolean nameMatches = inDb.getNameStrangersSee().equals(nameStrangersSee);
+      boolean emailMatches = inDb.getEmail().equals(email);
+      
+      log.info("nameMatches=" + nameMatches + "\t emailMatches=" + emailMatches);
+      log.info("userInDb=" + inDb + "\t nameStrangersSee=" + nameStrangersSee +
+	      "\t email=" + email);
+      
       if(isPasswordValid && inDb.getNameStrangersSee().equals(nameStrangersSee) 
           && inDb.getEmail().equals(email)) {
         success = true; 
