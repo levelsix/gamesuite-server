@@ -73,7 +73,7 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
       if (qb instanceof MultipleChoiceQuestion) {
         points = PicturesPoConstants.MCQ__POINTS_FOR_CORRECT_ANSWER;
       } else if (qb instanceof PicturesQuestionWithTextAnswer) {
-        points = PicturesPoConstants.PQ__POINTS_FOR_CORRECT_ANSWER;
+        points = PicturesPoConstants.ACQ__POINTS_FOR_CORRECT_ANSWER;
       }
       //more question types here
       
@@ -81,7 +81,7 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
       if (qb instanceof MultipleChoiceQuestion) {
         points = PicturesPoConstants.MCQ__POINTS_FOR_INCORRECT_ANSWER;
       } else if (qb instanceof PicturesQuestionWithTextAnswer) {
-        points = PicturesPoConstants.PQ__POINTS_FOR_INCORRECT_ANSWER;
+        points = PicturesPoConstants.ACQ__POINTS_FOR_INCORRECT_ANSWER;
       } 
       //more question types here
       
