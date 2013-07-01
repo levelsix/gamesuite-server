@@ -14,14 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lvl6.gamesuite.common.dao.AuthorizedDeviceDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.properties.PoConstants;
-import com.lvl6.gamesuite.common.services.user.UserSignupServiceImpl;
 
 
 @Component
 public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
 
 
-    private static final Logger log = LoggerFactory.getLogger(UserSignupServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AuthorizedDeviceServiceImpl.class);
 
 
     @Autowired
