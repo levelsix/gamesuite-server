@@ -305,6 +305,7 @@ public class StartRoundController extends EventController {
 		log.info("creating an unfinished round");
 		rpc = createUnfinishedRound(userId, roundNumber,
 			questions);
+		log.info("created an unfinished round");
 		gh.setUnfinishedRound(rpc);
 	    }
 
