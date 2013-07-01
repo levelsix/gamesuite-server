@@ -25,7 +25,7 @@ public interface GameHistoryService {
   
   public abstract GameHistory getGameHistoryById(String gameId);
   
-  public abstract void saveGameHistory(GameHistory gh);
+  public abstract GameHistory saveGameHistory(GameHistory gh);
   
   public abstract GameHistoryDao getGameHistoryDao();
   

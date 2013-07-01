@@ -180,7 +180,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	gh.setPlayerTwoId(playerTwoId);
 	gh.setStartTime(startDate);
 	//need to save it to the db, before setting object properties and saving
-	saveGameHistory(gh);
+	gh = saveGameHistory(gh);
 	return gh;
   }
   
@@ -191,8 +191,9 @@ public class GameHistoryServiceImpl implements GameHistoryService {
   }
   
   @Override
-  public void saveGameHistory(GameHistory gh) {
+  public GameHistory saveGameHistory(GameHistory gh) {
     gameHistoryDao.saveAndFlush(gh);
+    return gh;
   }
   
   @Override
