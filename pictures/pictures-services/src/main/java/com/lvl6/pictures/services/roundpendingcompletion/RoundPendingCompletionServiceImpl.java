@@ -53,7 +53,6 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	rpc.setRoundNumber(roundNumber);
 	
 	rpc = roundPendingCompletionDao.save(rpc);
-	log.info("\t\t\t did not save round created. rpc=" + rpc);
 	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
 	//get the questionbase from questionIdsToQuestions
 	Iterator<QuestionBase> it = questions.iterator();
