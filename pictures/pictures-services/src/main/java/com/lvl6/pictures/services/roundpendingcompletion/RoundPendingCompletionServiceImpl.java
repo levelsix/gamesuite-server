@@ -66,7 +66,7 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	//log.info("questionBaseList=" + qbList);
 	rpc.setQuestions(qbList);
 	//log.info("pre roundPendingCompletion=" + rpc);
-	roundPendingCompletionDao.saveAndFlush(rpc);
+	roundPendingCompletionDao.save(rpc);
 	//log.info("post roundPendingCompletion=" + rpc);
 
 	return rpc;
