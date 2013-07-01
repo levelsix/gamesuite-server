@@ -126,7 +126,8 @@ public class StartRoundController extends EventController {
 		}
 
 		if (null == gh) {
-		    gh = constructNewGame(userId, opponentId, startDate);
+		    gh = getGameHistoryService().constructNewGame(userId,
+			    opponentId, startDate);
 		}
 
 		successful = writeChangesToDb(userId, opponentId, usersByIds, c,
@@ -284,15 +285,6 @@ public class StartRoundController extends EventController {
 	}
 
 	return questionIds;
-    }
-
-    private GameHistory constructNewGame(String playerOneId, String playerTwoId,
-	    Date startDate) {
-	GameHistory gh = new GameHistory();
-	gh.setPlayerOneId(playerOneId);
-	gh.setPlayerTwoId(playerTwoId);
-	gh.setStartTime(startDate);
-	return gh;
     }
 
     private boolean writeChangesToDb(String userId, String opponentId,

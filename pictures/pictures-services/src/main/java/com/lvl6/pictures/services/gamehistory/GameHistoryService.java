@@ -19,6 +19,10 @@ public interface GameHistoryService {
   public abstract Set<String> getPictureNamesFromOngoingGames(String userId,
       List<GameHistory> myTurn, List<GameHistory> pendingGamesMyTurn);
   
+  public abstract GameHistory constructNewGame(String playerOneId,
+	  String playerTwoId, Date startDate);
+  
+  
   public abstract GameHistory getGameHistoryById(String gameId);
   
   public abstract void saveGameHistory(GameHistory gh);

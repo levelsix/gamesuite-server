@@ -173,6 +173,19 @@ public class GameHistoryServiceImpl implements GameHistoryService {
   }
   
   @Override
+  public GameHistory constructNewGame(String playerOneId, String playerTwoId,
+	    Date startDate) {
+	GameHistory gh = new GameHistory();
+	gh.setPlayerOneId(playerOneId);
+	gh.setPlayerTwoId(playerTwoId);
+	gh.setStartTime(startDate);
+	//need to save it to the db, before setting object properties and saving
+	gameHistoryDao.save(gh);
+	return gh;
+  }
+  
+  
+  @Override
   public GameHistory getGameHistoryById(String gameId) {
     return gameHistoryDao.findById(gameId);
   }
