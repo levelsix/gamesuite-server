@@ -180,7 +180,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	gh.setPlayerTwoId(playerTwoId);
 	gh.setStartTime(startDate);
 	//need to save it to the db, before setting object properties and saving
-	gameHistoryDao.save(gh);
+	saveGameHistory(gh);
 	return gh;
   }
   
