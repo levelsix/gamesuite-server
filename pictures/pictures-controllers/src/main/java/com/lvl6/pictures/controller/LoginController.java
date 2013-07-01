@@ -29,6 +29,10 @@ import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginRequestProto.LoginType;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.Builder;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.CurrencyConstants;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.QuestionTypeScoringConstants;
+import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginConstants.RoundConstants;
 import com.lvl6.pictures.eventprotos.LoginEventProto.LoginResponseProto.LoginResponseStatus;
 import com.lvl6.pictures.events.request.LoginRequestEvent;
 import com.lvl6.pictures.events.response.LoginResponseEvent;
@@ -162,7 +166,9 @@ public class LoginController extends EventController {
 		setFacebookFriends(responseBuilder, facebookFriendIds);
 	    }
 
-
+	    //set the login constants
+	    setConstants(responseBuilder);
+	    
 	    LoginResponseProto resProto = responseBuilder.build();
 	    resEvent.setLoginResponseProto(resProto);
 
@@ -566,6 +572,46 @@ public class LoginController extends EventController {
 	    responseBuilder.addAllNewQuestions(newQuestions);
 	}
     }
+    
+    
+    private void setConstants(Builder responseBuilder) {
+	LoginConstants.Builder lcb = LoginConstants.newBuilder();
+	CurrencyConstants cc = getCurrencyConstants();
+	RoundConstants rc = getRoundConstants();
+	QuestionTypeScoringConstants qtsc = getQuestionTypeScoringConstants();
+	
+	lcb.setCurrencyConstants(cc);
+	lcb.setRoundConstants(rc);
+	lcb.setScoreTypes(qtsc);
+    }
+    
+    private CurrencyConstants getCurrencyConstants() {
+	CurrencyConstants.Builder ccb = CurrencyConstants.newBuilder();
+	ccb.setDefaultInitialRubies(PicturesPoConstants.CURRENCY__DEFAULT_INITIAL_RUBIES);
+	ccb.setDefaultInitialTokens(PicturesPoConstants.CURRENCY__DEFAULT_INITIAL_TOKENS);
+	int secondsTillRefill = 60 * PicturesPoConstants.CURRENCY__MINUTES_FOR_TOKEN_REGENERATION;
+	ccb.setNumSecondsUntilRefill(secondsTillRefill);
+	return ccb.build();
+    }
+    
+    private RoundConstants getRoundConstants() {
+	RoundConstants.Builder rcb = RoundConstants.newBuilder();
+	rcb.setDefaultRoundsPerGame(PicturesPoConstants.ROUND_HISTORY__DEFAULT_ROUNDS_PER_PLAYER_PER_GAME);
+	rcb.setDefaultMinutesPerRound(PicturesPoConstants.ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND);
+	return rcb.build();
+    }
+    
+    private QuestionTypeScoringConstants getQuestionTypeScoringConstants() {
+	QuestionTypeScoringConstants.Builder qtscb =
+		QuestionTypeScoringConstants.newBuilder();
+	qtscb.setMcqCorrect(PicturesPoConstants.MCQ__POINTS_FOR_CORRECT_ANSWER);
+	qtscb.setMcqIncorrect(PicturesPoConstants.MCQ__POINTS_FOR_INCORRECT_ANSWER);
+	
+	qtscb.setAcqCorrect(PicturesPoConstants.ACQ__POINTS_FOR_CORRECT_ANSWER);
+	qtscb.setAcqIncorrect(PicturesPoConstants.ACQ__POINTS_FOR_INCORRECT_ANSWER);
+	return qtscb.build();
+    }
+	    
 
     public UserSignupService getUserSignupService() {
 	return userSignupService;

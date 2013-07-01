@@ -25,7 +25,7 @@ public class PicturesPoConstants {
   public static int MCQ__POINTS_FOR_CORRECT_ANSWER = 3;
   public static int MCQ__POINTS_FOR_INCORRECT_ANSWER = 2;
   
-  //pictures question
-  public static int PQ__POINTS_FOR_CORRECT_ANSWER = 4;
-  public static int PQ__POINTS_FOR_INCORRECT_ANSWER = 1;
+  //pictures question or answer construction question
+  public static int ACQ__POINTS_FOR_CORRECT_ANSWER = 4;
+  public static int ACQ__POINTS_FOR_INCORRECT_ANSWER = 1;
 }
