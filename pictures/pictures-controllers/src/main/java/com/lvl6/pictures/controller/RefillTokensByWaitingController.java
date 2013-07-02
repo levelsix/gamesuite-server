@@ -131,7 +131,7 @@ public class RefillTokensByWaitingController extends EventController {
     
     //check if user can regenerate a token
     //current time > last refill time + time_to_regenerate
-    Date lastRefillTime = c.getLastTokenRefillTime();
+    Date lastRefillTime = new Date(c.getLastTokenRefillTime().getTime());
     if (!getCurrencyService().canRegenerateToken(lastRefillTime, clientDate)) {
       log.error("user error: tokens not ready for refill yet. clientTime=" +
           clientDate + ";      lastRefillTime=" + lastRefillTime +

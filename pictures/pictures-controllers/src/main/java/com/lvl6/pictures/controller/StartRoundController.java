@@ -76,7 +76,7 @@ public class StartRoundController extends EventController {
 	StartRoundRequestProto reqProto = 
 		((StartRoundRequestEvent) event).getStartRoundRequestProto();
 	
-	//log.info("client sent request proto=" + reqProto);
+	log.info("client sent request proto=" + reqProto);
 	
 	BasicUserProto sender = reqProto.getSender();
 	String userId = sender.getUserId();
@@ -144,7 +144,7 @@ public class StartRoundController extends EventController {
 	    resEvent.setStartRoundResponseProto(responseBuilder.build());
 
 	    log.info("Writing event: " + resEvent);
-	    log.info("responseBuilder=" + responseBuilder);
+	    log.info("responseBuilder=" + responseBuilder.build());
 	    getEventWriter().handleEvent(resEvent);
 
 	} catch (Exception e) {
@@ -311,7 +311,7 @@ public class StartRoundController extends EventController {
 	    }
 
 	    //save the game history
-	    log.info("saving to game history. gameHistory=" + gh);
+	    //log.info("saving to game history. gameHistory=" + gh);
 	    getGameHistoryService().saveGameHistory(gh);
 
 	    //don't spend the token if the round is a pending completion round
