@@ -75,7 +75,7 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
     public RoundPendingCompletion restartRoundPendingCompletion(
 	    Date startDate, RoundPendingCompletion rpc) {
 	rpc.setStartDate(startDate);
-	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
+	rpc = roundPendingCompletionDao.save(rpc);
 	return rpc;
     }
 
@@ -87,7 +87,7 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	rpc.setCurrentQuestionNumber(currentQuestionNumber);
 	rpc.setCurrentScore(currentScore);
 
-	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
+	rpc = roundPendingCompletionDao.save(rpc);
 	return rpc;
     }
 

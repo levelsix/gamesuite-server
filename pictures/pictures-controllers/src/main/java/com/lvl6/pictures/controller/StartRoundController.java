@@ -144,6 +144,7 @@ public class StartRoundController extends EventController {
 	    resEvent.setStartRoundResponseProto(responseBuilder.build());
 
 	    log.info("Writing event: " + resEvent);
+	    log.info("responseBuilder=" + responseBuilder);
 	    getEventWriter().handleEvent(resEvent);
 
 	} catch (Exception e) {
