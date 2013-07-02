@@ -167,7 +167,7 @@ public class LoginController extends EventController {
 
 	    //set the login constants
 	    setConstants(responseBuilder);
-	    
+
 	    LoginResponseProto resProto = responseBuilder.build();
 	    resEvent.setLoginResponseProto(resProto);
 
@@ -184,7 +184,7 @@ public class LoginController extends EventController {
 
 	    } catch (Exception e2) {
 		log.error("exception2 in RetrieveNewQuestionsController" +
-				" processRequestEvent", e2);
+			" processRequestEvent", e2);
 	    }
 	}
     }
@@ -209,9 +209,9 @@ public class LoginController extends EventController {
 		    null == loginToken || loginToken.isEmpty() || 
 		    !badp.hasExpirationDate() || expiry.isBefore(now.getMillis()) ) {
 		log.error("user error: login-token login is invalid." +
-			  "\t badpUserId=" + badpUserId + "\t userId=" + userId +
-			  "\t loginToken=" + loginToken + "\t expiry=" + expiry.toDate() +
-			  "\t now=" + now.toDate() + "\t expiryMillis" + expiry.toDate().getTime());
+			"\t badpUserId=" + badpUserId + "\t userId=" + userId +
+			"\t loginToken=" + loginToken + "\t expiry=" + expiry.toDate() +
+			"\t now=" + now.toDate() + "\t expiryMillis" + expiry.toDate().getTime());
 		//log.info("badp=" + badp);
 		responseBuilder.setStatus(LoginResponseStatus.INVALID_LOGIN_TOKEN);
 		return false;
@@ -381,7 +381,7 @@ public class LoginController extends EventController {
 	    //return userList.get(0);
 	    userList.add(u);
 	}
-	
+
 	return userList;
     }
 
@@ -417,7 +417,7 @@ public class LoginController extends EventController {
 		getNoneventProtoUtils().createCompleteUserProto(u, ad, monies);
 	//set the recipient
 	responseBuilder.setRecipient(cupb);
-	
+
 	//log.info("\t\t completeUserProto=" + cupb);
 
 	return true;
@@ -455,7 +455,7 @@ public class LoginController extends EventController {
 	    return;
 	}
 	List<BasicUserProto> bupList = new ArrayList<BasicUserProto>();
-	
+
 	List<User> uList = getLoginService().getFacebookUsers(facebookFriendIds);
 	//construct the protos for the users
 	for (User u : uList) {
@@ -574,21 +574,21 @@ public class LoginController extends EventController {
 	    responseBuilder.addAllNewQuestions(newQuestions);
 	}
     }
-    
-    
+
+
     private void setConstants(Builder responseBuilder) {
 	LoginConstants.Builder lcb = LoginConstants.newBuilder();
 	CurrencyConstants cc = getCurrencyConstants();
 	RoundConstants rc = getRoundConstants();
 	QuestionTypeScoringConstants qtsc = getQuestionTypeScoringConstants();
-	
+
 	lcb.setCurrencyConstants(cc);
 	lcb.setRoundConstants(rc);
 	lcb.setScoreTypes(qtsc);
-	
+
 	responseBuilder.setLoginConstants(lcb.build());
     }
-    
+
     private CurrencyConstants getCurrencyConstants() {
 	CurrencyConstants.Builder ccb = CurrencyConstants.newBuilder();
 	ccb.setDefaultInitialRubies(PicturesPoConstants.CURRENCY__DEFAULT_INITIAL_RUBIES);
@@ -597,25 +597,25 @@ public class LoginController extends EventController {
 	ccb.setNumSecondsUntilRefill(secondsTillRefill);
 	return ccb.build();
     }
-    
+
     private RoundConstants getRoundConstants() {
 	RoundConstants.Builder rcb = RoundConstants.newBuilder();
 	rcb.setDefaultRoundsPerGame(PicturesPoConstants.ROUND_HISTORY__DEFAULT_ROUNDS_PER_PLAYER_PER_GAME);
 	rcb.setDefaultMinutesPerRound(PicturesPoConstants.ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND);
 	return rcb.build();
     }
-    
+
     private QuestionTypeScoringConstants getQuestionTypeScoringConstants() {
 	QuestionTypeScoringConstants.Builder qtscb =
 		QuestionTypeScoringConstants.newBuilder();
 	qtscb.setMcqCorrect(PicturesPoConstants.MCQ__POINTS_FOR_CORRECT_ANSWER);
 	qtscb.setMcqIncorrect(PicturesPoConstants.MCQ__POINTS_FOR_INCORRECT_ANSWER);
-	
+
 	qtscb.setAcqCorrect(PicturesPoConstants.ACQ__POINTS_FOR_CORRECT_ANSWER);
 	qtscb.setAcqIncorrect(PicturesPoConstants.ACQ__POINTS_FOR_INCORRECT_ANSWER);
 	return qtscb.build();
     }
-	    
+
 
     public UserSignupService getUserSignupService() {
 	return userSignupService;

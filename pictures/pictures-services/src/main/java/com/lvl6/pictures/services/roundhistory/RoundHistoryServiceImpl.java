@@ -12,39 +12,39 @@ import com.lvl6.pictures.po.QuestionAnswered;
 import com.lvl6.pictures.po.RoundHistory;
 
 public class RoundHistoryServiceImpl implements RoundHistoryService {
-  
-  private static final Logger log = LoggerFactory.getLogger(RoundHistoryServiceImpl.class);
 
-  
-  @Autowired
-  protected RoundHistoryDao roundHistoryDao;
+    private static final Logger log = LoggerFactory.getLogger(RoundHistoryServiceImpl.class);
 
-  
-  @Override
-  public RoundHistory createRoundHistory(String userId,
-      int roundNumber, Date roundStarted, Date roundEnded,
-      Set<QuestionAnswered> questionsAnswered, int score) {
-    RoundHistory rh = new RoundHistory();
-    rh.setUserId(userId);
-    rh.setScore(score);
-    rh.setQuestionsAnswered(questionsAnswered);
-    rh.setRoundEnded(roundEnded);
-    rh.setRoundStarted(roundStarted);
-    rh.setRoundNumber(roundNumber);
-    
-    rh = roundHistoryDao.save(rh);
-    return rh;
-  }
 
-  
+    @Autowired
+    protected RoundHistoryDao roundHistoryDao;
 
-  @Override
-  public RoundHistoryDao getRoundHistoryDao() {
-    return roundHistoryDao;
-  }
 
-  @Override
-  public void setRoundHistoryDao(RoundHistoryDao roundHistoryDao) {
-    this.roundHistoryDao = roundHistoryDao;
-  }
+    @Override
+    public RoundHistory createRoundHistory(String userId,
+	    int roundNumber, Date roundStarted, Date roundEnded,
+	    Set<QuestionAnswered> questionsAnswered, int score) {
+	RoundHistory rh = new RoundHistory();
+	rh.setUserId(userId);
+	rh.setScore(score);
+	rh.setQuestionsAnswered(questionsAnswered);
+	rh.setRoundEnded(roundEnded);
+	rh.setRoundStarted(roundStarted);
+	rh.setRoundNumber(roundNumber);
+
+	rh = roundHistoryDao.save(rh);
+	return rh;
+    }
+
+
+
+    @Override
+    public RoundHistoryDao getRoundHistoryDao() {
+	return roundHistoryDao;
+    }
+
+    @Override
+    public void setRoundHistoryDao(RoundHistoryDao roundHistoryDao) {
+	this.roundHistoryDao = roundHistoryDao;
+    }
 }

@@ -29,20 +29,20 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 
     @Autowired
     protected RoundPendingCompletionDao roundPendingCompletionDao;
-    
+
     @Autowired
     protected QuestionBaseDao qbDao;
 
 
     public QuestionBaseDao getQbDao() {
-		return qbDao;
-	}
+	return qbDao;
+    }
 
-	public void setQbDao(QuestionBaseDao qbDao) {
-		this.qbDao = qbDao;
-	}
+    public void setQbDao(QuestionBaseDao qbDao) {
+	this.qbDao = qbDao;
+    }
 
-	@Override
+    @Override
     public RoundPendingCompletion createUnfinishedRound(String userId,
 	    int roundNumber, List<String> questionBaseIds) {
 	//log.info("questionBaseIds=" + questionBaseIds);
@@ -51,7 +51,7 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	RoundPendingCompletion rpc = new RoundPendingCompletion();
 	rpc.setUserId(userId);
 	rpc.setRoundNumber(roundNumber);
-	
+
 	rpc = roundPendingCompletionDao.save(rpc);
 	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
 	//get the questionbase from questionIdsToQuestions
@@ -86,12 +86,12 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	rpc.setSecondsRemaining(secondsRemaining);
 	rpc.setCurrentQuestionNumber(currentQuestionNumber);
 	rpc.setCurrentScore(currentScore);
-	
+
 	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
 	return rpc;
     }
-    
-    
+
+
     @Override
     public Map<String, QuestionBase> getQuestionIdsToQuestions() {
 	return questionIdsToQuestions;

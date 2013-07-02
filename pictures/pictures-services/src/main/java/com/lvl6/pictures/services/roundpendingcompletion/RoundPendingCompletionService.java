@@ -9,23 +9,23 @@ import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundPendingCompletion;
 
 public interface RoundPendingCompletionService {
-  
-  public abstract RoundPendingCompletion createUnfinishedRound(String userId,
-      int roundNumber, List<String> questionBaseIds);
 
-  public abstract RoundPendingCompletion restartRoundPendingCompletion(
-	  Date startDate, RoundPendingCompletion rpc);
-  
-  public abstract RoundPendingCompletion updateRoundPendingCompletion(
-	  RoundPendingCompletion rpc, int secondsRemaining, 
-	  int currentQuestionNumber, int currentScore);
-  
-  public Map<String, QuestionBase> getQuestionIdsToQuestions();
-  public void setQuestionIdsToQuestions(
-      Map<String, QuestionBase> questionIdsToQuestions);
-  
-  public abstract RoundPendingCompletionDao getRoundPendingCompletionDao();
-  public abstract void setRoundPendingCompletionDao(RoundPendingCompletionDao
-      roundPendingCompletionDao);
-  
+    public abstract RoundPendingCompletion createUnfinishedRound(String userId,
+	    int roundNumber, List<String> questionBaseIds);
+
+    public abstract RoundPendingCompletion restartRoundPendingCompletion(
+	    Date startDate, RoundPendingCompletion rpc);
+
+    public abstract RoundPendingCompletion updateRoundPendingCompletion(
+	    RoundPendingCompletion rpc, int secondsRemaining, 
+	    int currentQuestionNumber, int currentScore);
+
+    public Map<String, QuestionBase> getQuestionIdsToQuestions();
+    public void setQuestionIdsToQuestions(
+	    Map<String, QuestionBase> questionIdsToQuestions);
+
+    public abstract RoundPendingCompletionDao getRoundPendingCompletionDao();
+    public abstract void setRoundPendingCompletionDao(RoundPendingCompletionDao
+	    roundPendingCompletionDao);
+
 }
