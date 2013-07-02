@@ -50,17 +50,18 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
 	return ad;
     }
 
-    public void updateExpirationForAuthorizedDevice(AuthorizedDevice ad,
+    public AuthorizedDevice updateExpirationForAuthorizedDevice(AuthorizedDevice ad,
 	    Date fromNow) {
 	if (null == ad) {
-	    return;
+	    return null;
 	}
 
 	//now + default life expectancy of a token
 	DateTime expiry = new DateTime(fromNow.getTime());
 	expiry = expiry.plusDays(PoConstants.AUTHORIZED_DEVICE__TOKEN_LIFE_EXPECTANCY_DAYS);
 	ad.setExpires(expiry.toDate());
-	authorizedDeviceDao.save(ad);
+	ad = authorizedDeviceDao.save(ad);
+	return ad;
     }
 
     public AuthorizedDevice checkForExistingAuthorizedDevice(String userId, String udid) {

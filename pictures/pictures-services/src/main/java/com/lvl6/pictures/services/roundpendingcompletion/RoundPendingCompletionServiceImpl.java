@@ -65,28 +65,30 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	//log.info("questionBaseList=" + qbList);
 	rpc.setQuestions(qbList);
 	//log.info("pre roundPendingCompletion=" + rpc);
-	roundPendingCompletionDao.saveAndFlush(rpc);
+	rpc = roundPendingCompletionDao.save(rpc);
 	//log.info("post roundPendingCompletion=" + rpc);
 
 	return rpc;
     }
 
     @Override
-    public void restartRoundPendingCompletion(Date startDate,
-	    RoundPendingCompletion rpc) {
+    public RoundPendingCompletion restartRoundPendingCompletion(
+	    Date startDate, RoundPendingCompletion rpc) {
 	rpc.setStartDate(startDate);
-	roundPendingCompletionDao.saveAndFlush(rpc);
+	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
+	return rpc;
     }
 
     @Override
-    public void updateRoundPendingCompletion(RoundPendingCompletion rpc,
+    public RoundPendingCompletion updateRoundPendingCompletion(RoundPendingCompletion rpc,
 	    int secondsRemaining, int currentQuestionNumber,
 	    int currentScore) {
 	rpc.setSecondsRemaining(secondsRemaining);
 	rpc.setCurrentQuestionNumber(currentQuestionNumber);
 	rpc.setCurrentScore(currentScore);
 	
-	roundPendingCompletionDao.saveAndFlush(rpc);
+	rpc = roundPendingCompletionDao.saveAndFlush(rpc);
+	return rpc;
     }
     
     

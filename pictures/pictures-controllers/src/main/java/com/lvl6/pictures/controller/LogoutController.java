@@ -66,7 +66,7 @@ public class LogoutController extends EventController {
 			userId + "\t BasicUserProto=" + sender);
 	    } else {
 		//record the user's logout time
-		getLoginService().updateUserLastLogout(u, new DateTime());
+		u = getLoginService().updateUserLastLogout(u, new DateTime());
 		
 		//remove from collection/cache of online players 
 		playersByPlayerId.remove(userId);

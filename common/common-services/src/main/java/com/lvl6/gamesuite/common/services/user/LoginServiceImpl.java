@@ -34,9 +34,13 @@ public class LoginServiceImpl implements LoginService {
   
 
   @Override
-  public AuthorizedDevice updateUserLastLogin(User inDb, DateTime now, String udid, String deviceId) {
+  public AuthorizedDevice updateUserLastLogin(List<User> inDbList, DateTime now, String udid, String deviceId) {
+      User inDb = inDbList.get(0);
     inDb.setLastLogin(now.toDate());
-    userDao.save(inDb);
+    inDb = userDao.save(inDb);
+    
+    inDbList.clear();
+    inDbList.add(inDb);
     
     //return login token inside of the authorized device
     String userId = inDb.getId();
@@ -45,7 +49,7 @@ public class LoginServiceImpl implements LoginService {
     if (null == ad) {
       ad = getAuthorizedDeviceService().registerNewAuthorizedDevice(userId, udid, deviceId, nowDate);
     }
-    getAuthorizedDeviceService().updateExpirationForAuthorizedDevice(ad, nowDate);
+    ad = getAuthorizedDeviceService().updateExpirationForAuthorizedDevice(ad, nowDate);
     return ad;
   }
   
@@ -101,9 +105,10 @@ public class LoginServiceImpl implements LoginService {
   }
   
   @Override
-  public void updateUserLastLogout(User inDb, DateTime now) {
+  public User updateUserLastLogout(User inDb, DateTime now) {
       inDb.setLastLogout(now.toDate());
-      userDao.save(inDb);
+      inDb = userDao.save(inDb);
+      return inDb;
   }
   
   

@@ -109,7 +109,6 @@ public class LoginController extends EventController {
 	//sender object might not have userId if user deleted app or something
 	List<String> userIdList = new ArrayList<String>();
 	List<User> userList = new ArrayList<User>();
-	User u = null; 
 
 	try {
 	    boolean validRequestArgs = isValidRequestArguments(responseBuilder, sender,
@@ -123,9 +122,9 @@ public class LoginController extends EventController {
 	    }
 
 	    if (validRequest) {
-		u = getUser(userIdList, userList);
+		userList = getUser(userIdList, userList);
 		successful = writeChangesToDb(responseBuilder, sender, lt,
-			now, u);
+			now, userList);
 	    }
 
 	    if (successful) {
@@ -375,18 +374,21 @@ public class LoginController extends EventController {
 	return true;
     }
 
-    private User getUser(List<String> userIdList, List<User> userList) {
-	if (!userList.isEmpty()) {
-	    return userList.get(0);
+    private List<User> getUser(List<String> userIdList, List<User> userList) {
+	if (userList.isEmpty()) {
+	    String userId = userIdList.get(0);
+	    User u = getLoginService().getUserById(userId);
+	    //return userList.get(0);
+	    userList.add(u);
 	}
-	String userId = userIdList.get(0);
-	return getLoginService().getUserById(userId);
-
+	
+	return userList;
     }
 
     private boolean writeChangesToDb(Builder responseBuilder, BasicUserProto sender, LoginType lt,
-	    DateTime now, User u) {
+	    DateTime now, List<User> uList) {
 
+	User u = uList.get(0);
 	String userId = u.getId();
 	boolean accountInitialized = u.isAccountInitialized();
 	Currency monies = null;
@@ -405,7 +407,7 @@ public class LoginController extends EventController {
 	}
 
 	// RECORD THE USER LOGGING IN (UPDATING THE USER TABLE)
-	AuthorizedDevice ad = updateUserLogin(sender, u, now);
+	AuthorizedDevice ad = updateUserLogin(sender, uList, now);
 
 	//KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT
 	//idea get the udid's of the authorized devices user has and send a message to those udids
@@ -421,13 +423,13 @@ public class LoginController extends EventController {
 	return true;
     }
 
-    private AuthorizedDevice updateUserLogin(BasicUserProto sender, User u, DateTime now) {
+    private AuthorizedDevice updateUserLogin(BasicUserProto sender, List<User> uList, DateTime now) {
 	BasicAuthorizedDeviceProto badp = sender.getBadp(); //would the client have this?
 
 	String udid = badp.getUdid();
 	String deviceId = badp.getDeviceId();
 
-	return getLoginService().updateUserLastLogin(u, now, udid, deviceId);
+	return getLoginService().updateUserLastLogin(uList, now, udid, deviceId);
     }
 
     private void kickOffOtherDevicesSharingAccount(String userId, AuthorizedDevice ad) {

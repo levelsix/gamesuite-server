@@ -10,7 +10,7 @@ public interface AuthorizedDeviceService {
   
   public abstract AuthorizedDevice registerNewAuthorizedDevice(String userId, String udid, String deviceId, Date now);
   
-  public abstract void updateExpirationForAuthorizedDevice(AuthorizedDevice ad, Date fromNow);
+  public abstract AuthorizedDevice updateExpirationForAuthorizedDevice(AuthorizedDevice ad, Date fromNow);
   
   public abstract AuthorizedDevice checkForExistingAuthorizedDevice(String userId, String udid);
   

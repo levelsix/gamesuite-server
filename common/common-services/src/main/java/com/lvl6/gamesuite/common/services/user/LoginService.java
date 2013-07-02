@@ -18,7 +18,7 @@ public interface LoginService {
      * Return the login token (via an AuthorizedDevice object) so the user doesn't have to
      * keep providing personal information.
      */
-    public abstract AuthorizedDevice updateUserLastLogin(User inDb, DateTime now, String udid, String deviceId);
+    public abstract AuthorizedDevice updateUserLastLogin(List<User> inDbList, DateTime now, String udid, String deviceId);
 
     public abstract boolean validCredentials(User inDb, String nameStrangersSee, String email, String password);
 
@@ -28,7 +28,7 @@ public interface LoginService {
 
     public abstract Map<String, User> getUserIdsToUsers(Set<String> userIds);
 
-    public abstract void updateUserLastLogout(User inDb, DateTime now);
+    public abstract User updateUserLastLogout(User inDb, DateTime now);
 
     public abstract PasswordUtil getPasswordUtil();
 

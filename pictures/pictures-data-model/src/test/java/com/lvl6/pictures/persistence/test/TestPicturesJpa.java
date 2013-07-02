@@ -65,7 +65,7 @@ public class TestPicturesJpa {
 		images.add("image4");
 		q.setImages(images);
 		q.setCreatedBy("JUnit");
-		pictureDao.saveAndFlush(q);
+		q = pictureDao.saveAndFlush(q);
 
 		return q;
 	}
@@ -112,7 +112,7 @@ public class TestPicturesJpa {
 			"\t answers=" + mcq.getAnswers(),
 			size >=2 && size <= 6);
 		
-		multipleChoiceQuestionDao.saveAndFlush(mcq);
+		mcq = multipleChoiceQuestionDao.saveAndFlush(mcq);
 		return mcq;
 	}
 
@@ -131,20 +131,23 @@ public class TestPicturesJpa {
 	}
 
 	@Transactional
-	@Rollback(true)
+	@Rollback(false)
 	@Test
 	public void testMultipleChoice() {
 		// making sure saving multiple choice questions to the database works
+	    int numPairs = 5;
+	    List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
+	    for (int i = 0; i < numPairs; i++) {
 		MultipleChoiceQuestion mcq = createMultipleChoiceQuestion(AnswerType.TEXT);
 		MultipleChoiceQuestion mcqImages = createMultipleChoiceQuestion(AnswerType.PICTURE);
-		List<MultipleChoiceQuestion> mcqList = new ArrayList<MultipleChoiceQuestion>();
 		mcqList.add(mcq);
 		mcqList.add(mcqImages);
+	    }
 		getMultipleChoiceDao().save(mcqList);
 		List<MultipleChoiceQuestion> inDb = getMultipleChoiceDao().findAll();
 
 		assertTrue("multiple choice questions. Expected: " + mcqList.size() + ". Actually: " + inDb.size(),
-				inDb.size() >= 2);
+				inDb.size() >= numPairs * 2);
 
 		MultipleChoiceQuestion mcq1 = inDb.get(0);
 		MultipleChoiceQuestion mcq2 = inDb.get(1);
@@ -243,7 +246,7 @@ public class TestPicturesJpa {
 		u.setSignupDate(signupDate);
 		u.setLastLogin(lastLogin);
 
-		userDao.save(u);
+		u = userDao.save(u);
 
 		assertTrue("user=" + u, null != u.getId());
 
@@ -257,7 +260,7 @@ public class TestPicturesJpa {
 		monies.setUserId(u.getId());
 
 		assertTrue("monies=" + monies, null == monies.getId());
-		currencyDao.save(monies);
+		monies = currencyDao.save(monies);
 		assertTrue("monies=" + monies, null != monies.getId());
 
 		// retrieve from db

@@ -32,7 +32,7 @@ public class RoundHistoryServiceImpl implements RoundHistoryService {
     rh.setRoundStarted(roundStarted);
     rh.setRoundNumber(roundNumber);
     
-    roundHistoryDao.save(rh);
+    rh = roundHistoryDao.save(rh);
     return rh;
   }
 

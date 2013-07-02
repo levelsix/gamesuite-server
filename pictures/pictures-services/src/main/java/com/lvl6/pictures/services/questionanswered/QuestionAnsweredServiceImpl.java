@@ -1,6 +1,7 @@
 package com.lvl6.pictures.services.questionanswered;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -47,7 +48,9 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
       qaSet.add(qa);
     }
     
-    questionAnsweredDao.save(qaSet);
+    List<QuestionAnswered> qaList = questionAnsweredDao.save(qaSet);
+    qaSet.clear();
+    qaSet.addAll(qaList);
     return qaSet;
   }
   

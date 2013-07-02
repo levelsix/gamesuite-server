@@ -33,7 +33,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     monies.setLastTokenRefillTime(now);
     monies.setUserId(userId);
     
-    currencyDao.save(monies);
+    monies = currencyDao.save(monies);
     return monies;
   }
   
