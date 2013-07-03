@@ -210,8 +210,12 @@ public class CompletedRoundController extends EventController {
   private Set<QuestionAnswered> constructQuestionAnswered(String userId,
       int roundNumber, List<QuestionAnsweredProto> questions) {
     //link question ids to unfinished question answered objects
-    Map<String, QuestionAnswered> questionIdsToQuestionAnswered =
-        new HashMap<String, QuestionAnswered>();
+//    Map<String, QuestionAnswered> questionIdsToQuestionAnswered =
+//        new HashMap<String, QuestionAnswered>();
+      List<String> questionIdList = new ArrayList<String>();
+      List<QuestionAnswered> questionAnsweredList =
+	      new ArrayList<QuestionAnswered>();
+    
     //construct all the questions the user answered 
     for (QuestionAnsweredProto qap : questions) {
       String questionId = qap.getQuestionId();
@@ -226,12 +230,13 @@ public class CompletedRoundController extends EventController {
       qa.setAnsweredByUser(userId);
       qa.setAnswerType(answerType);
       
-      questionIdsToQuestionAnswered.put(questionId, qa);
+      questionIdList.add(questionId);
+      questionAnsweredList.add(qa);
     }
     
     //save these question answered objects
     Set<QuestionAnswered> answered = getQuestionAnsweredService()
-        .saveQuestionAnswered(questionIdsToQuestionAnswered);
+        .saveQuestionAnswered(questionIdList, questionAnsweredList);
     
     return answered;
   } 

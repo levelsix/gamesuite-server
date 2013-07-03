@@ -1,5 +1,6 @@
 package com.lvl6.pictures.services.questionanswered;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -37,7 +38,8 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 
     @Override
     public Set<QuestionAnswered> saveQuestionAnswered(
-	    Map<String, QuestionAnswered> questionIdsToQuestionAnswered) {
+	    List<String> questionIdList, List<QuestionAnswered> questionAnsweredList) {
+	
 	Set<QuestionAnswered> qaSetTemp = new HashSet<QuestionAnswered>();
 	Set<QuestionAnswered> qaSet = new HashSet<QuestionAnswered>();
 	
@@ -47,12 +49,17 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 //	    log.error("db error: There are no questions to retrieve from the database.");
 //	    return null;
 //	}
+	//need to save the question answered before setting the property 
+	//which is objects, hopefully list returned has same ordering as input
+	questionAnsweredList = questionAnsweredDao.save(questionAnsweredList);
 	
-	Set<String> questionBaseIds = questionIdsToQuestionAnswered.keySet();
+	//getting questions directly from db because can't get the 
+	//questionbase from questionIdsToQuestions due to hibernate
+	//session info(?)
+	Iterable<QuestionBase> questions = qbDao.findAll(questionIdList);
+	Iterator<QuestionBase> it = questions.iterator();
 	Map<String, QuestionBase> questionIdsToQuestions =
 		new HashMap<String, QuestionBase>();
-	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
-	Iterator<QuestionBase> it = questions.iterator();
 	while(it.hasNext()) {
 	    QuestionBase qb = it.next();
 	    String qbId = qb.getId();
@@ -60,13 +67,15 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 	    questionIdsToQuestions.put(qbId, qb);
 	}
 	
-
-	for(String qId : questionIdsToQuestionAnswered.keySet()) {
+	//go through questionId and questionAnswered lists pairing them up
+	for(int i = 0; i < questionIdList.size(); i++) {
+	    String qId = questionIdList.get(i);
 	    QuestionBase qb = questionIdsToQuestions.get(qId);
-	    //get unfinished question answered
-	    QuestionAnswered qa = questionIdsToQuestionAnswered.get(qId);
+	    //get unfinished question answered and set it's QuestionBase
+	    QuestionAnswered qa = questionAnsweredList.get(i);
 	    qa.setQuestion(qb);
 
+	    //add into temp to save the again after setting the QuestionBase
 	    qaSetTemp.add(qa);
 	}
 
