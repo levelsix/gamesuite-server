@@ -531,6 +531,10 @@ public final class RetrieveUserGamesEventProto {
     java.util.List<String> getPictureNamesList();
     int getPictureNamesCount();
     String getPictureNames(int index);
+    
+    // optional .proto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus status = 6;
+    boolean hasStatus();
+    com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus getStatus();
   }
   public static final class RetrieveUserGamesResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -558,6 +562,75 @@ public final class RetrieveUserGamesEventProto {
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.internal_static_proto_RetrieveUserGamesResponseProto_fieldAccessorTable;
+    }
+    
+    public enum RetrieveUserGamesStatus
+        implements com.google.protobuf.ProtocolMessageEnum {
+      SUCCESS(0, 1),
+      FAIL_OTHER(1, 2),
+      ;
+      
+      public static final int SUCCESS_VALUE = 1;
+      public static final int FAIL_OTHER_VALUE = 2;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static RetrieveUserGamesStatus valueOf(int value) {
+        switch (value) {
+          case 1: return SUCCESS;
+          case 2: return FAIL_OTHER;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<RetrieveUserGamesStatus>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<RetrieveUserGamesStatus>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<RetrieveUserGamesStatus>() {
+              public RetrieveUserGamesStatus findValueByNumber(int number) {
+                return RetrieveUserGamesStatus.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final RetrieveUserGamesStatus[] VALUES = {
+        SUCCESS, FAIL_OTHER, 
+      };
+      
+      public static RetrieveUserGamesStatus valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private RetrieveUserGamesStatus(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus)
     }
     
     private int bitField0_;
@@ -651,12 +724,23 @@ public final class RetrieveUserGamesEventProto {
       return pictureNames_.get(index);
     }
     
+    // optional .proto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus status = 6;
+    public static final int STATUS_FIELD_NUMBER = 6;
+    private com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus getStatus() {
+      return status_;
+    }
+    
     private void initFields() {
       sender_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       completedGames_ = java.util.Collections.emptyList();
       myTurn_ = java.util.Collections.emptyList();
       notMyTurn_ = java.util.Collections.emptyList();
       pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      status_ = com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -684,6 +768,9 @@ public final class RetrieveUserGamesEventProto {
       }
       for (int i = 0; i < pictureNames_.size(); i++) {
         output.writeBytes(5, pictureNames_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(6, status_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -718,6 +805,10 @@ public final class RetrieveUserGamesEventProto {
         }
         size += dataSize;
         size += 1 * getPictureNamesList().size();
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, status_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -873,6 +964,8 @@ public final class RetrieveUserGamesEventProto {
         }
         pictureNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000010);
+        status_ = com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -952,6 +1045,10 @@ public final class RetrieveUserGamesEventProto {
           bitField0_ = (bitField0_ & ~0x00000010);
         }
         result.pictureNames_ = pictureNames_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1059,6 +1156,9 @@ public final class RetrieveUserGamesEventProto {
           }
           onChanged();
         }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1120,6 +1220,17 @@ public final class RetrieveUserGamesEventProto {
             case 42: {
               ensurePictureNamesIsMutable();
               pictureNames_.add(input.readBytes());
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+              com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus value = com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(6, rawValue);
+              } else {
+                bitField0_ |= 0x00000020;
+                status_ = value;
+              }
               break;
             }
           }
@@ -1832,6 +1943,30 @@ public final class RetrieveUserGamesEventProto {
         onChanged();
       }
       
+      // optional .proto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus status = 6;
+      private com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus status_ = com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus.SUCCESS;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus getStatus() {
+        return status_;
+      }
+      public Builder setStatus(com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000020;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        status_ = com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.RetrieveUserGamesStatus.SUCCESS;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.RetrieveUserGamesResponseProto)
     }
     
@@ -1866,14 +2001,18 @@ public final class RetrieveUserGamesEventProto {
       "riviaGameFormat.proto\032\nUser.proto\"e\n\035Ret" +
       "rieveUserGamesRequestProto\022%\n\006sender\030\001 \001" +
       "(\0132\025.proto.BasicUserProto\022\035\n\025timeForComp" +
-      "letedGames\030\002 \001(\003\"\343\001\n\036RetrieveUserGamesRe" +
+      "letedGames\030\002 \001(\003\"\352\002\n\036RetrieveUserGamesRe" +
       "sponseProto\022%\n\006sender\030\001 \001(\0132\025.proto.Basi" +
       "cUserProto\022/\n\016completedGames\030\002 \003(\0132\027.pro" +
       "to.GameResultsProto\022\'\n\006myTurn\030\003 \003(\0132\027.pr" +
       "oto.OngoingGameProto\022*\n\tnotMyTurn\030\004 \003(\0132" +
       "\027.proto.OngoingGameProto\022\024\n\014pictureNames",
-      "\030\005 \003(\tB<\n\035com.lvl6.pictures.eventprotosB" +
-      "\033RetrieveUserGamesEventProto"
+      "\030\005 \003(\t\022M\n\006status\030\006 \001(\0162=.proto.RetrieveU" +
+      "serGamesResponseProto.RetrieveUserGamesS" +
+      "tatus\"6\n\027RetrieveUserGamesStatus\022\013\n\007SUCC" +
+      "ESS\020\001\022\016\n\nFAIL_OTHER\020\002B<\n\035com.lvl6.pictur" +
+      "es.eventprotosB\033RetrieveUserGamesEventPr" +
+      "oto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1893,7 +2032,7 @@ public final class RetrieveUserGamesEventProto {
           internal_static_proto_RetrieveUserGamesResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrieveUserGamesResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "CompletedGames", "MyTurn", "NotMyTurn", "PictureNames", },
+              new java.lang.String[] { "Sender", "CompletedGames", "MyTurn", "NotMyTurn", "PictureNames", "Status", },
               com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.class,
               com.lvl6.pictures.eventprotos.RetrieveUserGamesEventProto.RetrieveUserGamesResponseProto.Builder.class);
           return null;

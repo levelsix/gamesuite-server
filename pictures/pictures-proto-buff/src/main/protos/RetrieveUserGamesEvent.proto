@@ -22,4 +22,11 @@ message RetrieveUserGamesResponseProto {
 	
 	//the pictures that are in 'myTurn'
 	repeated string pictureNames = 5;
+	
+	optional RetrieveUserGamesStatus status = 6;
+	
+	enum RetrieveUserGamesStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
 }
