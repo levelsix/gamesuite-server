@@ -131,7 +131,7 @@ public class TestPicturesJpa {
 	}
 
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testMultipleChoice() {
 		// making sure saving multiple choice questions to the database works
