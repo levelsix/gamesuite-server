@@ -22,10 +22,10 @@ public class PicturesPoConstants {
   public static int QUESTION_BASE__DEFAULT_NUM_QUESTIONS_TO_GET = 100;
   
   //multiple choice question
-  public static int MCQ__POINTS_FOR_CORRECT_ANSWER = 3;
-  public static int MCQ__POINTS_FOR_INCORRECT_ANSWER = 2;
+  public static int MCQ__POINTS_FOR_CORRECT_ANSWER = 30;
+  public static int MCQ__POINTS_FOR_INCORRECT_ANSWER = 0;
   
   //pictures question or answer construction question
-  public static int ACQ__POINTS_FOR_CORRECT_ANSWER = 4;
-  public static int ACQ__POINTS_FOR_INCORRECT_ANSWER = 1;
+  public static int ACQ__POINTS_FOR_CORRECT_ANSWER = 40;
+  public static int ACQ__POINTS_FOR_INCORRECT_ANSWER = 0;
 }

@@ -4,10 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +21,8 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 
     private static final Logger log = LoggerFactory.getLogger(RoundPendingCompletionServiceImpl.class);
 
-    @Resource(name = "questionIdsToQuestions")
-    protected Map<String, QuestionBase> questionIdsToQuestions;
+//    @Resource(name = "questionIdsToQuestions")
+//    protected Map<String, QuestionBase> questionIdsToQuestions;
 
     @Autowired
     protected RoundPendingCompletionDao roundPendingCompletionDao;
@@ -54,7 +51,8 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 
 	rpc = roundPendingCompletionDao.save(rpc);
 	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
-	//get the questionbase from questionIdsToQuestions
+	//can't get the questionbase from questionIdsToQuestions due to
+	//some hibernate crap
 	Iterator<QuestionBase> it = questions.iterator();
 	while(it.hasNext()) {
 	    QuestionBase qb = it.next();
@@ -92,15 +90,15 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
     }
 
 
-    @Override
-    public Map<String, QuestionBase> getQuestionIdsToQuestions() {
-	return questionIdsToQuestions;
-    }
-    @Override
-    public void setQuestionIdsToQuestions(
-	    Map<String, QuestionBase> questionIdsToQuestions) {
-	this.questionIdsToQuestions = questionIdsToQuestions;
-    }
+//    @Override
+//    public Map<String, QuestionBase> getQuestionIdsToQuestions() {
+//	return questionIdsToQuestions;
+//    }
+//    @Override
+//    public void setQuestionIdsToQuestions(
+//	    Map<String, QuestionBase> questionIdsToQuestions) {
+//	this.questionIdsToQuestions = questionIdsToQuestions;
+//    }
 
     @Override
     public RoundPendingCompletionDao getRoundPendingCompletionDao() {
@@ -113,10 +111,16 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 
     @Override
     public String toString() {
-	return "RoundPendingCompletionServiceImpl [questionIdsToQuestions="
-		+ questionIdsToQuestions + ", roundPendingCompletionDao="
-		+ roundPendingCompletionDao + "]";
+	return "RoundPendingCompletionServiceImpl [roundPendingCompletionDao="
+		+ roundPendingCompletionDao + ", qbDao=" + qbDao + "]";
     }
+
+//    @Override
+//    public String toString() {
+//	return "RoundPendingCompletionServiceImpl [questionIdsToQuestions="
+//		+ questionIdsToQuestions + ", roundPendingCompletionDao="
+//		+ roundPendingCompletionDao + "]";
+//    }
 
 
 }

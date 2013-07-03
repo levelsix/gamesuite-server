@@ -1,11 +1,11 @@
 package com.lvl6.pictures.services.questionanswered;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.pictures.dao.QuestionAnsweredDao;
+import com.lvl6.pictures.dao.QuestionBaseDao;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.PicturesQuestionWithTextAnswer;
 import com.lvl6.pictures.po.QuestionAnswered;
@@ -24,22 +25,41 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 
     private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-    @Resource(name = "questionIdsToQuestions")
-    protected Map<String, QuestionBase> questionIdsToQuestions;
+//    @Resource(name = "questionIdsToQuestions")
+//    protected Map<String, QuestionBase> questionIdsToQuestions;
 
     @Autowired
     protected QuestionAnsweredDao questionAnsweredDao;
+    
+    @Autowired
+    protected QuestionBaseDao qbDao;
 
 
     @Override
     public Set<QuestionAnswered> saveQuestionAnswered(
 	    Map<String, QuestionAnswered> questionIdsToQuestionAnswered) {
+	Set<QuestionAnswered> qaSetTemp = new HashSet<QuestionAnswered>();
 	Set<QuestionAnswered> qaSet = new HashSet<QuestionAnswered>();
-
-	if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
-	    log.error("db error: There are no questions to retrieve from the database.");
-	    return null;
+	
+	//can't get the questionbase from questionIdsToQuestions due to
+	//some hibernate crap
+//	if (null == getQuestionIdsToQuestions() || getQuestionIdsToQuestions().isEmpty()) {
+//	    log.error("db error: There are no questions to retrieve from the database.");
+//	    return null;
+//	}
+	
+	Set<String> questionBaseIds = questionIdsToQuestionAnswered.keySet();
+	Map<String, QuestionBase> questionIdsToQuestions =
+		new HashMap<String, QuestionBase>();
+	Iterable<QuestionBase> questions = qbDao.findAll(questionBaseIds);
+	Iterator<QuestionBase> it = questions.iterator();
+	while(it.hasNext()) {
+	    QuestionBase qb = it.next();
+	    String qbId = qb.getId();
+	    //log.info("questionBase=" + qb);
+	    questionIdsToQuestions.put(qbId, qb);
 	}
+	
 
 	for(String qId : questionIdsToQuestionAnswered.keySet()) {
 	    QuestionBase qb = questionIdsToQuestions.get(qId);
@@ -47,11 +67,10 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 	    QuestionAnswered qa = questionIdsToQuestionAnswered.get(qId);
 	    qa.setQuestion(qb);
 
-	    qaSet.add(qa);
+	    qaSetTemp.add(qa);
 	}
 
-	List<QuestionAnswered> qaList = questionAnsweredDao.save(qaSet);
-	qaSet.clear();
+	List<QuestionAnswered> qaList = questionAnsweredDao.save(qaSetTemp);
 	qaSet.addAll(qaList);
 	return qaSet;
     }
@@ -104,16 +123,26 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 
 
 
-    @Override
-    public Map<String, QuestionBase> getQuestionIdsToQuestions() {
-	return questionIdsToQuestions;
+//    @Override
+//    public Map<String, QuestionBase> getQuestionIdsToQuestions() {
+//	return questionIdsToQuestions;
+//    }
+//
+//    @Override
+//    public void setQuestionIdsToQuestions(
+//	    Map<String, QuestionBase> questionIdsToQuestions) {
+//	this.questionIdsToQuestions = questionIdsToQuestions;
+//    }
+    
+    public QuestionBaseDao getQbDao() {
+	return qbDao;
     }
 
-    @Override
-    public void setQuestionIdsToQuestions(
-	    Map<String, QuestionBase> questionIdsToQuestions) {
-	this.questionIdsToQuestions = questionIdsToQuestions;
+    public void setQbDao(QuestionBaseDao qbDao) {
+	this.qbDao = qbDao;
     }
+
+
 
     @Override
     public QuestionAnsweredDao getQuestionAnsweredDao() {

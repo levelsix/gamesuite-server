@@ -243,12 +243,12 @@ public class CompletedRoundController extends EventController {
     Date roundEnded = new Date(crrp.getEndTime());
     int score = crrp.getScore();
 
-    int computedScore = getQuestionAnsweredService().computeScore(qaSet);
-    if (computedScore != score) {
-      log.error("unexpected error: client score does not match " +
-          " computed score. clientScore=" + score + "\t computedScore=" +
-          + computedScore);
-    }
+//    int computedScore = getQuestionAnsweredService().computeScore(qaSet);
+//    if (computedScore != score) {
+//      log.error("unexpected error: client score does not match " +
+//          " computed score. clientScore=" + score + "\t computedScore=" +
+//          + computedScore);
+//    }
     RoundHistory rh = getRoundHistoryService().createRoundHistory(userId,
         roundNumber, roundStarted, roundEnded, qaSet, score); 
 
