@@ -30,13 +30,16 @@ public class RoundHistoryServiceImpl implements RoundHistoryService {
 	rh.setUserId(userId);
 	rh.setScore(score);
 	log.info("setting questions answered");
-	rh.setQuestionsAnswered(questionsAnswered);
-	log.info("finished setting questions answered");
 	rh.setRoundEnded(roundEnded);
 	rh.setRoundStarted(roundStarted);
 	rh.setRoundNumber(roundNumber);
-
+	//need to save object before saving object's property which
+	//is an object
 	rh = roundHistoryDao.save(rh);
+	
+	rh.setQuestionsAnswered(questionsAnswered);
+	rh = roundHistoryDao.save(rh);
+	log.info("finished setting questions answered");
 	return rh;
     }
 
