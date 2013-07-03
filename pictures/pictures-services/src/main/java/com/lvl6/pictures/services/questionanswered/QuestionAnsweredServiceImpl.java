@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.pictures.dao.QuestionAnsweredDao;
 import com.lvl6.pictures.po.MultipleChoiceQuestion;
@@ -18,6 +19,7 @@ import com.lvl6.pictures.po.QuestionAnswered;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.properties.PicturesPoConstants;
 
+@Component
 public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
 
     private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
