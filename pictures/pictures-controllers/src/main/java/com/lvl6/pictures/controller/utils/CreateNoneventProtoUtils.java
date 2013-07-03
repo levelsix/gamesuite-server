@@ -41,6 +41,9 @@ public interface CreateNoneventProtoUtils {
 
     public abstract CompleteUserProto createCompleteUserProto(User aUser, AuthorizedDevice ad,
 	    Currency monies);
+    
+    public abstract CompleteUserProto.Builder createCompleteUserProtoBuilder(User aUser,
+	    AuthorizedDevice ad, Currency monies);
 
     public abstract BasicAuthorizedDeviceProto createBasicAuthorizedDeviceProto(AuthorizedDevice ad,
 	    String userId);

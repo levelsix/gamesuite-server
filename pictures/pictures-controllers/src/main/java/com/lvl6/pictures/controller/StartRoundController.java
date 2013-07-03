@@ -15,9 +15,12 @@ import org.springframework.stereotype.Component;
 import com.lvl6.gamesuite.common.controller.EventController;
 import com.lvl6.gamesuite.common.controller.utils.TimeUtils;
 import com.lvl6.gamesuite.common.events.RequestEvent;
+import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
+import com.lvl6.gamesuite.common.services.authorizeddevice.AuthorizedDeviceService;
 import com.lvl6.gamesuite.common.services.user.LoginService;
 import com.lvl6.gamesuite.common.services.user.UserSignupService;
+import com.lvl6.pictures.controller.utils.CreateNoneventProtoUtils;
 import com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundRequestProto;
 import com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto;
 import com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.Builder;
@@ -26,7 +29,9 @@ import com.lvl6.pictures.events.request.StartRoundRequestEvent;
 import com.lvl6.pictures.events.response.StartRoundResponseEvent;
 import com.lvl6.pictures.noneventprotos.PicturesEventProtocolProto.PicturesEventProtocolRequest;
 import com.lvl6.pictures.noneventprotos.TriviaQuestionFormatProto.QuestionProto;
+import com.lvl6.pictures.noneventprotos.UserProto.BasicAuthorizedDeviceProto;
 import com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto;
+import com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto;
 import com.lvl6.pictures.po.Currency;
 import com.lvl6.pictures.po.GameHistory;
 import com.lvl6.pictures.po.RoundPendingCompletion;
@@ -58,6 +63,12 @@ public class StartRoundController extends EventController {
 
     @Autowired
     protected UserSignupService userSignupService;
+    
+    @Autowired
+    protected AuthorizedDeviceService authorizedDeviceService;
+    
+    @Autowired
+    protected CreateNoneventProtoUtils noneventProtoUtils;
 
 
     @Override
@@ -138,6 +149,14 @@ public class StartRoundController extends EventController {
 		//not using gameId because game might not have existed before now
 		responseBuilder.setGameId(gh.getId());
 		responseBuilder.setStatus(StartRoundStatus.SUCCESS);
+		User u = usersByIds.get(userId);
+		AuthorizedDevice ad = null;
+		BasicAuthorizedDeviceProto badp = sender.getBadp();
+		
+		CompleteUserProto.Builder cupb = getNoneventProtoUtils()
+			.createCompleteUserProtoBuilder(u, ad, c);
+		cupb.setBadp(badp);
+		responseBuilder.setUpdatedRecipient(cupb.build());
 	    }
 
 	    //write to client
@@ -373,6 +392,23 @@ public class StartRoundController extends EventController {
 
     public void setUserSignupService(UserSignupService userSignupService) {
 	this.userSignupService = userSignupService;
+    }
+
+    public AuthorizedDeviceService getAuthorizedDeviceService() {
+        return authorizedDeviceService;
+    }
+
+    public void setAuthorizedDeviceService(
+    	AuthorizedDeviceService authorizedDeviceService) {
+        this.authorizedDeviceService = authorizedDeviceService;
+    }
+
+    public CreateNoneventProtoUtils getNoneventProtoUtils() {
+        return noneventProtoUtils;
+    }
+
+    public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
+        this.noneventProtoUtils = noneventProtoUtils;
     }
 
 }

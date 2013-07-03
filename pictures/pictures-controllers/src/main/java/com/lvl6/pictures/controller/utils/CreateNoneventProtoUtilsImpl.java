@@ -133,6 +133,14 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     @Override
     public CompleteUserProto createCompleteUserProto(User aUser,
 	    AuthorizedDevice ad, Currency monies) {
+	CompleteUserProto.Builder cupb = createCompleteUserProtoBuilder(
+		aUser, ad, monies);
+	return cupb.build();
+    }
+    
+    @Override 
+    public CompleteUserProto.Builder createCompleteUserProtoBuilder (User aUser,
+	    AuthorizedDevice ad, Currency monies) {
 	CompleteUserProto.Builder cupb = CompleteUserProto.newBuilder();
 
 	String userId = aUser.getId();
@@ -173,8 +181,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    UserCurrencyProto ucp = createUserCurrencyProto(monies);
 	    cupb.setCurrency(ucp);
 	}
-
-	return cupb.build();
+	return cupb;
     }
 
     @Override
