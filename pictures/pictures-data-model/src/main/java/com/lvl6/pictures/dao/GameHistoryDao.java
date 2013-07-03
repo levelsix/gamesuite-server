@@ -20,7 +20,7 @@ public interface GameHistoryDao extends JpaRepository<GameHistory, String> {
   
   //find recent completed games
   public List<GameHistory> findByEndTimeGreaterThanAndPlayerOneIdOrPlayerTwoIdOrderByEndTimeDesc(
-      String playerOneId, String playerTwoId, Date endTime);
+	  Date endTime, String playerOneId, String playerTwoId);
   
   public GameHistory findById(String gameId);
   

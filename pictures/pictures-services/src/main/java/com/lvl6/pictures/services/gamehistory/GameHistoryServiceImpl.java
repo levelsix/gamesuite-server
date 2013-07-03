@@ -46,7 +46,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 		    "time=" + completedAfterThisTime);
 	    returnVal = 
 		    getGameHistoryDao().findByEndTimeGreaterThanAndPlayerOneIdOrPlayerTwoIdOrderByEndTimeDesc(
-			    userId, userId, completedAfterThisTime);
+			    completedAfterThisTime, userId, userId);
 
 	} else if (completedGamesOnly) {
 	    //don't forsee this being used much
