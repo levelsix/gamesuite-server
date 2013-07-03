@@ -37,11 +37,14 @@ public class RoundHistoryServiceImpl implements RoundHistoryService {
 	//is an object
 	rh = roundHistoryDao.save(rh);
 	
-//	if (null != questionsAnswered) {
-//	    //rh.setQuestionsAnswered(questionsAnswered);
-//	    //rh = roundHistoryDao.save(rh);
-//	    //log.info("finished setting questions answered");
-//	}
+	if (null != questionsAnswered) {
+	    log.info("setting questions answered");
+	    rh.setQuestionsAnswered(questionsAnswered);
+	    rh = roundHistoryDao.save(rh);
+	    log.info("finished setting questions answered");
+	} else {
+	    log.error("questionsAnswered are null!!!!!!!!!!!!!!!!");
+	}
 	return rh;
     }
 

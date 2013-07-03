@@ -164,16 +164,16 @@ public class CompletedRoundController extends EventController {
     }
     
     //if we want to be more detailed about what is saved when users finish a round
-//    if (null == crrp) {
-//	log.error("client error: no completed round results are sent");
-//	return false;
-//    }
-//    
-//    List<QuestionAnsweredProto> answered = crrp.getAnswersList();
-//    if (null == answered || answered.isEmpty()) {
-//	log.error("client error: no completed round question results are sent");
-//	return false;
-//    }
+    if (null == crrp) {
+	log.error("client error: no completed round results are sent");
+	return false;
+    }
+    
+    List<QuestionAnsweredProto> answered = crrp.getAnswersList();
+    if (null == answered || answered.isEmpty()) {
+	log.error("client error: no completed round question results are sent");
+	return false;
+    }
     
     return true;
   }
@@ -186,10 +186,9 @@ public class CompletedRoundController extends EventController {
       
       //create the just finished round
       int roundNumber = crrp.getRoundNumber();
-      Set<QuestionAnswered> qaSet = null;
-//      //save the questions answered by the user
-//      Set<QuestionAnswered> qaSet = constructQuestionAnswered(userId, 
-//          roundNumber, crrp.getAnswersList());
+      //save the questions answered by the user
+      Set<QuestionAnswered> qaSet = constructQuestionAnswered(userId, 
+          roundNumber, crrp.getAnswersList());
       log.info("going to create round history");
       RoundHistory finishedRound = createRoundHistory(userId, roundNumber,
           qaSet, crrp);
