@@ -481,8 +481,10 @@ public class LoginController extends EventController {
 		getGameHistoryService().getGameHistoryForUser(userId, nonCompletedGamesOnly,
 			completedGamesOnly, completedAfterThisTime, specificGameHistoryIdsNull);
 
+	log.info("completedGames=" + completedGames);
 	//if user has no recent completed don't do anything
 	if (null == completedGames || completedGames.isEmpty()) {
+	    log.info("there are no completed games");
 	    return;
 	}
 
@@ -509,9 +511,15 @@ public class LoginController extends EventController {
 		userId, myTurn, notMyTurn, pendingGamesMyTurn,
 		pendingGamesNotMyTurn, allUserIds);
 
+	log.info("anyOngoingGames=" + anyOngoingGames);
 	if (!anyOngoingGames) {
 	    return;
 	}
+	
+	log.info("ongoing myTurn=" + myTurn);
+	log.info("pending myTurn=" + pendingGamesMyTurn);
+	log.info("ongoing notMyTurn=" + notMyTurn);
+	log.info("pending notMyTurn=" + pendingGamesNotMyTurn);
 
 	//need to set in responseBuilder the collection of picture names
 	Set<String> picNames = getGameHistoryService().getPictureNamesFromOngoingGames(
