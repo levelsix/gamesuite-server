@@ -48,7 +48,7 @@ public class QuestionAnswered extends BasePersistentObject {
 	protected String answeredByUser;
 	
 	
-	@NotNull
+	//@NotNull
 	//@Index(name="question_answered_question_index")
 	@ManyToOne
 	protected QuestionBase question;
