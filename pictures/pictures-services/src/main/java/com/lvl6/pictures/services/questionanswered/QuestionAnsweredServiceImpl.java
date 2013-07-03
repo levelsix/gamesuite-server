@@ -60,12 +60,14 @@ public class QuestionAnsweredServiceImpl implements QuestionAnsweredService {
     @Override
     public int computeScore(Set<QuestionAnswered> qaSet) {
 	int score = 0;
-
+	log.info("beginning score=" + score);
 	for (QuestionAnswered qa : qaSet) {
 	    int points = getScore(qa);
 	    //answerType is defined in TriviaQuestionFormat
+	    log.info("points won=" + points);
 	    score += points;
 	}
+	log.info("end score=" + score);
 	return score;
     }
 
