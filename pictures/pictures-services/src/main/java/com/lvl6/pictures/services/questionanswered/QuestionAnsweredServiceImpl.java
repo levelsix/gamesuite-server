@@ -1,6 +1,5 @@
 package com.lvl6.pictures.services.questionanswered;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
