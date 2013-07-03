@@ -202,7 +202,7 @@ public class CompletedRoundController extends EventController {
       
       return true;
     } catch (Exception e) {
-      log.error("unexpected error: problem with saving to db.");
+      log.error("unexpected error: problem with saving to db.", e);
     }
     return false;
   }
