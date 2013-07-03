@@ -29,7 +29,9 @@ public class RoundHistoryServiceImpl implements RoundHistoryService {
 	RoundHistory rh = new RoundHistory();
 	rh.setUserId(userId);
 	rh.setScore(score);
+	log.info("setting questions answered");
 	rh.setQuestionsAnswered(questionsAnswered);
+	log.info("finished setting questions answered");
 	rh.setRoundEnded(roundEnded);
 	rh.setRoundStarted(roundStarted);
 	rh.setRoundNumber(roundNumber);

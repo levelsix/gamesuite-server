@@ -179,10 +179,13 @@ public class CompletedRoundController extends EventController {
       //save the questions answered by the user
       Set<QuestionAnswered> qaSet = constructQuestionAnswered(userId, 
           roundNumber, crrp.getAnswersList());
+      log.info("going to create round history");
       RoundHistory finishedRound = createRoundHistory(userId, roundNumber,
           qaSet, crrp);
       //record the finished round
+      log.info("adding finished round to game history");
       gh.getRoundHistory().add(finishedRound);
+      log.info("finished adding round to game history");
       
       //save the game history, set the end date if the game history is over
       int currentRound = gh.getCurrentRoundNumber(); //accounts for finished round
@@ -192,7 +195,9 @@ public class CompletedRoundController extends EventController {
         Date endDate = new Date(crrp.getEndTime());
         gh.setEndTime(endDate);
       }
+      log.info("log.info saving game history");
       getGameHistoryService().saveGameHistory(gh);
+      log.info("saved game history");
       rhList.add(finishedRound);
       
       return true;

@@ -76,7 +76,7 @@ public class StartRoundController extends EventController {
 	StartRoundRequestProto reqProto = 
 		((StartRoundRequestEvent) event).getStartRoundRequestProto();
 	
-	log.info("client sent request proto=" + reqProto);
+	//log.info("client sent request proto=" + reqProto);
 	
 	BasicUserProto sender = reqProto.getSender();
 	String userId = sender.getUserId();
@@ -143,8 +143,8 @@ public class StartRoundController extends EventController {
 	    //write to client
 	    resEvent.setStartRoundResponseProto(responseBuilder.build());
 
-	    log.info("Writing event: " + resEvent);
-	    log.info("responseBuilder=" + responseBuilder.build());
+	    //log.info("Writing event: " + resEvent);
+	    log.info("Writing event: responseBuilder=" + responseBuilder.build());
 	    getEventWriter().handleEvent(resEvent);
 
 	} catch (Exception e) {
