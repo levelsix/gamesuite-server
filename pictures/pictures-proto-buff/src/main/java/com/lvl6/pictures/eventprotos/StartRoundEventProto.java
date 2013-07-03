@@ -1136,6 +1136,11 @@ public final class StartRoundEventProto {
     // optional .proto.StartRoundResponseProto.StartRoundStatus status = 3;
     boolean hasStatus();
     com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus getStatus();
+    
+    // optional .proto.CompleteUserProto updatedRecipient = 4;
+    boolean hasUpdatedRecipient();
+    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getUpdatedRecipient();
+    com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getUpdatedRecipientOrBuilder();
   }
   public static final class StartRoundResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -1308,10 +1313,24 @@ public final class StartRoundEventProto {
       return status_;
     }
     
+    // optional .proto.CompleteUserProto updatedRecipient = 4;
+    public static final int UPDATEDRECIPIENT_FIELD_NUMBER = 4;
+    private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto updatedRecipient_;
+    public boolean hasUpdatedRecipient() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getUpdatedRecipient() {
+      return updatedRecipient_;
+    }
+    public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getUpdatedRecipientOrBuilder() {
+      return updatedRecipient_;
+    }
+    
     private void initFields() {
       recipient_ = com.lvl6.pictures.noneventprotos.UserProto.BasicUserProto.getDefaultInstance();
       gameId_ = "";
       status_ = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.SUCCESS;
+      updatedRecipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1334,6 +1353,9 @@ public final class StartRoundEventProto {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(3, status_.getNumber());
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeMessage(4, updatedRecipient_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -1354,6 +1376,10 @@ public final class StartRoundEventProto {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, status_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, updatedRecipient_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1472,6 +1498,7 @@ public final class StartRoundEventProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getRecipientFieldBuilder();
+          getUpdatedRecipientFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1490,6 +1517,12 @@ public final class StartRoundEventProto {
         bitField0_ = (bitField0_ & ~0x00000002);
         status_ = com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.StartRoundStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000004);
+        if (updatedRecipientBuilder_ == null) {
+          updatedRecipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+        } else {
+          updatedRecipientBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -1544,6 +1577,14 @@ public final class StartRoundEventProto {
           to_bitField0_ |= 0x00000004;
         }
         result.status_ = status_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        if (updatedRecipientBuilder_ == null) {
+          result.updatedRecipient_ = updatedRecipient_;
+        } else {
+          result.updatedRecipient_ = updatedRecipientBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1568,6 +1609,9 @@ public final class StartRoundEventProto {
         }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
+        }
+        if (other.hasUpdatedRecipient()) {
+          mergeUpdatedRecipient(other.getUpdatedRecipient());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1623,6 +1667,15 @@ public final class StartRoundEventProto {
                 bitField0_ |= 0x00000004;
                 status_ = value;
               }
+              break;
+            }
+            case 34: {
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder subBuilder = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder();
+              if (hasUpdatedRecipient()) {
+                subBuilder.mergeFrom(getUpdatedRecipient());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setUpdatedRecipient(subBuilder.buildPartial());
               break;
             }
           }
@@ -1781,6 +1834,96 @@ public final class StartRoundEventProto {
         return this;
       }
       
+      // optional .proto.CompleteUserProto updatedRecipient = 4;
+      private com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto updatedRecipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> updatedRecipientBuilder_;
+      public boolean hasUpdatedRecipient() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto getUpdatedRecipient() {
+        if (updatedRecipientBuilder_ == null) {
+          return updatedRecipient_;
+        } else {
+          return updatedRecipientBuilder_.getMessage();
+        }
+      }
+      public Builder setUpdatedRecipient(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
+        if (updatedRecipientBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          updatedRecipient_ = value;
+          onChanged();
+        } else {
+          updatedRecipientBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      public Builder setUpdatedRecipient(
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder builderForValue) {
+        if (updatedRecipientBuilder_ == null) {
+          updatedRecipient_ = builderForValue.build();
+          onChanged();
+        } else {
+          updatedRecipientBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      public Builder mergeUpdatedRecipient(com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto value) {
+        if (updatedRecipientBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              updatedRecipient_ != com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance()) {
+            updatedRecipient_ =
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.newBuilder(updatedRecipient_).mergeFrom(value).buildPartial();
+          } else {
+            updatedRecipient_ = value;
+          }
+          onChanged();
+        } else {
+          updatedRecipientBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      public Builder clearUpdatedRecipient() {
+        if (updatedRecipientBuilder_ == null) {
+          updatedRecipient_ = com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          updatedRecipientBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder getUpdatedRecipientBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getUpdatedRecipientFieldBuilder().getBuilder();
+      }
+      public com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder getUpdatedRecipientOrBuilder() {
+        if (updatedRecipientBuilder_ != null) {
+          return updatedRecipientBuilder_.getMessageOrBuilder();
+        } else {
+          return updatedRecipient_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder> 
+          getUpdatedRecipientFieldBuilder() {
+        if (updatedRecipientBuilder_ == null) {
+          updatedRecipientBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProto.Builder, com.lvl6.pictures.noneventprotos.UserProto.CompleteUserProtoOrBuilder>(
+                  updatedRecipient_,
+                  getParentForChildren(),
+                  isClean());
+          updatedRecipient_ = null;
+        }
+        return updatedRecipientBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.StartRoundResponseProto)
     }
     
@@ -1818,18 +1961,19 @@ public final class StartRoundEventProto {
       "\022\020\n\010opponent\030\003 \001(\t\022\016\n\006gameId\030\004 \001(\t\022\023\n\013ro" +
       "undNumber\030\005 \001(\005\022\023\n\013isPlayerOne\030\006 \001(\010\022\021\n\t" +
       "startTime\030\007 \001(\003\022\'\n\tquestions\030\010 \003(\0132\024.pro" +
-      "to.QuestionProto\"\362\002\n\027StartRoundResponseP" +
+      "to.QuestionProto\"\246\003\n\027StartRoundResponseP" +
       "roto\022(\n\trecipient\030\001 \001(\0132\025.proto.BasicUse" +
       "rProto\022\016\n\006gameId\030\002 \001(\t\022?\n\006status\030\003 \001(\0162/",
       ".proto.StartRoundResponseProto.StartRoun" +
-      "dStatus\"\333\001\n\020StartRoundStatus\022\013\n\007SUCCESS\020" +
-      "\001\022*\n&FAIL_CLIENT_TOO_APART_FROM_SERVER_T" +
-      "IME\020\002\022\016\n\nFAIL_OTHER\020\003\022\032\n\026FAIL_NOT_ENOUGH" +
-      "_TOKENS\020\004\022\023\n\017FAIL_GAME_ENDED\020\005\022\026\n\022FAIL_N" +
-      "OT_USER_TURN\020\006\022\030\n\024FAIL_WRONG_OPPONENTS\020\007" +
-      "\022\033\n\027FAIL_WRONG_ROUND_NUMBER\020\010B5\n\035com.lvl" +
-      "6.pictures.eventprotosB\024StartRoundEventP" +
-      "roto"
+      "dStatus\0222\n\020updatedRecipient\030\004 \001(\0132\030.prot" +
+      "o.CompleteUserProto\"\333\001\n\020StartRoundStatus" +
+      "\022\013\n\007SUCCESS\020\001\022*\n&FAIL_CLIENT_TOO_APART_F" +
+      "ROM_SERVER_TIME\020\002\022\016\n\nFAIL_OTHER\020\003\022\032\n\026FAI" +
+      "L_NOT_ENOUGH_TOKENS\020\004\022\023\n\017FAIL_GAME_ENDED" +
+      "\020\005\022\026\n\022FAIL_NOT_USER_TURN\020\006\022\030\n\024FAIL_WRONG" +
+      "_OPPONENTS\020\007\022\033\n\027FAIL_WRONG_ROUND_NUMBER\020" +
+      "\010B5\n\035com.lvl6.pictures.eventprotosB\024Star" +
+      "tRoundEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1849,7 +1993,7 @@ public final class StartRoundEventProto {
           internal_static_proto_StartRoundResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartRoundResponseProto_descriptor,
-              new java.lang.String[] { "Recipient", "GameId", "Status", },
+              new java.lang.String[] { "Recipient", "GameId", "Status", "UpdatedRecipient", },
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.class,
               com.lvl6.pictures.eventprotos.StartRoundEventProto.StartRoundResponseProto.Builder.class);
           return null;
