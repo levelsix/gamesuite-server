@@ -45,7 +45,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	    log.info("querying for completed games after a certain time. " +
 		    "time=" + completedAfterThisTime);
 	    returnVal = 
-		    getGameHistoryDao().findByPlayerOneIdOrPlayerTwoIdAndEndTimeGreaterThanOrderByEndTimeDesc(
+		    getGameHistoryDao().findByEndTimeGreaterThanAndPlayerOneIdOrPlayerTwoIdOrderByEndTimeDesc(
 			    userId, userId, completedAfterThisTime);
 
 	} else if (completedGamesOnly) {
