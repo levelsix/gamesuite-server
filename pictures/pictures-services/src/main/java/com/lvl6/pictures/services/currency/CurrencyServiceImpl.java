@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ import com.lvl6.pictures.properties.PicturesPoConstants;
 
 @Component
 public class CurrencyServiceImpl implements CurrencyService {
+    
+    private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
     @Resource
     protected CurrencyDao currencyDao;
@@ -58,6 +62,8 @@ public class CurrencyServiceImpl implements CurrencyService {
     public boolean canRegenerateToken(Date lastRefillTime, Date now) {
 	int minDifference = timeUtils.numMinutesDifference(lastRefillTime, now);
 
+	log.info("\t minDifference=" + minDifference);
+	
 	int regenTime = PicturesPoConstants.CURRENCY__MINUTES_FOR_TOKEN_REGENERATION;
 	if (minDifference > regenTime) {
 	    return true;
