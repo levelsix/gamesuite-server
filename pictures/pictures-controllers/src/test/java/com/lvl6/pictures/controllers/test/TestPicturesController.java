@@ -251,11 +251,17 @@ public class TestPicturesController {
 	    crrpb.setScore(scoreList.get(0));
 	    crrpb.addAllAnswers(qapList);
 	    
+	    log.error("\t\t\t\t\t questionBaseList=" + qs +
+		    "\t completedRoundResultsProto=" + crrpb.build());
+	    log.error("ggagalkgdjlkasjfl;kdsajfkldsjf");
+	    log.error("completedRoundResultsProto=" + crrpb.build());
+	    log.error("ggagalkgdjlkasjfl;kdsajfkldsjf");
 	    return crrpb.build();
 	}
 	
 	private List<QuestionAnsweredProto> genQuestionAnsweredProto(
 		List<QuestionBase> qs, List<Integer> scoreList) {
+	    log.error("size=" + qs.size());
 	    List<QuestionAnsweredProto> qapList =
 		    new ArrayList<QuestionAnsweredProto>();
 	    int score = 0;
@@ -275,9 +281,12 @@ public class TestPicturesController {
 		qapb.setAnswerType(at);
 		qapb.setQuestionNumber(questionNumber);
 		qapb.setTimeAnswered(timeAnswered);
+		
+		qapList.add(qapb.build());
 	    }
 	    
 	    scoreList.add(score);
+	    log.error("returnedListSize=" + qapList.size());
 	    return qapList;
 	}
 	
@@ -320,7 +329,9 @@ public class TestPicturesController {
 	private void genLoginEvent(BasicUserProto bup, List<String> facebookFriendIds) {
 	    LoginRequestProto.Builder lrpb = LoginRequestProto.newBuilder();
 	    lrpb.setSender(bup);
-	    lrpb.addAllFacebookFriendIds(facebookFriendIds);
+	    if (null != facebookFriendIds && !facebookFriendIds.isEmpty()) {
+		lrpb.addAllFacebookFriendIds(facebookFriendIds);
+	    }
 	    lrpb.setLoginType(LoginType.FACEBOOK);
 	    
 	    LoginRequestEvent lre = new LoginRequestEvent();
@@ -334,7 +345,7 @@ public class TestPicturesController {
 	@Rollback(true)
 	@Test
 	public void testRetrievingOngoingGamesInLoginController() {
-	    log.info("Testing Pictures Controllers");
+	    log.error("Testing Pictures Controllers");
 	    //create two users
 	    String facebookIdOne = "a";
 	    String nameFriendsSeeOne = "Articus";
@@ -364,17 +375,24 @@ public class TestPicturesController {
 	    User uTwo = uTwoList.get(0);
 	    String uTwoId = uTwo.getId();
 	    
+	    log.error("userOne=" + uOne);
+	    log.error("userTwo=" + uTwo);
+	    
 	    assertTrue("expected user to have id. id=" + uOne.getId(),
 		    null != uOne.getId());
 	    assertTrue("expected user to have id. id=" + uTwo.getId(),
 		    null != uTwo.getId());
 	    
-	    //a user should challenge another in a game: StartRoundEvent
 	    BasicUserProto bupOne = getBasicUserProto(uOne);
+	    BasicUserProto bupTwo = getBasicUserProto(uTwo);
+	    //log both of them in
+	    genLoginEvent(bupOne, null);
+	    genLoginEvent(bupTwo, null);
+	    
+	    //a user should challenge another in a game: StartRoundEvent
 	    List<QuestionBase> qs = genInitialGameStartRoundEvent(bupOne, uTwoId);
 	    
 	    //said user should complete the round
-	    BasicUserProto bupTwo = getBasicUserProto(uTwo);
 	    genInitialGameCompletedRoundEvent(bupOne, uOneId, bupTwo, uTwoId, qs);
 	    
 	    //player two should log in and have uOne as a friend
