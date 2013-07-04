@@ -11,12 +11,12 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
 import com.lvl6.gamesuite.common.po.User;
 import com.lvl6.gamesuite.common.services.user.LoginService;
+import com.lvl6.pictures.dao.RoundHistoryDao;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.GameResultsProto;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.OngoingGameProto;
 import com.lvl6.pictures.noneventprotos.TriviaGameFormatProto.PlayerGameResultsProto;
@@ -52,9 +52,20 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
     @Autowired
     protected LoginService loginService;
+    
+    @Autowired
+    protected RoundHistoryDao roundHistoryDao;
 
 
-    @Override
+    public RoundHistoryDao getRoundHistoryDao() {
+		return roundHistoryDao;
+	}
+
+	public void setRoundHistoryDao(RoundHistoryDao roundHistoryDao) {
+		this.roundHistoryDao = roundHistoryDao;
+	}
+
+	@Override
     public Map<String, BasicUserProto> createIdsToBasicUserProtos(List<GameHistory> ghList) {
 	Map<String, BasicUserProto> idsToBups = new HashMap<String, BasicUserProto>();
 
@@ -221,7 +232,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return ucpb.build();
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public List<OngoingGameProto> createOngoingGameProtosForUser(List<GameHistory> ghList,
 	    Map<String, BasicUserProto> idsToBasicUserProtos, String userId, boolean isUserTurn) {
@@ -235,7 +246,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return ongoingGames;
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public OngoingGameProto createOngoingGameProtoForUser(GameHistory gh,
 	    Map<String, BasicUserProto> idsToBasicUserProtos, String userId, boolean isUserTurn) {
@@ -362,12 +373,13 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return brpb.build();
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public UnfinishedRoundProto createUnfinishedRoundProto(RoundHistory rh) {
 	UnfinishedRoundProto.Builder brpb = UnfinishedRoundProto.newBuilder();
 
 	String roundHistoryId = rh.getId();
+	//rh = roundHistoryDao.findOne(roundHistoryId);
 	int roundNumber = rh.getRoundNumber();
 	List<QuestionProto> qpList = new ArrayList<QuestionProto>();
 	Set<QuestionAnswered> qaList = rh.getQuestionsAnswered();
