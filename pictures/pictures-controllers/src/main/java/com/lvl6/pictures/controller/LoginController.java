@@ -514,9 +514,11 @@ public class LoginController extends EventController {
 
 	//initially user does not have any games
 	if (null != myTurnProtos && !myTurnProtos.isEmpty()) {
+	    log.info("allMyTurn=" + allMyTurn);
 	    responseBuilder.addAllMyTurn(myTurnProtos);
 	}
 	if (null != notMyTurnProtos && !myTurnProtos.isEmpty()) {
+	    log.info("allNotMyTurn=" + allNotMyTurn);
 	    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
 	}
     }
