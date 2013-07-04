@@ -57,7 +57,7 @@ import com.lvl6.pictures.properties.PicturesPoConstants;
 import com.lvl6.pictures.services.questionbase.QuestionBaseService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/spring-db-pictures-context.xml")
+@ContextConfiguration("/spring-application-context.xml")
 public class TestPicturesController {
 
 	
