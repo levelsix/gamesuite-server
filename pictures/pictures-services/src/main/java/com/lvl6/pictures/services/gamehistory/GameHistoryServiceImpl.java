@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.pictures.dao.GameHistoryDao;
 import com.lvl6.pictures.po.GameHistory;
@@ -77,6 +78,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     }
 
     @Override
+    @Transactional
     public boolean getOngoingGamesForUser(String userId, Set<String> allPictureNames,
 	    Set<String> allUserIds, List<GameHistory> allMyTurn,
 	    List<GameHistory> allNotMyTurn) {
