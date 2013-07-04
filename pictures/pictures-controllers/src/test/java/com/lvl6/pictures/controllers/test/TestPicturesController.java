@@ -1,4 +1,4 @@
-package com.lvl6.pictures.webapp.test;
+package com.lvl6.pictures.controllers.test;
 
 import static org.junit.Assert.assertTrue;
 
