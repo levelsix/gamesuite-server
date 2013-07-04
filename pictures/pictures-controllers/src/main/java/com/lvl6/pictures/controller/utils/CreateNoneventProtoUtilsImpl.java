@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.gamesuite.common.dao.UserDao;
 import com.lvl6.gamesuite.common.po.AuthorizedDevice;
@@ -359,6 +360,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return brpb.build();
     }
 
+    @Transactional
     @Override
     public UnfinishedRoundProto createUnfinishedRoundProto(RoundHistory rh) {
 	UnfinishedRoundProto.Builder brpb = UnfinishedRoundProto.newBuilder();
