@@ -251,17 +251,14 @@ public class TestPicturesController {
 	    crrpb.setScore(scoreList.get(0));
 	    crrpb.addAllAnswers(qapList);
 	    
-	    log.error("\t\t\t\t\t questionBaseList=" + qs +
+	    log.info("\t\t\t\t\t questionBaseList=" + qs +
 		    "\t completedRoundResultsProto=" + crrpb.build());
-	    log.error("ggagalkgdjlkasjfl;kdsajfkldsjf");
-	    log.error("completedRoundResultsProto=" + crrpb.build());
-	    log.error("ggagalkgdjlkasjfl;kdsajfkldsjf");
+	    log.info("completedRoundResultsProto=" + crrpb.build());
 	    return crrpb.build();
 	}
 	
 	private List<QuestionAnsweredProto> genQuestionAnsweredProto(
 		List<QuestionBase> qs, List<Integer> scoreList) {
-	    log.error("size=" + qs.size());
 	    List<QuestionAnsweredProto> qapList =
 		    new ArrayList<QuestionAnsweredProto>();
 	    int score = 0;
@@ -270,7 +267,7 @@ public class TestPicturesController {
 		String id = qb.getId();
 		QuestionAnsweredProto.AnswerType at =
 			QuestionAnsweredProto.AnswerType.CORRECT;
-		int questionNumber = i;
+		int questionNumber = i + 1;
 		long timeAnswered = (new Date()).getTime();
 		
 		score += getScoreForCorrectlyAnsweringQuestion(qb);
@@ -286,7 +283,6 @@ public class TestPicturesController {
 	    }
 	    
 	    scoreList.add(score);
-	    log.error("returnedListSize=" + qapList.size());
 	    return qapList;
 	}
 	
@@ -345,7 +341,7 @@ public class TestPicturesController {
 	@Rollback(true)
 	@Test
 	public void testRetrievingOngoingGamesInLoginController() {
-	    log.error("Testing Pictures Controllers");
+	    log.info("Testing Pictures Controllers");
 	    //create two users
 	    String facebookIdOne = "a";
 	    String nameFriendsSeeOne = "Articus";
@@ -375,8 +371,8 @@ public class TestPicturesController {
 	    User uTwo = uTwoList.get(0);
 	    String uTwoId = uTwo.getId();
 	    
-	    log.error("userOne=" + uOne);
-	    log.error("userTwo=" + uTwo);
+	    log.info("userOne=" + uOne);
+	    log.info("userTwo=" + uTwo);
 	    
 	    assertTrue("expected user to have id. id=" + uOne.getId(),
 		    null != uOne.getId());
@@ -386,18 +382,25 @@ public class TestPicturesController {
 	    BasicUserProto bupOne = getBasicUserProto(uOne);
 	    BasicUserProto bupTwo = getBasicUserProto(uTwo);
 	    //log both of them in
+	    
+	    log.info("\t\t logging in userone");
 	    genLoginEvent(bupOne, null);
+	    log.info("\t\t\t logging in userTwo");
 	    genLoginEvent(bupTwo, null);
 	    
 	    //a user should challenge another in a game: StartRoundEvent
+	    log.info("\t making playerOne start a game");
 	    List<QuestionBase> qs = genInitialGameStartRoundEvent(bupOne, uTwoId);
 	    
 	    //said user should complete the round
+	    log.info("\t making playerOne complete a round");
 	    genInitialGameCompletedRoundEvent(bupOne, uOneId, bupTwo, uTwoId, qs);
 	    
 	    //player two should log in and have uOne as a friend
 	    List<String> facebookFriendIds = new ArrayList<String>();
 	    facebookFriendIds.add(uOne.getFacebookId());
+	    log.info("\t\t (logging userTwo) before he logs " +
+		    "in after userOne completed a round");
 	    genLoginEvent(bupTwo, facebookFriendIds);
 	}
 
