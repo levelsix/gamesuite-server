@@ -298,7 +298,7 @@ public class TestPicturesController {
 	    
 	    requestBuilder.setSender(bupOne);
 	    requestBuilder.setOpponent(bupTwo);
-	    List<GameHistory> ghList =  getGameHistoryDao().findByPlayerOneIdOrPlayerTwoIdAndEndTimeIsNull(
+	    List<GameHistory> ghList =  getGameHistoryDao().findByEndTimeIsNullAndPlayerOneIdOrPlayerTwoId(
 		    bupOneId, bupTwoId);
 	    assertTrue("expected existing gamehistory. ghList=" + ghList,
 		    null != ghList && 1 == ghList.size());
