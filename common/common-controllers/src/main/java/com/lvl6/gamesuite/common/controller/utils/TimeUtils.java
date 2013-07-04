@@ -35,4 +35,12 @@ public class TimeUtils {
     
     return interim.getMinutes();
   }
+  
+  public int numSecondsDifference(Date d1, Date d2) {
+      DateTime dOne = new DateTime(d1);
+      DateTime dTwo = new DateTime(d2);
+      Period interim = new Period(dOne, dTwo);
+      
+      return interim.getSeconds();
+  }
 }

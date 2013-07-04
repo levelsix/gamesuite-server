@@ -6,6 +6,7 @@ public class PicturesPoConstants {
   
   //currency
   public static int CURRENCY__MINUTES_FOR_TOKEN_REGENERATION = 3;
+  public static int CURRENCY__SECONDS_FOR_TOKEN_REGENERATION = 180;
   public static int CURRENCY__DEFAULT_MAX_TOKENS = 10;
   public static int CURRENCY__DEFAULT_INITIAL_TOKENS = 10;
   public static int CURRENCY__DEFAULT_INITIAL_RUBIES = 20;
