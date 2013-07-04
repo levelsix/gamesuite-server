@@ -219,8 +219,12 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 		continue;
 	    } else {
 		RoundHistory rh = gh.getLastRoundHistoryForUser(userId);
-		Set<String> picNames = rh.getPictureNames();
-		allPicNames.addAll(picNames);
+		if (null != rh) {
+		    //could be the case where I am player 2 and going
+		    //to start the first round
+		    Set<String> picNames = rh.getPictureNames();
+		    allPicNames.addAll(picNames);
+		}
 	    }
 	}
 
