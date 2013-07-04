@@ -234,7 +234,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return ongoingGames;
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public OngoingGameProto createOngoingGameProtoForUser(GameHistory gh,
 	    Map<String, BasicUserProto> idsToBasicUserProtos, String userId, boolean isUserTurn) {
@@ -338,6 +338,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return pgrpb.build();
     }
 
+    @Transactional
     @Override
     public UnfinishedRoundProto createUnfinishedRoundProto(RoundPendingCompletion rpc) {
 	UnfinishedRoundProto.Builder brpb = UnfinishedRoundProto.newBuilder();
