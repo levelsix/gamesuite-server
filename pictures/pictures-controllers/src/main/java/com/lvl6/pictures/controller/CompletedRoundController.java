@@ -2,6 +2,7 @@ package com.lvl6.pictures.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,6 +33,7 @@ import com.lvl6.pictures.properties.PicturesPoConstants;
 import com.lvl6.pictures.services.gamehistory.GameHistoryService;
 import com.lvl6.pictures.services.questionanswered.QuestionAnsweredService;
 import com.lvl6.pictures.services.roundhistory.RoundHistoryService;
+import com.lvl6.pictures.services.roundpendingcompletion.RoundPendingCompletionService;
 
 @Component
 public class CompletedRoundController extends EventController {
@@ -49,6 +51,9 @@ public class CompletedRoundController extends EventController {
 
   @Autowired
   protected CreateNoneventProtoUtils createNoneventProtoUtils;
+  
+  @Autowired
+  protected RoundPendingCompletionService roundPendingCompletionService;
   
   @Override
   public RequestEvent createRequestEvent() {
@@ -181,20 +186,30 @@ public class CompletedRoundController extends EventController {
   private boolean writeChangesToDb(String userId, GameHistory gh,
       CompleteRoundResultsProto crrp, List<RoundHistory> rhList) {
     try {
-      //delete the unfinished round since the user just finished it
-      gh.setUnfinishedRound(null);
+	//delete the unfinished round since the user just finished it
+	log.info("deleting gameHistory's roundPendingCompletion");
+	RoundPendingCompletion rpc = gh.getUnfinishedRound();
+	getRoundPendingCompletionService().deleteRoundPendingCompletion(rpc);
+	gh.setUnfinishedRound(null);
       
       //create the just finished round
       int roundNumber = crrp.getRoundNumber();
       //save the questions answered by the user
       Set<QuestionAnswered> qaSet = constructQuestionAnswered(userId, 
           roundNumber, crrp.getAnswersList());
+      
       log.info("going to create round history");
       RoundHistory finishedRound = createRoundHistory(userId, roundNumber,
           qaSet, crrp);
-      //record the finished round
+      
+      //record the finished round, account for base case
       log.info("adding finished round to game history");
-      gh.getRoundHistory().add(finishedRound);
+      Set<RoundHistory> rhSet = gh.getRoundHistory();
+      if (null == rhSet) {
+	  rhSet = new HashSet<RoundHistory>();
+      }
+      rhSet.add(finishedRound);
+      gh.setRoundHistory(rhSet);
       log.info("finished adding round to game history");
       
       //save the game history, set the end date if the game history is over
@@ -353,5 +368,14 @@ public class CompletedRoundController extends EventController {
       CreateNoneventProtoUtils createNoneventProtoUtils) {
     this.createNoneventProtoUtils = createNoneventProtoUtils;
   }
-  
+
+  public RoundPendingCompletionService getRoundPendingCompletionService() {
+      return roundPendingCompletionService;
+  }
+
+  public void setRoundPendingCompletionService(
+	  RoundPendingCompletionService roundPendingCompletionService) {
+      this.roundPendingCompletionService = roundPendingCompletionService;
+  }
+
 }

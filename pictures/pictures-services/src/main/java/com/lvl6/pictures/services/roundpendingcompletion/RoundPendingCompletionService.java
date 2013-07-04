@@ -18,6 +18,8 @@ public interface RoundPendingCompletionService {
 	    RoundPendingCompletion rpc, int secondsRemaining, 
 	    int currentQuestionNumber, int currentScore);
 
+    public abstract void deleteRoundPendingCompletion(RoundPendingCompletion rpc);
+    
 //    public Map<String, QuestionBase> getQuestionIdsToQuestions();
 //    public void setQuestionIdsToQuestions(
 //	    Map<String, QuestionBase> questionIdsToQuestions);

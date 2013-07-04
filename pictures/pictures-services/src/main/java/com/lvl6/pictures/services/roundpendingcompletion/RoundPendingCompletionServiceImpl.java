@@ -89,7 +89,14 @@ public class RoundPendingCompletionServiceImpl implements RoundPendingCompletion
 	return rpc;
     }
 
-
+    @Override
+    public void deleteRoundPendingCompletion(RoundPendingCompletion rpc) {
+	if (null != rpc) {
+	    roundPendingCompletionDao.delete(rpc);
+	}
+    }
+    
+    
 //    @Override
 //    public Map<String, QuestionBase> getQuestionIdsToQuestions() {
 //	return questionIdsToQuestions;
