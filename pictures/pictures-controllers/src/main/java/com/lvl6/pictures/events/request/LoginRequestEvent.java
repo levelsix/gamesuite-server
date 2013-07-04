@@ -35,4 +35,8 @@ public class LoginRequestEvent extends PreDatabaseRequestEvent {
   public LoginRequestProto getLoginRequestProto() {
     return loginRequestProto;
   }
+
+  public void setLoginRequestProto(LoginRequestProto loginRequestProto) {
+      this.loginRequestProto = loginRequestProto;
+  }
 }

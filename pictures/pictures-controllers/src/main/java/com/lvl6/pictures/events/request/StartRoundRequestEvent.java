@@ -22,7 +22,12 @@ public class StartRoundRequestEvent extends RequestEvent {
   }
   
   public StartRoundRequestProto getStartRoundRequestProto() {
-    return startRoundRequestProto;
+      return startRoundRequestProto;
+  }
+
+  public void setStartRoundRequestProto(
+	  StartRoundRequestProto startRoundRequestProto) {
+      this.startRoundRequestProto = startRoundRequestProto;
   }
   
 }

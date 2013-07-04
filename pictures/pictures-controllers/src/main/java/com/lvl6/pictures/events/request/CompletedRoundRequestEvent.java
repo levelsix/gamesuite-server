@@ -24,5 +24,10 @@ public class CompletedRoundRequestEvent extends RequestEvent {
   public CompletedRoundRequestProto getCompletedRoundRequestProto() {
     return completedRoundRequestProto;
   }
-  
+
+  public void setCompletedRoundRequestProto(
+	  CompletedRoundRequestProto completedRoundRequestProto) {
+      this.completedRoundRequestProto = completedRoundRequestProto;
+  }
+
 }

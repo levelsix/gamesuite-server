@@ -35,4 +35,8 @@ public class CreateAccountViaFacebookRequestEvent extends PreDatabaseRequestEven
   public CreateAccountViaFacebookRequestProto getCreateAccountViaFacebookRequestProto() {
     return createAccountViaFacebookRequestProto;
   }
+  
+  public void setCreateAccountViaFacebookRequestProto(CreateAccountViaFacebookRequestProto createAccountViaFacebookRequestProto) {
+      this.createAccountViaFacebookRequestProto = createAccountViaFacebookRequestProto;
+  }
 }
