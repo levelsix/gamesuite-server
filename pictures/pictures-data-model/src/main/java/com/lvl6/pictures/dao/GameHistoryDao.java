@@ -9,13 +9,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.lvl6.pictures.po.GameHistory;
 
 public interface GameHistoryDao extends JpaRepository<GameHistory, String> {
-  
+  //seems to be (column conjunction (column conjunction...(columnN conjunction columnN+1)))
   //finds incompleted games
-  public List<GameHistory> findByPlayerOneIdOrPlayerTwoIdAndEndTimeIsNull(
+  public List<GameHistory> findByEndTimeIsNullAndPlayerOneIdOrPlayerTwoId(
       String playerOneId, String playerTwoId);
   
   //find completed games
-  public List<GameHistory> findByPlayerOneIdOrPlayerTwoIdAndEndTimeIsNotNull(
+  public List<GameHistory> findByEndTimeIsNotNullAndPlayerOneIdOrPlayerTwoId(
       String playerOneId, String playerTwoId);
   
   //find recent completed games

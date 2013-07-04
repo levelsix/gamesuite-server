@@ -85,14 +85,16 @@ public class AuthorizedDeviceServiceImpl implements AuthorizedDeviceService {
 
     @Override
     public List<AuthorizedDevice> devicesSharingUserAccount(String userId, AuthorizedDevice exempt) {
-	List<String> exemptions = null;
+	List<AuthorizedDevice> otherDevices = null;
 	if (null != exempt) {
-	    exemptions = new ArrayList<String>();
+	    List<String> exemptions = new ArrayList<String>();
 	    String exemptId = exempt.getId();
 	    exemptions.add(exemptId);
+	    otherDevices = getAuthorizedDeviceDao().findByUserIdAndIdNotIn(userId, exemptions);
+	} else {
+	    otherDevices = getAuthorizedDeviceDao().findByUserId(userId);
 	}
 
-	List<AuthorizedDevice> otherDevices = getAuthorizedDeviceDao().findByUserIdAndIdNotIn(userId, exemptions);
 	return otherDevices;
     }
 

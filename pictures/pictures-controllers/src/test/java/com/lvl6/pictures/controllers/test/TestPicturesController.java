@@ -337,7 +337,7 @@ public class TestPicturesController {
 	    log.info("Testing Pictures Controllers");
 	    //create two users
 	    String facebookIdOne = "a";
-	    String nameFriendsSeeOne = "Arturo";
+	    String nameFriendsSeeOne = "Articus";
 	    String emailOne = "arturo@level6.com";
 	    String udidOne = "udid1";
 	    String deviceIdOne = "deviceId1";
