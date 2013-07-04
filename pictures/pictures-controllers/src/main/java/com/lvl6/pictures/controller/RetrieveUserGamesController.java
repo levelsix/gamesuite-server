@@ -31,83 +31,83 @@ import com.lvl6.pictures.services.gamehistory.GameHistoryService;
 
 @Component
 public class RetrieveUserGamesController extends EventController {
-  
-  private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
-  
-  @Autowired
-  protected GameHistoryService gameHistoryService;
-  
-  @Autowired
-  protected CreateNoneventProtoUtils noneventProtoUtils;
-  
-  @Override
-  public RequestEvent createRequestEvent() {
-    return new RetrieveUserGamesRequestEvent();
-  }
 
-  @Override
-  public int getEventType() {
-    return PicturesEventProtocolRequest.C_RETRIEVE_USER_GAMES_EVENT_VALUE;
-  }
-  
-  @Override
-  protected void processRequestEvent(RequestEvent event) throws Exception {
-    //stuff client sent
-    RetrieveUserGamesRequestProto reqProto = 
-        ((RetrieveUserGamesRequestEvent) event).getRetrieveUserGamesRequestProto();
-    BasicUserProto sender = reqProto.getSender();
-    String userId = sender.getUserId();
-    Date timeForCompletedGames = new Date(reqProto.getTimeForCompletedGames());
-    
-    //response to send back to client
-    Builder responseBuilder = RetrieveUserGamesResponseProto.newBuilder();
-    responseBuilder.setSender(sender);
-    responseBuilder.setStatus(RetrieveUserGamesStatus.FAIL_OTHER);
-    
-    RetrieveUserGamesResponseEvent resEvent =
-        new RetrieveUserGamesResponseEvent(userId);
-    resEvent.setTag(event.getTag());
-    
-    try {
-      responseBuilder.setStatus(RetrieveUserGamesStatus.SUCCESS);
-      Set<String> allPictureNames = new HashSet<String>();
-      
-      setCompletedGames(responseBuilder, userId, timeForCompletedGames);
-      setOngoingGames(responseBuilder, userId, allPictureNames);
-      
-      //easier for client to get the pictures to display to the user
-      responseBuilder.addAllPictureNames(allPictureNames);
-      //write to client
-      resEvent.setRetrieveUserGamesResponseProto(responseBuilder.build());
-      log.info("Writing event: " + resEvent);
-      getEventWriter().handleEvent(resEvent);
-      
-    } catch (Exception e) {
-      log.error("exception in RetrieveUserGamesController processRequestEvent", e);
-      
-      try {
-        //try to tell client that something failed
-        responseBuilder.setStatus(RetrieveUserGamesStatus.FAIL_OTHER);
-        resEvent.setRetrieveUserGamesResponseProto(responseBuilder.build());
-        getEventWriter().handleEvent(resEvent);
-        
-      } catch (Exception e2) {
-        log.error("exception in RetrieveUserGamesController processRequestEvent", e2);
-      }
+    private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+
+    @Autowired
+    protected GameHistoryService gameHistoryService;
+
+    @Autowired
+    protected CreateNoneventProtoUtils noneventProtoUtils;
+
+    @Override
+    public RequestEvent createRequestEvent() {
+	return new RetrieveUserGamesRequestEvent();
     }
-  }
 
-  //copy pasted from login controller
-  private void setCompletedGames(Builder responseBuilder, String userId,
-	  Date timeForCompletedGames) {
-      List<GameHistory> completedGames =
+    @Override
+    public int getEventType() {
+	return PicturesEventProtocolRequest.C_RETRIEVE_USER_GAMES_EVENT_VALUE;
+    }
+
+    @Override
+    protected void processRequestEvent(RequestEvent event) throws Exception {
+	//stuff client sent
+	RetrieveUserGamesRequestProto reqProto = 
+		((RetrieveUserGamesRequestEvent) event).getRetrieveUserGamesRequestProto();
+	BasicUserProto sender = reqProto.getSender();
+	String userId = sender.getUserId();
+	Date timeForCompletedGames = new Date(reqProto.getTimeForCompletedGames());
+
+	//response to send back to client
+	Builder responseBuilder = RetrieveUserGamesResponseProto.newBuilder();
+	responseBuilder.setSender(sender);
+	responseBuilder.setStatus(RetrieveUserGamesStatus.FAIL_OTHER);
+
+	RetrieveUserGamesResponseEvent resEvent =
+		new RetrieveUserGamesResponseEvent(userId);
+	resEvent.setTag(event.getTag());
+
+	try {
+	    responseBuilder.setStatus(RetrieveUserGamesStatus.SUCCESS);
+	    Set<String> allPictureNames = new HashSet<String>();
+
+	    setCompletedGames(responseBuilder, userId, timeForCompletedGames);
+	    setOngoingGames(responseBuilder, userId, allPictureNames);
+
+	    //easier for client to get the pictures to display to the user
+	    responseBuilder.addAllPictureNames(allPictureNames);
+	    //write to client
+	    resEvent.setRetrieveUserGamesResponseProto(responseBuilder.build());
+	    log.info("Writing event: " + resEvent);
+	    getEventWriter().handleEvent(resEvent);
+
+	} catch (Exception e) {
+	    log.error("exception in RetrieveUserGamesController processRequestEvent", e);
+
+	    try {
+		//try to tell client that something failed
+		responseBuilder.setStatus(RetrieveUserGamesStatus.FAIL_OTHER);
+		resEvent.setRetrieveUserGamesResponseProto(responseBuilder.build());
+		getEventWriter().handleEvent(resEvent);
+
+	    } catch (Exception e2) {
+		log.error("exception in RetrieveUserGamesController processRequestEvent", e2);
+	    }
+	}
+    }
+
+    //copy pasted from login controller
+    private void setCompletedGames(Builder responseBuilder, String userId,
+	    Date timeForCompletedGames) {
+	List<GameHistory> completedGames =
 		getGameHistoryService().getCompletedGamesForUser(userId);
 	if (null == completedGames || completedGames.isEmpty()) {
 	    log.info("there are no completed games");
 	    return;
 	}
 	log.info("completedGames=" + completedGames.size());
-	
+
 	//create the BasicUserProtos for all the users in the completed games
 	//so the client can display them if desired
 	Map<String, BasicUserProto> idsToBups = getNoneventProtoUtils()
@@ -116,15 +116,15 @@ public class RetrieveUserGamesController extends EventController {
 		completedGames, idsToBups);
 
 	responseBuilder.addAllCompletedGames(ghpList);
-  }
-  
-  //copy pasted from login controller
-  private void setOngoingGames(Builder responseBuilder, String userId,
-	  Set<String> allPictureNames) {
-      Set<String> allUserIds = new HashSet<String>();
+    }
+
+    //copy pasted from login controller
+    private void setOngoingGames(Builder responseBuilder, String userId,
+	    Set<String> allPictureNames) {
+	Set<String> allUserIds = new HashSet<String>();
 	List<GameHistory> allMyTurn = new ArrayList<GameHistory>();
 	List<GameHistory> allNotMyTurn = new ArrayList<GameHistory>();
-	
+
 	boolean anyOngoingGames = getGameHistoryService().getOngoingGamesForUser(
 		userId, allPictureNames, allUserIds, allMyTurn, allNotMyTurn);
 	if (!anyOngoingGames) {
@@ -151,22 +151,22 @@ public class RetrieveUserGamesController extends EventController {
 	if (null != notMyTurnProtos && !myTurnProtos.isEmpty()) {
 	    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
 	}
-  }
+    }
 
-  public GameHistoryService getGameHistoryService() {
-      return gameHistoryService;
-  }
+    public GameHistoryService getGameHistoryService() {
+	return gameHistoryService;
+    }
 
-  public void setGameHistoryService(GameHistoryService gameHistoryService) {
-      this.gameHistoryService = gameHistoryService;
-  }
+    public void setGameHistoryService(GameHistoryService gameHistoryService) {
+	this.gameHistoryService = gameHistoryService;
+    }
 
-  public CreateNoneventProtoUtils getNoneventProtoUtils() {
-      return noneventProtoUtils;
-  }
+    public CreateNoneventProtoUtils getNoneventProtoUtils() {
+	return noneventProtoUtils;
+    }
 
-  public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
-      this.noneventProtoUtils = noneventProtoUtils;
-  }
+    public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
+	this.noneventProtoUtils = noneventProtoUtils;
+    }
 
 }

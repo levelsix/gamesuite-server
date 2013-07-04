@@ -492,7 +492,7 @@ public class LoginController extends EventController {
 	Set<String> allUserIds = new HashSet<String>();
 	List<GameHistory> allMyTurn = new ArrayList<GameHistory>();
 	List<GameHistory> allNotMyTurn = new ArrayList<GameHistory>();
-	
+
 	boolean anyOngoingGames = getGameHistoryService().getOngoingGamesForUser(
 		userId, allPictureNames, allUserIds, allMyTurn, allNotMyTurn);
 	if (!anyOngoingGames) {

@@ -22,12 +22,12 @@ import com.lvl6.pictures.properties.PicturesPoConstants;
 
 @Component
 public class GameHistoryServiceImpl implements GameHistoryService {
-    
+
     private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
     @Autowired
     protected GameHistoryDao gameHistoryDao;
-    
+
     @Override
     public List<GameHistory> getCompletedGamesForUser(String userId) {
 	//arguments to getGameHistoryForUser(...)
@@ -75,7 +75,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
 	return returnVal;
     }
-    
+
     @Override
     public boolean getOngoingGamesForUser(String userId, Set<String> allPictureNames,
 	    Set<String> allUserIds, List<GameHistory> allMyTurn,
@@ -93,7 +93,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	if (!anyOngoingGames) {
 	    return anyOngoingGames;
 	}
-	
+
 	log.info("ongoing myTurn=" + myTurn.size());
 	log.info("pending myTurn=" + pendingGamesMyTurn.size());
 	log.info("ongoing notMyTurn=" + notMyTurn.size());
@@ -103,12 +103,12 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	Set<String> picNames = getPictureNamesFromOngoingGames(userId,
 		myTurn, pendingGamesMyTurn);
 	allPictureNames.addAll(picNames);
-	
+
 	allMyTurn.addAll(myTurn);
 	allMyTurn.addAll(pendingGamesMyTurn);
 	allNotMyTurn.addAll(notMyTurn);
 	allNotMyTurn.addAll(pendingGamesNotMyTurn);
-	
+
 	return anyOngoingGames;
     }
 

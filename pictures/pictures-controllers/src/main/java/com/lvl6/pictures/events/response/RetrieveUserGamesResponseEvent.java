@@ -9,22 +9,22 @@ import com.lvl6.pictures.noneventprotos.PicturesEventProtocolProto.PicturesEvent
 
 public class RetrieveUserGamesResponseEvent extends NormalResponseEvent {
 
-  private RetrieveUserGamesResponseProto retrieveUserGamesResponseProto;
-  
-  public RetrieveUserGamesResponseEvent(String playerId) {
-    super(playerId);
-    eventType = PicturesEventProtocolResponse.S_RETRIEVE_USER_GAMES_EVENT_VALUE;
-  }
-  
-  @Override
-  public int write(ByteBuffer bb) {
-    ByteString b = retrieveUserGamesResponseProto.toByteString();
-    b.copyTo(bb);
-    return b.size();
-  }
-  
-  public void setRetrieveUserGamesResponseProto(RetrieveUserGamesResponseProto retrieveUserGamesResponseProto) {
-    this.retrieveUserGamesResponseProto = retrieveUserGamesResponseProto;
-  }
-  
+    private RetrieveUserGamesResponseProto retrieveUserGamesResponseProto;
+
+    public RetrieveUserGamesResponseEvent(String playerId) {
+	super(playerId);
+	eventType = PicturesEventProtocolResponse.S_RETRIEVE_USER_GAMES_EVENT_VALUE;
+    }
+
+    @Override
+    public int write(ByteBuffer bb) {
+	ByteString b = retrieveUserGamesResponseProto.toByteString();
+	b.copyTo(bb);
+	return b.size();
+    }
+
+    public void setRetrieveUserGamesResponseProto(RetrieveUserGamesResponseProto retrieveUserGamesResponseProto) {
+	this.retrieveUserGamesResponseProto = retrieveUserGamesResponseProto;
+    }
+
 }
