@@ -1,11 +1,13 @@
 package com.lvl6.pictures.services.gamehistory;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import com.lvl6.pictures.po.GameHistory;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundHistory;
 import com.lvl6.pictures.po.RoundPendingCompletion;
+import com.lvl6.pictures.properties.PicturesPoConstants;
 
 @Component
 public class GameHistoryServiceImpl implements GameHistoryService {
@@ -24,6 +27,22 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
     @Autowired
     protected GameHistoryDao gameHistoryDao;
+    
+    @Override
+    public List<GameHistory> getCompletedGamesForUser(String userId) {
+	//arguments to getGameHistoryForUser(...)
+	boolean nonCompletedGamesOnly = false;
+	boolean completedGamesOnly = true;
+	DateTime now = new DateTime();
+	int days = PicturesPoConstants.GAME_HISTORY__DEFAULT_COMPLETED_GAMES_MIN_DAYS_DISPLAYED;
+	Date completedAfterThisTime = now.minusDays(days).toDate();
+	List<String> specificGameHistoryIdsNull = null;
+
+	List<GameHistory> completedGames = getGameHistoryForUser(userId, nonCompletedGamesOnly,
+		completedGamesOnly, completedAfterThisTime, specificGameHistoryIdsNull);
+
+	return completedGames;
+    }
 
     //completedAfterThisTime is set only if completedGamesOnly is set
     @Override
@@ -55,6 +74,42 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	}
 
 	return returnVal;
+    }
+    
+    @Override
+    public boolean getOngoingGamesForUser(String userId, Set<String> allPictureNames,
+	    Set<String> allUserIds, List<GameHistory> allMyTurn,
+	    List<GameHistory> allNotMyTurn) {
+	List<GameHistory> myTurn = new ArrayList<GameHistory>();
+	List<GameHistory> notMyTurn = new ArrayList<GameHistory>();
+	List<GameHistory> pendingGamesMyTurn = new ArrayList<GameHistory>();
+	List<GameHistory> pendingGamesNotMyTurn = new ArrayList<GameHistory>();
+
+	boolean anyOngoingGames = groupOngoingGamesForUser(
+		userId, myTurn, notMyTurn, pendingGamesMyTurn,
+		pendingGamesNotMyTurn, allUserIds);
+
+	log.info("anyOngoingGames=" + anyOngoingGames);
+	if (!anyOngoingGames) {
+	    return anyOngoingGames;
+	}
+	
+	log.info("ongoing myTurn=" + myTurn.size());
+	log.info("pending myTurn=" + pendingGamesMyTurn.size());
+	log.info("ongoing notMyTurn=" + notMyTurn.size());
+	log.info("pending notMyTurn=" + pendingGamesNotMyTurn.size());
+
+	//need return the collection of picture names
+	Set<String> picNames = getPictureNamesFromOngoingGames(userId,
+		myTurn, pendingGamesMyTurn);
+	allPictureNames.addAll(picNames);
+	
+	allMyTurn.addAll(myTurn);
+	allMyTurn.addAll(pendingGamesMyTurn);
+	allNotMyTurn.addAll(notMyTurn);
+	allNotMyTurn.addAll(pendingGamesNotMyTurn);
+	
+	return anyOngoingGames;
     }
 
     //returns false if there are no ongoing games

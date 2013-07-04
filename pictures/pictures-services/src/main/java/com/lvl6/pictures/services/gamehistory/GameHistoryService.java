@@ -8,10 +8,15 @@ import com.lvl6.pictures.dao.GameHistoryDao;
 import com.lvl6.pictures.po.GameHistory;
 
 public interface GameHistoryService {
+    
+    public abstract List<GameHistory> getCompletedGamesForUser(String userId);
+  public abstract List<GameHistory> getGameHistoryForUser(String userId,
+	  boolean nonCompletedGamesOnly, boolean completedGamesOnly,
+	  Date completedAfterThisTime, List<String> specificGameHistoryIds);
   
-  public abstract List<GameHistory> getGameHistoryForUser(String userId, boolean nonCompletedGamesOnly,
-      boolean completedGamesOnly, Date completedAfterThisTime, List<String> specificGameHistoryIds);
-  
+  public abstract boolean getOngoingGamesForUser(String userId,
+	  Set<String> allPictureNames, Set<String> allUserIds,
+	  List<GameHistory> allMyTurn, List<GameHistory> allNotMyTurn);
   public abstract boolean groupOngoingGamesForUser(String userId, List<GameHistory> myTurn,
       List<GameHistory> notMyTurn, List<GameHistory> pendingGamesMyTurn,
       List<GameHistory> pendingGamesNotMyTurn, Set<String> allUserIds);
@@ -30,4 +35,5 @@ public interface GameHistoryService {
   public abstract GameHistoryDao getGameHistoryDao();
   
   public abstract void setGameHistoryDao(GameHistoryDao gameHistoryDao);
+  
 }

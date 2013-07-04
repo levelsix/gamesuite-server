@@ -1,7 +1,6 @@
 package com.lvl6.pictures.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -146,7 +145,7 @@ public class LoginController extends EventController {
 		// CONSTRUCT THE NEW TRIVIA QUESTIONS
 		setNewQuestions(responseBuilder, userId, allPictureNames);
 
-		//TODO: CONSTRUCT THE LOGIN CONSTANTS
+		//easier for client to get the pictures to display to the user
 		responseBuilder.addAllPictureNames(allPictureNames);
 
 		if (LoginType.LOGIN_TOKEN == lt) {
@@ -165,6 +164,7 @@ public class LoginController extends EventController {
 		setFacebookFriends(responseBuilder, facebookFriendIds);
 	    }
 
+	    //TODO: CONSTRUCT THE LOGIN CONSTANTS
 	    //set the login constants
 	    setConstants(responseBuilder);
 
@@ -469,24 +469,13 @@ public class LoginController extends EventController {
     }
 
     private void setCompletedGames(Builder responseBuilder, String userId) {
-	//arguments to getGameHistoryForUser(...)
-	boolean nonCompletedGamesOnly = false;
-	boolean completedGamesOnly = true;
-	DateTime now = new DateTime();
-	int days = PicturesPoConstants.GAME_HISTORY__DEFAULT_COMPLETED_GAMES_MIN_DAYS_DISPLAYED;
-	Date completedAfterThisTime = now.minusDays(days).toDate();
-	List<String> specificGameHistoryIdsNull = null;
-
 	List<GameHistory> completedGames =
-		getGameHistoryService().getGameHistoryForUser(userId, nonCompletedGamesOnly,
-			completedGamesOnly, completedAfterThisTime, specificGameHistoryIdsNull);
-
-	log.info("completedGames=" + completedGames.size());
-	//if user has no recent completed don't do anything
+		getGameHistoryService().getCompletedGamesForUser(userId);
 	if (null == completedGames || completedGames.isEmpty()) {
 	    log.info("there are no completed games");
 	    return;
 	}
+	log.info("completedGames=" + completedGames.size());
 
 	Map<String, BasicUserProto> idsToBups = getNoneventProtoUtils()
 		.createIdsToBasicUserProtos(completedGames);
@@ -500,46 +489,25 @@ public class LoginController extends EventController {
     //allPicNames is filled up and returned
     private void setOngoingGames(Builder responseBuilder, String userId,
 	    Set<String> allPictureNames) {
-	//send to client
-	List<GameHistory> myTurn = new ArrayList<GameHistory>();
-	List<GameHistory> notMyTurn = new ArrayList<GameHistory>();
-	List<GameHistory> pendingGamesMyTurn = new ArrayList<GameHistory>();
-	List<GameHistory> pendingGamesNotMyTurn = new ArrayList<GameHistory>();
 	Set<String> allUserIds = new HashSet<String>();
-
-	boolean anyOngoingGames = getGameHistoryService().groupOngoingGamesForUser(
-		userId, myTurn, notMyTurn, pendingGamesMyTurn,
-		pendingGamesNotMyTurn, allUserIds);
-
-	log.info("anyOngoingGames=" + anyOngoingGames);
-	if (!anyOngoingGames) {
-	    return;
-	}
-	
-	log.info("ongoing myTurn=" + myTurn.size());
-	log.info("pending myTurn=" + pendingGamesMyTurn.size());
-	log.info("ongoing notMyTurn=" + notMyTurn.size());
-	log.info("pending notMyTurn=" + pendingGamesNotMyTurn.size());
-
-	//need to set in responseBuilder the collection of picture names
-	Set<String> picNames = getGameHistoryService().getPictureNamesFromOngoingGames(
-		userId, myTurn, pendingGamesMyTurn);
-	allPictureNames.addAll(picNames);
-
-	//create the ongoing game protos
-	Map<String, BasicUserProto> idsToBups = 
-		getNoneventProtoUtils().createIdsToBasicUserProtos(allUserIds);
 	List<GameHistory> allMyTurn = new ArrayList<GameHistory>();
 	List<GameHistory> allNotMyTurn = new ArrayList<GameHistory>();
-	allMyTurn.addAll(myTurn);
-	allMyTurn.addAll(pendingGamesMyTurn);
-	allNotMyTurn.addAll(notMyTurn);
-	allNotMyTurn.addAll(pendingGamesNotMyTurn);
+	
+	boolean anyOngoingGames = getGameHistoryService().getOngoingGamesForUser(
+		userId, allPictureNames, allUserIds, allMyTurn, allNotMyTurn);
+	if (!anyOngoingGames) {
+	    log.info("no ongoing games for user");
+	    return;
+	}
+	//create the BasicUserProtos for all the users in the completed games
+	//so the client can display them if desired
+	Map<String, BasicUserProto> idsToBups = 
+		getNoneventProtoUtils().createIdsToBasicUserProtos(allUserIds);
 
 	boolean isUserTurn = true;
+	//create the ongoing game protos
 	List<OngoingGameProto> myTurnProtos = getNoneventProtoUtils().createOngoingGameProtosForUser(
 		allMyTurn, idsToBups, userId, isUserTurn);
-
 	isUserTurn = false;
 	List<OngoingGameProto> notMyTurnProtos = getNoneventProtoUtils().createOngoingGameProtosForUser(
 		allNotMyTurn, idsToBups, userId, isUserTurn);
