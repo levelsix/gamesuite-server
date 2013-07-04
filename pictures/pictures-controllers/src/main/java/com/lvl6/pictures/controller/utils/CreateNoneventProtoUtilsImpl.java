@@ -362,6 +362,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	return brpb.build();
     }
 
+    @Transactional
     @Override
     public UnfinishedRoundProto createUnfinishedRoundProto(RoundHistory rh) {
 	UnfinishedRoundProto.Builder brpb = UnfinishedRoundProto.newBuilder();
