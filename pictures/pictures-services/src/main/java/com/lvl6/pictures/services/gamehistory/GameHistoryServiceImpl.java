@@ -58,7 +58,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
 	} else if (nonCompletedGamesOnly) {
 	    returnVal =
-		    getGameHistoryDao().findByPlayerOneIdOrPlayerTwoIdAndEndTimeIsNull(userId, userId);
+		    getGameHistoryDao().findByEndTimeIsNullAndPlayerOneIdOrPlayerTwoId(userId, userId);
 
 	} else if (null != completedAfterThisTime && completedGamesOnly) {
 	    //completed games after a certain time
@@ -71,7 +71,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	} else if (completedGamesOnly) {
 	    //don't forsee this being used much
 	    returnVal =
-		    getGameHistoryDao().findByPlayerOneIdOrPlayerTwoIdAndEndTimeIsNotNull(userId, userId);
+		    getGameHistoryDao().findByEndTimeIsNotNullAndPlayerOneIdOrPlayerTwoId(userId, userId);
 	}
 
 	return returnVal;
