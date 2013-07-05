@@ -111,8 +111,8 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	allNotMyTurn.addAll(notMyTurn);
 	allNotMyTurn.addAll(pendingGamesNotMyTurn);
 
-	log.info("allMyTurn=" + allMyTurn);
-	log.info("allNotMyTurn=" + allNotMyTurn);
+	//log.info("allMyTurn=" + allMyTurn);
+	//log.info("allNotMyTurn=" + allNotMyTurn);
 	
 	return anyOngoingGames;
     }
