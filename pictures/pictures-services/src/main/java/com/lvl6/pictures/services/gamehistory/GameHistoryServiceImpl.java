@@ -29,7 +29,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
     @Autowired
     protected GameHistoryDao gameHistoryDao;
-    
+
     @Autowired
     protected RoundPendingCompletionService roundPendingCompletionService;
 
@@ -66,8 +66,8 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
 	} else if (null != completedAfterThisTime && completedGamesOnly) {
 	    //completed games after a certain time
-	    log.info("querying for completed games after a certain time. " +
-		    "time=" + completedAfterThisTime);
+//	    log.info("querying for completed games after a certain time. " +
+//		    "time=" + completedAfterThisTime);
 	    returnVal = 
 		    getGameHistoryDao().findByEndTimeGreaterThanAndPlayerOneIdOrPlayerTwoIdOrderByEndTimeDesc(
 			    completedAfterThisTime, userId, userId);
@@ -117,7 +117,7 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
 	//log.info("allMyTurn=" + allMyTurn);
 	//log.info("allNotMyTurn=" + allNotMyTurn);
-	
+
 	return anyOngoingGames;
     }
 
@@ -269,22 +269,22 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	gh = gameHistoryDao.save(gh);
 	return gh;
     }
-    
+
     @Override
     public GameHistory deleteRoundPendingCompletion(GameHistory gh) {
 	//delete the unfinished round since the user just finished it
 	log.info("deleting gameHistory's roundPendingCompletion");
 	gh.setUnfinishedRound(null);
 	gh = gameHistoryDao.save(gh);
-	
+
 	RoundPendingCompletion rpc = gh.getUnfinishedRound();
 	getRoundPendingCompletionService().deleteRoundPendingCompletion(rpc);
-	
+
 	return gh;
     }
-    
 
-    
+
+
     @Override
     public GameHistoryDao getGameHistoryDao() {
 	return gameHistoryDao;
@@ -297,13 +297,13 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
     @Override
     public RoundPendingCompletionService getRoundPendingCompletionService() {
-        return roundPendingCompletionService;
+	return roundPendingCompletionService;
     }
 
     @Override
     public void setRoundPendingCompletionService(
-    	RoundPendingCompletionService roundPendingCompletionService) {
-        this.roundPendingCompletionService = roundPendingCompletionService;
+	    RoundPendingCompletionService roundPendingCompletionService) {
+	this.roundPendingCompletionService = roundPendingCompletionService;
     }
 
 }
