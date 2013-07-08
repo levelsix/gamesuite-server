@@ -20,6 +20,7 @@ import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.po.RoundHistory;
 import com.lvl6.pictures.po.RoundPendingCompletion;
 import com.lvl6.pictures.properties.PicturesPoConstants;
+import com.lvl6.pictures.services.roundpendingcompletion.RoundPendingCompletionService;
 
 @Component
 public class GameHistoryServiceImpl implements GameHistoryService {
@@ -28,6 +29,9 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 
     @Autowired
     protected GameHistoryDao gameHistoryDao;
+    
+    @Autowired
+    protected RoundPendingCompletionService roundPendingCompletionService;
 
     @Override
     public List<GameHistory> getCompletedGamesForUser(String userId) {
@@ -265,7 +269,22 @@ public class GameHistoryServiceImpl implements GameHistoryService {
 	gh = gameHistoryDao.save(gh);
 	return gh;
     }
+    
+    @Override
+    public GameHistory deleteRoundPendingCompletion(GameHistory gh) {
+	//delete the unfinished round since the user just finished it
+	log.info("deleting gameHistory's roundPendingCompletion");
+	gh.setUnfinishedRound(null);
+	gh = gameHistoryDao.save(gh);
+	
+	RoundPendingCompletion rpc = gh.getUnfinishedRound();
+	getRoundPendingCompletionService().deleteRoundPendingCompletion(rpc);
+	
+	return gh;
+    }
+    
 
+    
     @Override
     public GameHistoryDao getGameHistoryDao() {
 	return gameHistoryDao;
@@ -274,6 +293,17 @@ public class GameHistoryServiceImpl implements GameHistoryService {
     @Override
     public void setGameHistoryDao(GameHistoryDao gameHistoryDao) {
 	this.gameHistoryDao = gameHistoryDao;
+    }
+
+    @Override
+    public RoundPendingCompletionService getRoundPendingCompletionService() {
+        return roundPendingCompletionService;
+    }
+
+    @Override
+    public void setRoundPendingCompletionService(
+    	RoundPendingCompletionService roundPendingCompletionService) {
+        this.roundPendingCompletionService = roundPendingCompletionService;
     }
 
 }

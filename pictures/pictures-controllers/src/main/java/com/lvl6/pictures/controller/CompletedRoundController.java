@@ -186,11 +186,7 @@ public class CompletedRoundController extends EventController {
   private boolean writeChangesToDb(String userId, GameHistory gh,
       CompleteRoundResultsProto crrp, List<RoundHistory> rhList) {
     try {
-	//delete the unfinished round since the user just finished it
-	log.info("deleting gameHistory's roundPendingCompletion");
-	RoundPendingCompletion rpc = gh.getUnfinishedRound();
-	getRoundPendingCompletionService().deleteRoundPendingCompletion(rpc);
-	gh.setUnfinishedRound(null);
+	gh = getGameHistoryService().deleteRoundPendingCompletion(gh);
       
       //create the just finished round
       int roundNumber = crrp.getRoundNumber();

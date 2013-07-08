@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.lvl6.pictures.dao.GameHistoryDao;
 import com.lvl6.pictures.po.GameHistory;
+import com.lvl6.pictures.services.roundpendingcompletion.RoundPendingCompletionService;
 
 public interface GameHistoryService {
 
@@ -27,13 +28,19 @@ public interface GameHistoryService {
     public abstract GameHistory constructNewGame(String playerOneId,
 	    String playerTwoId, Date startDate);
 
-
     public abstract GameHistory getGameHistoryById(String gameId);
 
     public abstract GameHistory saveGameHistory(GameHistory gh);
+    
+    public abstract GameHistory deleteRoundPendingCompletion(GameHistory gh);
+    
 
     public abstract GameHistoryDao getGameHistoryDao();
 
     public abstract void setGameHistoryDao(GameHistoryDao gameHistoryDao);
+    
+    public abstract RoundPendingCompletionService getRoundPendingCompletionService();
+    
+    public abstract void setRoundPendingCompletionService(RoundPendingCompletionService rpcs);
 
 }
