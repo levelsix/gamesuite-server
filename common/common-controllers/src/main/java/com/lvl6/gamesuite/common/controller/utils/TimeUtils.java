@@ -19,7 +19,7 @@ public class TimeUtils {
 	DateTime now = new DateTime();
 	Period interim = new Period(possiblyNow, now);
 
-	int minutesApart = interim.getMinutes();
+	int minutesApart = interim.toStandardMinutes().getMinutes();
 	if (minutesApart > NUM_MINUTES_LEEWAY_FOR_CLIENT_TIME) {
 	    //client time is unsynchronized with server time
 	    return false;
@@ -33,7 +33,7 @@ public class TimeUtils {
 	DateTime dTwo = new DateTime(d2);
 	Period interim = new Period(dOne, dTwo);
 
-	return interim.getMinutes();
+	return interim.toStandardMinutes().getMinutes();
     }
 
     public int numSecondsDifference(Date d1, Date d2) {
@@ -41,6 +41,6 @@ public class TimeUtils {
 	DateTime dTwo = new DateTime(d2);
 	Period interim = new Period(dOne, dTwo);
 
-	return interim.getSeconds();
+	return interim.toStandardSeconds().getSeconds();
     }
 }

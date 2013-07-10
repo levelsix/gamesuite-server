@@ -60,9 +60,9 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public boolean canRegenerateToken(Date lastRefillTime, Date now) {
-	//int minDifference = timeUtils.numMinutesDifference(lastRefillTime, now);
+	int minDifference = timeUtils.numMinutesDifference(lastRefillTime, now);
 	int secDifference = timeUtils.numSecondsDifference(lastRefillTime, now);
-	//log.info("\t minDifference=" + minDifference);
+	log.info("\t minDifference=" + minDifference);
 	log.info("\t secDifference=" + secDifference);
 	
 	//int regenMin = PicturesPoConstants.CURRENCY__MINUTES_FOR_TOKEN_REGENERATION;
