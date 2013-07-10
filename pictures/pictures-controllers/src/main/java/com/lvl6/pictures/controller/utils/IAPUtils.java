@@ -3,13 +3,14 @@ package com.lvl6.pictures.controller.utils;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.gamesuite.common.properties.Globals;
 
 @Component
-public class IAPUtils {
+public class IAPUtils implements InitializingBean{
     
     @Autowired
     Globals globals;
@@ -37,34 +38,34 @@ public class IAPUtils {
     public final String PURCHASE_DATE_MS = "purchase_date_ms";
 
     //rubies
-    public final String PACKAGE1 = globals.getAppleBundleId() + ".package1";
-    public final String PACKAGE2 = globals.getAppleBundleId() + ".package2";
-    public final String PACKAGE3 = globals.getAppleBundleId() + ".package3";
-    public final String PACKAGE4 = globals.getAppleBundleId() + ".package4";
-    public final String PACKAGE5 = globals.getAppleBundleId() + ".package5";
+    public String PACKAGE1;
+    public String PACKAGE2;
+    public String PACKAGE3;
+    public String PACKAGE4;
+    public String PACKAGE5;
 
     //rubies on sale
-    public final String PACKAGE1SALE = globals.getAppleBundleId() + ".package1sale";
-    public final String PACKAGE2SALE = globals.getAppleBundleId() + ".package2sale";
-    public final String PACKAGE3SALE = globals.getAppleBundleId() + ".package3sale";
-    public final String PACKAGE4SALE = globals.getAppleBundleId() + ".package4sale";
-    public final String PACKAGE5SALE = globals.getAppleBundleId() + ".package5sale";
+    public String PACKAGE1SALE;
+    public String PACKAGE2SALE;
+    public String PACKAGE3SALE;
+    public String PACKAGE4SALE;
+    public String PACKAGE5SALE;
 
     //rubies for beginners
-    public final String PACKAGE1BSALE = globals.getAppleBundleId() + ".package1bsale";
-    public final String PACKAGE2BSALE = globals.getAppleBundleId() + ".package2bsale";
-    public final String PACKAGE3BSALE = globals.getAppleBundleId() + ".package3bsale";
-    public final String PACKAGE4BSALE = globals.getAppleBundleId() + ".package4bsale";
-    public final String PACKAGE5BSALE = globals.getAppleBundleId() + ".package5bsale";
+    public String PACKAGE1BSALE;
+    public String PACKAGE2BSALE;
+    public String PACKAGE3BSALE;
+    public String PACKAGE4BSALE;
+    public String PACKAGE5BSALE;
 
     //tokens, T1 = refill tokens
-    public final String PACKAGET1 = globals.getAppleBundleId() + ".packageT1";
+    public String PACKAGET1;
 
     //tokens on sale
-    public final String PACKAGET1SALE = globals.getAppleBundleId() + ".packageT1sale";
+    public String PACKAGET1SALE;
 
     //tokens for beginners
-    public final String PACKAGET1BSALE = globals.getAppleBundleId() + ".packageT1bsale";
+    public String PACKAGET1BSALE;
 
     public final String PACKAGE1IMG = "rubies1.png";
     public final String PACKAGE2IMG = "rubies2.png";
@@ -236,5 +237,41 @@ public class IAPUtils {
 	    return true;
 	}
 	return false;
+    }
+
+    //initializing here because globals isn't initialized
+    //until this method executes
+    @Override
+    public void afterPropertiesSet() throws Exception {
+	// TODO Auto-generated method stub
+	//rubies
+	    PACKAGE1 = globals.getAppleBundleId() + ".package1";
+	    PACKAGE2 = globals.getAppleBundleId() + ".package2";
+	    PACKAGE3 = globals.getAppleBundleId() + ".package3";
+	    PACKAGE4 = globals.getAppleBundleId() + ".package4";
+	    PACKAGE5 = globals.getAppleBundleId() + ".package5";
+
+	    //rubies on sale
+	    PACKAGE1SALE = globals.getAppleBundleId() + ".package1sale";
+	    PACKAGE2SALE = globals.getAppleBundleId() + ".package2sale";
+	    PACKAGE3SALE = globals.getAppleBundleId() + ".package3sale";
+	    PACKAGE4SALE = globals.getAppleBundleId() + ".package4sale";
+	    PACKAGE5SALE = globals.getAppleBundleId() + ".package5sale";
+
+	    //rubies for beginners
+	    PACKAGE1BSALE = globals.getAppleBundleId() + ".package1bsale";
+	    PACKAGE2BSALE = globals.getAppleBundleId() + ".package2bsale";
+	    PACKAGE3BSALE = globals.getAppleBundleId() + ".package3bsale";
+	    PACKAGE4BSALE = globals.getAppleBundleId() + ".package4bsale";
+	    PACKAGE5BSALE = globals.getAppleBundleId() + ".package5bsale";
+
+	    //tokens, T1 = refill tokens
+	    PACKAGET1 = globals.getAppleBundleId() + ".packageT1";
+
+	    //tokens on sale
+	    PACKAGET1SALE = globals.getAppleBundleId() + ".packageT1sale";
+
+	    //tokens for beginners
+	    PACKAGET1BSALE = globals.getAppleBundleId() + ".packageT1bsale";
     }
 }
