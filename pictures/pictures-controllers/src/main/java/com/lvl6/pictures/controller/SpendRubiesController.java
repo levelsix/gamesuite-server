@@ -143,7 +143,7 @@ public class SpendRubiesController extends EventController {
       int amountSpent) {
     try {
       Currency money = monies.get(0);
-      getCurrencyService().updateRubiesForUser(money, amountSpent);
+      getCurrencyService().relativelyUpdateRubiesForUser(money, -1 * amountSpent);
       return true;
       
     } catch (Exception e) {

@@ -114,8 +114,8 @@ public class CurrencyServiceImpl implements CurrencyService {
 	updateTokensForUser(c, newTokenAmount, timeRefilled);
     }
 
-    public void updateRubiesForUser(Currency c, int amountSpent) {
-	int newRubyAmount = c.getRubies() - amountSpent;
+    public void relativelyUpdateRubiesForUser(Currency c, int delta) {
+	int newRubyAmount = c.getRubies() + delta;
 	c.setRubies(newRubyAmount);
 
 	getCurrencyDao().save(c);

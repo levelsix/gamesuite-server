@@ -23,7 +23,7 @@ public interface CurrencyService {
   
   public abstract void spendTokenForUser(Currency c, Date startDate);
   
-  public abstract void updateRubiesForUser(Currency c, int amountSpent);
+  public abstract void relativelyUpdateRubiesForUser(Currency c, int delta);
  
 
   
