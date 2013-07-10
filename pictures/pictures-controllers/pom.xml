@@ -47,6 +47,14 @@
 
 	<dependencies>
 		<dependency>
+				<groupId>json-java</groupId>
+				<artifactId>json-java</artifactId>
+			</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+        </dependency>
+		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 		</dependency>

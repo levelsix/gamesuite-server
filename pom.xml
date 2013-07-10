@@ -141,7 +141,11 @@
 
 	<dependencyManagement>
 		<dependencies>
-
+	        <dependency>
+				<groupId>json-java</groupId>
+				<artifactId>json-java</artifactId>
+				<version>1.0</version>
+			</dependency>
 			<dependency>
 				<groupId>org.scala-lang</groupId>
 				<artifactId>scala-library</artifactId>

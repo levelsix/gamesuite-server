@@ -1,0 +1,12 @@
+import "User.proto";
+
+package proto;
+
+option java_package = "com.lvl6.pictures.eventprotos";
+option java_outer_classname = "UpdateClientProto";
+
+message UpdateClientCurrencyResponseProto {
+	optional BasicUserProto bup = 1;
+	optional UserCurrencyProto ucp = 2;
+	optional int64 timeOfUserUpdate = 3;
+}
