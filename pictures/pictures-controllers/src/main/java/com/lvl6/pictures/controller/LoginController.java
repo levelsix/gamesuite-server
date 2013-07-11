@@ -172,10 +172,6 @@ public class LoginController extends EventController {
 
 	    LoginResponseProto resProto = responseBuilder.build();
 	    resEvent.setLoginResponseProto(resProto);
-	    log.info("responseBuilder completedGames=" + responseBuilder.getCompletedGamesList());
-	    log.info("responseBuilder myTurn=" + responseBuilder.getMyTurnList());
-	    log.info("responseBuilder notMyTurn=" + responseBuilder.getNotMyTurnList());
-	    
 	    log.info("resProto completedGames=" + resProto.getCompletedGamesList());
 	    log.info("resProto myTurn=" + resProto.getMyTurnList());
 	    log.info("resProto notMyTurn=" + resProto.getNotMyTurnList());
@@ -515,8 +511,8 @@ public class LoginController extends EventController {
 	Map<String, BasicUserProto> idsToBups = 
 		getNoneventProtoUtils().createIdsToBasicUserProtos(allUserIds);
 
-	log.info("allMyTurn=" + allMyTurn);
-	log.info("allNotMyTurn=" + allNotMyTurn);
+	//log.info("allMyTurn=" + allMyTurn);
+	//log.info("allNotMyTurn=" + allNotMyTurn);
 	
 	boolean isUserTurn = true;
 	//create the ongoing game protos
@@ -529,11 +525,11 @@ public class LoginController extends EventController {
 	//initially user does not have any games
 	if (null != myTurnProtos && !myTurnProtos.isEmpty()) {
 	    responseBuilder.addAllMyTurn(myTurnProtos);
-	    log.info("allMyTurnProtos=" + allMyTurn.size());
+	    //log.info("allMyTurnProtos=" + allMyTurn.size());
 	}
 	if (null != notMyTurnProtos && !notMyTurnProtos.isEmpty()) {
 	    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
-	    log.info("allNotMyTurnProtos=" + allNotMyTurn.size());
+	    //log.info("allNotMyTurnProtos=" + allNotMyTurn.size());
 	}
     }
 
