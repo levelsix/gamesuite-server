@@ -511,6 +511,9 @@ public class LoginController extends EventController {
 	Map<String, BasicUserProto> idsToBups = 
 		getNoneventProtoUtils().createIdsToBasicUserProtos(allUserIds);
 
+	log.info("allMyTurn=" + allMyTurn);
+	log.info("allNotMyTurn=" + allNotMyTurn);
+	
 	boolean isUserTurn = true;
 	//create the ongoing game protos
 	List<OngoingGameProto> myTurnProtos = getNoneventProtoUtils().createOngoingGameProtosForUser(
