@@ -246,9 +246,10 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	    log.info("gameHistory=" + gh);
 	    OngoingGameProto ogp = createOngoingGameProtoForUser(gh, idsToBasicUserProtos, userId,
 		    isUserTurn);
-	    log.info("ogp=" + ogp);
 	    ongoingGames.add(ogp);
+	    log.info("ogp=" + ogp);
 	}
+	log.info("ongoingGameProtoList=" + ongoingGames);
 	return ongoingGames;
     }
 

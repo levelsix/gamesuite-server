@@ -172,9 +172,13 @@ public class LoginController extends EventController {
 
 	    LoginResponseProto resProto = responseBuilder.build();
 	    resEvent.setLoginResponseProto(resProto);
-	    log.info("completedGames=" + resProto.getCompletedGamesList());
-	    log.info("myTurn=" + resProto.getMyTurnList());
-	    log.info("notMyTurn=" + resProto.getNotMyTurnList());
+	    log.info("responseBuilder completedGames=" + responseBuilder.getCompletedGamesList());
+	    log.info("responseBuilder myTurn=" + responseBuilder.getMyTurnList());
+	    log.info("responseBuilder notMyTurn=" + responseBuilder.getNotMyTurnList());
+	    
+	    log.info("resProto completedGames=" + resProto.getCompletedGamesList());
+	    log.info("resProto myTurn=" + resProto.getMyTurnList());
+	    log.info("resProto notMyTurn=" + resProto.getNotMyTurnList());
 	    
 
 	    log.info("Writing event: " + resEvent);
@@ -470,7 +474,7 @@ public class LoginController extends EventController {
 	    bupList.add(bup);
 	}
 
-	log.info("\t\t sent facebookFriends=" + uList);
+	//log.info("\t\t sent facebookFriends=" + uList);
 	responseBuilder.addAllFacebookFriendsWithAccounts(bupList);
     }
 
@@ -481,7 +485,7 @@ public class LoginController extends EventController {
 	    log.info("there are no completed games");
 	    return;
 	}
-	log.info("completedGames=" + completedGames.size());
+	log.info("\t\t completedGames=" + completedGames.size());
 	log.info("\t endTime=" + completedGames.get(0).getEndTime());
 
 	Map<String, BasicUserProto> idsToBups = getNoneventProtoUtils()
@@ -524,12 +528,12 @@ public class LoginController extends EventController {
 
 	//initially user does not have any games
 	if (null != myTurnProtos && !myTurnProtos.isEmpty()) {
-	    log.info("allMyTurn=" + allMyTurn.size());
 	    responseBuilder.addAllMyTurn(myTurnProtos);
+	    log.info("allMyTurnProtos=" + allMyTurn.size());
 	}
 	if (null != notMyTurnProtos && !myTurnProtos.isEmpty()) {
-	    log.info("allNotMyTurn=" + allNotMyTurn.size());
 	    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
+	    log.info("allNotMyTurnProtos=" + allNotMyTurn.size());
 	}
     }
 
