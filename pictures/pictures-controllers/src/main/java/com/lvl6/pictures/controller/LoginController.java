@@ -172,6 +172,10 @@ public class LoginController extends EventController {
 
 	    LoginResponseProto resProto = responseBuilder.build();
 	    resEvent.setLoginResponseProto(resProto);
+	    log.info("completedGames=" + resProto.getCompletedGamesList());
+	    log.info("myTurn=" + resProto.getMyTurnList());
+	    log.info("notMyTurn=" + resProto.getNotMyTurnList());
+	    
 
 	    log.info("Writing event: " + resEvent);
 	    getEventWriter().processPreDBResponseEvent(resEvent, udid);
@@ -478,6 +482,7 @@ public class LoginController extends EventController {
 	    return;
 	}
 	log.info("completedGames=" + completedGames.size());
+	log.info("\t endTime=" + completedGames.get(0).getEndTime());
 
 	Map<String, BasicUserProto> idsToBups = getNoneventProtoUtils()
 		.createIdsToBasicUserProtos(completedGames);
