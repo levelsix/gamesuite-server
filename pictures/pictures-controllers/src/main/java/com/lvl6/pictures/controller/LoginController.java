@@ -531,7 +531,7 @@ public class LoginController extends EventController {
 	    responseBuilder.addAllMyTurn(myTurnProtos);
 	    log.info("allMyTurnProtos=" + allMyTurn.size());
 	}
-	if (null != notMyTurnProtos && !myTurnProtos.isEmpty()) {
+	if (null != notMyTurnProtos && !notMyTurnProtos.isEmpty()) {
 	    responseBuilder.addAllNotMyTurn(notMyTurnProtos);
 	    log.info("allNotMyTurnProtos=" + allNotMyTurn.size());
 	}
