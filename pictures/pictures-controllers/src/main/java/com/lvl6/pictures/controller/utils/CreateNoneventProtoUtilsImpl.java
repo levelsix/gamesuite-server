@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,6 +49,8 @@ import com.lvl6.pictures.po.RoundPendingCompletion;
 @Component
 public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 
+    private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+    
     @Autowired
     protected UserDao userDao; 
 
@@ -239,8 +243,10 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	List<OngoingGameProto> ongoingGames = new ArrayList<OngoingGameProto>();
 
 	for(GameHistory gh : ghList) {
+	    log.info("gameHistory=" + gh);
 	    OngoingGameProto ogp = createOngoingGameProtoForUser(gh, idsToBasicUserProtos, userId,
 		    isUserTurn);
+	    log.info("ogp=" + ogp);
 	    ongoingGames.add(ogp);
 	}
 	return ongoingGames;
