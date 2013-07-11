@@ -54,6 +54,7 @@ import com.lvl6.pictures.po.MultipleChoiceQuestion;
 import com.lvl6.pictures.po.PicturesQuestionWithTextAnswer;
 import com.lvl6.pictures.po.QuestionBase;
 import com.lvl6.pictures.properties.PicturesPoConstants;
+import com.lvl6.pictures.services.gamehistory.GameHistoryService;
 import com.lvl6.pictures.services.questionbase.QuestionBaseService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -101,6 +102,9 @@ public class TestPicturesController {
 	
 	@Autowired
 	protected GameHistoryDao gameHistoryDao;
+	
+	@Autowired
+	protected GameHistoryService gameHistoryService;
 
 	public PicturesQuestionWithTextAnswer createPicturesQuestionWithTextAnswer() {
 		PicturesQuestionWithTextAnswer q = new PicturesQuestionWithTextAnswer();
@@ -404,6 +408,63 @@ public class TestPicturesController {
 	    genLoginEvent(bupTwo, facebookFriendIds);
 	}
 
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testGameHistoryServiceImpl() {
+	    String userId = "c82d6abd-9736-4ac3-a3d9-6a3812e24cdf";
+	    List<GameHistory> completedGames =
+			getGameHistoryService().getCompletedGamesForUser(userId);
+	    assertTrue("gameHistoryService returned null list.", null != completedGames);
+	    assertTrue("wtf, spring query creation from method does not work as expected. " +
+			"expected completed games: 0 \t actual: " + completedGames.size(),
+			0 == completedGames.size());
+	}
+	
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testSpendingRubies() {
+//	    log.info("Testing Pictures Controllers");
+//	    //create two users
+//	    String facebookIdOne = "a";
+//	    String nameFriendsSeeOne = "Articus";
+//	    String emailOne = "arturo@level6.com";
+//	    String udidOne = "udid1";
+//	    String deviceIdOne = "deviceId1";
+//	    createFacebookUser(facebookIdOne, nameFriendsSeeOne, emailOne, udidOne, deviceIdOne);
+//
+//	    String facebookIdTwo = "b";
+//	    String nameFriendsSeeTwo = "Arthur";
+//	    String emailTwo = "arthur@level6.com";
+//	    String udidTwo = "udid2";
+//	    String deviceIdTwo = "deviceId2";
+//	    createFacebookUser(facebookIdTwo, nameFriendsSeeTwo, emailTwo, udidTwo, deviceIdTwo);
+//	    
+//	    //make sure these guys are there
+//	    List<User> uOneList = getUserDao().findByFacebookId(facebookIdOne);
+//	    List<User> uTwoList = getUserDao().findByFacebookId(facebookIdTwo);
+//	    
+//	    assertTrue("expected non null/empty list. uOneList=" + uOneList,
+//		    null != uOneList && 1 == uOneList.size());
+//	    assertTrue("expected non null/empty list. uTwoList=" + uTwoList,
+//		    null != uTwoList && 1 == uTwoList.size());
+//
+//	    User uOne = uOneList.get(0);
+//	    String uOneId = uOne.getId();
+//	    User uTwo = uTwoList.get(0);
+//	    String uTwoId = uTwo.getId();
+//	    
+//	    BasicUserProto bupOne = getBasicUserProto(uOne);
+//	    BasicUserProto bupTwo = getBasicUserProto(uTwo);
+//	    
+//	    int rubiesToSpend = 21; 
+	    //spendRubies(bupOne, uOneId, rubiesToSpend);
+	}
+	
+	private void spendRubies(BasicUserProto bup, String userId, int amount) {
+	    
+	}
 
 	public PictureQuestionWithTextAnswerDao getPictureDao() {
 		return pictureDao;
@@ -518,6 +579,14 @@ public class TestPicturesController {
 
 	public void setGameHistoryDao(GameHistoryDao gameHistoryDao) {
 	    this.gameHistoryDao = gameHistoryDao;
+	}
+
+	public GameHistoryService getGameHistoryService() {
+	    return gameHistoryService;
+	}
+
+	public void setGameHistoryService(GameHistoryService gameHistoryService) {
+	    this.gameHistoryService = gameHistoryService;
 	}
 
 }
